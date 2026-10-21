@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Indagación previa · Clase 8</title>
+<link rel="stylesheet" href="../../assets/estilos.css">
+</head>
+<body>
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Indagaciones previas</a><span aria-hidden="true">/</span><span>Clase 8</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Indagación previa · Clase 8 · Unidad 5</p>
+    <h1>Expresiones, guardas y excepciones</h1>
+    <p class="objetivo">En la clase vas a comparar guardas y excepciones en Python, Java y C. Llega sabiendo cómo se evalúa una expresión y qué pasa cuando algo falla.</p>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">01</span>Cómo trabajar</h2>
+    <p class="bajada">Tiempo estimado: 40 a 50 min. Trabaja en tu cuaderno o en un documento. Responde con tus palabras y anota la fuente y la sección donde encontraste cada respuesta. Si un paso tiene código, escribe tu predicción antes de ejecutarlo en Colab o en tu intérprete de Python: equivocarte en la predicción también sirve, porque te muestra qué tienes que revisar.</p>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">02</span>Pasos</h2>
+    <article class="actividad paso-ind">
+      <header><h3>Paso 1</h3></header>
+      <p class="q">¿Qué diferencia hay entre una expresión y una sentencia? En Python, ¿una asignación es una expresión o una sentencia?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://docs.python.org/es/3/glossary.html" target="_blank" rel="noopener">Python Software Foundation, s.f.-c</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 2</h3></header>
+      <p class="q">Antes de ejecutar, escribe qué crees que imprime cada valor. Después ejecútalo y busca en la tabla de precedencia la regla que explica cada resultado.</p><pre class="codigo">print(10 - 3 - 2)
+print(2 ** 3 ** 2)
+print(-2 ** 2)</pre><p class="prediccion">Mi predicción, antes de ejecutar: ________________________________</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://docs.python.org/es/3/reference/expressions.html" target="_blank" rel="noopener">Python Software Foundation, s.f.-b</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 3</h3></header>
+      <p class="q">¿Cuándo and no evalúa su segundo operando? ¿Y or? ¿Java y C hacen lo mismo? Antes de ejecutar este programa, escribe si crees que va a dar error.</p><pre class="codigo">x = 0
+print(x != 0 and 10 / x &gt; 1)</pre><p class="prediccion">Mi predicción, antes de ejecutar: ________________________________</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://docs.python.org/es/3/reference/expressions.html" target="_blank" rel="noopener">Python Software Foundation, s.f.-b</a>; <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html" target="_blank" rel="noopener">Oracle, s.f.-a</a>; <a href="https://cppreference.com/c/language/operator_logical" target="_blank" rel="noopener">cppreference.com, s.f.-c</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 4</h3></header>
+      <p class="q">¿Cómo definió Dijkstra un comando con guarda? ¿Cuándo se ejecuta la lista de sentencias?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD04xx/EWD418.html" target="_blank" rel="noopener">Dijkstra, 1974</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 5</h3></header>
+      <p class="q">¿Qué es una excepción? Cuando ocurre, ¿dónde se busca quién la maneje? ¿Qué pasa si nadie la maneja? ¿Cómo funciona try/except en Python?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/definition.html" target="_blank" rel="noopener">Oracle, s.f.-b</a>; <a href="https://docs.python.org/es/3/tutorial/errors.html" target="_blank" rel="noopener">Python Software Foundation, s.f.-a, sección «Gestionando excepciones»</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 6</h3></header>
+      <p class="q">¿Están try y catch entre las palabras reservadas de C? Entonces, ¿cómo avisan los errores varias funciones de su biblioteca estándar?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://cppreference.com/c/keyword" target="_blank" rel="noopener">cppreference.com, s.f.-a</a>; <a href="https://cppreference.com/c/error/errno" target="_blank" rel="noopener">cppreference.com, s.f.-b</a>)</span></p>
+    </article>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">03</span>Antes de la clase</h2>
+    <div class="ind-cierre">
+      <div><strong>Lo que tienes que tener anotado</strong><p>Tus predicciones y resultados de los pasos 2 y 3 con la regla que los explica, y tus respuestas a los pasos 1, 4, 5 y 6.</p></div>
+      <div class="terminaste"><strong>Terminaste cuando</strong><p>puedes explicar por qué el programa del paso 3 no falla, citando la regla.</p></div>
+      <div><strong>Trae a clase</strong><p>Una situación en la que usarías una guarda y otra en la que usarías una excepción, con una razón para cada una.</p></div>
+    </div>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">04</span>Fuentes</h2>
+    <p class="bajada">Todas son de acceso abierto. Las citas de los pasos abren cada fuente directamente.</p>
+    <ol class="biblio"><li id="ref-c-kw">cppreference.com. (s.f.-a). <i>C keywords</i>. <a href="https://cppreference.com/c/keyword">https://cppreference.com/c/keyword</a></li><li id="ref-c-errno">cppreference.com. (s.f.-b). <i>errno</i>. <a href="https://cppreference.com/c/error/errno">https://cppreference.com/c/error/errno</a></li><li id="ref-c-logic">cppreference.com. (s.f.-c). <i>Logical operators</i>. <a href="https://cppreference.com/c/language/operator_logical">https://cppreference.com/c/language/operator_logical</a></li><li id="ref-dijkstra">Dijkstra, E. W. (1974). <i>Guarded commands, non-determinacy and a calculus for the derivation of programs</i> (EWD 418; transcripción de M. Ben-Ari). E. W. Dijkstra Archive, University of Texas at Austin. <a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD04xx/EWD418.html">https://www.cs.utexas.edu/~EWD/transcriptions/EWD04xx/EWD418.html</a></li><li id="ref-j-op2">Oracle. (s.f.-a). <i>Equality, relational, and conditional operators</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html">https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html</a></li><li id="ref-j-exc">Oracle. (s.f.-b). <i>What is an exception?</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/definition.html">https://docs.oracle.com/javase/tutorial/essential/exceptions/definition.html</a></li><li id="ref-py-err">Python Software Foundation. (s.f.-a). <i>Errores y excepciones</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/tutorial/errors.html">https://docs.python.org/es/3/tutorial/errors.html</a></li><li id="ref-py-expr">Python Software Foundation. (s.f.-b). <i>Expresiones</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/reference/expressions.html">https://docs.python.org/es/3/reference/expressions.html</a></li><li id="ref-py-glos">Python Software Foundation. (s.f.-c). <i>Glosario</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/glossary.html">https://docs.python.org/es/3/glossary.html</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Indagaciones"><a href="clase-07.html"><small>← Clase 7</small>Constructores de tipos: colecciones</a><a class="sig" href="clase-09.html"><small>Clase 9 →</small>Enunciados de control</a></nav>
+  <footer class="pie"><span>Teoría de la Programación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+
+</body>
+</html>

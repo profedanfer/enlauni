@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U3 · Semántica básica</title>
+<link rel="stylesheet" href="../assets/estilos.css">
+</head>
+<body>
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Teoría de la Programación</a><span aria-hidden="true">/</span><a href="repaso.html">Repaso</a><span aria-hidden="true">/</span><span>Unidad 3</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Unidad 3 de 8</p>
+    <h1>Semántica básica</h1>
+    <p class="objetivo">Utilizar y analizar los conceptos de variables, constantes, ligaduras y alcance en distintos lenguajes de programación, y comparar el tiempo de vida de las variables en los paradigmas imperativo y funcional.</p>
+    <ul class="contenidos" aria-label="Contenidos"><li>Atributos, ligaduras y funciones semánticas</li><li>La tabla de símbolos</li><li>Resolución y sobrecarga de nombres</li><li>Asignación, tiempo de vida y el entorno</li><li>Variables y constantes</li></ul>
+    <aside class="aviso-ind"><p><strong>¿Ya hiciste la indagación previa?</strong> Hazla antes de leer este repaso: <a href="indagaciones/clase-04.html">Clase 4: Variables, ligaduras y alcance</a> · <a href="indagaciones/clase-05.html">Clase 5: Tiempo de vida, entorno y constantes</a></p></aside>
+  </section>
+  <nav class="indice-pagina" aria-label="En esta página">
+    <a href="#repaso">Repaso</a><a href="#codigo">Código comparado</a><a href="#practica">Práctica</a><a href="#autoevaluacion">Autoevaluación</a><a href="#juegos">Juegos</a><a href="#bibliografia">Bibliografía</a>
+  </nav>
+  <section class="seccion" id="repaso">
+    <h2><span class="num-sec">01</span>Repaso</h2>
+    <dl class="conceptos"><div class="concepto"><dt>Ligadura</dt><dd><p>En Python, los nombres refieren a objetos y se introducen mediante operaciones de vinculación (ligadura) <span class="cita">(<a href="#ref-py-exec">Python Software Foundation, s.f.-c, §4.2.1</a>)</span>. Una variable puede tener ligados distintos atributos, y cada uno se liga en un momento distinto:</p><ul><li><b>Tipo.</b> En Java, cada variable y cada expresión tienen un tipo conocido en tiempo de compilación: la ligadura de tipo es estática <span class="cita">(<a href="#ref-jls4">Oracle, s.f.-c</a>)</span>. En Python, el tipo pertenece al objeto y se determina en tiempo de ejecución <span class="cita">(<a href="#ref-py-wiki"><i>Why is Python a dynamic language…</i>, 2026</a>)</span>: es dinámica.</li><li><b>Valor.</b> En Java, si una constante <code class="in">static final</code> es de tipo primitivo o <code class="in">String</code> y su valor se conoce al compilar, el compilador la reemplaza por ese valor en todo el código <span class="cita">(<a href="#ref-j-classvars">Oracle, s.f.-d</a>)</span>. Una variable común recibe su valor durante la ejecución.</li><li><b>Almacenamiento.</b> En C, una variable automática recibe su espacio al entrar al bloque y lo pierde al salir; una variable estática lo tiene durante toda la ejecución <span class="cita">(<a href="#ref-c-storage">cppreference.com, s.f.-b</a>)</span>.</li></ul></dd></div><div class="concepto"><dt>Tabla de símbolos</dt><dd><p>Tabla de búsqueda cuyas claves son identificadores y cuyos valores indican a qué se refiere cada uno <span class="cita">(<a href="#ref-ci-map">Nystrom, 2021a</a>)</span>. En Python, cada ejecución de una función crea una tabla de símbolos local. Para resolver un nombre se busca primero en la local, luego en la de las funciones envolventes, después en la global y al final en la de nombres predefinidos <span class="cita">(<a href="#ref-py-ctrl">Python Software Foundation, s.f.-d</a>)</span>.</p></dd></div><div class="concepto"><dt>Alcance</dt><dd><p>El alcance (<i>scope</i>) define la visibilidad de un nombre en un bloque <span class="cita">(<a href="#ref-py-exec">Python Software Foundation, s.f.-c, §4.2.2</a>)</span>.</p><ul><li><b>Léxico (estático):</b> la asociación se determina en tiempo de compilación <span class="cita">(<a href="#ref-al5">Gallardo et al., 2025b, §4</a>)</span>. Basta leer el texto del programa para saber a qué declaración se refiere un nombre; la mayoría de los lenguajes modernos funciona así <span class="cita">(<a href="#ref-ci-res">Nystrom, 2021b</a>)</span>.</li><li><b>Dinámico:</b> la asociación se determina en tiempo de ejecución <span class="cita">(<a href="#ref-al5">Gallardo et al., 2025b, §4</a>)</span>.</li></ul><p>Al conjunto de variables disponibles en una parte del programa se lo llama <b>contexto</b> o <b>entorno</b> <span class="cita">(<a href="#ref-al5">Gallardo et al., 2025b, §4</a>)</span>.</p></dd></div><div class="concepto"><dt>Local y global en Python</dt><dd><p>Si un nombre se vincula dentro de un bloque, es local a ese bloque, salvo que se declare <code class="in">global</code> o <code class="in">nonlocal</code>. Si se usa una variable local antes de que tenga valor, Python lanza <code class="in">UnboundLocalError</code> <span class="cita">(<a href="#ref-py-exec">Python Software Foundation, s.f.-c, §4.2.1–4.2.2</a>)</span>.</p></dd></div><div class="concepto"><dt>Resolución y sobrecarga</dt><dd><p>En Java, la firma de un método es su nombre más los tipos de sus parámetros. Los métodos sobrecargados se distinguen por la cantidad y el tipo de los argumentos; el tipo de retorno no cuenta <span class="cita">(<a href="#ref-j-methods">Oracle, s.f.-a</a>)</span>.</p><p>En Python, <code class="in">def</code> es una sentencia ejecutable que vincula el nombre de la función a un objeto función <span class="cita">(<a href="#ref-py-comp">Python Software Foundation, s.f.-e</a>)</span>. Un segundo <code class="in">def</code> con el mismo nombre vuelve a vincular ese nombre.</p></dd></div><div class="concepto"><dt>Tiempo de vida</dt><dd><p>Lapso durante el cual un objeto tiene memoria asignada. En C hay duración automática, estática, de hilo y asignada <span class="cita">(<a href="#ref-c-storage">cppreference.com, s.f.-b</a>)</span>. Si una variable de bloque se declara <code class="in">static</code>, tiene duración estática aunque solo sea visible dentro de ese bloque <span class="cita">(<a href="#ref-c-storage">cppreference.com, s.f.-b</a>)</span>: alcance y tiempo de vida no coinciden.</p><p>En Java, el entorno elimina los objetos cuando ya no hay referencias a ellos (recolección de basura) <span class="cita">(<a href="#ref-j-using">Oracle, s.f.-e</a>)</span>. En Python, los objetos nunca se destruyen explícitamente: cuando se vuelven inalcanzables pueden ser recolectados <span class="cita">(<a href="#ref-py-dm">Python Software Foundation, s.f.-b</a>)</span>.</p></dd></div><div class="concepto"><dt>Asignación</dt><dd><p>Las variables pueden contener valores (tipos valor) o referencias (tipos referencia). En Java, los datos primitivos se copian por valor y los objetos por referencia <span class="cita">(<a href="#ref-al5">Gallardo et al., 2025b, §1.2.2</a>)</span>. En Python, varios nombres pueden vincularse al mismo objeto; esto se conoce como <i>aliasing</i> <span class="cita">(<a href="#ref-py-class">Python Software Foundation, s.f.-a</a>)</span>.</p></dd></div><div class="concepto"><dt>Variables y constantes</dt><dd><p>En Java, una constante <code class="in">static final</code> no puede reasignarse: hacerlo es un error de compilación. Por convención, su nombre va en mayúsculas <span class="cita">(<a href="#ref-j-classvars">Oracle, s.f.-d</a>)</span>. En C, un objeto <code class="in">const</code> no es asignable <span class="cita">(<a href="#ref-c-const">cppreference.com, s.f.-a</a>)</span>. En Python, escribir las constantes en mayúsculas es una convención de estilo <span class="cita">(<a href="#ref-pep8">van Rossum et al., 2001</a>)</span>.</p><p>En la programación imperativa el estado del programa se modifica <span class="cita">(<a href="#ref-al5">Gallardo et al., 2025b, §1.2</a>)</span>; en la funcional los valores son inmutables y no hay estado interno <span class="cita">(<a href="#ref-al2">Gallardo et al., 2025a, §1.1.1</a>)</span>.</p></dd></div></dl>
+    <div class="tabla-scroll"><table class="comp">
+      <caption>Tiempo de vida según la duración de almacenamiento</caption>
+      <thead><tr><th scope="col">Duración</th><th scope="col">Comienza</th><th scope="col">Termina</th><th scope="col">Ejemplo</th></tr></thead>
+      <tbody><tr><th scope="row">Automática (C)</th><td>Al entrar al bloque <span class="cita">(<a href="#ref-c-storage">cppreference.com, s.f.-b</a>)</span></td><td>Al salir del bloque <span class="cita">(<a href="#ref-c-storage">cppreference.com, s.f.-b</a>)</span></td><td>Variables locales</td></tr><tr><th scope="row">Estática (C)</th><td>Antes de <code class="in">main</code>; se inicializa una vez <span class="cita">(<a href="#ref-c-storage">cppreference.com, s.f.-b</a>)</span></td><td>Al terminar el programa <span class="cita">(<a href="#ref-c-storage">cppreference.com, s.f.-b</a>)</span></td><td>Globales y <code class="in">static</code></td></tr><tr><th scope="row">Asignada (C)</th><td>Cuando se pide memoria dinámica <span class="cita">(<a href="#ref-c-storage">cppreference.com, s.f.-b</a>)</span></td><td>Cuando se libera <span class="cita">(<a href="#ref-c-storage">cppreference.com, s.f.-b</a>)</span></td><td><code class="in">malloc</code> / <code class="in">free</code></td></tr><tr><th scope="row">Objetos de Java</th><td>Con <code class="in">new</code></td><td>Cuando el recolector lo decide, si ya no hay referencias <span class="cita">(<a href="#ref-j-using">Oracle, s.f.-e</a>)</span></td><td>Cualquier objeto</td></tr><tr><th scope="row">Objetos de Python</th><td>Al crearse</td><td>Pueden recolectarse cuando son inalcanzables <span class="cita">(<a href="#ref-py-dm">Python Software Foundation, s.f.-b</a>)</span></td><td>Cualquier objeto</td></tr></tbody>
+    </table></div>
+    <aside class="ojo"><strong class="tit">No confundas</strong><p><b>No confundas ligadura con tipado.</b> Ligadura estática o dinámica (U3) responde <i>cuándo se asocia</i> un atributo a una variable. Tipado estático o dinámico (U4) responde <i>cuándo se verifican</i> los tipos: un lenguaje es de tipado estático si comprueba los tipos al compilar, y dinámico si lo hace en ejecución <span class="cita">(<a href="#ref-j-jvmlang">Oracle, s.f.-b</a>)</span>. Usan las mismas palabras, pero son preguntas distintas.</p></aside>
+  </section>
+  <section class="seccion" id="codigo">
+    <h2><span class="num-sec">02</span>Código comparado</h2>
+    <h3 style="margin-top:.6rem">Una variable global y una local con el mismo nombre</h3>
+    <p class="bajada">La variable local tapa a la global dentro de la función. Afuera, la global sigue intacta.</p>
+    <div class="tabs">
+      <div class="tabs-botones" role="tablist" aria-label="Lenguaje" hidden><button type="button" role="tab" id="tab3-0" aria-controls="panel3-0">Python</button><button type="button" role="tab" id="tab3-1" aria-controls="panel3-1">Java</button><button type="button" role="tab" id="tab3-2" aria-controls="panel3-2">C</button></div>
+      <div class="tab-panel" role="tabpanel" id="panel3-0" aria-labelledby="tab3-0" data-lang="Python">
+        <pre class="codigo">x = &quot;global&quot;
+
+def demo():
+    x = &quot;local&quot;
+    print(&quot;dentro:&quot;, x)
+
+demo()
+print(&quot;fuera:&quot;, x)</pre>
+        <p class="salida">Salida al ejecutarlo: <code>dentro: local / fuera: global</code></p>
+      </div><div class="tab-panel" role="tabpanel" id="panel3-1" aria-labelledby="tab3-1" data-lang="Java">
+        <pre class="codigo">public class Alcance {
+    static String x = &quot;global&quot;;      // atributo de clase
+
+    static void demo() {
+        String x = &quot;local&quot;;          // variable local
+        System.out.println(&quot;dentro: &quot; + x);
+    }
+
+    public static void main(String[] args) {
+        demo();
+        System.out.println(&quot;fuera: &quot; + x);
+    }
+}</pre>
+        <p class="salida">Salida al ejecutarlo: <code>dentro: local / fuera: global</code></p>
+      </div><div class="tab-panel" role="tabpanel" id="panel3-2" aria-labelledby="tab3-2" data-lang="C">
+        <pre class="codigo">#include &lt;stdio.h&gt;
+
+char *x = &quot;global&quot;;
+
+void demo(void) {
+    char *x = &quot;local&quot;;
+    printf(&quot;dentro: %s\n&quot;, x);
+}
+
+int main(void) {
+    demo();
+    printf(&quot;fuera: %s\n&quot;, x);
+    return 0;
+}</pre>
+        <p class="salida">Salida al ejecutarlo: <code>dentro: local / fuera: global</code></p>
+      </div>
+    </div>
+  </section>
+  <section class="seccion" id="practica">
+    <h2><span class="num-sec">03</span>Actividades de práctica</h2>
+    <p class="bajada">Cada actividad indica cuándo terminaste. No pases a la siguiente hasta cumplirlo.</p>
+    <article class="actividad">
+      <header><h3>Actividad 1 · Traza en Python Tutor</h3><span class="meta">Individual · 30 min</span></header>
+      <p>Python Tutor muestra los marcos de las funciones y los objetos durante la ejecución <span class="cita">(<a href="#ref-guo">Guo, 2013</a>)</span>. Usa este código:</p><pre class="codigo">asistentes = []
+
+def registrar(nombre, lista):
+    mensaje = &quot;Hola &quot; + nombre
+    lista.append(nombre)
+    return mensaje
+
+saludo = registrar(&quot;Ana&quot;, asistentes)
+print(saludo, asistentes)</pre>
+      <ol><li>Pega el código en pythontutor.com y ejecútalo paso a paso.</li><li>En cada paso anota qué marcos existen y qué nombres hay en cada uno.</li><li>Señala qué variables son globales y cuáles son locales.</li><li>Indica en qué paso desaparece <code class="in">mensaje</code> y por qué.</li><li>Explica por qué <code class="in">asistentes</code> cambió aunque la función no lo nombra.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tienes una tabla paso a paso con los marcos y respondiste los pasos 4 y 5 con lo que muestra la herramienta.</p>
+    </article><article class="actividad">
+      <header><h3>Actividad 2 · Constantes en tres lenguajes</h3><span class="meta">En equipo de trabajo · 40 min</span></header>
+      
+      <ol><li>Escriban en Python, Java y C un programa con una constante (mayúsculas, <code class="in">final</code> y <code class="in">const</code>).</li><li>Intenten reasignar la constante en los tres.</li><li>Registren qué lenguaje lo impide, en qué momento (al compilar o al ejecutar) y el mensaje exacto.</li><li>Comparen lo que vieron con la documentación citada en esta unidad.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tienen los 3 programas ejecutados y una tabla de 3 filas con: ¿lo impide?, ¿cuándo?, mensaje de error.</p>
+    </article><article class="actividad">
+      <header><h3>Actividad 3 · Sobrecarga sí o no</h3><span class="meta">Individual · 20 min</span></header>
+      
+      <ol><li>En Java escribe dos métodos: <code class="in">area(double lado)</code> y <code class="in">area(double base, double altura)</code>.</li><li>Llama a los dos y verifica cuál se ejecuta en cada caso.</li><li>Intenta lo mismo en Python con dos <code class="in">def</code> y observa qué pasa.</li><li>Logra el mismo comportamiento en Python con un parámetro por defecto.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> los dos lenguajes calculan el área de un cuadrado y de un rectángulo con el mismo nombre de función, y explicas en 2 oraciones por qué Python necesitó otra estrategia.</p>
+    </article>
+  </section>
+  <section class="seccion" id="autoevaluacion">
+    <h2><span class="num-sec">04</span>Autoevaluación</h2>
+    <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
+    <ol class="autoeval"><li>¿Qué tres atributos puede tener ligados una variable? ¿Cuándo se liga cada uno en Java?</li><li>¿Por qué <code class="in">contador = contador + 1</code> dentro de una función de Python puede producir <code class="in">UnboundLocalError</code>?</li><li>¿Qué diferencia hay entre alcance y tiempo de vida? Da un ejemplo en C donde no coincidan.</li><li>¿En qué orden busca Python un nombre?</li></ol>
+  </section>
+  <section class="seccion" id="juegos">
+    <h2><span class="num-sec">05</span>Juegos</h2>
+    <div class="enlaces-juego"><a class="btn" href="juegos/ruta-de-repaso.html#u3">Estación U3 de la Ruta de Repaso</a><a class="btn sec" href="juegos/estatico-o-dinamico.html">Estático o dinámico</a><a class="btn sec" href="juegos/oca.html">La Oca de la Programación</a><a class="btn sec" href="juegos/caza-el-bug.html">Caza el bug</a><a class="btn sec" href="juegos/tribunal-de-diseno.html">Tribunal de Diseño</a><a class="btn sec" href="juegos/duelo-de-equipos.html">Duelo de equipos</a></div>
+  </section>
+  <section class="seccion" id="bibliografia">
+    <h2><span class="num-sec">06</span>Bibliografía</h2>
+    <p class="bajada">Fuentes de acceso abierto citadas en esta unidad, en formato APA 7. Consultadas el 7 de octubre de 2026.</p>
+    <ol class="biblio"><li id="ref-c-const">cppreference.com. (s.f.-a). <i>const type qualifier</i>. <a href="https://cppreference.com/c/language/const">https://cppreference.com/c/language/const</a></li><li id="ref-c-storage">cppreference.com. (s.f.-b). <i>Storage-class specifiers</i>. <a href="https://cppreference.com/c/language/storage_duration">https://cppreference.com/c/language/storage_duration</a></li><li id="ref-al2">Gallardo, D., Pomares, C., Botía, A., y Martínez, F. (2025a). <i>Tema 2: Programación funcional</i>. Lenguajes y Paradigmas de Programación, curso 2025-26. Departamento de Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante. <a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema02-programacion-funcional/tema02-programacion-funcional.html">https://domingogallardo.github.io/apuntes-lpp/teoria/tema02-programacion-funcional/tema02-programacion-funcional.html</a></li><li id="ref-al5">Gallardo, D., Pomares, C., Botía, A., y Martínez, F. (2025b). <i>Tema 5: Programación imperativa</i>. Lenguajes y Paradigmas de Programación, curso 2025-26. Departamento de Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante. <a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema05-bis-programacion-imperativa/tema05-programacion-imperativa.html">https://domingogallardo.github.io/apuntes-lpp/teoria/tema05-bis-programacion-imperativa/tema05-programacion-imperativa.html</a></li><li id="ref-guo">Guo, P. J. (2013). Online Python Tutor: Embeddable web-based program visualization for CS education. En <i>SIGCSE '13</i>. <a href="https://pg.ucsd.edu/publications/Online-Python-Tutor-web-based-program-visualization_SIGCSE-2013.pdf">https://pg.ucsd.edu/publications/Online-Python-Tutor-web-based-program-visualization_SIGCSE-2013.pdf</a></li><li id="ref-ci-map">Nystrom, R. (2021a). A map of the territory. En <i>Crafting interpreters</i>. <a href="https://craftinginterpreters.com/a-map-of-the-territory.html">https://craftinginterpreters.com/a-map-of-the-territory.html</a></li><li id="ref-ci-res">Nystrom, R. (2021b). Resolving and binding. En <i>Crafting interpreters</i>. <a href="https://craftinginterpreters.com/resolving-and-binding.html">https://craftinginterpreters.com/resolving-and-binding.html</a></li><li id="ref-j-methods">Oracle. (s.f.-a). <i>Defining methods</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/methods.html">https://docs.oracle.com/javase/tutorial/java/javaOO/methods.html</a></li><li id="ref-j-jvmlang">Oracle. (s.f.-b). <i>Java Virtual Machine support for non-Java languages</i>. Java SE 8 Documentation. <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/multiple-language-support.html">https://docs.oracle.com/javase/8/docs/technotes/guides/vm/multiple-language-support.html</a></li><li id="ref-jls4">Oracle. (s.f.-c). Types, values, and variables (cap. 4). En <i>The Java language specification, Java SE 17 edition</i>. <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html">https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html</a></li><li id="ref-j-classvars">Oracle. (s.f.-d). <i>Understanding class members</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/classvars.html">https://docs.oracle.com/javase/tutorial/java/javaOO/classvars.html</a></li><li id="ref-j-using">Oracle. (s.f.-e). <i>Using objects</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/usingobject.html">https://docs.oracle.com/javase/tutorial/java/javaOO/usingobject.html</a></li><li id="ref-py-class">Python Software Foundation. (s.f.-a). <i>Clases</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/tutorial/classes.html">https://docs.python.org/es/3/tutorial/classes.html</a></li><li id="ref-py-dm">Python Software Foundation. (s.f.-b). <i>Modelo de datos</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/reference/datamodel.html">https://docs.python.org/es/3/reference/datamodel.html</a></li><li id="ref-py-exec">Python Software Foundation. (s.f.-c). <i>Modelo de ejecución</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/reference/executionmodel.html">https://docs.python.org/es/3/reference/executionmodel.html</a></li><li id="ref-py-ctrl">Python Software Foundation. (s.f.-d). <i>Más herramientas para control de flujo</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/tutorial/controlflow.html">https://docs.python.org/es/3/tutorial/controlflow.html</a></li><li id="ref-py-comp">Python Software Foundation. (s.f.-e). <i>Sentencias compuestas</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/reference/compound_stmts.html">https://docs.python.org/es/3/reference/compound_stmts.html</a></li><li id="ref-pep8">van Rossum, G., Warsaw, B., y Coghlan, A. (2001). <i>PEP 8 – Style guide for Python code</i>. Python Enhancement Proposals. <a href="https://peps.python.org/pep-0008/">https://peps.python.org/pep-0008/</a></li><li id="ref-py-wiki"><i>Why is Python a dynamic language and also a strongly typed language</i>. (2026, 14 de febrero). Python Wiki. <a href="https://wiki.python.org/moin/Why%20is%20Python%20a%20dynamic%20language%20and%20also%20a%20strongly%20typed%20language">https://wiki.python.org/moin/Why is Python a dynamic language and also a strongly typed language</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Unidades"><a href="u2.html"><small>← Unidad 2</small>Principios de diseño</a><a class="sig" href="u4.html"><small>Unidad 4 →</small>Tipos de datos</a></nav>
+  <footer class="pie"><span>Teoría de la Programación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>

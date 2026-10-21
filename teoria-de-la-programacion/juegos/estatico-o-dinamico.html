@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Estático o dinámico</title>
+<link rel="stylesheet" href="../../assets/estilos.css">
+<style>
+  .portada { padding-block: 1.6rem .4rem; }
+  .marcador { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; margin-top: 1.2rem; font-weight: 700; }
+  .marcador span { color: var(--tinta-suave); font-weight: 400; }
+  .reloj.urgente { color: var(--error); }
+
+  .tarjeta {
+    margin-top: 1rem; background: var(--superficie); border: 2px solid var(--verde-claro);
+    border-radius: var(--radio); padding: 1.2rem 1.2rem 1.1rem; min-height: 7.5rem;
+    font-size: 1.12rem; line-height: 1.45; position: relative;
+  }
+  .tarjeta .n { position: absolute; top: .55rem; right: .8rem; font-size: .75rem; color: var(--tinta-suave); }
+  .tarjeta code { font-family: var(--f-codigo); font-size: .92em; background: var(--acierto-fondo); padding: .05em .3em; border-radius: 4px; overflow-wrap: anywhere; }
+  .tarjeta.entra { animation: entra .25s ease-out; }
+  @keyframes entra { from { opacity: .3; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* Cuadrícula 2 × 2: filas = qué se decide, columnas = cuándo */
+  .tablero { display: grid; grid-template-columns: 4.6rem 1fr 1fr; gap: .5rem; margin-top: 1rem; }
+  .cab { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; color: var(--verde-medio); display: grid; place-items: center; text-align: center; padding: .2rem; }
+  .cab small { display: block; text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--tinta-suave); }
+  .cab.fila { justify-items: start; text-align: left; place-items: center start; }
+  .caja {
+    font: inherit; cursor: pointer; min-height: 5.2rem; border-radius: var(--radio);
+    border: 2px dashed var(--verde-claro); background: var(--fondo); color: var(--tinta);
+    font-weight: 700; font-size: .95rem; padding: .5rem; line-height: 1.2;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .caja:hover:not(:disabled) { background: var(--acierto-fondo); border-style: solid; }
+  .caja.ok { background: var(--acierto-fondo); border: 2px solid var(--acierto); }
+  .caja.mal { background: var(--error-fondo); border: 2px solid var(--error); }
+  .caja:disabled { cursor: default; }
+
+  .fin ul { padding-left: 1.2rem; }
+  .fin li { margin-top: .6rem; }
+  .fin li em { display: block; color: var(--tinta-suave); font-style: normal; font-size: .92rem; }
+  .inicio { background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radio); padding: 1.2rem; margin-top: 1.2rem; }
+  .inicio dl { display: grid; grid-template-columns: auto 1fr; gap: .4rem 1rem; margin: .8rem 0 0; }
+  .inicio dt { font-weight: 700; color: var(--verde-medio); }
+  .inicio dd { margin: 0; color: var(--tinta-suave); min-width: 0; }
+</style>
+</head>
+<body>
+<div class="envoltura">
+  <header class="inst">
+    <span>Aula Danfer</span>
+    <a href="index.html">← Juegos de repaso</a>
+  </header>
+
+  <section class="portada">
+    <p class="etiqueta">U3 Semántica · U4 Tipos</p>
+    <h1>Estático o dinámico</h1>
+    <p class="bajada">Las dos unidades usan las palabras «estático» y «dinámico», pero para preguntas distintas. Clasifica cada tarjeta en la caja correcta.</p>
+  </section>
+
+  <main id="zona"></main>
+
+  <footer class="pie">
+    <span>Teoría de la Programación</span>
+    <span>PhD. Daniela Ferreira</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  const TIEMPO = 240; // segundos
+  const NOMBRES = { LE: "Ligadura estática", LD: "Ligadura dinámica", TE: "Tipado estático", TD: "Tipado dinámico" };
+  const TARJETAS = [
+    { t: "C++: <code>int edad = 20;</code> deja el tipo int asociado a edad desde la compilación.", c: "LE" },
+    { t: "Python: <code>x = 5</code> y luego <code>x = \"hola\"</code>. El tipo asociado a x cambia mientras el programa corre.", c: "LD" },
+    { t: "Java no compila <code>int n = \"hola\";</code> y avisa el error antes de ejecutar.", c: "TE" },
+    { t: "Python ejecuta las primeras líneas y recién al llegar a <code>\"3\" + 3</code> lanza TypeError.", c: "TD" },
+    { t: "Una variable global en C tiene su lugar en memoria fijado antes de que empiece la ejecución.", c: "LE" },
+    { t: "C: una variable local automática recibe su espacio cada vez que se entra al bloque donde se declaró.", c: "LD" },
+    { t: "Java: <code>static final int MAX = 10;</code> es una constante de compilación: el compilador reemplaza MAX por 10 en el código.", c: "LE" },
+    { t: "Python: <code>edad = int(input())</code>. El valor de edad se conoce recién cuando el usuario lo escribe.", c: "LD" },
+    { t: "El editor de Java marca en rojo <code>String s = 42;</code> sin que ejecutes nada.", c: "TE" },
+    { t: "Python: <code>def doble(n): return n * 2</code> acepta números o textos; si el tipo no admite <code>*</code>, el error aparece al ejecutar.", c: "TD" },
+    { t: "Java: llamar a <code>sumar(\"1\", 2)</code> cuando el método espera <code>(int, int)</code> impide compilar el programa.", c: "TE" },
+    { t: "Python: <code>len(5)</code> produce un error recién cuando esa línea se ejecuta.", c: "TD" },
+    { t: "Java: un objeto creado con <code>new</code> recibe su memoria durante la ejecución.", c: "LD" },
+    { t: "C: el tamaño del arreglo global <code>int notas[10];</code> queda fijado al compilar.", c: "LE" },
+    { t: "Java: una <code>ArrayList&lt;String&gt;</code> rechaza <code>lista.add(5)</code> antes de ejecutar.", c: "TE" },
+    { t: "Python: la lista <code>[1, \"a\", 2.5]</code> mezcla tipos; cada operación revisa el tipo del elemento cuando se ejecuta.", c: "TD" },
+    { t: "Java: el compilador avisa «incompatible types» al asignar un double a un int sin conversión.", c: "TE" },
+    { t: "Python: un segundo <code>def f()</code> vuelve a ligar el nombre f a otro código cuando se ejecuta.", c: "LD" }
+  ];
+  const P_EJE = "¿La tarjeta habla de ASOCIAR un atributo (tipo, valor o memoria) a una variable, o de VERIFICAR que un tipo sea compatible?";
+  const P_TIEMPO = "¿Esto ocurre antes de ejecutar (al compilar) o mientras el programa corre?";
+
+  const zona = document.getElementById("zona");
+  let mazo, i, puntos, racha, mejorRacha, aciertos, fallidas, intentos, restante, intervalo;
+
+  function mezclar(a) { a = a.slice(); for (let k = a.length - 1; k > 0; k--) { const j = Math.floor(Math.random() * (k + 1)); [a[k], a[j]] = [a[j], a[k]]; } return a; }
+  function strip(h) { const d = document.createElement("div"); d.innerHTML = h; return d.textContent; }
+
+  function portada() {
+    clearInterval(intervalo);
+    zona.innerHTML = `
+      <section class="inicio">
+        <h2>Antes de empezar</h2>
+        <dl>
+          <dt>Ligadura</dt><dd>Cuándo se asocia un atributo (tipo, valor, memoria) a una variable. Unidad 3.</dd>
+          <dt>Tipado</dt><dd>Cuándo se verifica que los tipos sean compatibles. Unidad 4.</dd>
+          <dt>Estático</dt><dd>Antes de ejecutar: al compilar o al cargar.</dd>
+          <dt>Dinámico</dt><dd>Durante la ejecución.</dd>
+        </dl>
+        <p class="bajada">${TARJETAS.length} tarjetas · ${TIEMPO / 60} minutos. Primer intento: 10 puntos más bono por racha. Segundo intento: 4 puntos.</p>
+        <div class="fila-botones"><button type="button" class="btn" id="btnJugar">Empezar</button></div>
+      </section>`;
+    document.getElementById("btnJugar").addEventListener("click", jugar);
+  }
+
+  function jugar() {
+    mazo = mezclar(TARJETAS); i = 0; puntos = 0; racha = 0; mejorRacha = 0; aciertos = 0; fallidas = []; restante = TIEMPO;
+    zona.innerHTML = `
+      <div class="marcador num" aria-live="polite">
+        <div><span>Tarjeta</span> <b id="mNum"></b></div>
+        <div><span>Puntos</span> <b id="mPts">0</b></div>
+        <div><span>Racha</span> <b id="mRacha">0</b></div>
+        <div class="reloj" id="mReloj"></div>
+      </div>
+      <div class="tarjeta" id="tarjeta"></div>
+      <div class="tablero" role="group" aria-label="Cajas de clasificación">
+        <div></div>
+        <div class="cab">Estático<small>antes de ejecutar</small></div>
+        <div class="cab">Dinámico<small>al ejecutar</small></div>
+        <div class="cab fila">Ligadura<small>asocia</small></div>
+        <button type="button" class="caja" data-c="LE">Ligadura estática</button>
+        <button type="button" class="caja" data-c="LD">Ligadura dinámica</button>
+        <div class="cab fila">Tipado<small>verifica</small></div>
+        <button type="button" class="caja" data-c="TE">Tipado estático</button>
+        <button type="button" class="caja" data-c="TD">Tipado dinámico</button>
+      </div>
+      <div id="retro"></div>`;
+    zona.querySelectorAll(".caja").forEach(b => b.addEventListener("click", () => elegir(b)));
+    pintarReloj();
+    intervalo = setInterval(() => { restante--; pintarReloj(); if (restante <= 0) terminar(true); }, 1000);
+    mostrar();
+  }
+
+  function pintarReloj() {
+    const r = document.getElementById("mReloj"); if (!r) return;
+    const m = Math.floor(Math.max(restante, 0) / 60), s = String(Math.max(restante, 0) % 60).padStart(2, "0");
+    r.textContent = `⏱ ${m}:${s}`;
+    r.classList.toggle("urgente", restante <= 30);
+  }
+
+  function mostrar() {
+    intentos = 0;
+    const t = document.getElementById("tarjeta");
+    t.classList.remove("entra"); void t.offsetWidth; t.classList.add("entra");
+    t.innerHTML = `<span class="n num">${i + 1}/${mazo.length}</span>${mazo[i].t}`;
+    document.getElementById("mNum").textContent = `${i + 1} de ${mazo.length}`;
+    document.getElementById("retro").innerHTML = "";
+    zona.querySelectorAll(".caja").forEach(b => { b.disabled = false; b.className = "caja"; });
+  }
+
+  function elegir(b) {
+    const carta = mazo[i], c = b.dataset.c;
+    intentos++;
+    if (c === carta.c) {
+      b.classList.add("ok");
+      zona.querySelectorAll(".caja").forEach(x => x.disabled = true);
+      if (intentos === 1) { racha++; aciertos++; puntos += 10 + Math.min(racha - 1, 5) * 2; }
+      else { racha = 0; puntos += 4; }
+      mejorRacha = Math.max(mejorRacha, racha);
+      actualizar();
+      setTimeout(avanzar, 650);
+      return;
+    }
+    b.classList.add("mal"); b.disabled = true; racha = 0; actualizar();
+    if (intentos === 1) {
+      const preguntas = [];
+      if (c[0] !== carta.c[0]) preguntas.push(P_EJE);
+      if (c[1] !== carta.c[1]) preguntas.push(P_TIEMPO);
+      document.getElementById("retro").innerHTML = `<div class="pista"><strong>Piensa en esto</strong>${preguntas.join("<br>")}</div>`;
+    } else {
+      fallidas.push(carta);
+      zona.querySelectorAll(".caja").forEach(x => { x.disabled = true; if (x.dataset.c === carta.c) x.classList.add("ok"); });
+      setTimeout(avanzar, 1600);
+    }
+  }
+
+  function actualizar() {
+    document.getElementById("mPts").textContent = puntos;
+    document.getElementById("mRacha").textContent = racha;
+  }
+
+  function avanzar() {
+    if (restante <= 0) return;
+    i++;
+    if (i < mazo.length) mostrar(); else terminar(false);
+  }
+
+  function terminar(porTiempo) {
+    clearInterval(intervalo);
+    if (zona.querySelector(".fin")) return;
+    const vistas = Math.min(i + (porTiempo ? 0 : 0), mazo.length);
+    zona.innerHTML = `
+      <section class="inicio fin">
+        <p class="etiqueta">${porTiempo ? "Se terminó el tiempo" : "Mazo completo"}</p>
+        <h2 class="num">${puntos} puntos</h2>
+        <p class="bajada num">Acertaste al primer intento ${aciertos} de ${porTiempo ? vistas : mazo.length} tarjetas. Mejor racha: ${mejorRacha}.</p>
+        ${fallidas.length ? `<h3 style="margin-top:1rem">Vuelve a pensar estas tarjetas</h3><ul>${fallidas.map(f => `<li>${strip(f.t)}<em>${P_EJE} ${P_TIEMPO}</em></li>`).join("")}</ul>` : `<p class="aviso-ok">No dejaste ninguna tarjeta sin resolver.</p>`}
+        <div class="fila-botones">
+          <button type="button" class="btn" id="btnOtra">Jugar de nuevo</button>
+          <a class="btn sec" href="index.html" style="text-decoration:none;display:inline-grid;place-items:center">Volver a los juegos</a>
+        </div>
+      </section>`;
+    document.getElementById("btnOtra").addEventListener("click", jugar);
+  }
+
+  portada();
+})();
+</script>
+</body>
+</html>

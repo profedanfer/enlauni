@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La Oca de la Programación</title>
+<link rel="stylesheet" href="../../assets/estilos.css">
+<style>
+  /* Tablero en serpentina de 9 × 7; las casillas especiales se distinguen por color y por rótulo
+     (funciona en gris al imprimir). */
+  .envoltura.ancha { max-width: 64rem; }
+  .portada { padding-block: 1.4rem .4rem; }
+  .config { background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radio); padding: 1.2rem; margin-top: 1rem; display: grid; gap: 1.1rem; }
+  .config fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+  .config legend { font-family: var(--f-titulo); font-size: 1.1rem; color: var(--verde-oscuro); margin-bottom: .5rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .chip { position: relative; }
+  .chip input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+  .chip span { display: inline-block; padding: .4rem .85rem; border-radius: 999px; border: 2px solid var(--linea); background: var(--fondo); font-weight: 700; color: var(--tinta-suave); min-height: 40px; line-height: 1.5; }
+  .chip input:checked + span { background: var(--verde-medio); border-color: var(--verde-medio); color: var(--sobre-acento); }
+  .chip input:focus-visible + span { outline: 3px solid var(--verde-claro); outline-offset: 2px; }
+  .nombres { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: .5rem; margin-top: .6rem; }
+  .nombres input { font: inherit; width: 100%; padding: .5rem .7rem; border-radius: 8px; border: 2px solid var(--linea); background: var(--fondo); color: var(--tinta); min-height: 44px; }
+  .nota { font-size: .9rem; color: var(--tinta-suave); margin: .5rem 0 0; }
+  .leyenda { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: .5rem .9rem; margin: .4rem 0 0; padding: 0; list-style: none; font-size: .9rem; }
+  .leyenda li { display: grid; grid-template-columns: 2.4rem 1fr; gap: .6rem; align-items: start; }
+  .leyenda .muestra { width: 2.4rem; height: 2.4rem; border-radius: 6px; display: grid; place-items: center; font-size: .62rem; font-weight: 700; text-align: center; line-height: 1.05; }
+
+  /* Juego */
+  .juego { display: grid; grid-template-columns: minmax(0, 1fr) 19rem; gap: 1rem; margin-top: 1rem; align-items: start; }
+  @media (max-width: 860px) { .juego { grid-template-columns: 1fr; } }
+  .tablero { display: grid; grid-template-columns: repeat(9, 1fr); gap: 3px; background: var(--linea); padding: 3px; border-radius: var(--radio); }
+  .casilla { position: relative; aspect-ratio: 1; background: var(--superficie); border-radius: 4px; display: grid; grid-template-rows: auto 1fr auto; padding: 2px 3px; min-width: 0; overflow: hidden; }
+  .casilla .num { font-family: var(--f-codigo); font-size: clamp(.55rem, 1.4vw, .75rem); color: var(--tinta-suave); font-variant-numeric: tabular-nums; }
+  .casilla .rot { font-size: clamp(.45rem, 1.15vw, .66rem); font-weight: 700; line-height: 1.05; align-self: center; text-align: center; overflow-wrap: anywhere; }
+  .casilla .fichas { display: flex; flex-wrap: wrap; gap: 1px; justify-content: center; }
+  .t-oca   { background: var(--acierto-fondo); } .t-oca .rot { color: var(--verde-medio); }
+  .t-avance{ background: var(--pista-fondo); }   .t-avance .rot { color: var(--tinta); }
+  .t-pena  { background: var(--error-fondo); }   .t-pena .rot { color: var(--error); }
+  .t-meta  { background: var(--verde-medio); }   .t-meta .rot, .t-meta .num { color: var(--sobre-acento); }
+  .t-inicio .rot { color: var(--tinta-suave); }
+  .ficha { width: clamp(12px, 2.6vw, 20px); height: clamp(12px, 2.6vw, 20px); border-radius: 50%; display: grid; place-items: center; font-size: clamp(.5rem, 1.2vw, .65rem); font-weight: 700; color: #fff; border: 2px solid var(--superficie); }
+  .ficha.e0 { background: #1A3C2F; } .ficha.e1 { background: #8A5A00; } .ficha.e2 { background: #3D4F8F; } .ficha.e3 { background: #8F2D4A; }
+  .casilla.activa { box-shadow: inset 0 0 0 3px var(--verde-claro); }
+
+  .panel { background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radio); padding: 1rem; display: grid; gap: .9rem; }
+  .equipos { display: grid; gap: .4rem; }
+  .eq { display: grid; grid-template-columns: auto 1fr auto; gap: .6rem; align-items: center; padding: .45rem .6rem; border-radius: 8px; border: 2px solid transparent; }
+  .eq.turno { border-color: var(--verde-medio); background: var(--acierto-fondo); }
+  .eq .nom { font-weight: 700; overflow-wrap: anywhere; }
+  .eq .pos { font-family: var(--f-codigo); font-size: .85rem; color: var(--tinta-suave); text-align: right; }
+  .eq .estado { grid-column: 2 / 4; font-size: .78rem; color: var(--error); }
+  .dado-zona { display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; }
+  .dado { width: 4rem; height: 4rem; border-radius: 12px; background: var(--fondo); border: 2px solid var(--verde-medio); display: grid; grid-template: repeat(3, 1fr) / repeat(3, 1fr); padding: .45rem; }
+  .dado i { width: .7rem; height: .7rem; border-radius: 50%; background: var(--verde-oscuro); place-self: center; visibility: hidden; }
+  .dado.gira { animation: gira .45s ease-out; }
+  @keyframes gira { 0% { transform: rotate(0) scale(.8); } 100% { transform: rotate(360deg) scale(1); } }
+  .fisico { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .fisico button { font: inherit; font-weight: 700; width: 2.6rem; height: 2.6rem; border-radius: 8px; border: 2px solid var(--verde-medio); background: var(--superficie); color: var(--verde-medio); cursor: pointer; }
+  .fisico button:disabled { opacity: .4; cursor: not-allowed; }
+  .bitacora { max-height: 14rem; overflow-y: auto; font-size: .88rem; margin: 0; padding-left: 2.2rem; color: var(--tinta-suave); }
+  .bitacora li + li { margin-top: .25rem; }
+  .bitacora li:first-child { color: var(--tinta); font-weight: 600; }
+
+  /* Reto */
+  .velo { position: fixed; inset: 0; background: rgba(15, 26, 21, .55); display: grid; place-items: center; padding: 16px; z-index: 50; }
+  .reto { background: var(--superficie); color: var(--tinta); border-radius: var(--radio); width: min(44rem, 100%); max-height: calc(100vh - 32px); overflow-y: auto; padding: 1.2rem; box-shadow: 0 20px 60px rgba(0,0,0,.35); }
+  .reto .cabeza { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .4rem 1rem; align-items: baseline; }
+  .nivel { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: .2rem .55rem; border-radius: 999px; background: var(--acierto-fondo); color: var(--verde-medio); }
+  .reto .motivo { margin: .5rem 0 0; color: var(--tinta-suave); font-size: .92rem; }
+  .reto .enunciado { font-size: 1.1rem; font-weight: 600; margin: .8rem 0 0; }
+  .criterios { margin: .6rem 0 0; padding-left: 1.2rem; }
+  .criterios li + li { margin-top: .3rem; }
+  .ganador { text-align: center; padding: 1rem 0; }
+  .ganador h2 { font-size: 2rem; }
+  .tabla-final { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: .95rem; }
+  .tabla-final th, .tabla-final td { padding: .45rem .6rem; border-top: 1px solid var(--linea); text-align: left; }
+  .tabla-final td.num { text-align: right; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<div class="envoltura ancha">
+  <header class="inst">
+    <span>Aula Danfer</span>
+    <a href="index.html">← Juegos de repaso</a>
+  </header>
+
+  <section class="portada" id="portada">
+    <p class="etiqueta">Teoría de la Programación · Retos de aplicación</p>
+    <h1>La Oca de la Programación</h1>
+    <p class="bajada">El dado decide cuánto avanzas, pero las casillas especiales se ganan resolviendo retos de aplicación, análisis y evaluación. Acertar te hace avanzar; equivocarte te deja donde estás.</p>
+  </section>
+
+  <main id="zona"></main>
+
+  <footer class="pie">
+    <span>Teoría de la Programación</span>
+    <span>PhD. Daniela Ferreira</span>
+  </footer>
+</div>
+
+<div class="velo" id="velo" hidden><div class="reto" id="reto" role="dialog" aria-modal="true" aria-labelledby="retoTitulo"></div></div>
+
+<script src="banco-preguntas.js"></script>
+<script src="retos-aplicacion.js"></script>
+<script>
+(function () {
+  /* ---------- Casillas especiales ---------- */
+  const OCAS = [5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59];
+  const ESPECIALES = {
+    6:  { tipo: "avance", rot: "Puente", nombre: "Puente del compilador", nivel: 4, destino: 12, texto: "Si aciertas, cruzas el puente hasta la casilla 12." },
+    26: { tipo: "avance", rot: "Dados", nombre: "Dados", nivel: 4, destino: 53, texto: "Si aciertas, saltas a la casilla 53." },
+    19: { tipo: "pena", rot: "Posada", nombre: "Posada", nivel: 4, turnos: 1, texto: "Pierdes 1 turno, salvo que aciertes el reto." },
+    31: { tipo: "pena", rot: "Bucle infinito", nombre: "Bucle infinito", nivel: 4, turnos: 2, texto: "Pierdes 2 turnos, salvo que aciertes el reto." },
+    42: { tipo: "pena", rot: "Laberinto", nombre: "Laberinto de punteros", nivel: 5, volver: 30, texto: "Vuelves a la casilla 30, salvo que aciertes el reto." },
+    56: { tipo: "pena", rot: "Excepción", nombre: "Excepción no capturada", nivel: 4, turnos: 2, texto: "Pierdes 2 turnos, salvo que aciertes el reto." },
+    58: { tipo: "pena", rot: "Stack overflow", nombre: "Stack overflow", nivel: 5, volver: 1, texto: "Vuelves a la casilla 1, salvo que aciertes el reto." },
+    63: { tipo: "meta", rot: "Meta", nombre: "Jardín de la Oca", nivel: 5, texto: "Reto final. Si aciertas, ganas; si no, vuelves a la casilla 57." }
+  };
+  OCAS.forEach(c => ESPECIALES[c] = { tipo: "oca", rot: "Oca", nombre: "Oca", nivel: c < 30 ? 3 : 4,
+    texto: "De oca a oca: si aciertas, saltas a la siguiente oca y vuelves a tirar." });
+  ESPECIALES[1] = { tipo: "inicio", rot: "Salida" };
+  const NIVEL = { 3: "N3 · Aplicar", 4: "N4 · Analizar", 5: "N5 · Evaluar" };
+  const LETRAS = ["A", "B", "C", "D"];
+
+  const zona = document.getElementById("zona");
+  const velo = document.getElementById("velo");
+  const caja = document.getElementById("reto");
+  let cfg = null, eq = [], turno = 0, usados = new Set(), ocupado = false, fin = false;
+
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const mezclar = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const azar = a => a[Math.floor(Math.random() * a.length)];
+
+  /* ---------- Configuración ---------- */
+  function configurar() {
+    document.getElementById("portada").hidden = false;
+    const tipos = [["oca", "Oca", "Oca: si aciertas, saltas a la siguiente oca y tiras otra vez."],
+                   ["avance", "Puente", "Puente (6) y Dados (26): si aciertas, avanzas hasta la 12 o la 53."],
+                   ["pena", "Posada", "Posada, Bucle infinito, Laberinto, Excepción y Stack overflow: el reto te salva del castigo."],
+                   ["meta", "Meta", "Meta (63): hay que llegar justo. El reto final decide quién gana."]];
+    zona.innerHTML = `
+      <form class="config" id="form">
+        <fieldset>
+          <legend>Equipos de trabajo</legend>
+          <div class="chips">${[1, 2, 3, 4].map(n => `<label class="chip"><input type="radio" name="cant" value="${n}" ${n === 2 ? "checked" : ""}><span>${n === 1 ? "1 (individual)" : n + " equipos"}</span></label>`).join("")}</div>
+          <div class="nombres" id="nombres"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Unidades de los retos</legend>
+          <div class="chips">${Object.keys(UNIDADES).map(Number).map(u => `<label class="chip"><input type="checkbox" name="u" value="${u}" checked><span>U${u} · ${esc(UNIDADES[u].corto)}</span></label>`).join("")}</div>
+          <p class="nota" id="disp"></p>
+        </fieldset>
+        <fieldset>
+          <legend>Dado</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="dado" value="virtual" checked><span>Dado en pantalla</span></label>
+            <label class="chip"><input type="radio" name="dado" value="fisico"><span>Dado físico (ingresan el número)</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Modo jurado</legend>
+          <div class="chips"><label class="chip"><input type="checkbox" name="jurado"><span>Usar retos abiertos que valida la docente</span></label></div>
+          <p class="nota">En modo jurado, la casilla Dados y la meta presentan un reto abierto con criterios. La docente decide si el equipo los cumple.</p>
+        </fieldset>
+        <fieldset>
+          <legend>Casillas especiales</legend>
+          <ul class="leyenda">${tipos.map(([t, r, d]) => `<li><span class="muestra t-${t}"><span class="rot">${r}</span></span><span>${d}</span></li>`).join("")}</ul>
+        </fieldset>
+        <div class="fila-botones" style="margin-top:0"><button class="btn" type="submit">Empezar la partida</button></div>
+      </form>`;
+    const form = document.getElementById("form");
+    const pintarNombres = () => {
+      const n = Number(form.cant.value);
+      const prev = [...document.querySelectorAll("#nombres input")].map(x => x.value);
+      document.getElementById("nombres").innerHTML = Array.from({ length: n }, (_, k) =>
+        `<input id="n${k}" aria-label="Nombre del equipo ${k + 1}" value="${esc(prev[k] || (n === 1 ? "Mi partida" : "Equipo " + (k + 1)))}">`).join("");
+    };
+    const pintarDisp = () => {
+      const us = [...form.querySelectorAll("input[name=u]:checked")].map(x => Number(x.value));
+      const n = RETOS.filter(r => us.includes(r.u)).length;
+      document.getElementById("disp").textContent = us.length ? `${n} retos disponibles en las unidades elegidas.` : "Elige al menos una unidad.";
+    };
+    form.addEventListener("change", e => { if (e.target.name === "cant") pintarNombres(); pintarDisp(); });
+    pintarNombres(); pintarDisp();
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const us = [...form.querySelectorAll("input[name=u]:checked")].map(x => Number(x.value));
+      if (!us.length) return;
+      cfg = { unidades: us, dado: form.dado.value, jurado: form.jurado.checked };
+      eq = [...document.querySelectorAll("#nombres input")].map((x, k) => ({ nombre: x.value.trim() || "Equipo " + (k + 1), pos: 1, pierde: 0, tiradas: 0, ok: 0, mal: 0, porNivel: { 3: 0, 4: 0, 5: 0 } }));
+      turno = 0; usados = new Set(); fin = false; ocupado = false;
+      document.getElementById("portada").hidden = true;
+      montar();
+      registrar(`Empieza ${eq[0].nombre}.`);
+    });
+  }
+
+  /* ---------- Tablero ---------- */
+  function coordenada(c) {            // serpentina: fila 1 de izquierda a derecha, fila 2 al revés…
+    const i = c - 1, fila = Math.floor(i / 9), col = i % 9;
+    return { fila: fila + 1, col: (fila % 2 === 0 ? col : 8 - col) + 1 };
+  }
+  function montar() {
+    let celdas = "";
+    for (let c = 1; c <= 63; c++) {
+      const e = ESPECIALES[c], { fila, col } = coordenada(c);
+      const clase = e ? "t-" + e.tipo : "";
+      celdas += `<div class="casilla ${clase}" id="c${c}" style="grid-row:${fila};grid-column:${col}" title="${e && e.nombre ? esc(e.nombre) : "Casilla " + c}">
+        <span class="num">${c}</span><span class="rot">${e ? esc(e.rot) : ""}</span><span class="fichas"></span></div>`;
+    }
+    zona.innerHTML = `
+      <div class="juego">
+        <div class="tablero" id="tablero" aria-label="Tablero de 63 casillas">${celdas}</div>
+        <aside class="panel" aria-live="polite">
+          <div class="equipos" id="equipos"></div>
+          <div class="dado-zona" id="dadoZona"></div>
+          <div><h3>Bitácora</h3><ol class="bitacora" id="bitacora" reversed></ol></div>
+          <button type="button" class="btn sec" id="btnNueva">Nueva partida</button>
+        </aside>
+      </div>`;
+    document.getElementById("btnNueva").addEventListener("click", () => {
+      caja.innerHTML = `<h2 id="retoTitulo">¿Terminar esta partida?</h2><p class="bajada">Se pierde el avance de todos los equipos.</p>
+        <div class="fila-botones"><button class="btn" id="si">Sí, empezar otra</button><button class="btn sec" id="no">Seguir jugando</button></div>`;
+      velo.hidden = false;
+      document.getElementById("si").onclick = () => { velo.hidden = true; configurar(); };
+      document.getElementById("no").onclick = () => { velo.hidden = true; };
+    });
+    pintar();
+  }
+  function pintar() {
+    document.querySelectorAll(".casilla .fichas").forEach(f => f.innerHTML = "");
+    document.querySelectorAll(".casilla.activa").forEach(c => c.classList.remove("activa"));
+    eq.forEach((e, k) => document.querySelector(`#c${e.pos} .fichas`).insertAdjacentHTML("beforeend", `<span class="ficha e${k}" title="${esc(e.nombre)}">${k + 1}</span>`));
+    if (!fin) document.getElementById("c" + eq[turno].pos).classList.add("activa");
+    document.getElementById("equipos").innerHTML = eq.map((e, k) => `
+      <div class="eq ${k === turno && !fin ? "turno" : ""}">
+        <span class="ficha e${k}">${k + 1}</span><span class="nom">${esc(e.nombre)}</span><span class="pos">casilla ${e.pos} · ${e.tiradas} tirada${e.tiradas === 1 ? "" : "s"}</span>
+        ${e.pierde ? `<span class="estado">Pierde ${e.pierde} turno${e.pierde > 1 ? "s" : ""}</span>` : ""}
+      </div>`).join("");
+    const dz = document.getElementById("dadoZona");
+    if (fin) { dz.innerHTML = ""; return; }
+    if (cfg.dado === "virtual") {
+      dz.innerHTML = `<div class="dado" id="dado" aria-hidden="true">${"<i></i>".repeat(9)}</div>
+        <button type="button" class="btn" id="btnTirar" ${ocupado ? "disabled" : ""}>Tirar el dado</button>`;
+      document.getElementById("btnTirar").addEventListener("click", () => tirar(1 + Math.floor(Math.random() * 6)));
+    } else {
+      dz.innerHTML = `<div><p class="nota" style="margin:0 0 .4rem">Resultado del dado de ${esc(eq[turno].nombre)}:</p>
+        <div class="fisico">${[1, 2, 3, 4, 5, 6].map(n => `<button type="button" data-n="${n}" ${ocupado ? "disabled" : ""}>${n}</button>`).join("")}</div></div>`;
+      dz.querySelectorAll("button").forEach(b => b.addEventListener("click", () => tirar(Number(b.dataset.n))));
+    }
+  }
+  const CARAS = { 1: [4], 2: [0, 8], 3: [0, 4, 8], 4: [0, 2, 6, 8], 5: [0, 2, 4, 6, 8], 6: [0, 2, 3, 5, 6, 8] };
+  function mostrarDado(n) {
+    const d = document.getElementById("dado"); if (!d) return;
+    [...d.children].forEach((p, i) => p.style.visibility = CARAS[n].includes(i) ? "visible" : "hidden");
+    d.classList.remove("gira"); void d.offsetWidth; d.classList.add("gira");
+  }
+  function registrar(t) { const b = document.getElementById("bitacora"); if (b) b.insertAdjacentHTML("afterbegin", `<li>${t}</li>`); }
+
+  /* ---------- Turnos ---------- */
+  function tirar(n) {
+    if (ocupado || fin) return;
+    ocupado = true;
+    const e = eq[turno];
+    e.tiradas++;
+    mostrarDado(n);
+    let destino = e.pos + n;
+    if (destino > 63) destino = 63 - (destino - 63);    // rebote: hay que llegar justo
+    registrar(`${esc(e.nombre)} saca ${n} y va de la ${e.pos} a la ${destino}.`);
+    setTimeout(() => { e.pos = destino; pintar(); caer(e); }, 450);
+  }
+
+  function caer(e) {
+    const c = ESPECIALES[e.pos];
+    if (!c || c.tipo === "inicio" || (c.tipo === "avance" && !c.destino)) return siguiente();
+    const abierto = cfg.jurado && (e.pos === 26 || e.pos === 63);
+    lanzarReto(e, c, abierto, acerto => {
+      if (c.tipo === "oca") {
+        if (acerto) {
+          const sig = OCAS.find(o => o > e.pos) || 63;
+          registrar(`De oca a oca: ${esc(e.nombre)} salta a la ${sig} y vuelve a tirar.`);
+          e.pos = sig; pintar();
+          if (sig === 63) return caer(e);
+          return otraVez();
+        }
+        registrar(`${esc(e.nombre)} no acierta y se queda en la ${e.pos}.`);
+        return siguiente();
+      }
+      if (c.tipo === "avance") {
+        if (acerto) { registrar(`${esc(e.nombre)} avanza de la ${e.pos} a la ${c.destino}.`); e.pos = c.destino; pintar(); }
+        else registrar(`${esc(e.nombre)} no acierta y se queda en la ${e.pos}.`);
+        return siguiente();
+      }
+      if (c.tipo === "pena") {
+        if (acerto) { registrar(`${esc(e.nombre)} se salva de «${esc(c.nombre)}».`); return siguiente(); }
+        if (c.turnos) { e.pierde = c.turnos; registrar(`${esc(e.nombre)} pierde ${c.turnos} turno${c.turnos > 1 ? "s" : ""} en «${esc(c.nombre)}».`); }
+        if (c.volver) { registrar(`${esc(e.nombre)} vuelve a la ${c.volver} por «${esc(c.nombre)}».`); e.pos = c.volver; pintar(); }
+        return siguiente();
+      }
+      if (c.tipo === "meta") {
+        if (acerto) return ganar(e);
+        registrar(`${esc(e.nombre)} no supera el reto final y vuelve a la 57.`);
+        e.pos = 57; pintar();
+        return siguiente();
+      }
+    });
+  }
+  function otraVez() { ocupado = false; pintar(); }
+  function siguiente() {
+    ocupado = false;
+    if (eq.length === 1) {                 // individual: cada turno perdido suma una tirada
+      const e = eq[0];
+      if (e.pierde > 0) { e.tiradas += e.pierde; registrar(`Se suman ${e.pierde} tirada${e.pierde > 1 ? "s" : ""} por los turnos perdidos.`); e.pierde = 0; }
+      return pintar();
+    }
+    for (let k = 0; k < eq.length; k++) {
+      turno = (turno + 1) % eq.length;
+      const e = eq[turno];
+      if (e.pierde > 0) { e.pierde--; registrar(`${esc(e.nombre)} no juega este turno.`); continue; }
+      break;
+    }
+    pintar();
+  }
+
+  /* ---------- Retos ---------- */
+  function elegirReto(nivel) {
+    const pool = RETOS.map((r, i) => ({ r, i })).filter(x => cfg.unidades.includes(x.r.u));
+    const orden = nivel === 5 ? [5, 4, 3] : nivel === 4 ? [4, 5, 3] : [3, 4, 5];
+    for (const n of orden) {
+      let cand = pool.filter(x => x.r.n === n && !usados.has(x.i));
+      if (!cand.length) cand = [];
+      if (cand.length) { const x = azar(cand); usados.add(x.i); return x.r; }
+    }
+    usados = new Set();                    // se agotaron: se reinicia la lista
+    const x = azar(pool.filter(x => x.r.n === orden[0]).length ? pool.filter(x => x.r.n === orden[0]) : pool);
+    usados.add(x.i); return x.r;
+  }
+
+  function lanzarReto(e, c, abierto, listo) {
+    if (abierto) {
+      const lista = RETOS_ABIERTOS.filter(r => cfg.unidades.includes(r.u));
+      const r = azar(lista.length ? lista : RETOS_ABIERTOS);
+      caja.innerHTML = `
+        <div class="cabeza"><span class="etiqueta">${esc(e.nombre)} · ${esc(c.nombre)} · U${r.u}</span><span class="nivel">Reto abierto · ${NIVEL[r.n]}</span></div>
+        <p class="motivo">${esc(c.texto)}</p>
+        <h2 class="enunciado" id="retoTitulo">${esc(r.q)}</h2>
+        <p class="nota">El equipo responde en voz alta. Para aprobar, la respuesta debe cumplir todos estos criterios:</p>
+        <ol class="criterios">${r.criterios.map(x => `<li>${esc(x)}</li>`).join("")}</ol>
+        <div class="fila-botones"><button class="btn" id="cumple">Cumple los criterios</button><button class="btn sec" id="nocumple">No los cumple</button></div>`;
+      velo.hidden = false; document.getElementById("cumple").focus();
+      const cerrar = ok => { velo.hidden = true; e[ok ? "ok" : "mal"]++; if (ok) e.porNivel[r.n]++; registrar(`${esc(e.nombre)} ${ok ? "supera" : "no supera"} un reto abierto.`); listo(ok); };
+      document.getElementById("cumple").onclick = () => cerrar(true);
+      document.getElementById("nocumple").onclick = () => cerrar(false);
+      return;
+    }
+    const base = elegirReto(c.nivel);
+    const orden = mezclar(base.o.map((_, i) => i));
+    const r = Object.assign({}, base, { o: orden.map(i => base.o[i]), a: orden.indexOf(base.a) });
+    caja.innerHTML = `
+      <div class="cabeza"><span class="etiqueta">${esc(e.nombre)} · ${esc(c.nombre)} · U${r.u} ${esc(UNIDADES[r.u].nombre)}</span><span class="nivel">${NIVEL[r.n]}</span></div>
+      <p class="motivo">${esc(c.texto)}</p>
+      ${r.code ? `<div class="codigo-lang">${esc(r.lang || "")}</div><pre class="codigo">${esc(r.code)}</pre>` : ""}
+      <h2 class="enunciado" id="retoTitulo">${esc(r.q)}</h2>
+      <div class="opciones">${r.o.map((t, k) => `<button type="button" class="opcion" data-k="${k}"><span class="letra">${LETRAS[k]}</span><span>${esc(t)}</span></button>`).join("")}</div>
+      <div id="devolucion"></div>
+      <div class="fila-botones"><button type="button" class="btn" id="seguir" hidden>Continuar</button></div>`;
+    velo.hidden = false;
+    caja.scrollTop = 0;
+    caja.querySelector(".opcion").focus();
+    let acerto = null;
+    caja.querySelectorAll(".opcion").forEach(b => b.addEventListener("click", () => {
+      if (acerto !== null) return;
+      acerto = Number(b.dataset.k) === r.a;
+      caja.querySelectorAll(".opcion").forEach(x => x.disabled = true);
+      b.classList.add(acerto ? "ok" : "mal");
+      e[acerto ? "ok" : "mal"]++; if (acerto) e.porNivel[r.n]++;
+      document.getElementById("devolucion").innerHTML = acerto
+        ? `<p class="aviso-ok">¡Correcto!</p><p>${esc(r.ok)} <a href="../u${r.u}.html#repaso">Repasar la Unidad ${r.u}</a></p>`
+        : `<div class="pista"><strong>Piensa en esto</strong>${esc(r.pista)}</div><p class="nota">El reto vuelve a la lista: puede aparecer de nuevo más adelante.</p>`;
+      const s = document.getElementById("seguir"); s.hidden = false; s.focus();
+      s.onclick = () => { velo.hidden = true; listo(acerto); };
+    }));
+  }
+
+  /* ---------- Final ---------- */
+  function ganar(e) {
+    fin = true; ocupado = false;
+    registrar(`¡${esc(e.nombre)} llega al Jardín de la Oca y gana!`);
+    pintar();
+    const filas = eq.map(x => `<tr><th scope="row">${esc(x.nombre)}</th><td class="num">${x.pos}</td><td class="num">${x.tiradas}</td><td class="num">${x.ok}</td><td class="num">${x.mal}</td><td class="num">${x.porNivel[3]} / ${x.porNivel[4]} / ${x.porNivel[5]}</td></tr>`).join("");
+    caja.innerHTML = `<div class="ganador"><p class="etiqueta">Fin de la partida</p><h2 id="retoTitulo">Gana ${esc(e.nombre)}</h2></div>
+      <div class="tabla-scroll"><table class="tabla-final">
+        <thead><tr><th>Equipo</th><th>Casilla</th><th>Tiradas</th><th>Aciertos</th><th>Fallos</th><th>Aciertos N3 / N4 / N5</th></tr></thead>
+        <tbody>${filas}</tbody></table></div>
+      <div class="fila-botones"><button class="btn" id="otra">Jugar otra partida</button><button class="btn sec" id="ver">Ver el tablero</button></div>`;
+    velo.hidden = false;
+    document.getElementById("otra").onclick = () => { velo.hidden = true; configurar(); };
+    document.getElementById("ver").onclick = () => { velo.hidden = true; };
+  }
+
+  document.addEventListener("keydown", ev => {
+    if (ev.key === "Escape" && !velo.hidden && !caja.querySelector(".opcion:not([disabled])") && !caja.querySelector("#cumple")) {
+      const s = caja.querySelector("#seguir:not([hidden]), #ver, #no"); if (s) s.click();
+    }
+  });
+
+  configurar();
+})();
+</script>
+</body>
+</html>

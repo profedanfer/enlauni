@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Indagación previa · Clase 15</title>
+<link rel="stylesheet" href="../../assets/estilos.css">
+</head>
+<body>
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Indagaciones previas</a><span aria-hidden="true">/</span><span>Clase 15</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Indagación previa · Clase 15 · Unidad 8</p>
+    <h1>Programación funcional</h1>
+    <p class="objetivo">En la clase vas a reescribir bucles como pipelines de funciones. Llega sabiendo qué hace funcional a un programa y qué hacen map, filter y reduce.</p>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">01</span>Cómo trabajar</h2>
+    <p class="bajada">Tiempo estimado: 45 a 60 min. Trabaja en tu cuaderno o en un documento. Responde con tus palabras y anota la fuente y la sección donde encontraste cada respuesta. Si un paso tiene código, escribe tu predicción antes de ejecutarlo en Colab o en tu intérprete de Python: equivocarte en la predicción también sirve, porque te muestra qué tienes que revisar.</p>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">02</span>Pasos</h2>
+    <article class="actividad paso-ind">
+      <header><h3>Paso 1</h3></header>
+      <p class="q">En programación funcional, ¿qué es un programa? ¿Por qué se dice que es declarativa?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema02-programacion-funcional/tema02-programacion-funcional.html" target="_blank" rel="noopener">Gallardo et al., 2025, §1.1.1</a>; <a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema02-programacion-funcional/tema02-programacion-funcional.html" target="_blank" rel="noopener">Gallardo et al., 2025, §1.3.1</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 2</h3></header>
+      <p class="q">¿Qué condiciones cumple una función pura? ¿Qué es un efecto secundario?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema02-programacion-funcional/tema02-programacion-funcional.html" target="_blank" rel="noopener">Gallardo et al., 2025, §1.2.4</a>; <a href="https://docs.python.org/es/3/howto/functional.html" target="_blank" rel="noopener">Kuchling, s.f.</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 3</h3></header>
+      <p class="q">¿Qué significa que un objeto sea inmutable? ¿Qué tipos de Python lo son?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://docs.python.org/es/3/glossary.html" target="_blank" rel="noopener">Python Software Foundation, s.f.-c</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 4</h3></header>
+      <p class="q">¿Qué significa que las funciones sean datos? ¿Qué es una expresión lambda en Python y en Java?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema02-programacion-funcional/tema02-programacion-funcional.html" target="_blank" rel="noopener">Gallardo et al., 2025, §1.1.1</a>; <a href="https://docs.python.org/es/3/howto/functional.html" target="_blank" rel="noopener">Kuchling, s.f., sección «Funciones pequeñas y la expresión lambda»</a>; <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html" target="_blank" rel="noopener">Oracle, s.f.-b</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 5</h3></header>
+      <p class="q">¿Qué hace cada una: map, filter y reduce? ¿Qué es componer funciones? ¿Qué partes tiene un pipeline en Java?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://docs.python.org/es/3/library/functions.html" target="_blank" rel="noopener">Python Software Foundation, s.f.-a</a>; <a href="https://docs.python.org/es/3/howto/functional.html" target="_blank" rel="noopener">Kuchling, s.f.</a>; <a href="https://docs.python.org/es/3/library/functools.html" target="_blank" rel="noopener">Python Software Foundation, s.f.-b</a>; <a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema02-programacion-funcional/tema02-programacion-funcional.html" target="_blank" rel="noopener">Gallardo et al., 2025, §1.2.5</a>; <a href="https://docs.oracle.com/javase/tutorial/collections/streams/index.html" target="_blank" rel="noopener">Oracle, s.f.-a</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 6</h3></header>
+      <p class="q">Antes de ejecutar, escribe qué crees que imprime cada línea. Después ejecútalo. ¿Por qué la tercera línea no imprime lo mismo que la segunda?</p><pre class="codigo">numeros = [1, 2, 3]
+dobles = map(lambda n: n * 2, numeros)
+print(dobles)
+print(list(dobles))
+print(list(dobles))</pre><p class="prediccion">Mi predicción, antes de ejecutar: ________________________________</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://docs.python.org/es/3/howto/functional.html" target="_blank" rel="noopener">Kuchling, s.f.</a>; <a href="https://docs.oracle.com/javase/tutorial/collections/streams/parallelism.html" target="_blank" rel="noopener">Oracle, s.f.-c</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 7</h3></header>
+      <p class="q">Según Hughes, ¿qué dos cosas funcionan como «pegamento» en la programación funcional? ¿Qué mejoran?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://www.cse.chalmers.se/~rjmh/Papers/whyfp.pdf" target="_blank" rel="noopener">Hughes, 1989</a>)</span></p>
+    </article>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">03</span>Antes de la clase</h2>
+    <div class="ind-cierre">
+      <div><strong>Lo que tienes que tener anotado</strong><p>Las respuestas de cada paso. Para el paso 6, tu predicción, el resultado y la explicación con la fuente.</p></div>
+      <div class="terminaste"><strong>Terminaste cuando</strong><p>puedes explicar el resultado del paso 6 y decir qué hace cada una de las tres funciones sin mirar tus notas.</p></div>
+      <div><strong>Trae a clase</strong><p>Un bucle que hayas escrito en otra materia, con tres marcas: qué parte filtra, qué parte transforma y qué parte acumula. No lo reescribas: eso lo hacemos en clase.</p></div>
+    </div>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">04</span>Fuentes</h2>
+    <p class="bajada">Todas son de acceso abierto. Las citas de los pasos abren cada fuente directamente.</p>
+    <ol class="biblio"><li id="ref-al2">Gallardo, D., Pomares, C., Botía, A., y Martínez, F. (2025). <i>Tema 2: Programación funcional</i>. Lenguajes y Paradigmas de Programación, curso 2025-26. Departamento de Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante. <a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema02-programacion-funcional/tema02-programacion-funcional.html">https://domingogallardo.github.io/apuntes-lpp/teoria/tema02-programacion-funcional/tema02-programacion-funcional.html</a></li><li id="ref-hughes">Hughes, J. (1989). Why functional programming matters. <i>The Computer Journal, 32</i>(2). <a href="https://www.cse.chalmers.se/~rjmh/Papers/whyfp.pdf">https://www.cse.chalmers.se/~rjmh/Papers/whyfp.pdf</a></li><li id="ref-py-howto">Kuchling, A. M. (s.f.). <i>HOWTO - Programación funcional</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/howto/functional.html">https://docs.python.org/es/3/howto/functional.html</a></li><li id="ref-j-agg">Oracle. (s.f.-a). <i>Aggregate operations</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/collections/streams/index.html">https://docs.oracle.com/javase/tutorial/collections/streams/index.html</a></li><li id="ref-j-lambda">Oracle. (s.f.-b). <i>Lambda expressions</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html</a></li><li id="ref-j-par">Oracle. (s.f.-c). <i>Parallelism</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/collections/streams/parallelism.html">https://docs.oracle.com/javase/tutorial/collections/streams/parallelism.html</a></li><li id="ref-py-funcs">Python Software Foundation. (s.f.-a). <i>Funciones incorporadas</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/library/functions.html">https://docs.python.org/es/3/library/functions.html</a></li><li id="ref-py-ft">Python Software Foundation. (s.f.-b). <i>functools — Funciones de orden superior y operaciones sobre objetos invocables</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/library/functools.html">https://docs.python.org/es/3/library/functools.html</a></li><li id="ref-py-glos">Python Software Foundation. (s.f.-c). <i>Glosario</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/glossary.html">https://docs.python.org/es/3/glossary.html</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Indagaciones"><a href="clase-14.html"><small>← Clase 14</small>Herencia, polimorfismo y ligadura dinámica</a></nav>
+  <footer class="pie"><span>Teoría de la Programación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+
+</body>
+</html>

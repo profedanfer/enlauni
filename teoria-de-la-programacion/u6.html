@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U6 · Procedimientos y ambientes</title>
+<link rel="stylesheet" href="../assets/estilos.css">
+</head>
+<body>
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Teoría de la Programación</a><span aria-hidden="true">/</span><a href="repaso.html">Repaso</a><span aria-hidden="true">/</span><span>Unidad 6</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Unidad 6 de 8</p>
+    <h1>Procedimientos y ambientes</h1>
+    <p class="objetivo">Resolver el ambiente de ejecución, la activación y la asignación de procedimientos, y comparar los mecanismos de paso de parámetros en distintos lenguajes.</p>
+    <ul class="contenidos" aria-label="Contenidos"><li>Definición y activación de procedimientos</li><li>Semántica de los procedimientos</li><li>Mecanismos de paso de parámetros</li><li>Ambiente, activación y asignación</li></ul>
+    <aside class="aviso-ind"><p><strong>¿Ya hiciste la indagación previa?</strong> Hazla antes de leer este repaso: <a href="indagaciones/clase-11.html">Clase 11: Procedimientos y paso de parámetros</a></p></aside>
+  </section>
+  <nav class="indice-pagina" aria-label="En esta página">
+    <a href="#repaso">Repaso</a><a href="#codigo">Código comparado</a><a href="#practica">Práctica</a><a href="#autoevaluacion">Autoevaluación</a><a href="#juegos">Juegos</a><a href="#bibliografia">Bibliografía</a>
+  </nav>
+  <section class="seccion" id="repaso">
+    <h2><span class="num-sec">01</span>Repaso</h2>
+    <dl class="conceptos"><div class="concepto"><dt>Procedimiento y función</dt><dd><p>Un procedimiento es un bloque con nombre que se invoca para ejecutar acciones; una función además devuelve un valor. En Python, incluso una función sin <code class="in">return</code> devuelve un valor: <code class="in">None</code> <span class="cita">(<a href="#ref-py-ctrl">Python Software Foundation, s.f.-b</a>)</span>.</p></dd></div><div class="concepto"><dt>Parámetro y argumento</dt><dd><p>El <b>parámetro formal</b> aparece en la definición: <code class="in">def sumar(a, b)</code>. El <b>argumento</b> o parámetro real es lo que se pasa en la llamada: <code class="in">sumar(3, x)</code>. Al llamar a la función, los argumentos se introducen en su tabla de símbolos local <span class="cita">(<a href="#ref-py-ctrl">Python Software Foundation, s.f.-b</a>)</span>.</p></dd></div><div class="concepto"><dt>Activación</dt><dd><p>Cada llamada, también las recursivas, crea una nueva tabla de símbolos local <span class="cita">(<a href="#ref-py-ctrl">Python Software Foundation, s.f.-b</a>)</span>. En una máquina virtual, cada llamada tiene un <b>marco</b> (<i>call frame</i>): una ventana dentro de la pila donde la función guarda sus variables locales. Su posición se determina en tiempo de ejecución <span class="cita">(<a href="#ref-ci-calls">Nystrom, 2021</a>)</span>.</p><p>La lista ordenada de métodos llamados hasta llegar al actual se llama <b>pila de llamadas</b> <span class="cita">(<a href="#ref-j-exc">Oracle, s.f.-c</a>)</span>.</p></dd></div><div class="concepto"><dt>Recursión y desborde</dt><dd><p>En una recursión, cada llamada deja una operación en espera; esas llamadas en espera, con sus argumentos, se guardan en la pila. Si la recursión nunca termina, se produce un desborde de pila (<i>stack overflow</i>) <span class="cita">(<a href="#ref-al3">Gallardo et al., 2025a, §1.1</a>)</span>.</p><p>En Python, <code class="in">sys.getrecursionlimit()</code> devuelve la profundidad máxima de la pila del intérprete <span class="cita">(<a href="#ref-py-sys">Python Software Foundation, s.f.-d</a>)</span>; al superarla se lanza <code class="in">RecursionError</code> <span class="cita">(<a href="#ref-py-exc">Python Software Foundation, s.f.-a</a>)</span>.</p></dd></div><div class="concepto"><dt>Paso por valor</dt><dd><p>Se copia el valor del argumento en el parámetro. En Java, los argumentos primitivos se pasan por valor: los cambios existen solo dentro del método <span class="cita">(<a href="#ref-j-args">Oracle, s.f.-a</a>)</span>. C siempre usa paso por valor <span class="cita">(<a href="#ref-c-faq"><i>Question 4.11</i>, s.f.</a>)</span>.</p></dd></div><div class="concepto"><dt>Paso por referencia</dt><dd><p>El parámetro es otro nombre de la misma variable del llamador. C no tiene nada equivalente al paso por referencia formal ni a los parámetros referencia de C++; se imita pasando punteros con el operador <code class="in">&amp;</code> <span class="cita">(<a href="#ref-c-faq"><i>Question 4.11</i>, s.f.</a>)</span>.</p></dd></div><div class="concepto"><dt>Referencias a objetos</dt><dd><p><b>Java</b> también pasa por valor las referencias a objetos: al volver del método, la referencia sigue apuntando al mismo objeto, aunque los campos del objeto sí pueden haber cambiado <span class="cita">(<a href="#ref-j-args">Oracle, s.f.-a</a>)</span>.</p><p><b>Python</b> pasa los argumentos por valor, donde el valor es siempre una referencia al objeto; el tutorial aclara que «llamada por referencia de objeto» sería una mejor descripción <span class="cita">(<a href="#ref-py-ctrl">Python Software Foundation, s.f.-b</a>)</span>. Como la asignación solo crea referencias, no hay alias entre el nombre del argumento en quien llama y en la función <span class="cita">(<a href="#ref-py-faq">Python Software Foundation, s.f.-c</a>)</span>.</p></dd></div><div class="concepto"><dt>Ambiente</dt><dd><p>Conjunto de variables disponibles en una parte del programa o de su ejecución <span class="cita">(<a href="#ref-al5">Gallardo et al., 2025b, §4</a>)</span>. En Python se busca primero en la tabla local, luego en la de las funciones envolventes, después en la global y al final en la de nombres predefinidos <span class="cita">(<a href="#ref-py-ctrl">Python Software Foundation, s.f.-b</a>)</span>.</p></dd></div><div class="concepto"><dt>Asignación de memoria</dt><dd><p>En C, las variables locales tienen duración automática (de la entrada a la salida del bloque) y la memoria pedida con funciones de asignación dinámica dura hasta que se libera <span class="cita">(<a href="#ref-c-storage">cppreference.com, s.f.</a>)</span>. En Java, los objetos se crean con <code class="in">new</code> y el recolector de basura libera los que ya no tienen referencias <span class="cita">(<a href="#ref-j-using">Oracle, s.f.-b</a>)</span>.</p></dd></div></dl>
+    <div class="tabla-scroll"><table class="comp">
+      <caption>Mecanismos de paso de parámetros</caption>
+      <thead><tr><th scope="col">Lenguaje</th><th scope="col">¿Qué se pasa?</th><th scope="col">¿Los cambios se ven afuera?</th></tr></thead>
+      <tbody><tr><th scope="row">C, valor común</th><td>Una copia del valor <span class="cita">(<a href="#ref-c-faq"><i>Question 4.11</i>, s.f.</a>)</span></td><td>No</td></tr><tr><th scope="row">C, puntero</th><td>Una copia de la dirección <span class="cita">(<a href="#ref-c-faq"><i>Question 4.11</i>, s.f.</a>)</span></td><td>Sí, si se modifica <code class="in">*p</code></td></tr><tr><th scope="row">Java, primitivos</th><td>Una copia del valor <span class="cita">(<a href="#ref-j-args">Oracle, s.f.-a</a>)</span></td><td>No <span class="cita">(<a href="#ref-j-args">Oracle, s.f.-a</a>)</span></td></tr><tr><th scope="row">Java, objetos</th><td>Una copia de la referencia <span class="cita">(<a href="#ref-j-args">Oracle, s.f.-a</a>)</span></td><td>Los cambios en los campos sí; reasignar el parámetro no <span class="cita">(<a href="#ref-j-args">Oracle, s.f.-a</a>)</span></td></tr><tr><th scope="row">Python</th><td>Una referencia al objeto <span class="cita">(<a href="#ref-py-ctrl">Python Software Foundation, s.f.-b</a>)</span></td><td>Los cambios a un objeto mutable sí <span class="cita">(<a href="#ref-py-ctrl">Python Software Foundation, s.f.-b</a>)</span>; reasignar el parámetro no <span class="cita">(<a href="#ref-py-faq">Python Software Foundation, s.f.-c</a>)</span></td></tr></tbody>
+    </table></div>
+    <aside class="ojo"><strong class="tit">No confundas</strong><p><b>Que una lista cambie dentro de una función no prueba que Python pase por referencia.</b> El parámetro y el argumento apuntan al mismo objeto, pero no son alias <span class="cita">(<a href="#ref-py-faq">Python Software Foundation, s.f.-c</a>; <a href="#ref-py-ctrl">Python Software Foundation, s.f.-b</a>)</span>. Si dentro de la función haces <code class="in">lista = []</code>, la de afuera no cambia.</p></aside>
+  </section>
+  <section class="seccion" id="codigo">
+    <h2><span class="num-sec">02</span>Código comparado</h2>
+    <h3 style="margin-top:.6rem">¿Qué cambia afuera después de la llamada?</h3>
+    <p class="bajada">Cada función recibe un número y algo que apunta a datos del llamador. Solo cambia afuera lo que se modifica a través de esa referencia.</p>
+    <div class="tabs">
+      <div class="tabs-botones" role="tablist" aria-label="Lenguaje" hidden><button type="button" role="tab" id="tab6-0" aria-controls="panel6-0">Python</button><button type="button" role="tab" id="tab6-1" aria-controls="panel6-1">Java</button><button type="button" role="tab" id="tab6-2" aria-controls="panel6-2">C</button></div>
+      <div class="tab-panel" role="tabpanel" id="panel6-0" aria-labelledby="tab6-0" data-lang="Python">
+        <pre class="codigo">def cambiar(n, lista):
+    n = 99              # reasigna el parámetro local
+    lista.append(99)    # modifica el objeto compartido
+
+x = 1
+datos = [1]
+cambiar(x, datos)
+print(x, datos)</pre>
+        <p class="salida">Salida al ejecutarlo: <code>1 [1, 99]</code></p>
+      </div><div class="tab-panel" role="tabpanel" id="panel6-1" aria-labelledby="tab6-1" data-lang="Java">
+        <pre class="codigo">import java.util.ArrayList;
+import java.util.List;
+
+public class Paso {
+    static void cambiar(int n, List&lt;Integer&gt; lista) {
+        n = 99;           // copia local
+        lista.add(99);    // el objeto es el mismo
+    }
+
+    public static void main(String[] args) {
+        int x = 1;
+        List&lt;Integer&gt; datos = new ArrayList&lt;&gt;(List.of(1));
+        cambiar(x, datos);
+        System.out.println(x + &quot; &quot; + datos);
+    }
+}</pre>
+        <p class="salida">Salida al ejecutarlo: <code>1 [1, 99]</code></p>
+      </div><div class="tab-panel" role="tabpanel" id="panel6-2" aria-labelledby="tab6-2" data-lang="C">
+        <pre class="codigo">#include &lt;stdio.h&gt;
+
+void cambiar(int n, int *p) {
+    n = 99;      /* copia local */
+    *p = 99;     /* modifica la variable original */
+}
+
+int main(void) {
+    int x = 1, y = 1;
+    cambiar(x, &amp;y);
+    printf(&quot;%d %d\n&quot;, x, y);
+    return 0;
+}</pre>
+        <p class="salida">Salida al ejecutarlo: <code>1 99</code></p>
+      </div>
+    </div>
+  </section>
+  <section class="seccion" id="practica">
+    <h2><span class="num-sec">03</span>Actividades de práctica</h2>
+    <p class="bajada">Cada actividad indica cuándo terminaste. No pases a la siguiente hasta cumplirlo.</p>
+    <article class="actividad">
+      <header><h3>Actividad 1 · La pila en Python Tutor</h3><span class="meta">Individual · 30 min</span></header>
+      <p>Usa este código:</p><pre class="codigo">def cuadrado(n):
+    return n * n
+
+def suma_cuadrados(a, b):
+    return cuadrado(a) + cuadrado(b)
+
+print(suma_cuadrados(3, 4))</pre>
+      <ol><li>Ejecútalo paso a paso en pythontutor.com.</li><li>Dibuja la pila en el momento de mayor profundidad.</li><li>Anota qué contiene cada marco: parámetros, locales y valor de retorno.</li><li>Cuenta cuántos marcos de función se crean en total durante la ejecución.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tu dibujo coincide con lo que muestra la herramienta y el conteo de marcos está justificado paso a paso.</p>
+    </article><article class="actividad">
+      <header><h3>Actividad 2 · Predice antes de ejecutar</h3><span class="meta">En equipo de trabajo · 40 min</span></header>
+      
+      <ol><li>Copien los tres programas de «Código comparado».</li><li>Antes de ejecutar, cambien los valores iniciales y escriban qué creen que se imprimirá.</li><li>Agreguen dentro de <code class="in">cambiar</code> una línea que reasigne la lista (Python: <code class="in">lista = [0]</code>; Java: <code class="in">lista = new ArrayList&lt;&gt;();</code>) antes de agregar el 99.</li><li>Ejecuten y comparen con su predicción.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tienen predicción y resultado para cada versión, y explican con las palabras «copia» y «referencia» por qué la reasignación no se ve afuera.</p>
+    </article><article class="actividad">
+      <header><h3>Actividad 3 · Recursión y desborde</h3><span class="meta">Individual · 25 min</span></header>
+      
+      <ol><li>Escribe en Python una función factorial recursiva.</li><li>Calcula <code class="in">factorial(5)</code> y dibuja la pila de llamadas.</li><li>Llama a <code class="in">factorial(5000)</code> y anota el error exacto.</li><li>Consulta <code class="in">sys.getrecursionlimit()</code> y explica la relación entre ese límite y los marcos de la pila.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tienes el dibujo de la pila, el nombre exacto del error y una explicación de 3 oraciones.</p>
+    </article>
+  </section>
+  <section class="seccion" id="autoevaluacion">
+    <h2><span class="num-sec">04</span>Autoevaluación</h2>
+    <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
+    <ol class="autoeval"><li>¿Qué guarda el marco de una llamada?</li><li>¿Java pasa los objetos por referencia? Explica con precisión qué se copia.</li><li>¿Qué diferencia hay entre parámetro formal y argumento?</li><li>¿Cómo se imita el paso por referencia en C?</li></ol>
+  </section>
+  <section class="seccion" id="juegos">
+    <h2><span class="num-sec">05</span>Juegos</h2>
+    <div class="enlaces-juego"><a class="btn" href="juegos/ruta-de-repaso.html#u6">Estación U6 de la Ruta de Repaso</a><a class="btn sec" href="juegos/oca.html">La Oca de la Programación</a><a class="btn sec" href="juegos/caza-el-bug.html">Caza el bug</a><a class="btn sec" href="juegos/tribunal-de-diseno.html">Tribunal de Diseño</a><a class="btn sec" href="juegos/duelo-de-equipos.html">Duelo de equipos</a></div>
+  </section>
+  <section class="seccion" id="bibliografia">
+    <h2><span class="num-sec">06</span>Bibliografía</h2>
+    <p class="bajada">Fuentes de acceso abierto citadas en esta unidad, en formato APA 7. Consultadas el 7 de octubre de 2026.</p>
+    <ol class="biblio"><li id="ref-c-storage">cppreference.com. (s.f.). <i>Storage-class specifiers</i>. <a href="https://cppreference.com/c/language/storage_duration">https://cppreference.com/c/language/storage_duration</a></li><li id="ref-al3">Gallardo, D., Pomares, C., Botía, A., y Martínez, F. (2025a). <i>Tema 3: Procedimientos recursivos</i>. Lenguajes y Paradigmas de Programación, curso 2025-26. Departamento de Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante. <a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema03-procedimientos-recursivos/tema03-procedimientos-recursivos.html">https://domingogallardo.github.io/apuntes-lpp/teoria/tema03-procedimientos-recursivos/tema03-procedimientos-recursivos.html</a></li><li id="ref-al5">Gallardo, D., Pomares, C., Botía, A., y Martínez, F. (2025b). <i>Tema 5: Programación imperativa</i>. Lenguajes y Paradigmas de Programación, curso 2025-26. Departamento de Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante. <a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema05-bis-programacion-imperativa/tema05-programacion-imperativa.html">https://domingogallardo.github.io/apuntes-lpp/teoria/tema05-bis-programacion-imperativa/tema05-programacion-imperativa.html</a></li><li id="ref-ci-calls">Nystrom, R. (2021). Calls and functions. En <i>Crafting interpreters</i>. <a href="https://craftinginterpreters.com/calls-and-functions.html">https://craftinginterpreters.com/calls-and-functions.html</a></li><li id="ref-j-args">Oracle. (s.f.-a). <i>Passing information to a method or a constructor</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/arguments.html">https://docs.oracle.com/javase/tutorial/java/javaOO/arguments.html</a></li><li id="ref-j-using">Oracle. (s.f.-b). <i>Using objects</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/usingobject.html">https://docs.oracle.com/javase/tutorial/java/javaOO/usingobject.html</a></li><li id="ref-j-exc">Oracle. (s.f.-c). <i>What is an exception?</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/definition.html">https://docs.oracle.com/javase/tutorial/essential/exceptions/definition.html</a></li><li id="ref-py-exc">Python Software Foundation. (s.f.-a). <i>Excepciones incorporadas</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/library/exceptions.html">https://docs.python.org/es/3/library/exceptions.html</a></li><li id="ref-py-ctrl">Python Software Foundation. (s.f.-b). <i>Más herramientas para control de flujo</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/tutorial/controlflow.html">https://docs.python.org/es/3/tutorial/controlflow.html</a></li><li id="ref-py-faq">Python Software Foundation. (s.f.-c). <i>Preguntas frecuentes de programación</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/faq/programming.html">https://docs.python.org/es/3/faq/programming.html</a></li><li id="ref-py-sys">Python Software Foundation. (s.f.-d). <i>sys — Parámetros y funciones específicos del sistema</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/library/sys.html">https://docs.python.org/es/3/library/sys.html</a></li><li id="ref-c-faq"><i>Question 4.11: Does C even have “pass by reference”?</i> (s.f.). comp.lang.c FAQ list. <a href="https://c-faq.com/ptrs/passbyref.html">https://c-faq.com/ptrs/passbyref.html</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Unidades"><a href="u5.html"><small>← Unidad 5</small>Expresiones y enunciados</a><a class="sig" href="u7.html"><small>Unidad 7 →</small>Programación orientada a objetos</a></nav>
+  <footer class="pie"><span>Teoría de la Programación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>

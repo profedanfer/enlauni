@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U1 · Lenguajes de programación</title>
+<link rel="stylesheet" href="../assets/estilos.css">
+</head>
+<body>
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Teoría de la Programación</a><span aria-hidden="true">/</span><a href="repaso.html">Repaso</a><span aria-hidden="true">/</span><span>Unidad 1</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Unidad 1 de 8</p>
+    <h1>Lenguajes de programación</h1>
+    <p class="objetivo">Analizar la evolución histórica de los lenguajes de programación e identificar los paradigmas y abstracciones que los fundamentan.</p>
+    <ul class="contenidos" aria-label="Contenidos"><li>Abstracciones</li><li>Paradigmas de la computación</li><li>Traducción</li><li>Diseño</li><li>Albores históricos</li><li>Futuro</li></ul>
+    <aside class="aviso-ind"><p><strong>¿Ya hiciste la indagación previa?</strong> Hazla antes de leer este repaso: <a href="indagaciones/clase-01.html">Clase 1: Abstracciones, paradigmas y traducción</a> · <a href="indagaciones/clase-02.html">Clase 2: Historia y futuro de los lenguajes</a></p></aside>
+  </section>
+  <nav class="indice-pagina" aria-label="En esta página">
+    <a href="#repaso">Repaso</a><a href="#codigo">Código comparado</a><a href="#practica">Práctica</a><a href="#autoevaluacion">Autoevaluación</a><a href="#juegos">Juegos</a><a href="#bibliografia">Bibliografía</a>
+  </nav>
+  <section class="seccion" id="repaso">
+    <h2><span class="num-sec">01</span>Repaso</h2>
+    <dl class="conceptos"><div class="concepto"><dt>Lenguaje de programación</dt><dd><p>Conjunto de caracteres, reglas para combinarlos y reglas que especifican sus efectos al ejecutarse. No exige conocer código máquina, es independiente de la máquina, se traduce a lenguaje máquina y usa una notación más cercana al problema que al código máquina <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §2.1</a>)</span>.</p><p>Tiene <b>sintaxis</b> (reglas que definen qué textos son correctos) y <b>semántica</b> (reglas que definen el resultado de ejecutar el programa) <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §2.5</a>)</span>. Debe poder traducirse sin ambigüedad, pero lo leen, comentan y prueban personas <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §2.6</a>)</span>.</p></dd></div><div class="concepto"><dt>Abstracción</dt><dd><p>Dar un <b>nombre</b> a una entidad del lenguaje (una variable, una función, una clase) es construir una abstracción <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §3</a>)</span>. La informática tiene abstracciones de datos propias, como listas, árboles, grafos y tablas hash <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §3.2</a>)</span>.</p><p>Abelson y Sussman, citados en Gallardo et al. <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §2.4</a>)</span>, señalan tres mecanismos presentes en todo lenguaje: expresiones primitivas, mecanismos de combinación y mecanismos de abstracción, que permiten nombrar elementos compuestos y manipularlos como unidades.</p></dd></div><div class="concepto"><dt>Paradigma</dt><dd><p>Un paradigma es un enfoque de programación basado en una teoría matemática <span class="cita">(<a href="#ref-vanroy">Van Roy, 2009, §1</a>)</span>. También se lo describe como un conjunto de características, patrones y estilos basados en una idea fundamental, que puede usarse en distintos lenguajes <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §4.1</a>)</span>.</p><ul><li><b>Imperativo:</b> un estado implícito se modifica mediante instrucciones, en una secuencia de pasos <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §4.4</a>)</span>.</li><li><b>Funcional:</b> la computación se realiza evaluando expresiones; las funciones son datos y no hay efectos laterales <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §4.2</a>)</span>.</li><li><b>Lógico:</b> definición de reglas y unificación; es declarativo <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §4.3</a>)</span>.</li><li><b>Orientado a objetos:</b> clases, herencia, objetos como abstracción de datos y procedimientos, y polimorfismo <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §4.5</a>)</span>.</li></ul><p>La programación <b>declarativa</b> le dice a la computadora qué se necesita en lugar de cómo calcularlo <span class="cita">(<a href="#ref-vanroy">Van Roy, 2009, §1</a>)</span>.</p></dd></div><div class="concepto"><dt>Multiparadigma</dt><dd><p>Son lenguajes creados con la intención explícita de fusionar más de un paradigma; Scala, por ejemplo, combina orientación a objetos y programación funcional <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §4.1</a>)</span>. La documentación de Python indica que soporta varios paradigmas además del orientado a objetos, como la programación procedural y la funcional <span class="cita">(<a href="#ref-py-gen">Python Software Foundation, s.f.-b</a>)</span>.</p></dd></div><div class="concepto"><dt>Traducción</dt><dd><ul><li><b>Compilar</b> es traducir el código fuente a otra forma, normalmente de más bajo nivel, como bytecode o código máquina. Un <b>compilador</b> traduce pero no ejecuta; un <b>intérprete</b> ejecuta el programa directamente desde el código fuente <span class="cita">(<a href="#ref-ci-map">Nystrom, 2021</a>)</span>.</li><li>Un programa C compilado para un procesador produce código máquina que solo corre en ese tipo de procesador <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §5.1</a>)</span>.</li><li><b>Enfoque mixto:</b> <code class="in">javac</code> traduce Java a un código intermedio llamado bytecode, que luego interpreta la máquina virtual <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §5.3</a>)</span>.</li><li>CPython compila el código fuente Python a bytecode, que se ejecuta en una máquina virtual <span class="cita">(<a href="#ref-py-glos">Python Software Foundation, s.f.-c</a>)</span>. Por eso CPython es un intérprete que además tiene un compilador <span class="cita">(<a href="#ref-ci-map">Nystrom, 2021</a>)</span>.</li></ul></dd></div><div class="concepto"><dt>Diseño</dt><dd><p>Los lenguajes deben ser precisos para la máquina y, a la vez, adecuados para las personas que los usan <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §2.6</a>)</span>. Los criterios de diseño se estudian en la Unidad 2.</p></dd></div><div class="concepto"><dt>Futuro</dt><dd><p>Cada vez es más fácil crear lenguajes nuevos: ya no surgen solo en grandes departamentos de investigación, sino también en comunidades de código abierto <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §1.6.1</a>)</span>. Van Roy sostiene que los lenguajes deberían soportar muchos paradigmas <span class="cita">(<a href="#ref-vanroy">Van Roy, 2009, §1</a>)</span>.</p></dd></div></dl>
+    <div class="tabla-scroll"><table class="comp">
+      <caption>Albores históricos: datos de las fuentes primarias y de los apuntes citados</caption>
+      <thead><tr><th scope="col">Año</th><th scope="col">Lenguaje</th><th scope="col">Qué dice la fuente</th></tr></thead>
+      <tbody><tr><th scope="row">1957</th><td>FORTRAN</td><td><i>FORmula TRANslating system</i>, desarrollado por IBM para el IBM 704; imperativo y compilado <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §1.4</a>)</span>.</td></tr><tr><th scope="row">1960</th><td>Lisp</td><td>McCarthy publica el artículo original en <i>Communications of the ACM</i>, abril de 1960 <span class="cita">(<a href="#ref-mccarthy">McCarthy, 1960</a>)</span>. Pensado para el procesamiento de listas en trabajos de inteligencia artificial <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §1.4.2</a>)</span>.</td></tr><tr><th scope="row">1970</th><td>Pascal</td><td>Informe técnico de Niklaus Wirth en ETH Zúrich, noviembre de 1970 <span class="cita">(<a href="#ref-wirth">Wirth, 1970</a>)</span>.</td></tr><tr><th scope="row">1972</th><td>C</td><td>Lenguaje de implementación de sistemas para Unix; surgió entre 1969 y 1973, con su período más creativo en 1972 <span class="cita">(<a href="#ref-ritchie">Ritchie, 1993</a>)</span>.</td></tr><tr><th scope="row">1972</th><td>Prolog</td><td>Primera versión completada en 1972; basado en cláusulas de Horn <span class="cita">(<a href="#ref-korner">Körner et al., 2022</a>)</span>.</td></tr><tr><th scope="row">1985</th><td>C++</td><td>Combina las facilidades de Simula para organizar programas con la eficiencia de C; primera versión comercial en octubre de 1985 <span class="cita">(<a href="#ref-stroustrup">Stroustrup, 1993</a>)</span>.</td></tr><tr><th scope="row">1991</th><td>Python</td><td>Creado a principios de los noventa por Guido van Rossum en el CWI (Países Bajos), como sucesor del lenguaje ABC <span class="cita">(<a href="#ref-py-lic">Python Software Foundation, s.f.-d</a>)</span>. Año según la tabla de Gallardo et al. <span class="cita">(<a href="#ref-al1">Gallardo et al., 2025, §1.5.2</a>)</span>.</td></tr><tr><th scope="row">1995</th><td>Java</td><td>El compilador genera bytecode, un formato intermedio neutral respecto de la arquitectura <span class="cita">(<a href="#ref-gosling">Gosling y McGilton, 1996</a>)</span>.</td></tr><tr><th scope="row">1995</th><td>JavaScript</td><td>Creado en Netscape en un desarrollo de diez días; la historia de Wirfs-Brock y Eich cubre el período 1995–2015 <span class="cita">(<a href="#ref-jshopl">Wirfs-Brock y Eich, 2020</a>)</span>.</td></tr></tbody>
+    </table></div>
+    <aside class="ojo"><strong class="tit">No confundas</strong><p><b>«Interpretado» no significa «sin compilación».</b> CPython compila el código fuente a bytecode antes de ejecutarlo <span class="cita">(<a href="#ref-py-glos">Python Software Foundation, s.f.-c</a>; <a href="#ref-ci-map">Nystrom, 2021</a>)</span>. Los errores de sintaxis se detectan al interpretar el código; las excepciones aparecen durante la ejecución <span class="cita">(<a href="#ref-py-err">Python Software Foundation, s.f.-a, §8.1–8.2</a>)</span>. La actividad 3 te permite comprobar la diferencia.</p></aside>
+  </section>
+  <section class="seccion" id="codigo">
+    <h2><span class="num-sec">02</span>Código comparado</h2>
+    <h3 style="margin-top:.6rem">La misma suma en tres paradigmas</h3>
+    <p class="bajada">Las tres versiones calculan la suma de los dobles de una lista. Observa quién controla el proceso y dónde está el estado.</p>
+    <div class="tabs">
+      <div class="tabs-botones" role="tablist" aria-label="Lenguaje" hidden><button type="button" role="tab" id="tab1-0" aria-controls="panel1-0">Imperativo</button><button type="button" role="tab" id="tab1-1" aria-controls="panel1-1">Funcional</button><button type="button" role="tab" id="tab1-2" aria-controls="panel1-2">Orientado a objetos</button></div>
+      <div class="tab-panel" role="tabpanel" id="panel1-0" aria-labelledby="tab1-0" data-lang="Imperativo">
+        <pre class="codigo">numeros = [3, 4, 5]
+total = 0                      # estado que va cambiando
+for n in numeros:
+    total = total + n * 2
+print(total)</pre>
+        <p class="salida">Salida al ejecutarlo: <code>24</code></p>
+      </div><div class="tab-panel" role="tabpanel" id="panel1-1" aria-labelledby="tab1-1" data-lang="Funcional">
+        <pre class="codigo">numeros = [3, 4, 5]
+total = sum(n * 2 for n in numeros)   # se declara el resultado
+print(total)</pre>
+        <p class="salida">Salida al ejecutarlo: <code>24</code></p>
+      </div><div class="tab-panel" role="tabpanel" id="panel1-2" aria-labelledby="tab1-2" data-lang="Orientado a objetos">
+        <pre class="codigo">class Sumador:
+    def __init__(self, numeros):
+        self.numeros = numeros
+
+    def total_dobles(self):
+        return sum(n * 2 for n in self.numeros)
+
+print(Sumador([3, 4, 5]).total_dobles())</pre>
+        <p class="salida">Salida al ejecutarlo: <code>24</code></p>
+      </div>
+    </div>
+  </section>
+  <section class="seccion" id="practica">
+    <h2><span class="num-sec">03</span>Actividades de práctica</h2>
+    <p class="bajada">Cada actividad indica cuándo terminaste. No pases a la siguiente hasta cumplirlo.</p>
+    <article class="actividad">
+      <header><h3>Actividad 1 · Línea de tiempo con fuentes</h3><span class="meta">Individual · 40 min</span></header>
+      
+      <ol><li>Elige 6 lenguajes de la tabla y agrega 2 que no estén en ella.</li><li>Para cada uno anota: año, propósito, paradigma principal y forma de traducción.</li><li>Cada dato debe tener una fuente de acceso abierto. Puedes partir de la bibliografía de esta unidad.</li><li>Ordénalos en una línea de tiempo.</li><li>Escribe 3 oraciones sobre la relación que ves entre la época y el propósito de cada lenguaje.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tu línea tiene 8 lenguajes, cada dato tiene su fuente y tus 3 oraciones usan ejemplos de tu propia línea.</p>
+    </article><article class="actividad">
+      <header><h3>Actividad 2 · ¿Qué paradigma elegirías?</h3><span class="meta">En equipo de trabajo · 30 min</span></header>
+      <p>Casos: (a) una aplicación de turnos para un consultorio, con cambios de horario y cancelaciones; (b) el procesamiento de lecturas de pluviómetros de todo un país; (c) un sistema que recomienda cultivos a partir de reglas sobre el tipo de suelo; (d) la pantalla táctil de un kiosco de autoservicio.</p>
+      <ol><li>Lean los cuatro casos.</li><li>Elijan un paradigma principal para cada caso.</li><li>Justifiquen cada elección con una característica del paradigma (no con un lenguaje) y citen la fuente de esa característica.</li><li>Indiquen qué parte del caso sería más difícil con otro paradigma.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> los 4 casos tienen paradigma, una justificación con cita y una comparación con otro paradigma.</p>
+    </article><article class="actividad">
+      <header><h3>Actividad 3 · Error de sintaxis o excepción</h3><span class="meta">Individual · 20 min</span></header>
+      
+      <ol><li>En Colab escribe un programa Python de 5 líneas: un <code class="in">print</code> en la línea 1 y un error de sintaxis en la línea 5 (por ejemplo, un <code class="in">if</code> sin dos puntos).</li><li>Ejecuta y guarda una captura del resultado.</li><li>Reemplaza el error de sintaxis por un error de ejecución, como <code class="in">print(1 / 0)</code>, y vuelve a ejecutar.</li><li>Compara las dos capturas con lo que dice el tutorial de Python sobre errores de sintaxis y excepciones.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> puedes explicar, con tus dos capturas y la fuente, por qué en un caso se imprimió la línea 1 y en el otro no.</p>
+    </article>
+  </section>
+  <section class="seccion" id="autoevaluacion">
+    <h2><span class="num-sec">04</span>Autoevaluación</h2>
+    <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
+    <ol class="autoeval"><li>¿Qué mecanismos, según Abelson y Sussman, tiene todo lenguaje de programación?</li><li>¿Qué diferencia hay entre un compilador y un intérprete? ¿Dónde ubicas a CPython?</li><li>¿Para qué se creó C, según Ritchie?</li><li>¿Qué es un lenguaje multiparadigma? Da un ejemplo con su fuente.</li></ol>
+  </section>
+  <section class="seccion" id="juegos">
+    <h2><span class="num-sec">05</span>Juegos</h2>
+    <div class="enlaces-juego"><a class="btn" href="juegos/ruta-de-repaso.html#u1">Estación U1 de la Ruta de Repaso</a><a class="btn sec" href="juegos/oca.html">La Oca de la Programación</a><a class="btn sec" href="juegos/caza-el-bug.html">Caza el bug</a><a class="btn sec" href="juegos/tribunal-de-diseno.html">Tribunal de Diseño</a><a class="btn sec" href="juegos/duelo-de-equipos.html">Duelo de equipos</a></div>
+  </section>
+  <section class="seccion" id="bibliografia">
+    <h2><span class="num-sec">06</span>Bibliografía</h2>
+    <p class="bajada">Fuentes de acceso abierto citadas en esta unidad, en formato APA 7. Consultadas el 7 de octubre de 2026.</p>
+    <ol class="biblio"><li id="ref-al1">Gallardo, D., Pomares, C., Botía, A., y Martínez, F. (2025). <i>Tema 1: Historia y conceptos de los lenguajes de programación</i>. Lenguajes y Paradigmas de Programación, curso 2025-26. Departamento de Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante. <a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema01-historia-lenguajes-programacion/tema01-historia-lenguajes-programacion.html">https://domingogallardo.github.io/apuntes-lpp/teoria/tema01-historia-lenguajes-programacion/tema01-historia-lenguajes-programacion.html</a></li><li id="ref-gosling">Gosling, J., y McGilton, H. (1996). <i>The Java language environment: A white paper</i>. Oracle. <a href="https://www.oracle.com/java/technologies/language-environment.html">https://www.oracle.com/java/technologies/language-environment.html</a></li><li id="ref-korner">Körner, P., Leuschel, M., Barbosa, J., Santos Costa, V., Dahl, V., Hermenegildo, M. V., Morales, J. F., Wielemaker, J., Diaz, D., Abreu, S., y Ciatto, G. (2022). <i>Fifty years of Prolog and beyond</i> (arXiv:2201.10816). arXiv. <a href="https://arxiv.org/abs/2201.10816">https://arxiv.org/abs/2201.10816</a></li><li id="ref-mccarthy">McCarthy, J. (1960). Recursive functions of symbolic expressions and their computation by machine, Part I. <i>Communications of the ACM</i>. <a href="https://www-formal.stanford.edu/jmc/recursive.html">https://www-formal.stanford.edu/jmc/recursive.html</a></li><li id="ref-ci-map">Nystrom, R. (2021). A map of the territory. En <i>Crafting interpreters</i>. <a href="https://craftinginterpreters.com/a-map-of-the-territory.html">https://craftinginterpreters.com/a-map-of-the-territory.html</a></li><li id="ref-py-err">Python Software Foundation. (s.f.-a). <i>Errores y excepciones</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/tutorial/errors.html">https://docs.python.org/es/3/tutorial/errors.html</a></li><li id="ref-py-gen">Python Software Foundation. (s.f.-b). <i>General Python FAQ</i>. Python 3 Documentation. <a href="https://docs.python.org/3/faq/general.html">https://docs.python.org/3/faq/general.html</a></li><li id="ref-py-glos">Python Software Foundation. (s.f.-c). <i>Glosario</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/glossary.html">https://docs.python.org/es/3/glossary.html</a></li><li id="ref-py-lic">Python Software Foundation. (s.f.-d). <i>Historia y licencia</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/license.html">https://docs.python.org/es/3/license.html</a></li><li id="ref-ritchie">Ritchie, D. M. (1993). <i>The development of the C language</i>. Nokia Bell Labs. <a href="https://www.nokia.com/bell-labs/about/dennis-m-ritchie/chist.html">https://www.nokia.com/bell-labs/about/dennis-m-ritchie/chist.html</a></li><li id="ref-stroustrup">Stroustrup, B. (1993). <i>A history of C++: 1979–1991</i> [Ponencia]. Second ACM SIGPLAN Conference on History of Programming Languages (HOPL-II). <a href="https://stroustrup.com/hopl2.pdf">https://stroustrup.com/hopl2.pdf</a></li><li id="ref-vanroy">Van Roy, P. (2009). <i>Programming paradigms for dummies: What every programmer should know</i>. Université catholique de Louvain. <a href="https://webperso.info.ucl.ac.be/~pvr/VanRoyChapter.pdf">https://webperso.info.ucl.ac.be/~pvr/VanRoyChapter.pdf</a></li><li id="ref-jshopl">Wirfs-Brock, A., y Eich, B. (2020). <i>JavaScript: The first 20 years</i> [Versión corregida de los autores]. Zenodo. <a href="https://doi.org/10.5281/zenodo.4960086">https://doi.org/10.5281/zenodo.4960086</a></li><li id="ref-wirth">Wirth, N. (1970). <i>The programming language Pascal</i> (Informe técnico n.º 1). ETH Zürich, Departamento de Informática. <a href="https://doi.org/10.3929/ethz-a-004150844">https://doi.org/10.3929/ethz-a-004150844</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Unidades"><a class="sig" href="u2.html"><small>Unidad 2 →</small>Principios de diseño</a></nav>
+  <footer class="pie"><span>Teoría de la Programación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>

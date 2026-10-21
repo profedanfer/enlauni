@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Duelo de Equipos</title>
+<link rel="stylesheet" href="../../assets/estilos.css">
+<style>
+  .envoltura.ancha { max-width: 72rem; }
+  .portada { padding-block: 1.6rem .4rem; }
+
+  /* Configuración */
+  .config { background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radio); padding: 1.2rem; margin-top: 1.2rem; display: grid; gap: 1.2rem; }
+  .config fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+  .config legend { font-family: var(--f-titulo); font-size: 1.1rem; color: var(--verde-oscuro); margin-bottom: .5rem; }
+  .equipos-in { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: .6rem; }
+  .equipos-in input {
+    font: inherit; width: 100%; padding: .55rem .7rem; border-radius: 8px;
+    border: 2px solid var(--linea); background: var(--fondo); color: var(--tinta); min-height: 44px;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .chip { position: relative; }
+  .chip input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+  .chip span {
+    display: inline-block; padding: .45rem .9rem; border-radius: 999px; border: 2px solid var(--linea);
+    background: var(--fondo); font-weight: 700; color: var(--tinta-suave); min-height: 40px; line-height: 1.5;
+  }
+  .chip input:checked + span { background: var(--verde-medio); border-color: var(--verde-medio); color: var(--sobre-acento); }
+  .chip input:focus-visible + span { outline: 3px solid var(--verde-claro); outline-offset: 2px; }
+  .nota { font-size: .9rem; color: var(--tinta-suave); margin: 0; }
+
+  /* Marcador */
+  .marcador { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .6rem; margin-top: 1rem; }
+  .eq {
+    background: var(--superficie); border: 2px solid var(--linea); border-radius: var(--radio);
+    padding: .6rem .8rem; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .2rem .6rem; min-width: 0;
+  }
+  .eq.turno { border-color: var(--verde-medio); box-shadow: 0 0 0 4px var(--acierto-fondo); }
+  .eq .nom { font-weight: 700; overflow-wrap: anywhere; }
+  .eq .pts { font-family: var(--f-titulo); font-size: 2rem; color: var(--verde-oscuro); font-variant-numeric: tabular-nums; grid-row: span 2; }
+  .eq .ajuste { display: flex; gap: .3rem; }
+  .eq .ajuste button { font: inherit; font-size: .8rem; border: 1px solid var(--linea); background: var(--fondo); color: var(--tinta-suave); border-radius: 6px; padding: 0 .5rem; cursor: pointer; min-height: 28px; }
+
+  /* Pregunta en grande */
+  .escena { background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radio); padding: 1.3rem; margin-top: 1rem; }
+  .cabecera-q { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .6rem 1rem; align-items: center; }
+  .turno-txt { font-weight: 700; color: var(--verde-medio); }
+  .tiempo { height: 10px; background: var(--linea); border-radius: 5px; overflow: hidden; margin-top: .8rem; }
+  .tiempo > i { display: block; height: 100%; background: var(--verde-claro); transition: width 1s linear; }
+  .tiempo.fin > i { background: var(--error); }
+  .q-grande { font-size: clamp(1.25rem, 2.6vw, 2rem); font-weight: 700; margin: 1rem 0 0; line-height: 1.3; }
+  .escena .codigo { font-size: clamp(.9rem, 1.8vw, 1.3rem); }
+  .ops-grandes { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: .7rem; margin-top: 1.1rem; }
+  .op {
+    border: 2px solid var(--linea); border-radius: var(--radio); padding: .8rem 1rem;
+    font-size: clamp(1.05rem, 2vw, 1.5rem); display: flex; gap: .8rem; align-items: baseline; min-width: 0; background: var(--fondo);
+  }
+  .op b { font-family: var(--f-codigo); color: var(--verde-medio); }
+  .op.ok { border-color: var(--acierto); background: var(--acierto-fondo); }
+  .op.apagada { opacity: .4; }
+  .premios { margin-top: 1.1rem; display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+  .premios .rotulo { font-weight: 700; margin-right: .4rem; }
+  .atajos { font-size: .82rem; color: var(--tinta-suave); margin-top: .8rem; }
+  kbd { font-family: var(--f-codigo); border: 1px solid var(--linea); border-bottom-width: 2px; border-radius: 4px; padding: 0 .35rem; background: var(--fondo); }
+
+  /* Podio */
+  .podio { display: grid; gap: .6rem; margin-top: 1rem; }
+  .lugar { display: grid; grid-template-columns: 2.6rem 1fr auto; gap: .8rem; align-items: center; background: var(--fondo); border-radius: var(--radio); padding: .7rem 1rem; }
+  .lugar .pos { font-family: var(--f-titulo); font-size: 1.6rem; color: var(--verde-medio); }
+  .lugar.primero { background: var(--acierto-fondo); border: 2px solid var(--verde-claro); }
+  .lugar .pts { font-family: var(--f-titulo); font-size: 1.6rem; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<div class="envoltura ancha">
+  <header class="inst">
+    <span>Aula Danfer</span>
+    <a href="index.html">← Juegos de repaso</a>
+  </header>
+
+  <section class="portada" id="portada">
+    <p class="etiqueta">Modo proyector · Equipos de trabajo</p>
+    <h1>Duelo de equipos</h1>
+    <p class="bajada">Cada pregunta le toca a un equipo. Si acierta suma 2 puntos; si falla, otro equipo puede robar el punto.</p>
+  </section>
+
+  <main id="zona"></main>
+
+  <footer class="pie">
+    <span>Teoría de la Programación</span>
+    <span>PhD. Daniela Ferreira</span>
+  </footer>
+</div>
+
+<script src="banco-preguntas.js"></script>
+<script>
+(function () {
+  const LETRAS = ["A", "B", "C", "D"];
+  const zona = document.getElementById("zona");
+  let equipos = [], preguntas = [], idx = 0, turno = 0, segundos = 30, restante = 0, reloj = null, revelada = false;
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+  function mezclar(a) { a = a.slice(); for (let k = a.length - 1; k > 0; k--) { const j = Math.floor(Math.random() * (k + 1)); [a[k], a[j]] = [a[j], a[k]]; } return a; }
+
+  /* ---------- Configuración ---------- */
+  function configurar() {
+    document.getElementById("portada").hidden = false;
+    zona.innerHTML = `
+      <form class="config" id="form">
+        <fieldset>
+          <legend>Equipos de trabajo</legend>
+          <div class="chips" id="cantEq">
+            ${[2, 3, 4].map(n => `<label class="chip"><input type="radio" name="cant" value="${n}" ${n === 3 ? "checked" : ""}><span>${n} equipos</span></label>`).join("")}
+          </div>
+          <div class="equipos-in" id="nombres" style="margin-top:.7rem"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Unidades</legend>
+          <div class="chips">
+            ${Object.keys(UNIDADES).map(Number).map(u => `<label class="chip"><input type="checkbox" name="u" value="${u}" ${u <= 5 ? "checked" : ""}><span>U${u} · ${esc(UNIDADES[u].corto)}</span></label>`).join("")}
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Ritmo</legend>
+          <div class="chips">
+            ${[20, 30, 45, 60].map(s => `<label class="chip"><input type="radio" name="seg" value="${s}" ${s === 30 ? "checked" : ""}><span>${s} s por pregunta</span></label>`).join("")}
+          </div>
+          <div class="chips" style="margin-top:.6rem">
+            ${[9, 12, 18, 24].map(n => `<label class="chip"><input type="radio" name="cuantas" value="${n}" ${n === 12 ? "checked" : ""}><span>${n} preguntas</span></label>`).join("")}
+          </div>
+          <p class="nota" id="disp" style="margin-top:.6rem"></p>
+        </fieldset>
+        <div class="fila-botones" style="margin-top:0"><button class="btn" type="submit">Empezar el duelo</button></div>
+      </form>`;
+    const form = document.getElementById("form");
+    const pintarNombres = () => {
+      const n = Number(form.cant.value);
+      const prev = [...document.querySelectorAll("#nombres input")].map(x => x.value);
+      document.getElementById("nombres").innerHTML = Array.from({ length: n }, (_, k) =>
+        `<input id="eq${k}" aria-label="Nombre del equipo ${k + 1}" value="${esc(prev[k] || "Equipo " + (k + 1))}">`).join("");
+    };
+    const pintarDisp = () => {
+      const us = [...form.querySelectorAll("input[name=u]:checked")].map(x => Number(x.value));
+      const n = BANCO.filter(p => us.includes(p.u) && p.t !== "match").length;
+      document.getElementById("disp").textContent = us.length ? `Hay ${n} preguntas disponibles en las unidades elegidas.` : "Elige al menos una unidad.";
+    };
+    form.addEventListener("change", e => { if (e.target.name === "cant") pintarNombres(); pintarDisp(); });
+    pintarNombres(); pintarDisp();
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const us = [...form.querySelectorAll("input[name=u]:checked")].map(x => Number(x.value));
+      if (!us.length) return;
+      equipos = [...document.querySelectorAll("#nombres input")].map((x, k) => ({ nombre: x.value.trim() || "Equipo " + (k + 1), pts: 0 }));
+      segundos = Number(form.seg.value);
+      const cuantas = Number(form.cuantas.value);
+      preguntas = mezclar(BANCO.filter(p => us.includes(p.u) && p.t !== "match")).slice(0, cuantas).map(p => {
+        if (p.t === "vf") return Object.assign({}, p, { o: ["Verdadero", "Falso"], a: p.a ? 0 : 1 });
+        const orden = mezclar(p.o.map((_, k) => k));
+        return Object.assign({}, p, { o: orden.map(k => p.o[k]), a: orden.indexOf(p.a) });
+      });
+      idx = 0; turno = 0;
+      document.getElementById("portada").hidden = true;
+      escena();
+    });
+  }
+
+  /* ---------- Juego ---------- */
+  function marcador() {
+    return `<div class="marcador" aria-live="polite">${equipos.map((e, k) => `
+      <div class="eq ${k === turno && !revelada ? "turno" : ""}">
+        <span class="nom">${esc(e.nombre)}</span><span class="pts">${e.pts}</span>
+        <span class="ajuste"><button type="button" data-aj="${k}" data-v="-1" aria-label="Restar un punto a ${esc(e.nombre)}">−1</button><button type="button" data-aj="${k}" data-v="1" aria-label="Sumar un punto a ${esc(e.nombre)}">+1</button></span>
+      </div>`).join("")}</div>`;
+  }
+
+  function escena() {
+    clearInterval(reloj);
+    revelada = false;
+    const p = preguntas[idx];
+    restante = segundos;
+    zona.innerHTML = `
+      <div id="marc">${marcador()}</div>
+      <section class="escena">
+        <div class="cabecera-q">
+          <span class="turno-txt">Turno: ${esc(equipos[turno].nombre)}</span>
+          <span class="etiqueta num">Pregunta ${idx + 1} de ${preguntas.length} · U${p.u} ${esc(UNIDADES[p.u].nombre)}</span>
+        </div>
+        <div class="tiempo" id="barra"><i style="width:100%"></i></div>
+        ${p.t === "code" ? `<div class="codigo-lang">${esc(p.lang)}</div><pre class="codigo">${esc(p.code)}</pre>` : ""}
+        <p class="q-grande">${esc(p.q)}</p>
+        <div class="ops-grandes">${p.o.map((t, k) => `<div class="op" data-k="${k}"><b>${LETRAS[k]}</b><span>${esc(t)}</span></div>`).join("")}</div>
+        <div id="acciones" class="fila-botones">
+          <button type="button" class="btn" id="btnRevelar">Mostrar respuesta</button>
+          <span class="num" id="seg" style="align-self:center;font-weight:700"></span>
+        </div>
+        <p class="atajos"><kbd>Espacio</kbd> muestra la respuesta. Después elige quién acertó.</p>
+      </section>`;
+    enlazarAjustes();
+    document.getElementById("btnRevelar").addEventListener("click", revelar);
+    tic();
+    reloj = setInterval(tic, 1000);
+  }
+
+  function tic() {
+    const b = document.getElementById("barra"), s = document.getElementById("seg");
+    if (!b) return;
+    b.firstElementChild.style.width = (Math.max(restante, 0) / segundos * 100) + "%";
+    s.textContent = restante > 0 ? `${restante} s` : "¡Tiempo!";
+    b.classList.toggle("fin", restante <= 0);
+    if (restante <= 0) clearInterval(reloj);
+    restante--;
+  }
+
+  function revelar() {
+    if (revelada) return;
+    clearInterval(reloj);
+    revelada = true;
+    const p = preguntas[idx];
+    zona.querySelectorAll(".op").forEach(o => o.classList.add(Number(o.dataset.k) === p.a ? "ok" : "apagada"));
+    const otros = equipos.map((e, k) => k).filter(k => k !== turno);
+    document.getElementById("acciones").outerHTML = `
+      <div class="pista"><strong>Para discutir</strong>${esc(p.pista)}</div>
+      <div class="premios">
+        <span class="rotulo">¿Quién acertó?</span>
+        <button type="button" class="btn" data-premio="${turno}" data-v="2">${esc(equipos[turno].nombre)} +2</button>
+        ${otros.map(k => `<button type="button" class="btn sec" data-premio="${k}" data-v="1">Roba ${esc(equipos[k].nombre)} +1</button>`).join("")}
+        <button type="button" class="btn sec" data-premio="-1" data-v="0">Nadie</button>
+      </div>`;
+    zona.querySelectorAll("[data-premio]").forEach(b => b.addEventListener("click", () => {
+      const k = Number(b.dataset.premio);
+      if (k >= 0) equipos[k].pts += Number(b.dataset.v);
+      siguiente();
+    }));
+    document.getElementById("marc").innerHTML = marcador(); enlazarAjustes();
+  }
+
+  function siguiente() {
+    idx++;
+    turno = (turno + 1) % equipos.length;
+    if (idx < preguntas.length) escena(); else podio();
+  }
+
+  function enlazarAjustes() {
+    zona.querySelectorAll("[data-aj]").forEach(b => b.addEventListener("click", () => {
+      const e = equipos[Number(b.dataset.aj)];
+      e.pts = Math.max(0, e.pts + Number(b.dataset.v));
+      document.getElementById("marc").innerHTML = marcador(); enlazarAjustes();
+    }));
+  }
+
+  function podio() {
+    clearInterval(reloj);
+    const orden = equipos.slice().sort((a, b) => b.pts - a.pts);
+    zona.innerHTML = `
+      <section class="escena">
+        <p class="etiqueta">Fin del duelo</p>
+        <h2>${orden[0].pts === (orden[1] ? orden[1].pts : -1) ? "¡Empate en el primer lugar!" : "Gana " + esc(orden[0].nombre)}</h2>
+        <div class="podio">${orden.map((e, k) => `<div class="lugar ${e.pts === orden[0].pts ? "primero" : ""}"><span class="pos">${k + 1}º</span><span>${esc(e.nombre)}</span><span class="pts">${e.pts}</span></div>`).join("")}</div>
+        <div class="fila-botones">
+          <button type="button" class="btn" id="btnRevancha">Revancha con otras preguntas</button>
+          <button type="button" class="btn sec" id="btnConfig">Cambiar equipos o unidades</button>
+        </div>
+      </section>`;
+    document.getElementById("btnRevancha").addEventListener("click", () => {
+      const usadas = new Set(preguntas.map(p => p.q));
+      const us = [...new Set(preguntas.map(p => p.u))];
+      let pool = BANCO.filter(p => us.includes(p.u) && p.t !== "match" && !usadas.has(p.q));
+      if (pool.length < preguntas.length) pool = BANCO.filter(p => us.includes(p.u) && p.t !== "match");
+      preguntas = mezclar(pool).slice(0, preguntas.length).map(p => {
+        if (p.t === "vf") return Object.assign({}, p, { o: ["Verdadero", "Falso"], a: p.a ? 0 : 1 });
+        const orden = mezclar(p.o.map((_, k) => k));
+        return Object.assign({}, p, { o: orden.map(k => p.o[k]), a: orden.indexOf(p.a) });
+      });
+      equipos.forEach(e => e.pts = 0); idx = 0; turno = 0; escena();
+    });
+    document.getElementById("btnConfig").addEventListener("click", configurar);
+  }
+
+  document.addEventListener("keydown", e => {
+    if (e.code !== "Space" || /INPUT|BUTTON|TEXTAREA/.test(document.activeElement.tagName)) return;
+    if (!zona.querySelector(".escena") || !preguntas.length || idx >= preguntas.length) return;
+    e.preventDefault();
+    if (!revelada) revelar();
+  });
+
+  configurar();
+})();
+</script>
+</body>
+</html>

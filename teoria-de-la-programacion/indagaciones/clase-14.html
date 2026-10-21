@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Indagación previa · Clase 14</title>
+<link rel="stylesheet" href="../../assets/estilos.css">
+</head>
+<body>
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Indagaciones previas</a><span aria-hidden="true">/</span><span>Clase 14</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Indagación previa · Clase 14 · Unidad 7</p>
+    <h1>Herencia, polimorfismo y ligadura dinámica</h1>
+    <p class="objetivo">En la clase vas a extender una jerarquía de clases. Llega sabiendo qué se hereda, qué tipos de herencia hay y cómo se decide qué método se ejecuta.</p>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">01</span>Cómo trabajar</h2>
+    <p class="bajada">Tiempo estimado: 45 a 60 min. Trabaja en tu cuaderno o en un documento. Responde con tus palabras y anota la fuente y la sección donde encontraste cada respuesta. Si un paso tiene código, escribe tu predicción antes de ejecutarlo en Colab o en tu intérprete de Python: equivocarte en la predicción también sirve, porque te muestra qué tienes que revisar.</p>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">02</span>Pasos</h2>
+    <article class="actividad paso-ind">
+      <header><h3>Paso 1</h3></header>
+      <p class="q">¿Qué gana una clase nueva cuando hereda de una existente?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html" target="_blank" rel="noopener">Oracle, s.f.-a</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 2</h3></header>
+      <p class="q">¿Cuántas superclases directas puede tener una clase en Java? ¿Por qué Java no permite extender más de una clase? ¿Qué sí permite? ¿Y Python?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://docs.oracle.com/javase/tutorial/java/IandI/summaryinherit.html" target="_blank" rel="noopener">Oracle, s.f.-d</a>; <a href="https://docs.oracle.com/javase/tutorial/java/IandI/multipleinheritance.html" target="_blank" rel="noopener">Oracle, s.f.-b</a>; <a href="https://docs.python.org/es/3/tutorial/classes.html" target="_blank" rel="noopener">Python Software Foundation, s.f.-b, sección «Herencia múltiple»</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 3</h3></header>
+      <p class="q">¿Qué es una clase abstracta? ¿Se puede crear un objeto de ella? ¿Qué se usa en Python para declarar un método abstracto?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://docs.oracle.com/javase/tutorial/java/IandI/summaryinherit.html" target="_blank" rel="noopener">Oracle, s.f.-d</a>; <a href="https://docs.python.org/es/3/library/abc.html" target="_blank" rel="noopener">Python Software Foundation, s.f.-a</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 4</h3></header>
+      <p class="q">¿Qué es el polimorfismo? ¿De qué depende el código que se ejecuta cuando se llama a un método?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html" target="_blank" rel="noopener">Oracle, s.f.-c</a>; <a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema06-programacion-orientada-objetos-swift/tema06-programacion-orientada-objetos-swift.html" target="_blank" rel="noopener">Gallardo et al., 2025, §1</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 5</h3></header>
+      <p class="q">Antes de ejecutar, escribe qué crees que imprime. Después ejecútalo. ¿Qué decidió cuál método leer se ejecutó? Ahora busca qué hace Java cuando una variable declarada como Sensor apunta a un objeto Termometro: ¿qué método llama la máquina virtual y cómo se llama ese mecanismo?</p><pre class="codigo">class Sensor:
+    def leer(self):
+        return &quot;genérico&quot;
+
+class Termometro(Sensor):
+    def leer(self):
+        return &quot;temperatura&quot;
+
+s = Sensor()
+s = Termometro()
+print(s.leer())</pre><p class="prediccion">Mi predicción, antes de ejecutar: ________________________________</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html" target="_blank" rel="noopener">Oracle, s.f.-c</a>; <a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema06-programacion-orientada-objetos-swift/tema06-programacion-orientada-objetos-swift.html" target="_blank" rel="noopener">Gallardo et al., 2025, §6.5</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 6</h3></header>
+      <p class="q">En la Unidad 3 viste que una ligadura puede ser estática o dinámica. ¿Qué tiene que ver aquello con lo que encontraste en el paso 5?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema06-programacion-orientada-objetos-swift/tema06-programacion-orientada-objetos-swift.html" target="_blank" rel="noopener">Gallardo et al., 2025, §6.5</a>)</span></p>
+    </article>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">03</span>Antes de la clase</h2>
+    <div class="ind-cierre">
+      <div><strong>Lo que tienes que tener anotado</strong><p>Las respuestas de cada paso. Para el paso 5, tu predicción, el resultado y el nombre del mecanismo.</p></div>
+      <div class="terminaste"><strong>Terminaste cuando</strong><p>puedes explicar con tus palabras qué es la ligadura dinámica de métodos y relacionarla con la Unidad 3.</p></div>
+      <div><strong>Trae a clase</strong><p>Una jerarquía de tres clases de cualquier ámbito cotidiano (no de tu proyecto), con un método que cada subclase haga de forma distinta.</p></div>
+    </div>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">04</span>Fuentes</h2>
+    <p class="bajada">Todas son de acceso abierto. Las citas de los pasos abren cada fuente directamente.</p>
+    <ol class="biblio"><li id="ref-al6">Gallardo, D., Pomares, C., Botía, A., y Martínez, F. (2025). <i>Tema 6: Programación orientada a objetos con Swift</i>. Lenguajes y Paradigmas de Programación, curso 2025-26. Departamento de Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante. <a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema06-programacion-orientada-objetos-swift/tema06-programacion-orientada-objetos-swift.html">https://domingogallardo.github.io/apuntes-lpp/teoria/tema06-programacion-orientada-objetos-swift/tema06-programacion-orientada-objetos-swift.html</a></li><li id="ref-j-inh">Oracle. (s.f.-a). <i>Inheritance</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html">https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html</a></li><li id="ref-j-multi">Oracle. (s.f.-b). <i>Multiple inheritance of state, implementation, and type</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/java/IandI/multipleinheritance.html">https://docs.oracle.com/javase/tutorial/java/IandI/multipleinheritance.html</a></li><li id="ref-j-poly">Oracle. (s.f.-c). <i>Polymorphism</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html">https://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html</a></li><li id="ref-j-suminh">Oracle. (s.f.-d). <i>Summary of inheritance</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/java/IandI/summaryinherit.html">https://docs.oracle.com/javase/tutorial/java/IandI/summaryinherit.html</a></li><li id="ref-py-abc">Python Software Foundation. (s.f.-a). <i>abc — Clases de Base Abstracta</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/library/abc.html">https://docs.python.org/es/3/library/abc.html</a></li><li id="ref-py-class">Python Software Foundation. (s.f.-b). <i>Clases</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/tutorial/classes.html">https://docs.python.org/es/3/tutorial/classes.html</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Indagaciones"><a href="clase-12.html"><small>← Clase 12</small>Objetos, clases y mensajes</a><a class="sig" href="clase-15.html"><small>Clase 15 →</small>Programación funcional</a></nav>
+  <footer class="pie"><span>Teoría de la Programación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U5 · Expresiones y enunciados</title>
+<link rel="stylesheet" href="../assets/estilos.css">
+</head>
+<body>
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Teoría de la Programación</a><span aria-hidden="true">/</span><a href="repaso.html">Repaso</a><span aria-hidden="true">/</span><span>Unidad 5</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Unidad 5 de 8</p>
+    <h1>Expresiones y enunciados</h1>
+    <p class="objetivo">Reconocer el uso de expresiones, enunciados condicionales y mecanismos de manejo de excepciones, distinguiendo entre guardas y bloques try/except.</p>
+    <ul class="contenidos" aria-label="Contenidos"><li>Expresiones</li><li>Enunciados y guardas condicionales</li><li>Manejo de excepciones</li></ul>
+    <aside class="aviso-ind"><p><strong>¿Ya hiciste la indagación previa?</strong> Hazla antes de leer este repaso: <a href="indagaciones/clase-08.html">Clase 8: Expresiones, guardas y excepciones</a> · <a href="indagaciones/clase-09.html">Clase 9: Enunciados de control</a></p></aside>
+  </section>
+  <nav class="indice-pagina" aria-label="En esta página">
+    <a href="#repaso">Repaso</a><a href="#codigo">Código comparado</a><a href="#practica">Práctica</a><a href="#autoevaluacion">Autoevaluación</a><a href="#juegos">Juegos</a><a href="#bibliografia">Bibliografía</a>
+  </nav>
+  <section class="seccion" id="repaso">
+    <h2><span class="num-sec">01</span>Repaso</h2>
+    <dl class="conceptos"><div class="concepto"><dt>Expresión y enunciado</dt><dd><p>Una <b>expresión</b> es una construcción que puede evaluarse hasta dar un valor. Una <b>sentencia</b> (enunciado) es parte de un bloque de código: puede ser una expresión o una construcción con palabra clave, como <code class="in">if</code>, <code class="in">while</code> o <code class="in">for</code>. En Python, las asignaciones son sentencias, no expresiones <span class="cita">(<a href="#ref-py-glos">Python Software Foundation, s.f.-c</a>)</span>.</p></dd></div><div class="concepto"><dt>Precedencia</dt><dd><p>Indica qué operador se resuelve primero. La referencia de Python tiene una tabla de precedencia desde la más alta hasta la más baja <span class="cita">(<a href="#ref-py-expr">Python Software Foundation, s.f.-b</a>)</span>. En Java, los operadores con mayor precedencia se evalúan antes que los de menor precedencia <span class="cita">(<a href="#ref-j-ops">Oracle, s.f.-b</a>)</span>.</p></dd></div><div class="concepto"><dt>Asociatividad</dt><dd><p>Con operadores de igual precedencia, Python agrupa de izquierda a derecha, excepto la potencia y las expresiones condicionales, que agrupan de derecha a izquierda <span class="cita">(<a href="#ref-py-expr">Python Software Foundation, s.f.-b</a>)</span>. Por eso <code class="in">10 - 3 - 2</code> da 5 y <code class="in">2 ** 3 ** 2</code> da 512. La potencia se vincula más fuerte que un operador unario a su izquierda <span class="cita">(<a href="#ref-py-expr">Python Software Foundation, s.f.-b</a>)</span>: <code class="in">-2 ** 2</code> da -4.</p><p>En Java, todos los operadores binarios se evalúan de izquierda a derecha, salvo los de asignación <span class="cita">(<a href="#ref-j-ops">Oracle, s.f.-b</a>)</span>.</p></dd></div><div class="concepto"><dt>Cortocircuito</dt><dd><p>En Python, <code class="in">x and y</code> evalúa primero <code class="in">x</code>; si es falso, devuelve su valor sin evaluar <code class="in">y</code>. <code class="in">x or y</code> no evalúa <code class="in">y</code> si <code class="in">x</code> es verdadero <span class="cita">(<a href="#ref-py-expr">Python Software Foundation, s.f.-b</a>)</span>. Java <span class="cita">(<a href="#ref-j-op2">Oracle, s.f.-a</a>)</span> y C <span class="cita">(<a href="#ref-c-logic">cppreference.com, s.f.-c</a>)</span> tienen el mismo comportamiento con <code class="in">&amp;&amp;</code> y <code class="in">||</code>.</p><p>Esto permite poner una guarda dentro de la misma condición: <code class="in">x != 0 and 10 / x &gt; 1</code>.</p></dd></div><div class="concepto"><dt>Enunciados condicionales</dt><dd><p>Simples (<code class="in">if</code>), dobles (<code class="in">if/else</code>), anidados y múltiples (<code class="in">elif</code>, <code class="in">switch</code>). Python tiene además la sentencia <code class="in">match</code> para coincidencia de patrones <span class="cita">(<a href="#ref-py-comp">Python Software Foundation, s.f.-d</a>)</span>. En C, el <code class="in">switch</code> solo admite expresiones de tipo entero <span class="cita">(<a href="#ref-c-switch">cppreference.com, s.f.-d</a>)</span>.</p></dd></div><div class="concepto"><dt>Guarda</dt><dd><p>Dijkstra definió el comando con guarda como una lista de sentencias precedida por una expresión booleana; esa lista solo se ejecuta en un estado en que la guarda es verdadera <span class="cita">(<a href="#ref-dijkstra">Dijkstra, 1974</a>)</span>.</p><p>En la práctica, una guarda es una condición que se verifica <b>antes</b> de ejecutar una operación que podría fallar, por ejemplo dividir solo si el divisor no es cero.</p></dd></div><div class="concepto"><dt>Excepción</dt><dd><p>Evento que ocurre durante la ejecución y que interrumpe el flujo normal de las instrucciones. El sistema busca un manejador en la pila de llamadas, desde el método donde ocurrió el error hacia atrás; si no lo encuentra, el programa termina <span class="cita">(<a href="#ref-j-exc">Oracle, s.f.-d</a>)</span>.</p><p>En Python, los errores detectados durante la ejecución se llaman excepciones y se manejan con <code class="in">try/except</code>. <code class="in">raise</code> fuerza una excepción y la cláusula <code class="in">finally</code> siempre se ejecuta <span class="cita">(<a href="#ref-py-err">Python Software Foundation, s.f.-a</a>)</span>. En Java, el bloque <code class="in">finally</code> también se ejecuta siempre que termina el bloque <code class="in">try</code> <span class="cita">(<a href="#ref-j-finally">Oracle, s.f.-c</a>)</span>.</p></dd></div><div class="concepto"><dt>Errores en C</dt><dd><p><code class="in">try</code>, <code class="in">catch</code> y <code class="in">throw</code> no figuran entre las palabras reservadas de C <span class="cita">(<a href="#ref-c-kw">cppreference.com, s.f.-a</a>)</span>. Varias funciones de la biblioteca estándar indican errores escribiendo un entero positivo en <code class="in">errno</code> <span class="cita">(<a href="#ref-c-errno">cppreference.com, s.f.-b</a>)</span>.</p></dd></div></dl>
+    <div class="tabla-scroll"><table class="comp">
+      <caption>Mecanismos de control de errores</caption>
+      <thead><tr><th scope="col">Mecanismo</th><th scope="col">Python</th><th scope="col">Java</th><th scope="col">C</th></tr></thead>
+      <tbody><tr><th scope="row">Guarda</th><td><code class="in">if b != 0:</code></td><td><code class="in">if (b != 0) {…}</code></td><td><code class="in">if (b != 0) {…}</code></td></tr><tr><th scope="row">Capturar</th><td><code class="in">try / except</code> <span class="cita">(<a href="#ref-py-err">Python Software Foundation, s.f.-a</a>)</span></td><td><code class="in">try / catch</code> <span class="cita">(<a href="#ref-j-exc">Oracle, s.f.-d</a>)</span></td><td>No tiene <code class="in">try</code> ni <code class="in">catch</code> <span class="cita">(<a href="#ref-c-kw">cppreference.com, s.f.-a</a>)</span></td></tr><tr><th scope="row">Lanzar</th><td><code class="in">raise</code> <span class="cita">(<a href="#ref-py-err">Python Software Foundation, s.f.-a</a>)</span></td><td><code class="in">throw</code></td><td>Valor de retorno y <code class="in">errno</code> <span class="cita">(<a href="#ref-c-errno">cppreference.com, s.f.-b</a>)</span></td></tr><tr><th scope="row">Siempre se ejecuta</th><td><code class="in">finally</code> <span class="cita">(<a href="#ref-py-err">Python Software Foundation, s.f.-a</a>)</span></td><td><code class="in">finally</code> <span class="cita">(<a href="#ref-j-finally">Oracle, s.f.-c</a>)</span></td><td>—</td></tr></tbody>
+    </table></div>
+    <aside class="ojo"><strong class="tit">No confundas</strong><p><b>Una guarda actúa antes; una excepción, después.</b> La guarda solo deja ejecutar el código si su condición es verdadera <span class="cita">(<a href="#ref-dijkstra">Dijkstra, 1974</a>)</span>. La excepción aparece cuando el error ya ocurrió durante la ejecución <span class="cita">(<a href="#ref-j-exc">Oracle, s.f.-d</a>)</span>.</p></aside>
+  </section>
+  <section class="seccion" id="codigo">
+    <h2><span class="num-sec">02</span>Código comparado</h2>
+    <h3 style="margin-top:.6rem">Guarda para el divisor, excepción para el formato</h3>
+    <p class="bajada">La guarda previene la división por cero. La excepción reacciona cuando el texto que escribe la persona no es un número.</p>
+    <div class="tabs">
+      <div class="tabs-botones" role="tablist" aria-label="Lenguaje" hidden><button type="button" role="tab" id="tab5-0" aria-controls="panel5-0">Python</button><button type="button" role="tab" id="tab5-1" aria-controls="panel5-1">Java</button><button type="button" role="tab" id="tab5-2" aria-controls="panel5-2">C</button></div>
+      <div class="tab-panel" role="tabpanel" id="panel5-0" aria-labelledby="tab5-0" data-lang="Python">
+        <pre class="codigo">def dividir(a, b):
+    if b == 0:                      # guarda
+        return None
+    return a / b
+
+try:
+    n = int(input(&quot;Divisor: &quot;))     # el texto puede no ser un número
+    print(dividir(10, n))
+except ValueError:
+    print(&quot;Eso no es un número entero&quot;)</pre>
+        <p class="salida">Salida al ejecutarlo: <code>Con 4: 2.5 · con 0: None · con «4a»: Eso no es un número entero</code></p>
+      </div><div class="tab-panel" role="tabpanel" id="panel5-1" aria-labelledby="tab5-1" data-lang="Java">
+        <pre class="codigo">import java.util.Scanner;
+
+public class Division {
+    static Double dividir(double a, double b) {
+        if (b == 0) return null;          // guarda
+        return a / b;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        try {
+            int n = Integer.parseInt(sc.nextLine());
+            System.out.println(dividir(10, n));
+        } catch (NumberFormatException e) {
+            System.out.println(&quot;Eso no es un número entero&quot;);
+        }
+    }
+}</pre>
+        <p class="salida">Salida al ejecutarlo: <code>Con 4: 2.5 · con 0: null · con «4a»: Eso no es un número entero</code></p>
+      </div><div class="tab-panel" role="tabpanel" id="panel5-2" aria-labelledby="tab5-2" data-lang="C">
+        <pre class="codigo">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int dividir(double a, double b, double *res) {
+    if (b == 0) return -1;          /* guarda: código de error */
+    *res = a / b;
+    return 0;
+}
+
+int main(void) {
+    char texto[32], *fin;
+    double r;
+    fgets(texto, sizeof texto, stdin);
+    long n = strtol(texto, &amp;fin, 10);
+    if (fin == texto) {             /* no se leyó ningún número */
+        printf(&quot;Eso no es un número entero\n&quot;);
+        return 1;
+    }
+    if (dividir(10, n, &amp;r) != 0) printf(&quot;No se puede dividir por cero\n&quot;);
+    else printf(&quot;%.2f\n&quot;, r);
+    return 0;
+}</pre>
+        <p class="salida">Salida al ejecutarlo: <code>Con 4: 2.50 · con 0: No se puede dividir por cero · con «a»: Eso no es un número entero</code></p>
+      </div>
+    </div>
+  </section>
+  <section class="seccion" id="practica">
+    <h2><span class="num-sec">03</span>Actividades de práctica</h2>
+    <p class="bajada">Cada actividad indica cuándo terminaste. No pases a la siguiente hasta cumplirlo.</p>
+    <article class="actividad">
+      <header><h3>Actividad 1 · ¿Guarda o excepción?</h3><span class="meta">Individual · 30 min</span></header>
+      <p>Situaciones: (1) promedio de una lista que puede estar vacía; (2) leer un número que escribe el usuario; (3) abrir un archivo cuyo nombre escribe el usuario; (4) validar que una edad esté entre 0 y 120; (5) obtener el quinto elemento de una lista de largo desconocido; (6) consultar el clima en un servicio de internet; (7) aplicar un descuento solo si el monto es positivo; (8) convertir a fecha un texto como «31/02/2026».</p>
+      <ol><li>Decide guarda o excepción para cada situación.</li><li>Escribe una línea de justificación respondiendo: ¿puedo prever el error con una condición simple?</li><li>Implementa en Python dos situaciones: una con guarda y otra con excepción.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> las 8 situaciones tienen decisión y justificación, y tus dos programas no se detienen con ninguna entrada que pruebes.</p>
+    </article><article class="actividad">
+      <header><h3>Actividad 2 · Traza la precedencia</h3><span class="meta">Individual · 20 min</span></header>
+      <p>Expresiones:</p><pre class="codigo">2 + 3 * 4 ** 2
+(2 + 3) * 4 ** 2
+-2 ** 2
+10 - 4 - 3
+not 3 &gt; 5 and 2 == 2
+True or False and False</pre>
+      <ol><li>Resuelve cada expresión a mano, paso por paso, escribiendo el orden en que aplicas los operadores.</li><li>Verifica cada resultado en Colab.</li><li>Para cada diferencia entre tu resultado y Colab, busca en la tabla de precedencia de la referencia de Python qué regla aplicaste mal.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> las 6 expresiones tienen su traza a mano y coinciden con Colab, o explicaste cada diferencia con la tabla.</p>
+    </article><article class="actividad">
+      <header><h3>Actividad 3 · Mismo control, tres lenguajes</h3><span class="meta">En equipo de trabajo · 45 min</span></header>
+      <p>Programa: pide el precio de un producto en guaraníes y la cantidad, y muestra el total.</p>
+      <ol><li>Definan al menos 3 entradas inválidas que podrían ocurrir.</li><li>Implementen en Python y Java: guardas para las reglas de negocio y excepciones para el formato.</li><li>Implementen en C con guardas y códigos de retorno.</li><li>Prueben las tres versiones con las 3 entradas inválidas.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> las tres versiones responden con un mensaje claro a las 3 entradas inválidas sin terminar con error.</p>
+    </article>
+  </section>
+  <section class="seccion" id="autoevaluacion">
+    <h2><span class="num-sec">04</span>Autoevaluación</h2>
+    <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
+    <ol class="autoeval"><li>¿Qué diferencia hay entre una expresión y una sentencia en Python?</li><li>¿Por qué <code class="in">x != 0 and 10 / x &gt; 1</code> no falla cuando x vale 0?</li><li>¿Cómo definió Dijkstra un comando con guarda?</li><li>¿Qué hace el sistema de Java cuando se lanza una excepción?</li></ol>
+  </section>
+  <section class="seccion" id="juegos">
+    <h2><span class="num-sec">05</span>Juegos</h2>
+    <div class="enlaces-juego"><a class="btn" href="juegos/ruta-de-repaso.html#u5">Estación U5 de la Ruta de Repaso</a><a class="btn sec" href="juegos/oca.html">La Oca de la Programación</a><a class="btn sec" href="juegos/caza-el-bug.html">Caza el bug</a><a class="btn sec" href="juegos/tribunal-de-diseno.html">Tribunal de Diseño</a><a class="btn sec" href="juegos/duelo-de-equipos.html">Duelo de equipos</a></div>
+  </section>
+  <section class="seccion" id="bibliografia">
+    <h2><span class="num-sec">06</span>Bibliografía</h2>
+    <p class="bajada">Fuentes de acceso abierto citadas en esta unidad, en formato APA 7. Consultadas el 7 de octubre de 2026.</p>
+    <ol class="biblio"><li id="ref-c-kw">cppreference.com. (s.f.-a). <i>C keywords</i>. <a href="https://cppreference.com/c/keyword">https://cppreference.com/c/keyword</a></li><li id="ref-c-errno">cppreference.com. (s.f.-b). <i>errno</i>. <a href="https://cppreference.com/c/error/errno">https://cppreference.com/c/error/errno</a></li><li id="ref-c-logic">cppreference.com. (s.f.-c). <i>Logical operators</i>. <a href="https://cppreference.com/c/language/operator_logical">https://cppreference.com/c/language/operator_logical</a></li><li id="ref-c-switch">cppreference.com. (s.f.-d). <i>switch statement</i>. <a href="https://cppreference.com/c/language/switch">https://cppreference.com/c/language/switch</a></li><li id="ref-dijkstra">Dijkstra, E. W. (1974). <i>Guarded commands, non-determinacy and a calculus for the derivation of programs</i> (EWD 418; transcripción de M. Ben-Ari). E. W. Dijkstra Archive, University of Texas at Austin. <a href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD04xx/EWD418.html">https://www.cs.utexas.edu/~EWD/transcriptions/EWD04xx/EWD418.html</a></li><li id="ref-j-op2">Oracle. (s.f.-a). <i>Equality, relational, and conditional operators</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html">https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html</a></li><li id="ref-j-ops">Oracle. (s.f.-b). <i>Operators</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html">https://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html</a></li><li id="ref-j-finally">Oracle. (s.f.-c). <i>The finally block</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html">https://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html</a></li><li id="ref-j-exc">Oracle. (s.f.-d). <i>What is an exception?</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/definition.html">https://docs.oracle.com/javase/tutorial/essential/exceptions/definition.html</a></li><li id="ref-py-err">Python Software Foundation. (s.f.-a). <i>Errores y excepciones</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/tutorial/errors.html">https://docs.python.org/es/3/tutorial/errors.html</a></li><li id="ref-py-expr">Python Software Foundation. (s.f.-b). <i>Expresiones</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/reference/expressions.html">https://docs.python.org/es/3/reference/expressions.html</a></li><li id="ref-py-glos">Python Software Foundation. (s.f.-c). <i>Glosario</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/glossary.html">https://docs.python.org/es/3/glossary.html</a></li><li id="ref-py-comp">Python Software Foundation. (s.f.-d). <i>Sentencias compuestas</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/reference/compound_stmts.html">https://docs.python.org/es/3/reference/compound_stmts.html</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Unidades"><a href="u4.html"><small>← Unidad 4</small>Tipos de datos</a><a class="sig" href="u6.html"><small>Unidad 6 →</small>Procedimientos y ambientes</a></nav>
+  <footer class="pie"><span>Teoría de la Programación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>

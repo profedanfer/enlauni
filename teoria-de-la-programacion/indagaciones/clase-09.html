@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Indagación previa · Clase 9</title>
+<link rel="stylesheet" href="../../assets/estilos.css">
+</head>
+<body>
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Indagaciones previas</a><span aria-hidden="true">/</span><span>Clase 9</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Indagación previa · Clase 9 · Unidad 5</p>
+    <h1>Enunciados de control</h1>
+    <p class="objetivo">En la clase vas a trabajar con condicionales y bucles en un cuaderno. Llega conociendo las formas de cada uno y sus diferencias entre lenguajes.</p>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">01</span>Cómo trabajar</h2>
+    <p class="bajada">Tiempo estimado: 40 a 50 min. Trabaja en tu cuaderno o en un documento. Responde con tus palabras y anota la fuente y la sección donde encontraste cada respuesta. Si un paso tiene código, escribe tu predicción antes de ejecutarlo en Colab o en tu intérprete de Python: equivocarte en la predicción también sirve, porque te muestra qué tienes que revisar.</p>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">02</span>Pasos</h2>
+    <article class="actividad paso-ind">
+      <header><h3>Paso 1</h3></header>
+      <p class="q">¿Qué es la programación estructurada? ¿Contra qué sentencia se pronunció Dijkstra? ¿Qué buscaba lograr en los programas?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema05-bis-programacion-imperativa/tema05-programacion-imperativa.html" target="_blank" rel="noopener">Gallardo et al., 2025, §1.1.3</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 2</h3></header>
+      <p class="q">¿Qué formas de decisión tiene Python, además de if, elif y else? ¿Qué restricción tiene la expresión de un switch en C?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://docs.python.org/es/3/reference/compound_stmts.html" target="_blank" rel="noopener">Python Software Foundation, s.f.-b</a>; <a href="https://cppreference.com/c/language/switch" target="_blank" rel="noopener">cppreference.com, s.f.</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 3</h3></header>
+      <p class="q">Antes de ejecutar, escribe qué números crees que se imprimen. Después ejecútalo y busca qué significa cada argumento de range.</p><pre class="codigo">for i in range(2, 11, 3):
+    print(i)</pre><p class="prediccion">Mi predicción, antes de ejecutar: ________________________________</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://docs.python.org/es/3/tutorial/controlflow.html" target="_blank" rel="noopener">Python Software Foundation, s.f.-a, sección «La función range()»</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 4</h3></header>
+      <p class="q">¿Qué hacen break y continue? Un for en Python puede tener un else: ¿cuándo se ejecuta y cuándo no?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://docs.python.org/es/3/tutorial/controlflow.html" target="_blank" rel="noopener">Python Software Foundation, s.f.-a, sección «Las sentencias break y continue»</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 5</h3></header>
+      <p class="q">¿Qué puede recorrer un for en Python? ¿En qué se diferencia del for de lenguajes como C o Pascal?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://docs.python.org/es/3/reference/compound_stmts.html" target="_blank" rel="noopener">Python Software Foundation, s.f.-b</a>; <a href="https://docs.python.org/es/3/tutorial/controlflow.html" target="_blank" rel="noopener">Python Software Foundation, s.f.-a, sección «La sentencia for»</a>)</span></p>
+    </article>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">03</span>Antes de la clase</h2>
+    <div class="ind-cierre">
+      <div><strong>Lo que tienes que tener anotado</strong><p>Las respuestas de cada paso. Para el paso 3, tu predicción, el resultado y qué significa cada argumento de range.</p></div>
+      <div class="terminaste"><strong>Terminaste cuando</strong><p>puedes explicar cuándo se ejecuta el else de un for sin mirar la fuente.</p></div>
+      <div><strong>Trae a clase</strong><p>Un problema de tu vida cotidiana que se resuelva con una decisión múltiple y otro que se resuelva con una repetición.</p></div>
+    </div>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">04</span>Fuentes</h2>
+    <p class="bajada">Todas son de acceso abierto. Las citas de los pasos abren cada fuente directamente.</p>
+    <ol class="biblio"><li id="ref-c-switch">cppreference.com. (s.f.). <i>switch statement</i>. <a href="https://cppreference.com/c/language/switch">https://cppreference.com/c/language/switch</a></li><li id="ref-al5">Gallardo, D., Pomares, C., Botía, A., y Martínez, F. (2025). <i>Tema 5: Programación imperativa</i>. Lenguajes y Paradigmas de Programación, curso 2025-26. Departamento de Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante. <a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema05-bis-programacion-imperativa/tema05-programacion-imperativa.html">https://domingogallardo.github.io/apuntes-lpp/teoria/tema05-bis-programacion-imperativa/tema05-programacion-imperativa.html</a></li><li id="ref-py-ctrl">Python Software Foundation. (s.f.-a). <i>Más herramientas para control de flujo</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/tutorial/controlflow.html">https://docs.python.org/es/3/tutorial/controlflow.html</a></li><li id="ref-py-comp">Python Software Foundation. (s.f.-b). <i>Sentencias compuestas</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/reference/compound_stmts.html">https://docs.python.org/es/3/reference/compound_stmts.html</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Indagaciones"><a href="clase-08.html"><small>← Clase 8</small>Expresiones, guardas y excepciones</a><a class="sig" href="clase-11.html"><small>Clase 11 →</small>Procedimientos y paso de parámetros</a></nav>
+  <footer class="pie"><span>Teoría de la Programación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+
+</body>
+</html>

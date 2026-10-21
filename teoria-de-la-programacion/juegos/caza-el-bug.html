@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Caza el Bug</title>
+<link rel="stylesheet" href="../../assets/estilos.css">
+<style>
+  .portada { padding-block: 1.4rem .4rem; }
+  .config, .caso { background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radio); padding: 1.2rem; margin-top: 1rem; }
+  .config { display: grid; gap: 1.1rem; }
+  .config fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+  .config legend { font-family: var(--f-titulo); font-size: 1.1rem; color: var(--verde-oscuro); margin-bottom: .5rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .chip { position: relative; }
+  .chip input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+  .chip span { display: inline-block; padding: .4rem .85rem; border-radius: 999px; border: 2px solid var(--linea); background: var(--fondo); font-weight: 700; color: var(--tinta-suave); min-height: 40px; line-height: 1.5; }
+  .chip input:checked + span { background: var(--verde-medio); border-color: var(--verde-medio); color: var(--sobre-acento); }
+  .chip input:focus-visible + span { outline: 3px solid var(--verde-claro); outline-offset: 2px; }
+  .nota { font-size: .9rem; color: var(--tinta-suave); margin: .5rem 0 0; }
+
+  .barra { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .4rem 1rem; align-items: baseline; }
+  .sintoma { margin-top: .9rem; padding: .8rem 1rem; border-radius: var(--radio); background: var(--error-fondo); border-left: 4px solid var(--error); }
+  .sintoma strong { display: block; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--error); margin-bottom: .2rem; }
+
+  /* Laboratorio */
+  .lab { margin-top: 1rem; border: 1px solid var(--linea); border-radius: var(--radio); overflow: hidden; }
+  .lab-cab { display: flex; flex-wrap: wrap; gap: .5rem .8rem; align-items: center; justify-content: space-between; padding: .6rem .8rem; background: var(--fondo); }
+  .modo { font-size: .8rem; font-weight: 700; color: var(--tinta-suave); }
+  .consola { background: var(--codigo-fondo); color: var(--codigo-tinta); font-family: var(--f-codigo); font-size: .85rem; line-height: 1.5; padding: .8rem 1rem; margin: 0; min-height: 5.5rem; max-height: 16rem; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .consola .err { color: #F4A79B; }
+  .consola .info { color: #9FC8B0; }
+  .medidores { display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; padding: .55rem .9rem; font-size: .88rem; border-top: 1px solid var(--linea); }
+  .medidores b { font-variant-numeric: tabular-nums; }
+  .estado-lab { font-weight: 700; }
+  .estado-lab.alerta { color: var(--error); }
+  .estado-lab.bien { color: var(--acierto); }
+  .tiempos { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  .tiempos td, .tiempos th { padding: .35rem .9rem; border-top: 1px solid var(--linea); text-align: left; }
+  .tiempos td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .barra-t { height: .7rem; background: var(--verde-claro); border-radius: 4px; min-width: 2px; }
+
+  /* Pasos */
+  .paso { margin-top: 1.3rem; }
+  .paso h3 { display: flex; gap: .5rem; align-items: baseline; }
+  .paso h3 .n { font-family: var(--f-codigo); font-size: .8rem; color: var(--verde-claro); }
+  .lineas { margin-top: .6rem; border-radius: var(--radio); overflow-x: auto; background: var(--codigo-fondo); padding: .4rem 0; }
+  .lineas button { display: flex; gap: .9rem; width: 100%; min-width: max-content; text-align: left; font-family: var(--f-codigo); font-size: .88rem; line-height: 1.5; background: none; border: 0; color: var(--codigo-tinta); padding: .2rem 1rem; cursor: pointer; white-space: pre; min-height: 32px; align-items: center; }
+  .lineas button .nl { color: #7FA08C; min-width: 1.5rem; text-align: right; user-select: none; }
+  .lineas button:hover:not(:disabled) { background: rgba(82, 183, 136, .18); }
+  .lineas button.ok { background: rgba(82, 183, 136, .35); }
+  .lineas button.mal { background: rgba(240, 140, 122, .3); }
+  .lineas button:disabled { cursor: default; }
+  .cerrado { margin-top: 1.2rem; padding: .9rem 1rem; border-radius: var(--radio); background: var(--acierto-fondo); }
+  .cerrado p { margin: .3rem 0 0; }
+  .resumen li { margin-top: .5rem; }
+</style>
+</head>
+<body>
+<div class="envoltura">
+  <header class="inst">
+    <span>Aula Danfer</span>
+    <a href="index.html">← Juegos de repaso</a>
+  </header>
+
+  <section class="portada" id="portada">
+    <p class="etiqueta">Teoría de la Programación · Análisis de errores</p>
+    <h1>Caza el Bug</h1>
+    <p class="bajada">Cada programa tiene un error. Ejecútalo para ver qué pasa, encuentra la línea y descubre qué principio de la teoría no tuvo en cuenta quien lo escribió.</p>
+  </section>
+
+  <main id="zona"></main>
+
+  <footer class="pie">
+    <span>Teoría de la Programación</span>
+    <span>PhD. Daniela Ferreira</span>
+  </footer>
+</div>
+
+<script src="laboratorio/ejecutor.js"></script>
+<script src="banco-preguntas.js"></script>
+<script src="bugs-casos.js"></script>
+<script>
+(function () {
+  const zona = document.getElementById("zona");
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const mezclar = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const LETRAS = ["A", "B", "C", "D"];
+  const LIMITE = { bucle: 5000, silencio: 5000, recursion: 20000, tiempo: 40000, salida: 10000, excepcion: 10000 };
+  const fmt = n => n.toLocaleString("es-PY");
+  const seg = ms => ms < 1000 ? Math.round(ms).toLocaleString("es-PY") + " ms" : (ms / 1000).toLocaleString("es-PY", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + " s";
+
+  let lista = [], idx = 0, puntos = 0, max = 0, liviano = false, fallados = [], resultados = [];
+
+  /* ---------- Configuración ---------- */
+  function configurar() {
+    document.getElementById("portada").hidden = false;
+    zona.innerHTML = `
+      <form class="config" id="form">
+        <fieldset>
+          <legend>Unidades</legend>
+          <div class="chips">${Object.keys(UNIDADES).map(Number).map(u => `<label class="chip"><input type="checkbox" name="u" value="${u}" checked><span>U${u} · ${esc(UNIDADES[u].corto)}</span></label>`).join("")}</div>
+          <p class="nota" id="disp"></p>
+        </fieldset>
+        <fieldset>
+          <legend>Cantidad de casos</legend>
+          <div class="chips">${[6, 9, 0].map(n => `<label class="chip"><input type="radio" name="cant" value="${n}" ${n === 6 ? "checked" : ""}><span>${n || "Todos"}</span></label>`).join("")}</div>
+        </fieldset>
+        <fieldset>
+          <legend>Ejecución</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="modo" value="python" checked><span>Python real en el navegador</span></label>
+            <label class="chip"><input type="radio" name="modo" value="liviano"><span>Modo liviano</span></label>
+          </div>
+          <p class="nota">Python real se descarga la primera vez que pulsas «Ejecutar» (varios megas; mejor con wifi). Si no carga, el juego pasa solo al modo liviano, que reproduce el mismo fenómeno en JavaScript o muestra la salida registrada.</p>
+        </fieldset>
+        <div class="fila-botones" style="margin-top:0"><button class="btn" type="submit">Empezar</button></div>
+      </form>`;
+    const form = document.getElementById("form");
+    const disp = () => {
+      const us = [...form.querySelectorAll("input[name=u]:checked")].map(x => Number(x.value));
+      document.getElementById("disp").textContent = us.length ? `${CASOS.filter(c => us.includes(c.u)).length} casos en las unidades elegidas.` : "Elige al menos una unidad.";
+    };
+    form.addEventListener("change", disp); disp();
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const us = [...form.querySelectorAll("input[name=u]:checked")].map(x => Number(x.value));
+      if (!us.length) return;
+      const cant = Number(form.cant.value);
+      lista = mezclar(CASOS.filter(c => us.includes(c.u)));
+      if (cant) lista = lista.slice(0, cant);
+      liviano = form.modo.value === "liviano";
+      idx = 0; puntos = 0; max = lista.length * 3; fallados = []; resultados = [];
+      document.getElementById("portada").hidden = true;
+      mostrar();
+    });
+  }
+
+  /* ---------- Caso ---------- */
+  function ajustarN(code, n) { return code.replace(/^N = \d+/m, "N = " + n); }
+
+  function mostrar() {
+    const c = lista[idx];
+    const nBase = Laboratorio.esCelular ? 8000 : 20000;
+    const code = c.exp === "tiempo" ? ajustarN(c.code, nBase) : c.code;
+    const est = { linea: 0, principio: 0, explicacion: 0, intentos: { linea: 0, principio: 0, explicacion: 0 } };
+    const opP = mezclar([c.principio].concat(c.distractores));
+    const opE = mezclar(c.explicaciones.map((t, i) => ({ t, ok: i === 0 })));
+    zona.innerHTML = `
+      <section class="caso">
+        <div class="barra"><span class="etiqueta">Caso ${idx + 1} de ${lista.length} · U${c.u} ${esc(UNIDADES[c.u].nombre)}</span><span class="num">${puntos} de ${max} puntos</span></div>
+        <h2 style="margin-top:.5rem">${esc(c.titulo)}</h2>
+        <p class="bajada">${esc(c.contexto)}</p>
+        <div class="sintoma"><strong>Síntoma observado</strong>${esc(c.sintoma)}</div>
+
+        <div class="lab" id="lab">
+          <div class="lab-cab"><span class="modo" id="modo"></span><span class="fila-botones" style="margin:0" id="botonesLab"></span></div>
+          <pre class="consola" id="consola" aria-live="polite"><span class="info">Pulsa «Ejecutar» para ver qué hace este programa.</span></pre>
+          <div class="medidores"><span>Tiempo: <b id="mTiempo">—</b></span><span id="mExtraW">Líneas impresas: <b id="mExtra">—</b></span><span class="estado-lab" id="mEstado"></span></div>
+          <div id="tablaTiempos"></div>
+        </div>
+
+        <div class="paso" id="paso1">
+          <h3><span class="n">1</span>Toca la línea donde está el error</h3>
+          <div class="lineas" id="lineas">${code.split("\n").map((l, i) => `<button type="button" data-l="${i + 1}"><span class="nl">${i + 1}</span><span>${esc(l) || " "}</span></button>`).join("")}</div>
+          <div id="r1"></div>
+        </div>
+        <div class="paso" id="paso2" hidden>
+          <h3><span class="n">2</span>¿Qué principio de la teoría no se tuvo en cuenta?</h3>
+          <div class="opciones">${opP.map((p, k) => `<button type="button" class="opcion" data-p="${p}"><span class="letra">${LETRAS[k]}</span><span>${esc(PRINCIPIOS[p].nombre)}</span></button>`).join("")}</div>
+          <div id="r2"></div>
+        </div>
+        <div class="paso" id="paso3" hidden>
+          <h3><span class="n">3</span>¿Por qué ese principio explica el síntoma?</h3>
+          <div class="opciones">${opE.map((o, k) => `<button type="button" class="opcion" data-ok="${o.ok}"><span class="letra">${LETRAS[k]}</span><span>${esc(o.t)}</span></button>`).join("")}</div>
+          <div id="r3"></div>
+        </div>
+        <div id="cierre"></div>
+      </section>`;
+    prepararLab(c, code);
+
+    // Paso 1: línea
+    zona.querySelectorAll("#lineas button").forEach(b => b.addEventListener("click", () => {
+      if (est.linea) return;
+      est.intentos.linea++;
+      const l = Number(b.dataset.l);
+      if (c.lineas.includes(l)) {
+        b.classList.add("ok"); est.linea = est.intentos.linea === 1 ? 1 : 0.0001;
+        zona.querySelectorAll("#lineas button").forEach(x => x.disabled = true);
+        document.getElementById("r1").innerHTML = `<p class="aviso-ok">¡Bien! Es la línea ${l}.</p>`;
+        document.getElementById("paso2").hidden = false;
+        document.getElementById("paso2").scrollIntoView({ behavior: "smooth", block: "nearest" });
+      } else {
+        b.classList.add("mal"); setTimeout(() => b.classList.remove("mal"), 900);
+        document.getElementById("r1").innerHTML = `<div class="pista"><strong>Piensa en esto</strong>${esc(c.pista_linea)}</div>`;
+      }
+    }));
+    // Paso 2: principio
+    zona.querySelectorAll("#paso2 .opcion").forEach(b => b.addEventListener("click", () => {
+      if (est.principio) return;
+      est.intentos.principio++;
+      if (b.dataset.p === c.principio) {
+        b.classList.add("ok"); est.principio = est.intentos.principio === 1 ? 1 : 0.0001;
+        zona.querySelectorAll("#paso2 .opcion").forEach(x => x.disabled = true);
+        document.getElementById("r2").innerHTML = `<p class="aviso-ok">¡Correcto!</p>`;
+        document.getElementById("paso3").hidden = false;
+        document.getElementById("paso3").scrollIntoView({ behavior: "smooth", block: "nearest" });
+      } else {
+        b.classList.add("mal"); b.disabled = true;
+        document.getElementById("r2").innerHTML = `<div class="pista"><strong>Piensa en esto</strong>${esc(c.pista_principio)}</div>`;
+      }
+    }));
+    // Paso 3: explicación
+    zona.querySelectorAll("#paso3 .opcion").forEach(b => b.addEventListener("click", () => {
+      if (est.explicacion) return;
+      est.intentos.explicacion++;
+      if (b.dataset.ok === "true") {
+        b.classList.add("ok"); est.explicacion = est.intentos.explicacion === 1 ? 1 : 0.0001;
+        zona.querySelectorAll("#paso3 .opcion").forEach(x => x.disabled = true);
+        cerrarCaso(c, est);
+      } else {
+        b.classList.add("mal"); b.disabled = true;
+        document.getElementById("r3").innerHTML = `<div class="pista"><strong>Piensa en esto</strong>Vuelve a mirar el síntoma y lo que pasó al ejecutar: ¿esta explicación conecta el principio con lo que viste?</div>`;
+      }
+    }));
+  }
+
+  function cerrarCaso(c, est) {
+    const p = [est.linea, est.principio, est.explicacion].filter(x => x === 1).length;
+    puntos += p;
+    if (p < 3) fallados.push(c);
+    resultados.push({ c, p });
+    const pr = PRINCIPIOS[c.principio];
+    document.getElementById("cierre").innerHTML = `
+      <div class="cerrado">
+        <strong>${p} de 3 puntos en este caso.</strong>
+        <p>Principio: ${esc(pr.nombre)}. <a href="../u${pr.u}.html#repaso">Repasar la Unidad ${pr.u}</a></p>
+        ${c.alt ? `<p>Ahora ejecuta la versión que usa la otra estructura y compara los tiempos.</p>` : ""}
+      </div>
+      <div class="fila-botones"><button class="btn" id="sig">${idx + 1 < lista.length ? "Siguiente caso" : "Ver resultados"}</button></div>`;
+    if (c.alt) habilitarAlt(c);
+    const s = document.getElementById("sig");
+    s.addEventListener("click", () => { idx++; if (idx < lista.length) { mostrar(); window.scrollTo({ top: 0, behavior: "smooth" }); } else final(); });
+    s.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  /* ---------- Laboratorio ---------- */
+  let medicion = [];
+  function prepararLab(c, code) {
+    medicion = [];
+    const botones = document.getElementById("botonesLab");
+    const modo = document.getElementById("modo");
+    if (c.lang !== "Python") {
+      modo.textContent = "Salida registrada al compilar y ejecutar con javac y java";
+      botones.innerHTML = `<button type="button" class="btn sec" id="ejec">Ver la salida</button>`;
+      document.getElementById("mExtraW").hidden = true;
+      document.getElementById("ejec").onclick = () => { escribir(`<span class="info">$ javac Programa.java &amp;&amp; java Programa</span>\n` + esc(c.registrada)); estado(/error|Exception/.test(c.registrada) ? "Terminó con error" : "Terminó", /error|Exception/.test(c.registrada)); };
+      return;
+    }
+    const pintarModo = () => modo.textContent = liviano ? "Modo liviano" + (["bucle", "silencio", "recursion", "tiempo"].includes(c.exp) ? ": reproducción en JavaScript del mismo fenómeno" : ": salida registrada al ejecutar con CPython")
+      : ({ "sin-cargar": "Python real (se carga al ejecutar)", cargando: "Cargando Python…", listo: "Python real en tu navegador (Pyodide)", fallo: "No se pudo cargar Python" })[Laboratorio.estado];
+    Laboratorio.alCambiarEstado(pintarModo);
+    if (c.exp === "recursion") document.getElementById("mExtraW").innerHTML = `Profundidad de la pila: <b id="mExtra">—</b>`;
+    else if (liviano && ["bucle", "silencio", "tiempo"].includes(c.exp)) document.getElementById("mExtraW").innerHTML = `Pasos: <b id="mExtra">—</b>`;
+    else if (liviano) document.getElementById("mExtraW").hidden = true;
+    if (c.exp === "tiempo") {
+      const n1 = Number(code.match(/^N = (\d+)/m)[1]);
+      botones.innerHTML = `<button type="button" class="btn sec" data-n="${n1}">Ejecutar con N = ${fmt(n1)}</button><button type="button" class="btn sec" data-n="${n1 * 2}">Con N = ${fmt(n1 * 2)}</button>`;
+      botones.querySelectorAll("button").forEach(b => b.onclick = () => ejecutar(c, ajustarN(c.code, Number(b.dataset.n)), "lista", Number(b.dataset.n)));
+    } else {
+      botones.innerHTML = `<button type="button" class="btn sec" id="ejec">Ejecutar</button>`;
+      document.getElementById("ejec").onclick = () => ejecutar(c, code);
+    }
+  }
+  function habilitarAlt(c) {
+    const n1 = Laboratorio.esCelular ? 8000 : 20000;
+    const botones = document.getElementById("botonesLab");
+    botones.insertAdjacentHTML("beforeend", `<button type="button" class="btn sec" data-a="${n1}">Con conjunto, N = ${fmt(n1)}</button><button type="button" class="btn sec" data-a="${n1 * 2}">Con conjunto, N = ${fmt(n1 * 2)}</button>`);
+    botones.querySelectorAll("[data-a]").forEach(b => b.onclick = () => ejecutar(c, ajustarN(c.alt, Number(b.dataset.a)), "conjunto", Number(b.dataset.a)));
+  }
+  function escribir(html) { const k = document.getElementById("consola"); k.innerHTML = html; k.scrollTop = k.scrollHeight; }
+  function estado(t, alerta) { const e = document.getElementById("mEstado"); e.textContent = t; e.className = "estado-lab " + (alerta ? "alerta" : "bien"); }
+  function bloquear(si) { document.querySelectorAll("#botonesLab button").forEach(b => b.disabled = si); }
+
+  function twinTiempo(code, tipo) {
+    const n = Number(code.match(/^N = (\d+)/m)[1]);
+    return tipo === "conjunto"
+      ? `const N=${n}; const v=new Set(); for(let d=0; d<N; d++){ if(!v.has(d)) v.add(d); } tick(v.size);`
+      : `const N=${n}; const v=[]; for(let d=0; d<N; d++){ if(!v.includes(d)) v.push(d); } tick(v.length);`;
+  }
+
+  async function ejecutar(c, code, tipo, n) {
+    bloquear(true);
+    const limite = LIMITE[c.exp];
+    document.getElementById("mTiempo").textContent = "0,0 s";
+    document.getElementById("mExtra").textContent = "—";
+    estado("Ejecutando…", false);
+    let r;
+    const usarJS = liviano && ["bucle", "silencio", "recursion", "tiempo"].includes(c.exp);
+    if (liviano && !usarJS) {
+      escribir(`<span class="info">Salida registrada al ejecutar con CPython:</span>\n` + esc(c.registrada));
+      estado(/Error|Exception/.test(c.registrada) ? "Terminó con error" : "Terminó", /Error|Exception/.test(c.registrada));
+      document.getElementById("mTiempo").textContent = "—";
+      bloquear(false); return;
+    }
+    if (!usarJS && Laboratorio.estado !== "listo") {
+      escribir(`<span class="info">Cargando Python en tu navegador… La primera vez puede tardar varios segundos.</span>`);
+      const ok = await Laboratorio.cargar();
+      if (!ok) { liviano = true; escribir(`<span class="info">No se pudo cargar Python. Pasamos al modo liviano.</span>`); bloquear(false); prepararLab(c, code); return; }
+    }
+    escribir(`<span class="info">${usarJS ? "Reproducción en JavaScript en marcha…" : "Programa en marcha…"}</span>`);
+    let lineasVistas = 0, pasos = 0;
+    const alProgreso = p => {
+      document.getElementById("mTiempo").textContent = seg(p.ms);
+      if (p.lineas) { lineasVistas = p.lineas; document.getElementById("mExtra").textContent = fmt(p.lineas); escribir(esc("… " + p.ultima)); }
+      if (p.pasos) { pasos = p.pasos; document.getElementById("mExtra").textContent = c.exp === "recursion" ? fmt(p.pasos) + " llamadas" : fmt(p.pasos) + " vueltas"; if (c.exp === "bucle") escribir(esc("… " + p.valor)); }
+    };
+    if (usarJS) r = await Laboratorio.js(c.exp === "tiempo" ? twinTiempo(code, tipo) : c.js, { limite, alProgreso });
+    else r = await Laboratorio.python(code, { limite, alProgreso });
+
+    if (r.fin === "detenido") {
+      document.getElementById("mTiempo").textContent = seg(r.ms);
+      estado(`Lo detuvimos a los ${seg(limite)}: el programa no terminaba`, true);
+      if (!usarJS && !lineasVistas) document.getElementById("mExtra").textContent = "0";
+      const k = document.getElementById("consola");
+      k.insertAdjacentHTML("beforeend", `\n<span class="err">■ Ejecución detenida por el límite de tiempo.</span>`);
+      if (c.exp === "silencio") k.insertAdjacentHTML("beforeend", `\n<span class="info">No imprimió nada en ${seg(limite)}.</span>`);
+      bloquear(false); return;
+    }
+    document.getElementById("mTiempo").textContent = seg(r.ms);
+    let html = "";
+    if (usarJS) {
+      if (c.exp === "recursion") { html = `<span class="info">Llamadas apiladas antes del error: ${fmt(r.pasos)}</span>\n`; document.getElementById("mExtra").textContent = fmt(r.pasos) + " llamadas"; }
+      if (c.exp === "tiempo") html = esc(String(r.valor)) + "\n";
+    } else {
+      const out = r.primeras.concat(r.ultimas.length ? ["…"].concat(r.ultimas) : []);
+      html = esc(out.join("\n")) + (out.length ? "\n" : "");
+      document.getElementById("mExtra").textContent = c.exp === "recursion" ? (r.error && r.error.repetidas ? "más de " + fmt(r.error.repetidas) + " llamadas" : "—") : fmt(r.lineas);
+    }
+    if (r.error) html += `<span class="err">${esc(usarJS ? r.error.ultima : r.error.traza)}</span>`;
+    escribir(html || `<span class="info">(sin salida)</span>`);
+    estado(r.error ? "Terminó con error: " + r.error.tipo : "Terminó", !!r.error);
+    if (c.exp === "tiempo") registrarTiempo(tipo, n, r.ms);
+    bloquear(false);
+  }
+
+  function registrarTiempo(tipo, n, ms) {
+    medicion = medicion.filter(m => !(m.tipo === tipo && m.n === n)).concat([{ tipo, n, ms }]);
+    const top = Math.max(...medicion.map(m => m.ms));
+    document.getElementById("tablaTiempos").innerHTML = `<div class="tabla-scroll" style="margin:0;border:0;border-radius:0"><table class="tiempos">
+      <thead><tr><th>Versión</th><th>N</th><th>Tiempo</th><th style="width:40%"></th></tr></thead>
+      <tbody>${medicion.sort((a, b) => a.tipo.localeCompare(b.tipo) || a.n - b.n).map(m => `<tr><td>${m.tipo === "lista" ? "Con lista" : "Con conjunto"}</td><td class="num">${fmt(m.n)}</td><td class="num">${seg(m.ms)}</td><td><div class="barra-t" style="width:${Math.max(1, m.ms / top * 100)}%"></div></td></tr>`).join("")}</tbody></table></div>`;
+  }
+
+  /* ---------- Final ---------- */
+  function final() {
+    const porPrincipio = {};
+    fallados.forEach(c => { porPrincipio[c.principio] = PRINCIPIOS[c.principio]; });
+    zona.innerHTML = `
+      <section class="caso">
+        <p class="etiqueta">Resultado</p>
+        <h2 class="num">${puntos} de ${max} puntos</h2>
+        <p class="bajada">Cada caso vale 3 puntos: la línea, el principio y la explicación, si aciertas al primer intento.</p>
+        ${Object.keys(porPrincipio).length ? `<h3 style="margin-top:1rem">Principios para repasar</h3><ul class="resumen">${Object.entries(porPrincipio).map(([k, p]) => `<li>${esc(p.nombre)} · <a href="../u${p.u}.html#repaso">Unidad ${p.u}</a></li>`).join("")}</ul>`
+          : `<p class="aviso-ok">Resolviste todos los casos al primer intento.</p>`}
+        <div class="fila-botones"><button class="btn" id="otra">Jugar otra vez</button></div>
+      </section>`;
+    document.getElementById("otra").onclick = configurar;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  configurar();
+})();
+</script>
+</body>
+</html>

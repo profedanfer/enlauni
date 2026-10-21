@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U4 · Tipos de datos</title>
+<link rel="stylesheet" href="../assets/estilos.css">
+</head>
+<body>
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Teoría de la Programación</a><span aria-hidden="true">/</span><a href="repaso.html">Repaso</a><span aria-hidden="true">/</span><span>Unidad 4</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Unidad 4 de 8</p>
+    <h1>Tipos de datos</h1>
+    <p class="objetivo">Diferenciar los sistemas de tipos de datos (estático o dinámico, fuerte o débil) y aplicar constructores de tipos en el diseño de un sistema.</p>
+    <ul class="contenidos" aria-label="Contenidos"><li>Tipos de datos e información de tipos</li><li>Tipos simples</li><li>Constructores de tipos</li></ul>
+    <aside class="aviso-ind"><p><strong>¿Ya hiciste la indagación previa?</strong> Hazla antes de leer este repaso: <a href="indagaciones/clase-06.html">Clase 6: Tipos de datos y tipos simples</a> · <a href="indagaciones/clase-07.html">Clase 7: Constructores de tipos: colecciones</a></p></aside>
+  </section>
+  <nav class="indice-pagina" aria-label="En esta página">
+    <a href="#repaso">Repaso</a><a href="#codigo">Código comparado</a><a href="#practica">Práctica</a><a href="#autoevaluacion">Autoevaluación</a><a href="#juegos">Juegos</a><a href="#bibliografia">Bibliografía</a>
+  </nav>
+  <section class="seccion" id="repaso">
+    <h2><span class="num-sec">01</span>Repaso</h2>
+    <dl class="conceptos"><div class="concepto"><dt>Tipo de dato</dt><dd><p>Los tipos limitan los valores que puede tener una variable o producir una expresión, limitan las operaciones permitidas y determinan su significado <span class="cita">(<a href="#ref-jls4">Oracle, s.f.-f</a>)</span>.</p></dd></div><div class="concepto"><dt>Estático o dinámico</dt><dd><p>Responde <b>cuándo se verifican los tipos</b>. Un lenguaje es de tipado estático si hace la verificación en tiempo de compilación, y de tipado dinámico si la hace en tiempo de ejecución <span class="cita">(<a href="#ref-j-jvmlang">Oracle, s.f.-c</a>)</span>.</p><ul><li>Java es estático: cada variable y expresión tiene un tipo conocido al compilar <span class="cita">(<a href="#ref-jls4">Oracle, s.f.-f</a>)</span>.</li><li>Python es dinámico: los objetos tienen tipo, pero se determina en ejecución <span class="cita">(<a href="#ref-py-wiki"><i>Why is Python a dynamic language…</i>, 2026</a>)</span>.</li></ul></dd></div><div class="concepto"><dt>Fuerte o débil</dt><dd><p>Responde <b>si el lenguaje convierte los tipos por su cuenta</b>. Un lenguaje de tipado fuerte impide ejecutar una operación cuando sus argumentos tienen un tipo incorrecto; uno débil convierte implícitamente esos argumentos <span class="cita">(<a href="#ref-j-jvmlang">Oracle, s.f.-c</a>)</span>.</p><ul><li>Java es fuerte <span class="cita">(<a href="#ref-jls4">Oracle, s.f.-f</a>)</span>.</li><li>Python es fuerte: no se pueden sumar números y cadenas <span class="cita">(<a href="#ref-py-wiki"><i>Why is Python a dynamic language…</i>, 2026</a>)</span>.</li><li>En JavaScript, <code class="in">'x' + 3</code> da <code class="in">'x3'</code>; es el ejemplo de tipado débil que usa la wiki de Python <span class="cita">(<a href="#ref-py-wiki"><i>Why is Python a dynamic language…</i>, 2026</a>)</span>.</li></ul><p>Los dos ejes son independientes: tanto los lenguajes estáticos como los dinámicos pueden tener tipado fuerte o débil <span class="cita">(<a href="#ref-j-jvmlang">Oracle, s.f.-c</a>)</span>.</p></dd></div><div class="concepto"><dt>Tipos simples</dt><dd><p>Java tiene ocho tipos primitivos: <code class="in">byte</code>, <code class="in">short</code>, <code class="in">int</code>, <code class="in">long</code>, <code class="in">float</code>, <code class="in">double</code>, <code class="in">boolean</code> y <code class="in">char</code>. <code class="in">String</code> no es técnicamente un tipo primitivo <span class="cita">(<a href="#ref-j-types">Oracle, s.f.-e</a>)</span>. El compilador convierte automáticamente entre un primitivo y su clase envoltorio, por ejemplo de <code class="in">int</code> a <code class="in">Integer</code> (<i>autoboxing</i>) <span class="cita">(<a href="#ref-j-box">Oracle, s.f.-a</a>)</span>.</p><p>División: en Python, <code class="in">/</code> siempre devuelve un número de punto flotante y <code class="in">//</code> hace la división entera <span class="cita">(<a href="#ref-py-intro">Python Software Foundation, s.f.-c</a>)</span>. En C, la división entre enteros se trunca hacia cero <span class="cita">(<a href="#ref-c-arith">cppreference.com, s.f.-a</a>)</span>. En Java, la división entera por cero lanza <code class="in">ArithmeticException</code> <span class="cita">(<a href="#ref-jls15">Oracle, s.f.-g</a>)</span>.</p></dd></div><div class="concepto"><dt>Constructores de tipos</dt><dd><p>Permiten crear tipos nuevos a partir de otros.</p><ul><li>En Python, las listas son mutables y las tuplas inmutables <span class="cita">(<a href="#ref-py-ds">Python Software Foundation, s.f.-b</a>)</span>.</li><li>Un conjunto es una colección no ordenada y sin elementos repetidos <span class="cita">(<a href="#ref-py-ds">Python Software Foundation, s.f.-b</a>)</span>; en Java, las implementaciones de <code class="in">Set</code> no permiten duplicados <span class="cita">(<a href="#ref-j-coll">Oracle, s.f.-d</a>)</span>.</li><li>Un diccionario guarda pares clave:valor con claves únicas, que deben ser de tipo inmutable <span class="cita">(<a href="#ref-py-ds">Python Software Foundation, s.f.-b</a>)</span>; en Java, un <code class="in">Map</code> no puede contener claves duplicadas <span class="cita">(<a href="#ref-j-map">Oracle, s.f.-b</a>)</span>.</li><li>En C, un <code class="in">struct</code> es una secuencia de miembros almacenados en orden <span class="cita">(<a href="#ref-c-struct">cppreference.com, s.f.-b</a>)</span>.</li><li>Los <code class="in">record</code> de Java son clases que transportan datos inmutables de forma transparente <span class="cita">(<a href="#ref-jep395">Bierman, 2020</a>)</span>.</li><li>En Python, <code class="in">@dataclass</code> genera métodos como <code class="in">__init__</code> y <code class="in">__repr__</code>, pero no examina el tipo escrito en las anotaciones <span class="cita">(<a href="#ref-py-dc">Python Software Foundation, s.f.-a</a>)</span>.</li></ul></dd></div><div class="concepto"><dt>Del registro a la clase</dt><dd><p>El registro <code class="in">Estudiante</code> (documento, nombre, teléfono, promedio) agrupa datos. En la Unidad 7 lo convertimos en una clase, que además tiene comportamiento y protege su estado.</p></dd></div></dl>
+    <div class="tabla-scroll"><table class="comp">
+      <caption>Constructores de tipos en tres lenguajes (— indica que no se incluye un equivalente en esta tabla)</caption>
+      <thead><tr><th scope="col">Constructor</th><th scope="col">Python</th><th scope="col">Java</th><th scope="col">C</th></tr></thead>
+      <tbody><tr><th scope="row">Secuencia mutable</th><td><code class="in">list</code> <span class="cita">(<a href="#ref-py-ds">Python Software Foundation, s.f.-b</a>)</span></td><td><code class="in">ArrayList&lt;T&gt;</code></td><td>Arreglo</td></tr><tr><th scope="row">Secuencia inmutable</th><td><code class="in">tuple</code> <span class="cita">(<a href="#ref-py-ds">Python Software Foundation, s.f.-b</a>)</span></td><td>—</td><td>—</td></tr><tr><th scope="row">Conjunto</th><td><code class="in">set</code> <span class="cita">(<a href="#ref-py-ds">Python Software Foundation, s.f.-b</a>)</span></td><td><code class="in">HashSet&lt;T&gt;</code> <span class="cita">(<a href="#ref-j-coll">Oracle, s.f.-d</a>)</span></td><td>—</td></tr><tr><th scope="row">Mapa clave → valor</th><td><code class="in">dict</code> <span class="cita">(<a href="#ref-py-ds">Python Software Foundation, s.f.-b</a>)</span></td><td><code class="in">HashMap&lt;K,V&gt;</code> <span class="cita">(<a href="#ref-j-map">Oracle, s.f.-b</a>)</span></td><td>—</td></tr><tr><th scope="row">Registro</th><td><code class="in">@dataclass</code> <span class="cita">(<a href="#ref-py-dc">Python Software Foundation, s.f.-a</a>)</span></td><td><code class="in">record</code> <span class="cita">(<a href="#ref-jep395">Bierman, 2020</a>)</span></td><td><code class="in">struct</code> <span class="cita">(<a href="#ref-c-struct">cppreference.com, s.f.-b</a>)</span></td></tr></tbody>
+    </table></div>
+    <aside class="ojo"><strong class="tit">No confundas</strong><p><b>Dinámico no significa débil.</b> Son ejes independientes <span class="cita">(<a href="#ref-j-jvmlang">Oracle, s.f.-c</a>)</span>. Python es dinámico y fuerte <span class="cita">(<a href="#ref-py-wiki"><i>Why is Python a dynamic language…</i>, 2026</a>)</span>.</p><p><b>No confundas tipado con ligadura.</b> Tipado estático o dinámico (U4) es cuándo se verifican los tipos; ligadura estática o dinámica (U3) es cuándo se asocia un atributo a una variable.</p></aside>
+  </section>
+  <section class="seccion" id="codigo">
+    <h2><span class="num-sec">02</span>Código comparado</h2>
+    <h3 style="margin-top:.6rem">El registro Estudiante</h3>
+    <p class="bajada">El mismo registro en tres lenguajes. En Python, las anotaciones de tipo documentan los campos, pero <code class="in">@dataclass</code> no las verifica.</p>
+    <div class="tabs">
+      <div class="tabs-botones" role="tablist" aria-label="Lenguaje" hidden><button type="button" role="tab" id="tab4-0" aria-controls="panel4-0">Python</button><button type="button" role="tab" id="tab4-1" aria-controls="panel4-1">Java</button><button type="button" role="tab" id="tab4-2" aria-controls="panel4-2">C</button></div>
+      <div class="tab-panel" role="tabpanel" id="panel4-0" aria-labelledby="tab4-0" data-lang="Python">
+        <pre class="codigo">from dataclasses import dataclass
+
+@dataclass
+class Estudiante:
+    documento: str
+    nombre: str
+    telefono: str
+    promedio: float
+
+e = Estudiante(&quot;4567890&quot;, &quot;Ana Benítez&quot;, &quot;0981 123 456&quot;, 4.2)
+print(e.nombre, e.promedio)</pre>
+        <p class="salida">Salida al ejecutarlo: <code>Ana Benítez 4.2</code></p>
+      </div><div class="tab-panel" role="tabpanel" id="panel4-1" aria-labelledby="tab4-1" data-lang="Java">
+        <pre class="codigo">record Estudiante(String documento, String nombre,
+                  String telefono, double promedio) {}
+
+public class Main {
+    public static void main(String[] args) {
+        Estudiante e = new Estudiante(&quot;4567890&quot;, &quot;Ana Benítez&quot;,
+                                      &quot;0981 123 456&quot;, 4.2);
+        System.out.println(e.nombre() + &quot; &quot; + e.promedio());
+    }
+}</pre>
+        <p class="salida">Salida al ejecutarlo: <code>Ana Benítez 4.2</code></p>
+      </div><div class="tab-panel" role="tabpanel" id="panel4-2" aria-labelledby="tab4-2" data-lang="C">
+        <pre class="codigo">#include &lt;stdio.h&gt;
+
+struct Estudiante {
+    char documento[12];
+    char nombre[40];
+    char telefono[16];
+    float promedio;
+};
+
+int main(void) {
+    struct Estudiante e = {&quot;4567890&quot;, &quot;Ana Benítez&quot;, &quot;0981 123 456&quot;, 4.2f};
+    printf(&quot;%s %.1f\n&quot;, e.nombre, e.promedio);
+    return 0;
+}</pre>
+        <p class="salida">Salida al ejecutarlo: <code>Ana Benítez 4.2</code></p>
+      </div>
+    </div>
+  </section>
+  <section class="seccion" id="practica">
+    <h2><span class="num-sec">03</span>Actividades de práctica</h2>
+    <p class="bajada">Cada actividad indica cuándo terminaste. No pases a la siguiente hasta cumplirlo.</p>
+    <article class="actividad">
+      <header><h3>Actividad 1 · Laboratorio de tipos</h3><span class="meta">En equipo de trabajo · 40 min</span></header>
+      
+      <ol><li>Ejecuten en Python, Java y C tres operaciones: sumar un texto y un número; dividir 7 entre 2; asignar un decimal a una variable entera.</li><li>Registren el resultado o el error, y si apareció al compilar o al ejecutar.</li><li>Clasifiquen cada lenguaje como estático o dinámico, y como fuerte o débil, usando las definiciones citadas en esta unidad.</li><li>Justifiquen cada clasificación con una celda de su tabla.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tienen una tabla de 9 celdas (3 operaciones × 3 lenguajes) con resultado y momento, y cada clasificación está justificada.</p>
+    </article><article class="actividad">
+      <header><h3>Actividad 2 · Elige el constructor</h3><span class="meta">Individual · 30 min</span></header>
+      <p>Situaciones: (a) los asistentes a una charla, sin repetir; (b) buscar un producto por su código de barras; (c) la latitud y longitud de una sede, que no deben cambiar; (d) las notas de un examen en orden de entrega; (e) los datos de un estudiante.</p>
+      <ol><li>Elige un constructor de Python y su equivalente en Java para cada situación.</li><li>Justifica cada elección con una propiedad: orden, duplicados, mutabilidad o acceso por clave.</li><li>Escribe una línea de código que cree cada uno y ejecútala.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> las 5 situaciones tienen constructor en los dos lenguajes, una propiedad que lo justifica y código que se ejecuta sin error.</p>
+    </article><article class="actividad">
+      <header><h3>Actividad 3 · Del registro a la colección</h3><span class="meta">Individual · 30 min</span></header>
+      
+      <ol><li>Crea el registro Estudiante en Python (<code class="in">@dataclass</code>) o en Java (<code class="in">record</code>).</li><li>Arma una lista con 4 estudiantes.</li><li>Arma un diccionario o <code class="in">HashMap</code> que permita buscarlos por documento.</li><li>Muestra el nombre del estudiante con documento "4567890" usando el mapa.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tu programa encuentra al estudiante por documento sin recorrer la lista.</p>
+    </article>
+  </section>
+  <section class="seccion" id="autoevaluacion">
+    <h2><span class="num-sec">04</span>Autoevaluación</h2>
+    <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
+    <ol class="autoeval"><li>¿Python es dinámico y débil? Justifica con un ejemplo y una fuente.</li><li>¿Qué diferencia hay entre tipado estático y tipado fuerte?</li><li>¿Por qué una tupla puede ser clave de un diccionario y una lista no?</li><li>¿Cuándo usarías un conjunto en lugar de una lista?</li></ol>
+  </section>
+  <section class="seccion" id="juegos">
+    <h2><span class="num-sec">05</span>Juegos</h2>
+    <div class="enlaces-juego"><a class="btn" href="juegos/ruta-de-repaso.html#u4">Estación U4 de la Ruta de Repaso</a><a class="btn sec" href="juegos/estatico-o-dinamico.html">Estático o dinámico</a><a class="btn sec" href="juegos/oca.html">La Oca de la Programación</a><a class="btn sec" href="juegos/caza-el-bug.html">Caza el bug</a><a class="btn sec" href="juegos/tribunal-de-diseno.html">Tribunal de Diseño</a><a class="btn sec" href="juegos/duelo-de-equipos.html">Duelo de equipos</a></div>
+  </section>
+  <section class="seccion" id="bibliografia">
+    <h2><span class="num-sec">06</span>Bibliografía</h2>
+    <p class="bajada">Fuentes de acceso abierto citadas en esta unidad, en formato APA 7. Consultadas el 7 de octubre de 2026.</p>
+    <ol class="biblio"><li id="ref-jep395">Bierman, G. (2020). <i>JEP 395: Records</i>. OpenJDK. <a href="https://openjdk.org/jeps/395">https://openjdk.org/jeps/395</a></li><li id="ref-c-arith">cppreference.com. (s.f.-a). <i>Arithmetic operators</i>. <a href="https://cppreference.com/c/language/operator_arithmetic">https://cppreference.com/c/language/operator_arithmetic</a></li><li id="ref-c-struct">cppreference.com. (s.f.-b). <i>Struct declaration</i>. <a href="https://cppreference.com/c/language/struct">https://cppreference.com/c/language/struct</a></li><li id="ref-j-box">Oracle. (s.f.-a). <i>Autoboxing and unboxing</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html">https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html</a></li><li id="ref-j-map">Oracle. (s.f.-b). <i>Interface Map&lt;K,V&gt;</i>. Java Platform, Standard Edition 9 API Specification. <a href="https://docs.oracle.com/javase/9/docs/api/java/util/Map.html">https://docs.oracle.com/javase/9/docs/api/java/util/Map.html</a></li><li id="ref-j-jvmlang">Oracle. (s.f.-c). <i>Java Virtual Machine support for non-Java languages</i>. Java SE 8 Documentation. <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/multiple-language-support.html">https://docs.oracle.com/javase/8/docs/technotes/guides/vm/multiple-language-support.html</a></li><li id="ref-j-coll">Oracle. (s.f.-d). <i>Lesson 5: Collections</i>. <a href="https://www.oracle.com/java/technologies/jpl2-collec.html">https://www.oracle.com/java/technologies/jpl2-collec.html</a></li><li id="ref-j-types">Oracle. (s.f.-e). <i>Primitive data types</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html</a></li><li id="ref-jls4">Oracle. (s.f.-f). Types, values, and variables (cap. 4). En <i>The Java language specification, Java SE 17 edition</i>. <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html">https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html</a></li><li id="ref-jls15">Oracle. (s.f.-g). Expressions (cap. 15). En <i>The Java language specification, Java SE 22 edition</i>. <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-15.html">https://docs.oracle.com/javase/specs/jls/se22/html/jls-15.html</a></li><li id="ref-py-dc">Python Software Foundation. (s.f.-a). <i>dataclasses — Clases de datos</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/library/dataclasses.html">https://docs.python.org/es/3/library/dataclasses.html</a></li><li id="ref-py-ds">Python Software Foundation. (s.f.-b). <i>Estructuras de datos</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/tutorial/datastructures.html">https://docs.python.org/es/3/tutorial/datastructures.html</a></li><li id="ref-py-intro">Python Software Foundation. (s.f.-c). <i>Una introducción informal a Python</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/tutorial/introduction.html">https://docs.python.org/es/3/tutorial/introduction.html</a></li><li id="ref-py-wiki"><i>Why is Python a dynamic language and also a strongly typed language</i>. (2026, 14 de febrero). Python Wiki. <a href="https://wiki.python.org/moin/Why%20is%20Python%20a%20dynamic%20language%20and%20also%20a%20strongly%20typed%20language">https://wiki.python.org/moin/Why is Python a dynamic language and also a strongly typed language</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Unidades"><a href="u3.html"><small>← Unidad 3</small>Semántica básica</a><a class="sig" href="u5.html"><small>Unidad 5 →</small>Expresiones y enunciados</a></nav>
+  <footer class="pie"><span>Teoría de la Programación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>

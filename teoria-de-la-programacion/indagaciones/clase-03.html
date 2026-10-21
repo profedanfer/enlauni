@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Indagación previa · Clase 3</title>
+<link rel="stylesheet" href="../../assets/estilos.css">
+</head>
+<body>
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Indagaciones previas</a><span aria-hidden="true">/</span><span>Clase 3</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Indagación previa · Clase 3 · Unidad 2</p>
+    <h1>Criterios de diseño de los lenguajes</h1>
+    <p class="objetivo">En la clase vas a comparar lenguajes con una rúbrica de criterios de diseño. Necesitas llegar sabiendo qué significa cada criterio y dónde se justifica.</p>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">01</span>Cómo trabajar</h2>
+    <p class="bajada">Tiempo estimado: 40 a 50 min. Trabaja en tu cuaderno o en un documento. Responde con tus palabras y anota la fuente y la sección donde encontraste cada respuesta. Si un paso tiene código, escribe tu predicción antes de ejecutarlo en Colab o en tu intérprete de Python: equivocarte en la predicción también sirve, porque te muestra qué tienes que revisar.</p>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">02</span>Pasos</h2>
+    <article class="actividad paso-ind">
+      <header><h3>Paso 1</h3></header>
+      <p class="q">Hoare propone cinco criterios objetivos para un buen lenguaje. ¿Cuáles son? ¿Qué entiende él por «seguridad»?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://apps.dtic.mil/sti/pdfs/AD0773391.pdf" target="_blank" rel="noopener">Hoare, 1973</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 2</h3></header>
+      <p class="q">¿Por qué Hoare pone la legibilidad por encima de la facilidad para escribir? Busca en el Zen de Python dos líneas que digan algo parecido.</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://apps.dtic.mil/sti/pdfs/AD0773391.pdf" target="_blank" rel="noopener">Hoare, 1973</a>; <a href="https://peps.python.org/pep-0020/" target="_blank" rel="noopener">Peters, 2004</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 3</h3></header>
+      <p class="q">Regularidad: busca en el Zen de Python la línea sobre los casos especiales. Después compara qué puede recorrer un for en Python y qué tipo de expresión acepta un switch en C. ¿Cuál de los dos es más regular? ¿Por qué?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://peps.python.org/pep-0020/" target="_blank" rel="noopener">Peters, 2004</a>; <a href="https://docs.python.org/es/3/reference/compound_stmts.html" target="_blank" rel="noopener">Python Software Foundation, s.f.</a>; <a href="https://cppreference.com/c/language/switch" target="_blank" rel="noopener">cppreference.com, s.f.</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 4</h3></header>
+      <p class="q">¿Qué gana un lenguaje cuando se compila a código máquina? ¿Y cuando se interpreta? ¿Qué criterio favorece cada opción?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema01-historia-lenguajes-programacion/tema01-historia-lenguajes-programacion.html" target="_blank" rel="noopener">Gallardo et al., 2025, §5.1–5.2</a>)</span></p>
+    </article><article class="actividad paso-ind">
+      <header><h3>Paso 5</h3></header>
+      <p class="q">¿Qué decisión tomó Java para que un programa se comporte igual en cualquier plataforma? ¿Con qué criterio de Hoare se relaciona?</p>
+      <p class="donde"><strong>Dónde buscar</strong><span class="cita">(<a href="https://www.oracle.com/java/technologies/language-environment.html" target="_blank" rel="noopener">Gosling y McGilton, 1996</a>; <a href="https://apps.dtic.mil/sti/pdfs/AD0773391.pdf" target="_blank" rel="noopener">Hoare, 1973</a>)</span></p>
+    </article>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">03</span>Antes de la clase</h2>
+    <div class="ind-cierre">
+      <div><strong>Lo que tienes que tener anotado</strong><p>Una tabla con los criterios (simplicidad, seguridad, eficiencia, legibilidad, regularidad y portabilidad) y tres columnas: qué significa, un rasgo de un lenguaje que lo cumpla y la fuente.</p></div>
+      <div class="terminaste"><strong>Terminaste cuando</strong><p>cada criterio tiene un ejemplo de un lenguaje real y una fuente.</p></div>
+      <div><strong>Trae a clase</strong><p>Un rasgo de un lenguaje que uses que te parezca poco legible o poco regular, y qué criterio crees que no cumple.</p></div>
+    </div>
+  </section>
+  <section class="seccion">
+    <h2><span class="num-sec">04</span>Fuentes</h2>
+    <p class="bajada">Todas son de acceso abierto. Las citas de los pasos abren cada fuente directamente.</p>
+    <ol class="biblio"><li id="ref-c-switch">cppreference.com. (s.f.). <i>switch statement</i>. <a href="https://cppreference.com/c/language/switch">https://cppreference.com/c/language/switch</a></li><li id="ref-al1">Gallardo, D., Pomares, C., Botía, A., y Martínez, F. (2025). <i>Tema 1: Historia y conceptos de los lenguajes de programación</i>. Lenguajes y Paradigmas de Programación, curso 2025-26. Departamento de Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante. <a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema01-historia-lenguajes-programacion/tema01-historia-lenguajes-programacion.html">https://domingogallardo.github.io/apuntes-lpp/teoria/tema01-historia-lenguajes-programacion/tema01-historia-lenguajes-programacion.html</a></li><li id="ref-gosling">Gosling, J., y McGilton, H. (1996). <i>The Java language environment: A white paper</i>. Oracle. <a href="https://www.oracle.com/java/technologies/language-environment.html">https://www.oracle.com/java/technologies/language-environment.html</a></li><li id="ref-hoare">Hoare, C. A. R. (1973). <i>Hints on programming language design</i>. Stanford University, Computer Science Department. <a href="https://apps.dtic.mil/sti/pdfs/AD0773391.pdf">https://apps.dtic.mil/sti/pdfs/AD0773391.pdf</a></li><li id="ref-pep20">Peters, T. (2004). <i>PEP 20 – The Zen of Python</i>. Python Enhancement Proposals. <a href="https://peps.python.org/pep-0020/">https://peps.python.org/pep-0020/</a></li><li id="ref-py-comp">Python Software Foundation. (s.f.). <i>Sentencias compuestas</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/reference/compound_stmts.html">https://docs.python.org/es/3/reference/compound_stmts.html</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Indagaciones"><a href="clase-02.html"><small>← Clase 2</small>Historia y futuro de los lenguajes</a><a class="sig" href="clase-04.html"><small>Clase 4 →</small>Variables, ligaduras y alcance</a></nav>
+  <footer class="pie"><span>Teoría de la Programación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+
+</body>
+</html>

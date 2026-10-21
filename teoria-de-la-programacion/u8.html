@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U8 · Programación funcional</title>
+<link rel="stylesheet" href="../assets/estilos.css">
+</head>
+<body>
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Teoría de la Programación</a><span aria-hidden="true">/</span><a href="repaso.html">Repaso</a><span aria-hidden="true">/</span><span>Unidad 8</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Unidad 8 de 8</p>
+    <h1>Programación funcional</h1>
+    <p class="objetivo">Identificar y aplicar los principios de la programación funcional (funciones puras, inmutabilidad, map/filter/reduce) en un lenguaje imperativo.</p>
+    <ul class="contenidos" aria-label="Contenidos"><li>Programas con funciones</li><li>Programación funcional en un lenguaje imperativo</li><li>Programación funcional con tipificado estático</li></ul>
+    <aside class="aviso-ind"><p><strong>¿Ya hiciste la indagación previa?</strong> Hazla antes de leer este repaso: <a href="indagaciones/clase-15.html">Clase 15: Programación funcional</a></p></aside>
+  </section>
+  <nav class="indice-pagina" aria-label="En esta página">
+    <a href="#repaso">Repaso</a><a href="#codigo">Código comparado</a><a href="#practica">Práctica</a><a href="#autoevaluacion">Autoevaluación</a><a href="#juegos">Juegos</a><a href="#bibliografia">Bibliografía</a>
+  </nav>
+  <section class="seccion" id="repaso">
+    <h2><span class="num-sec">01</span>Repaso</h2>
+    <dl class="conceptos"><div class="concepto"><dt>Programa funcional</dt><dd><p>En programación funcional, un programa es un conjunto de funciones matemáticas que convierten entradas en salidas, sin estado interno ni efectos laterales <span class="cita">(<a href="#ref-al2">Gallardo et al., 2025, §1.1.1</a>)</span>. Es un tipo de programación declarativa: se declaran valores y relaciones, sin mutación ni secuencias de pasos <span class="cita">(<a href="#ref-al2">Gallardo et al., 2025, §1.3.1</a>)</span>.</p><p>El artículo original de Lisp, de John McCarthy, se publicó en <i>Communications of the ACM</i> en abril de 1960 <span class="cita">(<a href="#ref-mccarthy">McCarthy, 1960</a>)</span>.</p></dd></div><div class="concepto"><dt>Función pura</dt><dd><p>No modifica sus parámetros, devuelve un único resultado y no tiene estado local ni depende de un estado exterior mutable; por eso siempre devuelve lo mismo con los mismos argumentos <span class="cita">(<a href="#ref-al2">Gallardo et al., 2025, §1.2.4</a>)</span>. La documentación de Python llama <b>puramente funcionales</b> a las funciones sin efectos secundarios, cuya salida depende solo de su entrada <span class="cita">(<a href="#ref-py-howto">Kuchling, s.f.</a>)</span>.</p></dd></div><div class="concepto"><dt>Efecto secundario</dt><dd><p>Cambio que modifica el estado interno o que no se refleja en el valor de retorno de la función <span class="cita">(<a href="#ref-py-howto">Kuchling, s.f.</a>)</span>. Hughes señala que los programas funcionales no tienen sentencias de asignación ni efectos secundarios <span class="cita">(<a href="#ref-hughes">Hughes, 1989</a>)</span>.</p></dd></div><div class="concepto"><dt>Inmutabilidad</dt><dd><p>Un objeto inmutable tiene un valor fijo; para guardar un valor distinto hay que crear un objeto nuevo. En Python son inmutables los números, las cadenas y las tuplas <span class="cita">(<a href="#ref-py-glos">Python Software Foundation, s.f.-c</a>)</span>.</p></dd></div><div class="concepto"><dt>Funciones como datos</dt><dd><p>En el paradigma funcional las funciones son tipos de datos primitivos: hay expresiones lambda y funciones de orden superior <span class="cita">(<a href="#ref-al2">Gallardo et al., 2025, §1.1.1</a>)</span>. En Python, <code class="in">lambda</code> crea una función anónima que devuelve el valor de una sola expresión <span class="cita">(<a href="#ref-py-howto">Kuchling, s.f.</a>)</span>. En Java, las expresiones lambda permiten tratar la funcionalidad como argumento de un método, es decir, el código como dato <span class="cita">(<a href="#ref-j-lambda">Oracle, s.f.-b</a>)</span>.</p></dd></div><div class="concepto"><dt>map, filter y reduce</dt><dd><ul><li><code class="in">map</code> devuelve un iterador que aplica una función a cada elemento <span class="cita">(<a href="#ref-py-funcs">Python Software Foundation, s.f.-a</a>)</span>.</li><li><code class="in">filter</code> devuelve un iterador sobre los elementos que cumplen una condición <span class="cita">(<a href="#ref-py-howto">Kuchling, s.f.</a>)</span>.</li><li><code class="in">functools.reduce</code> aplica una función de dos argumentos de forma acumulativa, de izquierda a derecha, hasta obtener un solo valor <span class="cita">(<a href="#ref-py-ft">Python Software Foundation, s.f.-b</a>)</span>.</li><li>En Java, <code class="in">reduce</code> recibe un elemento identidad (valor inicial) y una función acumuladora <span class="cita">(<a href="#ref-j-red">Oracle, s.f.-d</a>)</span>.</li></ul></dd></div><div class="concepto"><dt>Composición y pipelines</dt><dd><p>La salida de una función es la entrada de la siguiente <span class="cita">(<a href="#ref-al2">Gallardo et al., 2025, §1.2.5</a>)</span>. En Java, un <i>pipeline</i> tiene una fuente, cero o más operaciones intermedias, como <code class="in">filter</code>, y una operación terminal <span class="cita">(<a href="#ref-j-agg">Oracle, s.f.-a</a>)</span>. Hughes sostiene que las funciones de orden superior y la evaluación perezosa son el «pegamento» que mejora la modularidad <span class="cita">(<a href="#ref-hughes">Hughes, 1989</a>)</span>.</p></dd></div><div class="concepto"><dt>Evaluación diferida</dt><dd><p>Una expresión es perezosa si su valor se calcula solo cuando se necesita. En Java, todas las operaciones intermedias de un stream son perezosas: no procesan nada hasta que empieza la operación terminal <span class="cita">(<a href="#ref-j-par">Oracle, s.f.-c</a>)</span>. En Python, <code class="in">map</code> y <code class="in">filter</code> devuelven iteradores <span class="cita">(<a href="#ref-py-howto">Kuchling, s.f.</a>)</span>.</p></dd></div><div class="concepto"><dt>Funcional con tipado estático</dt><dd><p>Java combina lambdas y streams con su tipado estático <span class="cita">(<a href="#ref-jls4">Oracle, s.f.-e</a>)</span>, así que muchos errores de tipo en un pipeline aparecen al compilar. Haskell es un lenguaje puramente funcional cuyo sistema de tipos infiere los tipos correctos aunque no se escriban <span class="cita">(<a href="#ref-haskell">Hudak et al., 1999</a>)</span>.</p></dd></div></dl>
+    <div class="tabla-scroll"><table class="comp">
+      <caption>Operaciones funcionales en Python y Java</caption>
+      <thead><tr><th scope="col">Operación</th><th scope="col">Python</th><th scope="col">Java (streams)</th></tr></thead>
+      <tbody><tr><th scope="row">Transformar</th><td><code class="in">map(f, xs)</code> <span class="cita">(<a href="#ref-py-funcs">Python Software Foundation, s.f.-a</a>)</span></td><td><code class="in">.map(f)</code></td></tr><tr><th scope="row">Filtrar</th><td><code class="in">filter(p, xs)</code> <span class="cita">(<a href="#ref-py-howto">Kuchling, s.f.</a>)</span></td><td><code class="in">.filter(p)</code> <span class="cita">(<a href="#ref-j-agg">Oracle, s.f.-a</a>)</span></td></tr><tr><th scope="row">Reducir</th><td><code class="in">reduce(f, xs, inicial)</code> <span class="cita">(<a href="#ref-py-ft">Python Software Foundation, s.f.-b</a>)</span></td><td><code class="in">.reduce(identidad, f)</code> <span class="cita">(<a href="#ref-j-red">Oracle, s.f.-d</a>)</span></td></tr><tr><th scope="row">Función anónima</th><td><code class="in">lambda x: x * 2</code> <span class="cita">(<a href="#ref-py-howto">Kuchling, s.f.</a>)</span></td><td><code class="in">x -&gt; x * 2</code> <span class="cita">(<a href="#ref-j-lambda">Oracle, s.f.-b</a>)</span></td></tr></tbody>
+    </table></div>
+    <aside class="ojo"><strong class="tit">No confundas</strong><p><b>Usar lambda no vuelve funcional a un programa.</b> Si la lambda modifica una lista de afuera, tiene un efecto secundario. El tutorial de Java recomienda no pasar nunca lambdas con efectos secundarios a operaciones como <code class="in">filter</code> y <code class="in">map</code> <span class="cita">(<a href="#ref-j-par">Oracle, s.f.-c</a>)</span>.</p></aside>
+  </section>
+  <section class="seccion" id="codigo">
+    <h2><span class="num-sec">02</span>Código comparado</h2>
+    <h3 style="margin-top:.6rem">Del bucle al pipeline</h3>
+    <p class="bajada">Total de los productos de más de 10 000 guaraníes, con 10 % de descuento. Python y Java lo declaran como una cadena de transformaciones; C lo resuelve con un bucle y un acumulador.</p>
+    <div class="tabs">
+      <div class="tabs-botones" role="tablist" aria-label="Lenguaje" hidden><button type="button" role="tab" id="tab8-0" aria-controls="panel8-0">Python</button><button type="button" role="tab" id="tab8-1" aria-controls="panel8-1">Java</button><button type="button" role="tab" id="tab8-2" aria-controls="panel8-2">C (imperativo)</button></div>
+      <div class="tab-panel" role="tabpanel" id="panel8-0" aria-labelledby="tab8-0" data-lang="Python">
+        <pre class="codigo">from functools import reduce
+
+precios = [12000, 8000, 25000, 5000]    # en guaraníes
+
+caros    = list(filter(lambda p: p &gt; 10000, precios))
+con_desc = list(map(lambda p: p * 9 // 10, caros))
+total    = reduce(lambda a, b: a + b, con_desc, 0)
+
+print(caros)       # [12000, 25000]
+print(con_desc)    # [10800, 22500]
+print(total)       # 33300
+print(precios)     # la lista original no cambió</pre>
+        <p class="salida">Salida al ejecutarlo: <code>[12000, 25000] / [10800, 22500] / 33300 / [12000, 8000, 25000, 5000]</code></p>
+      </div><div class="tab-panel" role="tabpanel" id="panel8-1" aria-labelledby="tab8-1" data-lang="Java">
+        <pre class="codigo">import java.util.List;
+
+public class Precios {
+    public static void main(String[] args) {
+        List&lt;Integer&gt; precios = List.of(12000, 8000, 25000, 5000);
+        int total = precios.stream()
+                .filter(p -&gt; p &gt; 10000)
+                .map(p -&gt; p * 9 / 10)
+                .reduce(0, Integer::sum);
+        System.out.println(total);
+    }
+}</pre>
+        <p class="salida">Salida al ejecutarlo: <code>33300</code></p>
+      </div><div class="tab-panel" role="tabpanel" id="panel8-2" aria-labelledby="tab8-2" data-lang="C (imperativo)">
+        <pre class="codigo">#include &lt;stdio.h&gt;
+
+int main(void) {
+    int precios[] = {12000, 8000, 25000, 5000};
+    int total = 0;                       /* estado que cambia */
+    for (int i = 0; i &lt; 4; i++) {
+        if (precios[i] &gt; 10000)
+            total += precios[i] * 9 / 10;
+    }
+    printf(&quot;%d\n&quot;, total);
+    return 0;
+}</pre>
+        <p class="salida">Salida al ejecutarlo: <code>33300</code></p>
+      </div>
+    </div>
+  </section>
+  <section class="seccion" id="practica">
+    <h2><span class="num-sec">03</span>Actividades de práctica</h2>
+    <p class="bajada">Cada actividad indica cuándo terminaste. No pases a la siguiente hasta cumplirlo.</p>
+    <article class="actividad">
+      <header><h3>Actividad 1 · Del bucle al pipeline</h3><span class="meta">Individual · 35 min</span></header>
+      <p>Parte de este código imperativo:</p><pre class="codigo">ventas = [(&quot;Luque&quot;, 550000), (&quot;San Lorenzo&quot;, 400000),
+          (&quot;Luque&quot;, 400000), (&quot;Limpio&quot;, 720000)]
+
+total_luque = 0
+for ciudad, monto in ventas:
+    if ciudad == &quot;Luque&quot;:
+        total_luque = total_luque + monto
+print(total_luque)</pre>
+      <ol><li>Identifica qué variable cambia de estado en cada vuelta.</li><li>Reescríbelo con <code class="in">filter</code> y <code class="in">map</code> (o comprensiones) y <code class="in">sum</code>.</li><li>Reescríbelo otra vez con <code class="in">reduce</code>.</li><li>Verifica que las tres versiones impriman el mismo resultado.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tienes tres versiones que imprimen lo mismo y ninguna de las funcionales modifica variables fuera de su expresión.</p>
+    </article><article class="actividad">
+      <header><h3>Actividad 2 · ¿Pura o impura?</h3><span class="meta">En equipo de trabajo · 30 min</span></header>
+      <p>Funciones para analizar:</p><pre class="codigo">import random
+
+def a(x):
+    return x * 2
+
+contador = 0
+def b(x):
+    global contador
+    contador += 1
+    return x + contador
+
+def c(lista):
+    lista.append(0)
+    return lista
+
+def d(lista):
+    return lista + [0]
+
+def e(nombre):
+    print(&quot;Hola&quot;, nombre)
+
+def f(n):
+    return n + random.randint(1, 6)</pre>
+      <ol><li>Clasifiquen cada función como pura o impura, usando las condiciones de una función pura citadas en esta unidad.</li><li>Para cada impura, nombren el efecto secundario o la dependencia externa.</li><li>Reescriban dos funciones impuras como puras.</li><li>Demuestren con dos llamadas iguales que sus versiones puras devuelven lo mismo.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> las 6 funciones están clasificadas con justificación y las 2 reescrituras pasan la prueba de las dos llamadas.</p>
+    </article><article class="actividad">
+      <header><h3>Actividad 3 · Funcional con tipado estático</h3><span class="meta">Individual · 30 min</span></header>
+      
+      <ol><li>Copia el ejemplo de Java de «Código comparado» en Colab y ejecútalo.</li><li>Cambia el <code class="in">map</code> para que devuelva un texto, por ejemplo <code class="in">"Gs. " + p</code>, sin cambiar nada más, y vuelve a ejecutar.</li><li>Haz un cambio equivalente en la versión de Python.</li><li>Compara en qué momento apareció el error en cada lenguaje.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tienes los dos mensajes de error y una explicación que usa las palabras «compilación» y «ejecución».</p>
+    </article>
+  </section>
+  <section class="seccion" id="autoevaluacion">
+    <h2><span class="num-sec">04</span>Autoevaluación</h2>
+    <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
+    <ol class="autoeval"><li>¿Qué condiciones cumple una función pura?</li><li>¿Por qué <code class="in">map</code> en Python no calcula nada hasta que lo recorres?</li><li>¿Qué partes tiene un pipeline de Java?</li><li>¿Qué dice Hughes sobre la modularidad en la programación funcional?</li></ol>
+  </section>
+  <section class="seccion" id="juegos">
+    <h2><span class="num-sec">05</span>Juegos</h2>
+    <div class="enlaces-juego"><a class="btn" href="juegos/ruta-de-repaso.html#u8">Estación U8 de la Ruta de Repaso</a><a class="btn sec" href="juegos/oca.html">La Oca de la Programación</a><a class="btn sec" href="juegos/caza-el-bug.html">Caza el bug</a><a class="btn sec" href="juegos/tribunal-de-diseno.html">Tribunal de Diseño</a><a class="btn sec" href="juegos/duelo-de-equipos.html">Duelo de equipos</a></div>
+  </section>
+  <section class="seccion" id="bibliografia">
+    <h2><span class="num-sec">06</span>Bibliografía</h2>
+    <p class="bajada">Fuentes de acceso abierto citadas en esta unidad, en formato APA 7. Consultadas el 7 de octubre de 2026.</p>
+    <ol class="biblio"><li id="ref-al2">Gallardo, D., Pomares, C., Botía, A., y Martínez, F. (2025). <i>Tema 2: Programación funcional</i>. Lenguajes y Paradigmas de Programación, curso 2025-26. Departamento de Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante. <a href="https://domingogallardo.github.io/apuntes-lpp/teoria/tema02-programacion-funcional/tema02-programacion-funcional.html">https://domingogallardo.github.io/apuntes-lpp/teoria/tema02-programacion-funcional/tema02-programacion-funcional.html</a></li><li id="ref-haskell">Hudak, P., Peterson, J., y Fasel, J. H. (1999). <i>A gentle introduction to Haskell 98</i>. Haskell.org. <a href="https://www.haskell.org/tutorial/haskell-98-tutorial.pdf">https://www.haskell.org/tutorial/haskell-98-tutorial.pdf</a></li><li id="ref-hughes">Hughes, J. (1989). Why functional programming matters. <i>The Computer Journal, 32</i>(2). <a href="https://www.cse.chalmers.se/~rjmh/Papers/whyfp.pdf">https://www.cse.chalmers.se/~rjmh/Papers/whyfp.pdf</a></li><li id="ref-py-howto">Kuchling, A. M. (s.f.). <i>HOWTO - Programación funcional</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/howto/functional.html">https://docs.python.org/es/3/howto/functional.html</a></li><li id="ref-mccarthy">McCarthy, J. (1960). Recursive functions of symbolic expressions and their computation by machine, Part I. <i>Communications of the ACM</i>. <a href="https://www-formal.stanford.edu/jmc/recursive.html">https://www-formal.stanford.edu/jmc/recursive.html</a></li><li id="ref-j-agg">Oracle. (s.f.-a). <i>Aggregate operations</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/collections/streams/index.html">https://docs.oracle.com/javase/tutorial/collections/streams/index.html</a></li><li id="ref-j-lambda">Oracle. (s.f.-b). <i>Lambda expressions</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html</a></li><li id="ref-j-par">Oracle. (s.f.-c). <i>Parallelism</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/collections/streams/parallelism.html">https://docs.oracle.com/javase/tutorial/collections/streams/parallelism.html</a></li><li id="ref-j-red">Oracle. (s.f.-d). <i>Reduction</i>. The Java Tutorials. <a href="https://docs.oracle.com/javase/tutorial/collections/streams/reduction.html">https://docs.oracle.com/javase/tutorial/collections/streams/reduction.html</a></li><li id="ref-jls4">Oracle. (s.f.-e). Types, values, and variables (cap. 4). En <i>The Java language specification, Java SE 17 edition</i>. <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html">https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html</a></li><li id="ref-py-funcs">Python Software Foundation. (s.f.-a). <i>Funciones incorporadas</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/library/functions.html">https://docs.python.org/es/3/library/functions.html</a></li><li id="ref-py-ft">Python Software Foundation. (s.f.-b). <i>functools — Funciones de orden superior y operaciones sobre objetos invocables</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/library/functools.html">https://docs.python.org/es/3/library/functools.html</a></li><li id="ref-py-glos">Python Software Foundation. (s.f.-c). <i>Glosario</i>. Documentación de Python 3. <a href="https://docs.python.org/es/3/glossary.html">https://docs.python.org/es/3/glossary.html</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Unidades"><a href="u7.html"><small>← Unidad 7</small>Programación orientada a objetos</a></nav>
+  <footer class="pie"><span>Teoría de la Programación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>
