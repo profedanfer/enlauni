@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U2 · Modelos del proceso</title>
+<link rel="stylesheet" href="../assets/estilos.css">
+<link rel="stylesheet" href="../ingenieria-del-software-1/iso1.css">
+</head>
+<body class="iso1">
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Ingeniería del Software 1</a><span aria-hidden="true">/</span><a href="repaso.html">Repaso</a><span aria-hidden="true">/</span><span>Unidad 2</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Unidad 2 de 11 <span class="bloque-tag">Bloque 1 · Fundamentos y procesos</span></p>
+    <h1>Modelos del proceso</h1>
+    <p class="objetivo">Analizar cómo los distintos modelos de proceso organizan las actividades estructurales y elegir el más adecuado según el contexto del proyecto.</p>
+    <ul class="contenidos" aria-label="Contenidos"><li>Modelo general</li><li>Flujo del proceso</li><li>Patrones de proceso</li><li>Evaluación y mejora</li><li>Cascada</li><li>Incremental</li><li>Evolutivo</li><li>Concurrente</li></ul>
+    <aside class="aviso-ind"><p><strong>¿Ya hiciste la indagación previa?</strong> Hazla antes de leer este repaso: <a href="indagaciones/u02.html">Indagación U2: Modelos del proceso</a></p></aside>
+  </section>
+  <nav class="indice-pagina" aria-label="En esta página">
+    <a href="#repaso">Repaso</a><a href="#caso">Caso aplicado</a><a href="#practica">Práctica</a><a href="#autoevaluacion">Autoevaluación</a><a href="#juegos">Juegos</a><a href="#bibliografia">Bibliografía</a>
+  </nav>
+  <section class="seccion" id="repaso">
+    <h2><span class="num-sec">01</span>Repaso</h2>
+    <p class="bajada">Texto base de cátedra: Pressman (2010), capítulo 2. Las fuentes de acceso abierto te permiten profundizar.</p>
+    <dl class="conceptos"><div class="concepto"><dt>Modelo general del proceso</dt><dd><p>Todo proceso aplica las cinco actividades estructurales, pero las organiza de distinta forma. El <b>flujo del proceso</b> puede ser lineal, iterativo, evolutivo o paralelo <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 2</a>)</span>.</p></dd></div><div class="concepto"><dt>Conjunto de tareas</dt><dd><p>Cada actividad estructural se traduce en tareas concretas, productos de trabajo, puntos de aseguramiento de la calidad e hitos. Un proyecto pequeño y uno crítico pueden tener la misma actividad (por ejemplo, comunicación) con conjuntos de tareas muy distintos <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 2</a>)</span>.</p></dd></div><div class="concepto"><dt>Patrones de proceso</dt><dd><p>Describen un problema recurrente de organización del trabajo, el contexto en que aparece y una solución probada. Se pueden combinar para armar el proceso que necesita un equipo <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 2</a>)</span>.</p></dd></div><div class="concepto"><dt>Evaluación y mejora</dt><dd><p>Que exista un proceso no garantiza que se cumpla ni que sea bueno. Por eso hay enfoques de evaluación como SCAMPI, SPICE (ISO/IEC 15504) o ISO 9001 aplicada al software <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 2</a>)</span>. Un equipo que nunca revisa su proceso repite los mismos errores.</p></dd></div><div class="concepto"><dt>Cascada</dt><dd><p>Enfoque sistemático y secuencial: comunicación, planeación, modelado, construcción y despliegue, una actividad después de la otra. Sirve cuando los requerimientos están bien comprendidos y son estables; su variante es el <b>modelo en V</b>, que vincula cada etapa con su prueba <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 2</a>)</span>.</p><p>Royce, a quien suele atribuirse el modelo, advirtió en 1970 que la implementación puramente secuencial era riesgosa e invitaba al fracaso, y propuso agregar diseño preliminar, documentación, un piloto («hacerlo dos veces»), pruebas planificadas y participación del cliente <span class="cita">(<a href="#ref-royce">Royce, 1970</a>)</span>.</p></dd></div><div class="concepto"><dt>Incremental</dt><dd><p>Combina flujos lineales y paralelos: se entrega primero un <b>incremento</b> con las funciones esenciales y luego otros que agregan funciones <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 2</a>)</span>. Útil cuando hay que poner algo funcional en manos del usuario pronto.</p></dd></div><div class="concepto"><dt>Evolutivos</dt><dd><p>Asumen que el software cambia y que no siempre se pueden definir todos los requerimientos al inicio. El <b>prototipo</b> ayuda cuando el cliente no puede precisar lo que necesita; la <b>espiral</b> avanza en vueltas que incluyen análisis de riesgos <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 2</a>)</span>.</p></dd></div><div class="concepto"><dt>Concurrente</dt><dd><p>Representa las actividades como <b>estados</b> que coexisten (inactivo, en desarrollo, en espera de cambios, en revisión, terminado). Es útil cuando distintas partes del sistema avanzan a ritmos diferentes <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 2</a>)</span>.</p></dd></div></dl>
+    <div class="tabla-scroll"><table class="comp">
+  <caption>Cuándo conviene cada modelo prescriptivo</caption>
+  <thead><tr><th scope="col">Modelo</th><th scope="col">Conviene si…</th><th scope="col">Riesgo principal</th></tr></thead>
+  <tbody>
+   <tr><th scope="row">Cascada</th><td>Los requerimientos son estables y conocidos</td><td>El cliente ve el producto recién al final</td></tr>
+   <tr><th scope="row">Incremental</th><td>Hay que entregar algo útil pronto</td><td>Una mala primera arquitectura condiciona los incrementos</td></tr>
+   <tr><th scope="row">Prototipo</th><td>El cliente no sabe precisar lo que quiere</td><td>Que el prototipo se vuelva producto sin rediseño</td></tr>
+   <tr><th scope="row">Espiral</th><td>El proyecto es grande y riesgoso</td><td>Exige experiencia en evaluación de riesgos</td></tr>
+   <tr><th scope="row">Concurrente</th><td>Partes del sistema avanzan a ritmos distintos</td><td>Coordinar los estados de cada actividad</td></tr>
+  </tbody></table></div>
+  <p class="bajada" style="margin-top:.5rem">Síntesis elaborada a partir de Pressman <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 2</a>)</span> y de las clases.</p>
+  <aside class="ojo"><strong class="tit">No confundas</strong><p><b>El artículo de Royce no defiende la cascada «pura».</b> Royce la presenta y enseguida advierte su riesgo; el resto del texto propone cómo reducirlo <span class="cita">(<a href="#ref-royce">Royce, 1970</a>)</span>. Leer la fuente original evita repetir una caricatura.</p><p>Para profundizar: Alonso Amo et al., capítulos 8 y 10 <span class="cita">(<a href="#ref-alonso">Alonso Amo et al., 2005, caps. 8 y 10</a>)</span>.</p></aside>
+    <aside class="ia"><strong class="tit">Con IA, con criterio</strong><p>La IA generativa no elimina el proceso: cambia el costo de algunas tareas. Generar un prototipo navegable hoy toma horas, no semanas. Eso hace más atractivo el modelo de <b>prototipos</b>, pero refuerza su riesgo clásico: que el prototipo se presente como producto terminado sin diseño ni pruebas <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 2</a>)</span>.</p></aside>
+  </section>
+  <section class="seccion" id="caso">
+    <h2><span class="num-sec">02</span>Caso aplicado</h2>
+    <div class="caso-usf"><span class="tit">Caso transversal · Turnos USF</span><p>Una Unidad de Salud Familiar (USF) de barrio atiende clínica general, pediatría y control prenatal. Hoy los turnos se reparten por orden de llegada: la gente hace fila desde la madrugada y muchas veces vuelve a su casa sin ser atendida. La directora de la USF, el equipo de enfermería y la región sanitaria quieren un <b>sistema de turnos</b>: pedir turno por la web o por mensajería, una pantalla en la sala de espera y reportes mensuales de atenciones.</p><p>Este caso acompaña las 11 unidades. En cada una lo miras con los conceptos nuevos.</p></div>
+  <p class="bajada" style="margin-top:1rem">El mismo proyecto organizado con tres modelos distintos. Observa qué recibe la USF y cuándo.</p>
+  <div class="tabs"><div class="tabs-botones" role="tablist" aria-label="Modelos aplicados" hidden><button type="button" role="tab" id="tab2-0" aria-controls="panel2-0">Cascada</button><button type="button" role="tab" id="tab2-1" aria-controls="panel2-1">Incremental</button><button type="button" role="tab" id="tab2-2" aria-controls="panel2-2">Prototipo</button></div><div class="tab-panel" role="tabpanel" id="panel2-0" aria-labelledby="tab2-0" data-lang="Cascada"><div class="panel-texto"><p>Se relevan todos los requerimientos con la directora, enfermería y la región; se diseña, se construye y se instala el sistema completo en seis meses. <b>Riesgo:</b> recién en el mes seis enfermería descubre que necesita reservar cupos para urgencias, algo que nadie mencionó.</p></div></div><div class="tab-panel" role="tabpanel" id="panel2-1" aria-labelledby="tab2-1" data-lang="Incremental"><div class="panel-texto"><p><b>Incremento 1</b> (6 semanas): pedir turno por la web y lista del día para enfermería. <b>Incremento 2:</b> pantalla de la sala de espera y recordatorios. <b>Incremento 3:</b> reportes para la región. La fila de la madrugada se reduce desde el primer incremento.</p></div></div><div class="tab-panel" role="tabpanel" id="panel2-2" aria-labelledby="tab2-2" data-lang="Prototipo"><div class="panel-texto"><p>Antes de construir, se muestra a pacientes mayores una maqueta navegable para pedir turno desde el celular. Se descubre que muchos prefieren pedir turno por mensajería o en ventanilla. El prototipo se descarta y se rediseña el requerimiento.</p></div></div></div>
+  </section>
+  <section class="seccion" id="practica">
+    <h2><span class="num-sec">03</span>Actividades de práctica</h2>
+    <p class="bajada">Cada actividad indica cuándo terminaste. No pases a la siguiente hasta cumplirlo.</p>
+    <article class="actividad">
+      <header><h3>Actividad 1 · Elige el modelo y defiéndelo</h3><span class="meta">En equipo de trabajo · 35 min</span></header>
+      <p>Escenarios: (a) liquidación de sueldos de una municipalidad, con reglas fijadas por ley; (b) app de delivery de una despensa que quiere salir al mercado en un mes; (c) sistema de recomendación de cultivos con IA para cooperativas, donde nadie sabe aún qué datos sirven.</p>
+      <ol><li>Elijan un modelo para cada escenario.</li><li>Justifiquen cada elección con una característica del modelo, citando la fuente.</li><li>Para cada escenario, indiquen qué modelo sería el peor y por qué.</li><li>Comparen su respuesta (a) con la advertencia de Royce.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> los tres escenarios tienen modelo elegido, justificación citada, el peor modelo argumentado y una relación explícita con Royce.</p>
+    </article><article class="actividad">
+      <header><h3>Actividad 2 · Estados del modelo concurrente</h3><span class="meta">Individual · 20 min</span></header>
+      <p>Piensa en tu TPI y en tres de sus partes (por ejemplo, requerimientos, diseño de la base de datos e interfaz).</p>
+      <ol><li>Asigna a cada parte un estado del modelo concurrente para esta semana.</li><li>Indica qué evento haría cambiar ese estado.</li><li>Dibuja la línea de tiempo con los cambios de estado de las tres partes.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tus tres partes tienen estado, evento de cambio y una línea de tiempo que muestra que avanzan a ritmos distintos.</p>
+    </article>
+    <p class="tpi"><strong>Conexión con el TPI.</strong> Escribe en dos oraciones qué modelo de proceso sigue tu equipo en el TPI y qué evidencia (entregas, revisiones) lo demuestra.</p>
+  </section>
+  <section class="seccion" id="autoevaluacion">
+    <h2><span class="num-sec">04</span>Autoevaluación</h2>
+    <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
+    <ol class="autoeval"><li>¿Qué diferencia hay entre una actividad estructural y su conjunto de tareas?</li><li>¿Qué advirtió Royce sobre la implementación secuencial?</li><li>¿Cuándo conviene un prototipo y cuál es su riesgo?</li><li>¿Qué representa un estado en el modelo concurrente?</li></ol>
+  </section>
+  <section class="seccion" id="juegos">
+    <h2><span class="num-sec">05</span>Juegos</h2>
+    <div class="enlaces-juego"><a class="btn" href="juegos/ruta-de-repaso.html#u2">Estación U2 de la Ruta de Repaso</a><a class="btn sec" href="juegos/tribunal-de-arquitectura.html">Tribunal de Arquitectura</a><a class="btn sec" href="juegos/oca.html">La Oca de ISO1</a></div>
+  </section>
+  <section class="seccion" id="bibliografia">
+    <h2><span class="num-sec">06</span>Bibliografía</h2>
+    <p class="bajada">Fuentes citadas en esta unidad, en formato APA 7. Las de acceso abierto se consultaron el 26 de octubre de 2026; los textos de cátedra están rotulados.</p>
+    <ol class="biblio"><li id="ref-alonso">Alonso Amo, F., Martínez Normand, L., y Segovia Pérez, J. (2005). <i>Introducción a la ingeniería del software: modelos de desarrollo de programas</i>. Delta Publicaciones. <a href="https://elibro.net/es/lc/columbiapyesp/titulos/170188">https://elibro.net/es/lc/columbiapyesp/titulos/170188</a> <span class="rotulo-catedra">Texto de cátedra</span> <span class="nota-ref">e-Libro institucional: entra con tu usuario de la universidad.</span></li><li id="ref-pressman">Pressman, R. S. (2010). <i>Ingeniería del software: un enfoque práctico</i> (7.ª ed.). McGraw-Hill. <span class="rotulo-catedra">Texto de cátedra</span> <span class="nota-ref">Texto base de cátedra. No es de acceso abierto: consúltalo en la biblioteca de la universidad.</span></li><li id="ref-royce">Royce, W. W. (1970). Managing the development of large software systems. En <i>Proceedings of IEEE WESCON</i> (pp. 1–9). IEEE. <a href="https://faculty.washington.edu/hazeline/misc/reserve/royce_waterfall.pdf">https://faculty.washington.edu/hazeline/misc/reserve/royce_waterfall.pdf</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Unidades"><a href="u1.html"><small>← Unidad 1</small>La naturaleza del software</a><a class="sig" href="u3.html"><small>Unidad 3 →</small>Desarrollo ágil</a></nav>
+  <footer class="pie"><span>Ingeniería del Software 1</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>

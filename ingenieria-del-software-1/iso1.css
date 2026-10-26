@@ -1,0 +1,107 @@
+/* =========================================================
+   Aula Danfer · Ingeniería del Software 1 (ISO1)
+   Se carga DESPUÉS de assets/estilos.css. Solo cambia la paleta
+   a la identidad de ISO1 (verde océano y dorado) y agrega los
+   componentes propios de la materia. No modifica los estilos
+   compartidos de las otras materias.
+   ========================================================= */
+:root {
+  --verde-oscuro: #0B3D37;
+  --verde-medio: #146B5E;
+  --verde-claro: #3E9C8B;
+  --fondo: #F2F7F6;
+  --tinta: #0F2B27;
+  --tinta-suave: #44605A;
+  --linea: #CFE1DD;
+  --acierto: #146B5E;
+  --acierto-fondo: #E1F2EE;
+  --pista-fondo: #F7F0E4;
+  --pista-borde: #B08D57;
+  --codigo-fondo: #0B2B27;
+  --codigo-tinta: #DDF0EC;
+  --dorado: #B08D57;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fondo: #0B1816; --superficie: #12241F; --tinta: #E2EFEC; --tinta-suave: #A3BDB7;
+    --linea: #24403A; --acierto: #6CC4B2; --acierto-fondo: #17332D; --verde-oscuro: #B5E3D9;
+    --verde-medio: #5FBBA8; --verde-claro: #3E9C8B; --pista-fondo: #2E2A1E; --pista-borde: #C9A66B;
+    --codigo-fondo: #071311; --codigo-tinta: #DDF0EC; --sobre-acento: #0B1816; --dorado: #C9A66B;
+  }
+}
+:root[data-theme="dark"] {
+  --fondo: #0B1816; --superficie: #12241F; --tinta: #E2EFEC; --tinta-suave: #A3BDB7;
+  --linea: #24403A; --acierto: #6CC4B2; --acierto-fondo: #17332D; --verde-oscuro: #B5E3D9;
+  --verde-medio: #5FBBA8; --verde-claro: #3E9C8B; --pista-fondo: #2E2A1E; --pista-borde: #C9A66B;
+  --codigo-fondo: #071311; --codigo-tinta: #DDF0EC; --sobre-acento: #0B1816; --dorado: #C9A66B;
+}
+
+/* Rótulo de bloque pedagógico (6 bloques del programa) */
+.bloque-tag { display: inline-block; font-size: .74rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--dorado); border: 1px solid var(--dorado); border-radius: 999px; padding: .1rem .55rem; margin-left: .4rem; vertical-align: middle; }
+
+/* Bibliografía: rótulo para los textos que no son de acceso abierto */
+.rotulo-catedra { display: inline-block; margin-left: .3rem; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--dorado); border: 1px solid var(--dorado); border-radius: 4px; padding: 0 .35rem; text-indent: 0; }
+.nota-ref { display: block; text-indent: 0; font-size: .85rem; color: var(--tinta-suave); margin-top: .15rem; }
+.leyenda-biblio { margin-top: .8rem; display: grid; gap: .4rem; font-size: .92rem; color: var(--tinta-suave); }
+
+/* Caso transversal */
+.caso-usf { margin-top: 1rem; padding: 1rem 1.1rem; border-radius: var(--radio); background: var(--superficie); border: 1px solid var(--linea); border-left: 4px solid var(--dorado); }
+.caso-usf p { margin: 0; }
+.caso-usf p + p { margin-top: .5rem; }
+.caso-usf .tit { display: block; font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--dorado); font-weight: 700; margin-bottom: .25rem; }
+.tab-panel .panel-texto { background: var(--superficie); border: 1px solid var(--linea); border-radius: 0 var(--radio) var(--radio) var(--radio); padding: 1rem 1.1rem; }
+.tab-panel .panel-texto p { margin: 0; }
+.tab-panel .panel-texto p + p, .tab-panel .panel-texto ul, .tab-panel .panel-texto ol { margin-top: .5rem; }
+.tab-panel .panel-texto ul, .tab-panel .panel-texto ol { padding-left: 1.2rem; margin-bottom: 0; }
+.tabs-botones button { font-family: var(--f-texto); font-weight: 700; }
+
+/* Artefactos escritos (requerimientos, casos de uso) */
+.artefacto { margin-top: .9rem; background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radio); overflow: hidden; }
+.artefacto .cab { padding: .5rem .9rem; background: var(--acierto-fondo); font-weight: 700; color: var(--verde-oscuro); font-family: var(--f-titulo); }
+.artefacto dl { margin: 0; display: grid; grid-template-columns: minmax(7rem, 11rem) 1fr; }
+.artefacto dt, .artefacto dd { margin: 0; padding: .45rem .9rem; border-top: 1px solid var(--linea); }
+.artefacto dt { font-weight: 700; color: var(--verde-medio); font-size: .92rem; }
+.artefacto dd ol, .artefacto dd ul { margin: 0; padding-left: 1.2rem; }
+@media (max-width: 560px) { .artefacto dl { grid-template-columns: 1fr; } .artefacto dd { border-top: 0; padding-top: 0; } }
+
+/* Diagramas (DFD y otros) dibujados en SVG */
+figure.diagrama { margin: 1rem 0 0; background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radio); padding: .6rem; }
+figure.diagrama svg { display: block; width: 100%; height: auto; max-height: 34rem; }
+figure.diagrama figcaption { font-size: .88rem; color: var(--tinta-suave); padding: .4rem .3rem 0; }
+svg .ent { fill: var(--superficie); stroke: var(--tinta); stroke-width: 2; }
+svg .proc { fill: var(--acierto-fondo); stroke: var(--verde-medio); stroke-width: 2.5; }
+svg .alm { stroke: var(--tinta); stroke-width: 2; }
+svg .alm-fondo { fill: var(--superficie); stroke: none; }
+svg .flujo { stroke: var(--tinta-suave); stroke-width: 1.8; fill: none; }
+svg .punta { fill: var(--tinta-suave); }
+svg text { fill: var(--tinta); font-family: var(--f-texto); font-size: 14px; }
+svg text.chico { font-size: 12.5px; fill: var(--tinta-suave); }
+svg text.num-p { font-family: var(--f-codigo); font-size: 12px; fill: var(--verde-medio); font-weight: 600; }
+svg text.neg { font-weight: 700; }
+svg .caja { fill: var(--superficie); stroke: var(--verde-medio); stroke-width: 2; }
+svg .caja-suave { fill: var(--acierto-fondo); stroke: var(--linea); stroke-width: 1.5; }
+svg .linea { stroke: var(--tinta-suave); stroke-width: 1.6; fill: none; }
+
+/* Recuadro «Con IA, con criterio» */
+.ia { margin-top: 1.2rem; padding: .9rem 1.1rem; border-radius: var(--radio); background: var(--superficie); border: 1px dashed var(--verde-claro); }
+.ia strong.tit { display: block; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .25rem; color: var(--verde-medio); }
+.ia p { margin: 0; }
+.ia p + p, .ia ul { margin-top: .4rem; }
+.ia ul { padding-left: 1.2rem; margin-bottom: 0; }
+
+/* Conexión con el TPI */
+.tpi { margin-top: 1rem; padding: .7rem .9rem; border-radius: 8px; background: var(--pista-fondo); border-left: 4px solid var(--dorado); }
+.tpi strong { color: var(--dorado); }
+
+/* Mapa de bloques en la portada de la materia */
+.mapa-bloques { display: grid; grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr)); gap: .4rem; margin-top: 1rem; padding: 0; list-style: none; counter-reset: b; }
+.mapa-bloques li { padding: .55rem .6rem; border-radius: 8px; background: var(--superficie); border: 1px solid var(--linea); font-size: .85rem; line-height: 1.25; }
+.mapa-bloques li b { display: block; font-family: var(--f-codigo); font-size: .75rem; color: var(--dorado); }
+
+@media print {
+  .ia, .caso-usf, .tpi { break-inside: avoid; }
+  .rotulo-catedra, .bloque-tag { color: #000; border-color: #000; }
+}
+.aviso-ind a { color: var(--verde-medio); }

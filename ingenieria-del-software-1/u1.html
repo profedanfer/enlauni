@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U1 · La naturaleza del software</title>
+<link rel="stylesheet" href="../assets/estilos.css">
+<link rel="stylesheet" href="../ingenieria-del-software-1/iso1.css">
+</head>
+<body class="iso1">
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Ingeniería del Software 1</a><span aria-hidden="true">/</span><a href="repaso.html">Repaso</a><span aria-hidden="true">/</span><span>Unidad 1</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Unidad 1 de 11 <span class="bloque-tag">Bloque 1 · Fundamentos y procesos</span></p>
+    <h1>La naturaleza del software</h1>
+    <p class="objetivo">Comprender qué es el software, por qué cambia y se deteriora, y qué distingue a la ingeniería de software de la simple programación.</p>
+    <ul class="contenidos" aria-label="Contenidos"><li>Software: definición</li><li>Dominios de aplicación</li><li>Software heredado</li><li>WebApps</li><li>Ingeniería de software</li><li>Proceso y práctica</li><li>Mitos</li></ul>
+    <aside class="aviso-ind"><p><strong>¿Ya hiciste la indagación previa?</strong> Hazla antes de leer este repaso: <a href="indagaciones/u01.html">Indagación U1: La naturaleza del software</a></p></aside>
+  </section>
+  <nav class="indice-pagina" aria-label="En esta página">
+    <a href="#repaso">Repaso</a><a href="#caso">Caso aplicado</a><a href="#practica">Práctica</a><a href="#autoevaluacion">Autoevaluación</a><a href="#juegos">Juegos</a><a href="#bibliografia">Bibliografía</a>
+  </nav>
+  <section class="seccion" id="repaso">
+    <h2><span class="num-sec">01</span>Repaso</h2>
+    <p class="bajada">Texto base de cátedra: Pressman (2010), capítulo 1. Las fuentes de acceso abierto te permiten profundizar.</p>
+    <dl class="conceptos"><div class="concepto"><dt>Software</dt><dd><p>Es más que el código. Pressman lo define con tres elementos que funcionan juntos: <b>instrucciones</b> (programas) que dan la función y el desempeño buscados, <b>estructuras de datos</b> que permiten manipular la información y <b>información descriptiva</b> (documentación) sobre su operación y uso <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 1</a>)</span>.</p><p>Si falta la documentación, el software funciona hoy pero nadie puede explicar ni modificar con seguridad por qué funciona así.</p></dd></div><div class="concepto"><dt>Se deteriora, no se desgasta</dt><dd><p>El hardware se desgasta por factores físicos; el software no. Sin embargo, se <b>deteriora</b>: cada cambio puede introducir errores nuevos antes de que se corrijan los anteriores, y la tasa de fallas sube con el tiempo <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 1</a>)</span>.</p></dd></div><div class="concepto"><dt>Dominios de aplicación</dt><dd><p>Pressman distingue software de sistemas, de aplicación, de ingeniería y ciencias, incrustado, de línea de productos, aplicaciones web e inteligencia artificial <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 1</a>)</span>. El dominio condiciona qué riesgos importan más: no se diseña igual el firmware de un marcapasos que la web de una despensa.</p></dd></div><div class="concepto"><dt>Software heredado</dt><dd><p>Sistemas antiguos que siguen sosteniendo procesos críticos de una organización. Muchas veces tienen diseño poco extensible, código enredado o documentación inexistente; aun así, hay que adaptarlos, mejorarlos o integrarlos con sistemas nuevos <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 1</a>)</span>.</p></dd></div><div class="concepto"><dt>WebApps</dt><dd><p>Tienen rasgos propios: uso intensivo de redes, concurrencia de muchos usuarios, carga impredecible, disponibilidad permanente, evolución continua, seguridad y estética como requisitos <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 1</a>)</span>.</p></dd></div><div class="concepto"><dt>Ingeniería de software</dt><dd><p>La definición del IEEE que retoma Pressman: aplicación de un enfoque <b>sistemático, disciplinado y cuantificable</b> al desarrollo, operación y mantenimiento del software <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 1</a>)</span>. Pressman la presenta como una tecnología con capas: compromiso con la calidad en la base, luego proceso, métodos y herramientas <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 1</a>)</span>.</p><p>Winters et al. lo resumen así: la ingeniería de software es <b>programación integrada en el tiempo</b>; además de escribir código, hay que mantenerlo durante toda su vida útil <span class="cita">(<a href="#ref-google">Winters et al., 2020, cap. 1</a>)</span>.</p></dd></div><div class="concepto"><dt>Proceso del software</dt><dd><p>Un marco de trabajo con cinco <b>actividades estructurales</b>: comunicación, planeación, modelado, construcción y despliegue. Lo complementan <b>actividades sombrilla</b> que atraviesan todo el proyecto, como seguimiento y control, gestión del riesgo, aseguramiento de la calidad, revisiones técnicas, medición, gestión de la configuración y de la reutilización <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 1</a>)</span>.</p></dd></div><div class="concepto"><dt>La práctica</dt><dd><p>La esencia de la práctica sigue cuatro pasos: entender el problema, planear la solución, ejecutar el plan y examinar el resultado <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 1</a>)</span>. Pressman cita además los siete principios de David Hooker, entre ellos «mantenlo sencillo», «mantén la visión» y «otros consumirán lo que produces» <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 1</a>)</span>.</p></dd></div><div class="concepto"><dt>Mitos del software</dt><dd><p>Creencias erróneas de gerentes, clientes y profesionales: «si nos atrasamos, agregamos más programadores», «una descripción general basta para empezar a programar», «cuando el programa funciona, el trabajo terminó» <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 1</a>)</span>. Detectarlos evita decisiones costosas.</p></dd></div></dl>
+    <div class="tabla-scroll"><table class="comp">
+  <caption>Programar o hacer ingeniería: la diferencia es el tiempo</caption>
+  <thead><tr><th scope="col">Aspecto</th><th scope="col">Script de una tarde</th><th scope="col">Sistema que vive diez años</th></tr></thead>
+  <tbody>
+   <tr><th scope="row">Quién lo usa</th><td>Quien lo escribió</td><td>Personas que nunca conocerán al autor</td></tr>
+   <tr><th scope="row">Documentación</th><td>Opcional</td><td>Parte constitutiva del producto</td></tr>
+   <tr><th scope="row">Cambios</th><td>Se reescribe</td><td>Se modifica sin romper lo que funciona</td></tr>
+   <tr><th scope="row">Decisiones</th><td>Intuitivas</td><td>Justificadas y registradas</td></tr>
+  </tbody></table></div>
+  <p class="bajada" style="margin-top:.5rem">Winters et al. señalan que la vida esperada de un código puede variar enormemente, y que las prácticas adecuadas dependen de esa expectativa <span class="cita">(<a href="#ref-google">Winters et al., 2020, cap. 1</a>)</span>. También describen la <b>ley de Hyrum</b>: con suficientes usuarios, cualquier comportamiento observable de un sistema termina siendo usado por alguien, aunque no esté en el contrato <span class="cita">(<a href="#ref-google">Winters et al., 2020, cap. 1</a>)</span>.</p>
+  <aside class="ojo"><strong class="tit">No confundas</strong><p><b>Software no es sinónimo de programa.</b> Un programa sin estructuras de datos documentadas ni información descriptiva es solo una parte del producto <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 1</a>)</span>. Cuando en el TPI entregas «el sistema», entregas también su documentación.</p></aside>
+    <aside class="ia"><strong class="tit">Con IA, con criterio</strong><p>Los asistentes de IA generan código en segundos. Eso no cambia la naturaleza del software: la vuelve más exigente. Quien usa IA para programar necesita más criterio para documentar, versionar y mantener lo que esa IA produjo, porque el código «que funciona hoy» igual se deteriora con cada cambio <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 1</a>)</span>.</p>
+  <ul><li>¿Quién documenta la decisión que tomó el asistente?</li><li>¿Quién mantiene ese código cuando el asistente ya no recuerda el contexto?</li></ul></aside>
+  </section>
+  <section class="seccion" id="caso">
+    <h2><span class="num-sec">02</span>Caso aplicado</h2>
+    <div class="caso-usf"><span class="tit">Caso transversal · Turnos USF</span><p>Una Unidad de Salud Familiar (USF) de barrio atiende clínica general, pediatría y control prenatal. Hoy los turnos se reparten por orden de llegada: la gente hace fila desde la madrugada y muchas veces vuelve a su casa sin ser atendida. La directora de la USF, el equipo de enfermería y la región sanitaria quieren un <b>sistema de turnos</b>: pedir turno por la web o por mensajería, una pantalla en la sala de espera y reportes mensuales de atenciones.</p><p>Este caso acompaña las 11 unidades. En cada una lo miras con los conceptos nuevos.</p></div>
+  <p class="bajada" style="margin-top:1rem">Mira el sistema de turnos con los conceptos de la unidad.</p>
+  <div class="tabs"><div class="tabs-botones" role="tablist" aria-label="Miradas del caso" hidden><button type="button" role="tab" id="tab1-0" aria-controls="panel1-0">Qué es «el software»</button><button type="button" role="tab" id="tab1-1" aria-controls="panel1-1">Dominio</button><button type="button" role="tab" id="tab1-2" aria-controls="panel1-2">Heredado</button><button type="button" role="tab" id="tab1-3" aria-controls="panel1-3">Mitos</button></div><div class="tab-panel" role="tabpanel" id="panel1-0" aria-labelledby="tab1-0" data-lang="Qué es «el software»"><div class="panel-texto"><p>No es solo la aplicación web. Incluye la base de datos de pacientes y agendas, el manual para enfermería, la guía de instalación de la pantalla de la sala de espera y el registro de por qué se decidió, por ejemplo, que un turno se libere a los 15 minutos de atraso.</p></div></div><div class="tab-panel" role="tabpanel" id="panel1-1" aria-labelledby="tab1-1" data-lang="Dominio"><div class="panel-texto"><p>Es un <b>sistema de información</b> con rasgos de <b>WebApp</b>: muchos usuarios a la vez a las 6:00, disponibilidad permanente y datos sensibles de salud. Si en el futuro se agrega una IA que sugiere la especialidad según los síntomas, aparece un dominio nuevo con riesgos nuevos.</p></div></div><div class="tab-panel" role="tabpanel" id="panel1-2" aria-labelledby="tab1-2" data-lang="Heredado"><div class="panel-texto"><p>La región sanitaria ya usa una planilla de cálculo y un sistema antiguo de estadísticas. El nuevo sistema no puede ignorarlos: los reportes deben poder integrarse con lo que ya existe. Eso es trabajar con software heredado.</p></div></div><div class="tab-panel" role="tabpanel" id="panel1-3" aria-labelledby="tab1-3" data-lang="Mitos"><div class="panel-texto"><p>«Hagamos rápido una app y después vemos», «si nos atrasamos sumamos dos programadores más», «cuando funcione en la computadora de la USF ya está». Los tres son mitos del software y los tres encarecen el proyecto.</p></div></div></div>
+  </section>
+  <section class="seccion" id="practica">
+    <h2><span class="num-sec">03</span>Actividades de práctica</h2>
+    <p class="bajada">Cada actividad indica cuándo terminaste. No pases a la siguiente hasta cumplirlo.</p>
+    <article class="actividad">
+      <header><h3>Actividad 1 · Inventario del software real</h3><span class="meta">Individual · 30 min</span></header>
+      <p>Elige un sistema que uses todos los días (la app de tu banco, el sistema académico, una billetera electrónica).</p>
+      <ol><li>Identifica sus tres elementos: programas, datos y documentación visible para ti.</li><li>Ubícalo en uno o más dominios de aplicación y justifica con un rasgo concreto.</li><li>Busca una señal de software heredado (una pantalla antigua, un proceso que pide imprimir, un horario de «mantenimiento»).</li><li>Escribe qué te dice esa señal sobre cómo evoluciona el sistema.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tienes los tres elementos identificados, el dominio justificado con un rasgo y una señal de software heredado explicada en dos oraciones.</p>
+    </article><article class="actividad">
+      <header><h3>Actividad 2 · Cazadores de mitos</h3><span class="meta">En equipo de trabajo · 25 min</span></header>
+      <p>Cada integrante recuerda una frase que escuchó en un proyecto, una pasantía o un trabajo práctico.</p>
+      <ol><li>Clasifiquen cada frase: mito de gerencia, del cliente o del profesional.</li><li>Para cada mito, escriban qué dice la realidad según la fuente.</li><li>Elijan el mito más peligroso para su TPI y propongan una práctica concreta para evitarlo.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tienen al menos cuatro frases clasificadas, cada una con su contraargumento citado y una práctica concreta para el TPI.</p>
+    </article>
+    <p class="tpi"><strong>Conexión con el TPI.</strong> Revisa la descripción de tu proyecto: ¿qué parte del «software» (datos, documentación) todavía no aparece en sus entregables?</p>
+  </section>
+  <section class="seccion" id="autoevaluacion">
+    <h2><span class="num-sec">04</span>Autoevaluación</h2>
+    <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
+    <ol class="autoeval"><li>¿Cuáles son los tres elementos del software según Pressman?</li><li>¿Por qué se dice que el software se deteriora aunque no se desgaste?</li><li>¿Qué agrega la mirada de «programación integrada en el tiempo» a la definición del IEEE?</li><li>Nombra dos actividades sombrilla y explica para qué sirven.</li></ol>
+  </section>
+  <section class="seccion" id="juegos">
+    <h2><span class="num-sec">05</span>Juegos</h2>
+    <div class="enlaces-juego"><a class="btn" href="juegos/ruta-de-repaso.html#u1">Estación U1 de la Ruta de Repaso</a><a class="btn sec" href="juegos/oca.html">La Oca de ISO1</a><a class="btn sec" href="juegos/duelo-de-equipos.html">Duelo de equipos</a></div>
+  </section>
+  <section class="seccion" id="bibliografia">
+    <h2><span class="num-sec">06</span>Bibliografía</h2>
+    <p class="bajada">Fuentes citadas en esta unidad, en formato APA 7. Las de acceso abierto se consultaron el 26 de octubre de 2026; los textos de cátedra están rotulados.</p>
+    <ol class="biblio"><li id="ref-pressman">Pressman, R. S. (2010). <i>Ingeniería del software: un enfoque práctico</i> (7.ª ed.). McGraw-Hill. <span class="rotulo-catedra">Texto de cátedra</span> <span class="nota-ref">Texto base de cátedra. No es de acceso abierto: consúltalo en la biblioteca de la universidad.</span></li><li id="ref-google">Winters, T., Manshreck, T., y Wright, H. (Eds.). (2020). <i>Software engineering at Google: Lessons learned from programming over time</i>. O’Reilly. Edición en línea de acceso abierto (CC BY-NC-ND 4.0). <a href="https://abseil.io/resources/swe-book/html/ch01.html">https://abseil.io/resources/swe-book/html/ch01.html</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Unidades"><a class="sig" href="u2.html"><small>Unidad 2 →</small>Modelos del proceso</a></nav>
+  <footer class="pie"><span>Ingeniería del Software 1</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>

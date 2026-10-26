@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U10 · Diseño en el nivel de componentes</title>
+<link rel="stylesheet" href="../assets/estilos.css">
+<link rel="stylesheet" href="../ingenieria-del-software-1/iso1.css">
+</head>
+<body class="iso1">
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Ingeniería del Software 1</a><span aria-hidden="true">/</span><a href="repaso.html">Repaso</a><span aria-hidden="true">/</span><span>Unidad 10</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Unidad 10 de 11 <span class="bloque-tag">Bloque 6 · Componentes e interfaz</span></p>
+    <h1>Diseño en el nivel de componentes</h1>
+    <p class="objetivo">Diseñar componentes basados en clases aplicando principios de diseño, con cohesión alta y acoplamiento bajo.</p>
+    <ul class="contenidos" aria-label="Contenidos"><li>¿Qué es un componente?</li><li>Visiones del componente</li><li>Principios de diseño</li><li>Lineamientos</li><li>Cohesión</li><li>Acoplamiento</li><li>Pasos del diseño de componentes</li></ul>
+    <aside class="aviso-ind"><p><strong>¿Ya hiciste la indagación previa?</strong> Hazla antes de leer este repaso: <a href="indagaciones/u10.html">Indagación U10: Diseño en el nivel de componentes</a></p></aside>
+  </section>
+  <nav class="indice-pagina" aria-label="En esta página">
+    <a href="#repaso">Repaso</a><a href="#caso">Caso aplicado</a><a href="#practica">Práctica</a><a href="#autoevaluacion">Autoevaluación</a><a href="#juegos">Juegos</a><a href="#bibliografia">Bibliografía</a>
+  </nav>
+  <section class="seccion" id="repaso">
+    <h2><span class="num-sec">01</span>Repaso</h2>
+    <p class="bajada">Texto base de cátedra: Pressman (2010), capítulo 10. Las fuentes de acceso abierto te permiten profundizar.</p>
+    <dl class="conceptos"><div class="concepto"><dt>Componente</dt><dd><p>Pressman retoma la definición de la especificación UML: una parte modular, desplegable y sustituible de un sistema, que encapsula su implementación y expone un conjunto de interfaces <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 10</a>)</span>.</p></dd></div><div class="concepto"><dt>Tres visiones</dt><dd><p><b>Orientada a objetos:</b> un componente es un conjunto de clases que colaboran. <b>Tradicional:</b> un módulo funcional que integra lógica de procesamiento y estructuras de datos. <b>Relacionada con el proceso:</b> se construye a partir de componentes existentes y reutilizables <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 10</a>)</span>.</p></dd></div><div class="concepto"><dt>Principios</dt><dd><p><b>Abierto-cerrado (OCP):</b> abierto a la extensión, cerrado a la modificación. <b>Sustitución de Liskov (LSP):</b> una subclase debe poder reemplazar a su clase base. <b>Inversión de dependencias (DIP):</b> depender de abstracciones, no de concreciones. <b>Segregación de interfaces (ISP):</b> varias interfaces específicas son mejores que una general. Para el empaquetado: equivalencia de liberación y reutilización (REP), cierre común (CCP) y reutilización común (CRP) <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 10</a>)</span>.</p></dd></div><div class="concepto"><dt>Lineamientos</dt><dd><p>Convenciones de nombres para componentes e interfaces tomadas del dominio del problema, representación explícita de las interfaces, dependencias modeladas de izquierda a derecha y herencia de abajo (clases derivadas) hacia arriba (clases base) <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 10</a>)</span>.</p></dd></div><div class="concepto"><dt>Cohesión</dt><dd><p>Mide cuánto se concentra un componente en una sola cosa. Pressman, siguiendo a Lethbridge y Laganière, describe la cohesión <b>funcional</b> (una sola función), <b>de capa</b> (una capa usa los servicios de la inferior) y <b>de comunicación</b> (operaciones que acceden a los mismos datos) como las más deseables, y otras más débiles como la secuencial, la de procedimiento, la temporal y la de utilería <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 10</a>)</span>.</p></dd></div><div class="concepto"><dt>Acoplamiento</dt><dd><p>Mide cuánto depende un componente de otros. Las categorías van de las más fuertes y peligrosas a las más débiles: de contenido (un componente modifica datos internos de otro), común (comparten variables globales), de control (uno pasa banderas que dirigen la lógica del otro), de sello, de datos, de llamada a rutina, de uso de tipo, de inclusión o importación y externo <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 10</a>)</span>. Ocultar información, como propuso Parnas, es la mejor defensa contra el acoplamiento <span class="cita">(<a href="#ref-parnas">Parnas, 1972</a>)</span>.</p></dd></div><div class="concepto"><dt>Cómo se diseña</dt><dd><p>Se identifican las clases de diseño del dominio del problema y de la infraestructura; se detallan sus atributos, operaciones e interfaces; se describen los mensajes entre clases colaboradoras; se especifican las fuentes de datos persistentes; se representa el comportamiento con diagramas de estados; y se refina y revisa continuamente <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 10</a>)</span>.</p></dd></div></dl>
+    <aside class="ojo"><strong class="tit">No confundas</strong><p><b>Bajo acoplamiento no es «ningún acoplamiento».</b> Los componentes tienen que colaborar; lo que se busca es que dependan de interfaces estables y no del interior de los demás <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 10</a>)</span>.</p><p><b>OCP no prohíbe corregir errores.</b> Dice que agregar comportamiento nuevo no debería obligar a modificar el código que ya funciona.</p></aside>
+    <aside class="ia"><strong class="tit">Con IA, con criterio</strong><p>Pide a un asistente de IA que «agregue el envío por SMS» al ejemplo del lado «Antes» y mira qué hace: muchas veces agrega un <code class="in">if canal == "sms"</code> dentro de la lógica de turnos, aumentando el acoplamiento de control. El principio abierto-cerrado te dice qué pedirle en cambio <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 10</a>)</span>.</p></aside>
+  </section>
+  <section class="seccion" id="caso">
+    <h2><span class="num-sec">02</span>Caso aplicado</h2>
+    <div class="caso-usf"><span class="tit">Caso transversal · Turnos USF</span><p>Una Unidad de Salud Familiar (USF) de barrio atiende clínica general, pediatría y control prenatal. Hoy los turnos se reparten por orden de llegada: la gente hace fila desde la madrugada y muchas veces vuelve a su casa sin ser atendida. La directora de la USF, el equipo de enfermería y la región sanitaria quieren un <b>sistema de turnos</b>: pedir turno por la web o por mensajería, una pantalla en la sala de espera y reportes mensuales de atenciones.</p><p>Este caso acompaña las 11 unidades. En cada una lo miras con los conceptos nuevos.</p></div>
+  <p class="bajada" style="margin-top:1rem">El mismo pedido de turno, con dos diseños de componentes (pseudocódigo en Python).</p>
+  <div class="tabs"><div class="tabs-botones" role="tablist" aria-label="Diseños de componentes" hidden><button type="button" role="tab" id="tab10-0" aria-controls="panel10-0">Antes</button><button type="button" role="tab" id="tab10-1" aria-controls="panel10-1">Después</button></div><div class="tab-panel" role="tabpanel" id="panel10-0" aria-labelledby="tab10-0" data-lang="Antes"><div class="panel-texto"><pre class="codigo">class GestorUSF:
+    def pedir_turno(self, cedula, dia):
+        conexion = mysql.connect("servidor-usf")      # base de datos fija
+        ...                                           # calcula horarios libres
+        whatsapp.enviar(cedula, "Su turno es ...")     # canal fijo
+    def imprimir_lista_del_dia(self): ...
+    def reporte_region_excel(self): ...
+    def cambiar_clave_usuario(self): ...</pre>
+<p>Una sola clase hace de todo: <b>cohesión baja</b>. Depende directamente de MySQL y de WhatsApp: <b>acoplamiento alto</b>. Cambiar el canal de mensajería obliga a modificar la lógica de turnos.</p></div></div><div class="tab-panel" role="tabpanel" id="panel10-1" aria-labelledby="tab10-1" data-lang="Después"><div class="panel-texto"><pre class="codigo">class Notificador:                  # abstracción (interfaz)
+    def enviar(self, paciente, mensaje): ...
+
+class NotificadorWhatsApp(Notificador): ...
+class NotificadorSMS(Notificador): ...
+
+class ServicioTurnos:
+    def __init__(self, agenda, repositorio, notificador):
+        self.agenda = agenda                 # depende de abstracciones,
+        self.repositorio = repositorio       # no de implementaciones
+        self.notificador = notificador
+
+    def pedir_turno(self, paciente, dia):
+        horario = self.agenda.primer_libre(dia)
+        turno = self.repositorio.guardar(paciente, horario)
+        self.notificador.enviar(paciente, turno.resumen())
+        return turno</pre>
+<p>Cada clase tiene un propósito: <b>cohesión funcional</b>. <code class="in">ServicioTurnos</code> depende de abstracciones (principio de inversión de dependencias) y se puede agregar un canal nuevo sin modificarlo (principio abierto-cerrado).</p></div></div></div>
+  </section>
+  <section class="seccion" id="practica">
+    <h2><span class="num-sec">03</span>Actividades de práctica</h2>
+    <p class="bajada">Cada actividad indica cuándo terminaste. No pases a la siguiente hasta cumplirlo.</p>
+    <article class="actividad">
+      <header><h3>Actividad 1 · Diagnóstico de cohesión y acoplamiento</h3><span class="meta">Individual · 30 min</span></header>
+      <p>Toma una clase o módulo de un trabajo práctico anterior (de cualquier materia).</p>
+      <ol><li>Lista sus operaciones y clasifica su cohesión con las categorías de la unidad.</li><li>Lista de qué depende y clasifica cada acoplamiento.</li><li>Propón una división en dos o tres componentes con cohesión más alta.</li><li>Indica qué principio (OCP, LSP, DIP o ISP) aplicaste y dónde.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tienes la cohesión y cada acoplamiento clasificados con su nombre, una división propuesta y un principio aplicado en un punto concreto.</p>
+    </article><article class="actividad">
+      <header><h3>Actividad 2 · Componentes del TPI</h3><span class="meta">En equipo de trabajo · 40 min</span></header>
+      <p>Partan de la arquitectura elegida en la Unidad 9.</p>
+      <ol><li>Elijan un componente de la arquitectura y detallen sus clases de diseño.</li><li>Definan sus interfaces con nombres del dominio.</li><li>Identifiquen un punto de variación probable y protéjanlo con una abstracción.</li><li>Dibujen el diagrama de clases con dependencias de izquierda a derecha.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> el componente tiene clases con atributos y operaciones, interfaces explícitas y un punto de variación protegido por una abstracción.</p>
+    </article>
+    <p class="tpi"><strong>Conexión con el TPI.</strong> Cada componente del diseño del TPI debe poder rastrearse hasta un proceso del DFD o un caso de uso. Si un componente no se rastrea, pregúntense por qué existe.</p>
+  </section>
+  <section class="seccion" id="autoevaluacion">
+    <h2><span class="num-sec">04</span>Autoevaluación</h2>
+    <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
+    <ol class="autoeval"><li>¿Cómo define Pressman un componente siguiendo UML?</li><li>Explica el principio de inversión de dependencias con un ejemplo propio.</li><li>Ordena de más fuerte a más débil: acoplamiento de datos, de contenido, de control.</li><li>¿Qué tipo de cohesión tiene una clase cuyas operaciones solo se ejecutan juntas al iniciar el sistema?</li></ol>
+  </section>
+  <section class="seccion" id="juegos">
+    <h2><span class="num-sec">05</span>Juegos</h2>
+    <div class="enlaces-juego"><a class="btn" href="juegos/ruta-de-repaso.html#u10">Estación U10 de la Ruta de Repaso</a><a class="btn sec" href="juegos/caza-el-defecto.html">Caza el defecto</a><a class="btn sec" href="juegos/tribunal-de-arquitectura.html">Tribunal de Arquitectura</a></div>
+  </section>
+  <section class="seccion" id="bibliografia">
+    <h2><span class="num-sec">06</span>Bibliografía</h2>
+    <p class="bajada">Fuentes citadas en esta unidad, en formato APA 7. Las de acceso abierto se consultaron el 26 de octubre de 2026; los textos de cátedra están rotulados.</p>
+    <ol class="biblio"><li id="ref-parnas">Parnas, D. L. (1972). On the criteria to be used in decomposing systems into modules. <i>Communications of the ACM, 15</i>(12), 1053–1058. <a href="https://www.cse.sc.edu/~mgv/csce590f20/ParnasCriteria.pdf">https://www.cse.sc.edu/~mgv/csce590f20/ParnasCriteria.pdf</a></li><li id="ref-pressman">Pressman, R. S. (2010). <i>Ingeniería del software: un enfoque práctico</i> (7.ª ed.). McGraw-Hill. <span class="rotulo-catedra">Texto de cátedra</span> <span class="nota-ref">Texto base de cátedra. No es de acceso abierto: consúltalo en la biblioteca de la universidad.</span></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Unidades"><a href="u9.html"><small>← Unidad 9</small>Diseño de la arquitectura</a><a class="sig" href="u11.html"><small>Unidad 11 →</small>Diseño de la interfaz de usuario</a></nav>
+  <footer class="pie"><span>Ingeniería del Software 1</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>

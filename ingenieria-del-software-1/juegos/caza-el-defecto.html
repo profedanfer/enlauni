@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Caza el defecto</title>
+<link rel="stylesheet" href="../../assets/estilos.css">
+<link rel="stylesheet" href="../iso1.css">
+<style>
+  .portada { padding-block: 1.4rem .4rem; }
+  .config, .caso { background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radio); padding: 1.2rem; margin-top: 1rem; }
+  .config { display: grid; gap: 1.1rem; }
+  .config fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+  .config legend { font-family: var(--f-titulo); font-size: 1.1rem; color: var(--verde-oscuro); margin-bottom: .5rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .chip { position: relative; }
+  .chip input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+  .chip span { display: inline-block; padding: .4rem .85rem; border-radius: 999px; border: 2px solid var(--linea); background: var(--fondo); font-weight: 700; color: var(--tinta-suave); min-height: 40px; line-height: 1.5; }
+  .chip input:checked + span { background: var(--verde-medio); border-color: var(--verde-medio); color: var(--sobre-acento); }
+  .chip input:focus-visible + span { outline: 3px solid var(--verde-claro); outline-offset: 2px; }
+  .nota { font-size: .9rem; color: var(--tinta-suave); margin: .5rem 0 0; }
+
+  .barra { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .4rem 1rem; align-items: baseline; }
+  .sintoma { margin-top: .9rem; padding: .8rem 1rem; border-radius: var(--radio); background: var(--error-fondo); border-left: 4px solid var(--error); }
+  .sintoma strong { display: block; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--error); margin-bottom: .2rem; }
+  .paso { margin-top: 1.3rem; }
+  .paso h3 { display: flex; gap: .5rem; align-items: baseline; }
+  .paso h3 .n { font-family: var(--f-codigo); font-size: .8rem; color: var(--verde-claro); }
+
+  /* Artefactos escritos: cada línea es un botón */
+  .lineas { margin-top: .6rem; border-radius: var(--radio); overflow-x: auto; background: var(--fondo); border: 1px solid var(--linea); padding: .3rem 0; }
+  .lineas button { display: flex; gap: .9rem; width: 100%; text-align: left; font: inherit; background: none; border: 0; color: var(--tinta); padding: .45rem 1rem; cursor: pointer; min-height: 40px; align-items: center; }
+  .lineas button .nl { font-family: var(--f-codigo); color: var(--tinta-suave); min-width: 1.5rem; text-align: right; user-select: none; font-size: .85rem; }
+  .lineas button:hover:not(:disabled) { background: var(--acierto-fondo); }
+  .lineas.codigo-l { background: var(--codigo-fondo); border-color: var(--codigo-fondo); }
+  .lineas.codigo-l button { font-family: var(--f-codigo); font-size: .88rem; color: var(--codigo-tinta); white-space: pre; min-width: max-content; min-height: 32px; padding-block: .2rem; }
+  .lineas.codigo-l button:hover:not(:disabled) { background: rgba(62, 156, 139, .2); }
+  .lineas button.ok { background: var(--acierto-fondo); box-shadow: inset 4px 0 0 var(--acierto); }
+  .lineas button.mal { background: var(--error-fondo); box-shadow: inset 4px 0 0 var(--error); }
+  .lineas.codigo-l button.ok { background: rgba(62, 156, 139, .38); }
+  .lineas.codigo-l button.mal { background: rgba(240, 140, 122, .3); }
+  .lineas button:disabled { cursor: default; }
+
+  /* Diagramas: cada elemento se puede tocar */
+  .dfd-juego svg g[data-id] { cursor: pointer; }
+  .dfd-juego svg g[data-id]:hover rect, .dfd-juego svg g[data-id]:hover circle, .dfd-juego svg g[data-id]:hover line.alm, .dfd-juego svg g[data-id]:hover path.flujo { stroke: var(--verde-claro); stroke-width: 3.5; }
+  .dfd-juego svg g.ok rect, .dfd-juego svg g.ok circle, .dfd-juego svg g.ok line.alm, .dfd-juego svg g.ok path.flujo { stroke: var(--acierto) !important; stroke-width: 4.5 !important; }
+  .dfd-juego svg g.mal rect, .dfd-juego svg g.mal circle, .dfd-juego svg g.mal line.alm, .dfd-juego svg g.mal path.flujo { stroke: var(--error) !important; stroke-width: 4.5 !important; }
+  .dfd-juego svg path.hit { stroke: transparent; stroke-width: 16; fill: none; }
+  .dfd-juego.cerrado svg g[data-id] { cursor: default; pointer-events: none; }
+
+  .cerrado-caja { margin-top: 1.2rem; padding: .9rem 1rem; border-radius: var(--radio); background: var(--acierto-fondo); }
+  .cerrado-caja p { margin: .3rem 0 0; }
+  .cerrado-caja .corr { font-family: var(--f-codigo); font-size: .88rem; background: var(--superficie); border-radius: 6px; padding: .5rem .7rem; margin-top: .4rem; overflow-wrap: anywhere; }
+  .resumen li { margin-top: .5rem; }
+</style>
+</head>
+<body class="iso1">
+<div class="envoltura">
+  <header class="inst">
+    <span>Aula Danfer</span>
+    <a href="index.html">← Juegos de repaso</a>
+  </header>
+
+  <section class="portada" id="portada">
+    <p class="etiqueta">Ingeniería del Software 1 · Análisis de defectos (N4)</p>
+    <h1>Caza el defecto</h1>
+    <p class="bajada">Cada caso muestra un artefacto real de un proyecto (requerimientos, casos de uso, DFD, código o interfaz) y el problema que causó. Encuentra el defecto, identifica qué principio no se respetó y mira una corrección posible.</p>
+  </section>
+
+  <main id="zona"></main>
+
+  <footer class="pie">
+    <span>Ingeniería del Software 1</span>
+    <span>PhD. Daniela Ferreira</span>
+  </footer>
+</div>
+
+<script src="banco-preguntas.js"></script>
+<script src="defectos-casos.js"></script>
+<script>
+(function () {
+  const zona = document.getElementById("zona");
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const mezclar = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const LETRAS = ["A", "B", "C", "D"];
+  const TIPOS = [["req", "Requerimientos y casos de uso", c => c.u === 5 || c.u === 6],
+                 ["dfd", "Diagramas de flujo de datos", c => c.tipo === "dfd"],
+                 ["dis", "Diseño, componentes e interfaz", c => c.u >= 8]];
+  let casos = [], idx = 0, puntos = 0, max = 0, fallos = [], estado = null;
+
+  function configurar() {
+    document.getElementById("portada").hidden = false;
+    zona.innerHTML = `
+      <form class="config" id="form">
+        <fieldset>
+          <legend>Qué quieres cazar</legend>
+          <div class="chips">${TIPOS.map(([v, t]) => `<label class="chip"><input type="checkbox" name="tipo" value="${v}" checked><span>${t}</span></label>`).join("")}</div>
+          <p class="nota" id="disp"></p>
+        </fieldset>
+        <fieldset>
+          <legend>Cantidad de casos</legend>
+          <div class="chips">${[6, 10, 0].map(n => `<label class="chip"><input type="radio" name="cuantos" value="${n}" ${n === 6 ? "checked" : ""}><span>${n || "Todos"}</span></label>`).join("")}</div>
+        </fieldset>
+        <p class="nota" style="margin:0">Puntaje por caso: encontrar el defecto (2 puntos al primer intento, 1 al segundo) y nombrar el principio (2 o 1). Funciona individual o en equipo de trabajo frente al proyector.</p>
+        <div class="fila-botones" style="margin-top:0"><button class="btn" type="submit">Empezar</button></div>
+      </form>`;
+    const form = document.getElementById("form");
+    const elegidos = () => {
+      const ts = [...form.querySelectorAll("input[name=tipo]:checked")].map(x => x.value);
+      return CASOS_DEFECTO.filter(c => TIPOS.some(([v, , f]) => ts.includes(v) && f(c)));
+    };
+    const disp = () => { const n = elegidos().length; document.getElementById("disp").textContent = n ? `${n} casos disponibles.` : "Elige al menos un tipo."; };
+    form.addEventListener("change", disp); disp();
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      let lista = mezclar(elegidos());
+      if (!lista.length) return;
+      const n = Number(form.cuantos.value); if (n) lista = lista.slice(0, n);
+      casos = lista; idx = 0; puntos = 0; max = casos.length * 4; fallos = [];
+      document.getElementById("portada").hidden = true;
+      pintarCaso();
+    });
+  }
+
+  function pintarCaso() {
+    const c = casos[idx];
+    estado = { paso: 1, intentos: 0, pts: 0 };
+    let artefacto = "";
+    if (c.tipo === "texto") {
+      const esCodigo = c.id[0] === "k";
+      artefacto = `<div class="lineas ${esCodigo ? "codigo-l" : ""}" role="group" aria-label="Líneas del artefacto">${c.lineas.map((l, i) =>
+        `<button type="button" data-i="${i}"><span class="nl">${i + 1}</span><span>${esc(l)}</span></button>`).join("")}</div>`;
+    } else {
+      artefacto = `<figure class="diagrama dfd-juego" id="fig">${c.svg}<figcaption>Toca el elemento (símbolo o flecha) que tiene el defecto.</figcaption></figure>`;
+    }
+    zona.innerHTML = `
+      <section class="caso" aria-live="polite">
+        <div class="barra"><span class="etiqueta">Caso ${idx + 1} de ${casos.length} · U${c.u} ${esc(UNIDADES[c.u].nombre)}</span><span class="num">${puntos} de ${max} puntos</span></div>
+        <h2 style="margin-top:.4rem">${esc(c.titulo)}</h2>
+        <div class="sintoma"><strong>Lo que pasó</strong>${esc(c.sintoma)}</div>
+        <div class="paso"><h3><span class="n">01</span>Encuentra el defecto</h3>
+          <p class="nota">${c.tipo === "texto" ? "Toca la línea donde está el problema." : "Toca el símbolo o la flecha donde está el problema."}</p>
+          ${artefacto}
+          <div id="retro1"></div>
+        </div>
+        <div class="paso" id="paso2" hidden></div>
+        <div id="cierre"></div>
+        <div class="fila-botones"><button type="button" class="btn" id="sig" hidden>${idx + 1 < casos.length ? "Siguiente caso" : "Ver resultado"}</button><button type="button" class="btn sec" id="salir">Salir</button></div>
+      </section>`;
+    document.getElementById("sig").onclick = () => { idx++; if (idx < casos.length) { pintarCaso(); window.scrollTo({ top: 0, behavior: "smooth" }); } else final(); };
+    document.getElementById("salir").onclick = configurar;
+    if (c.tipo === "texto") zona.querySelectorAll(".lineas button").forEach(b => b.onclick = () => elegir(c, b, Number(b.dataset.i)));
+    else {
+      const fig = document.getElementById("fig");
+      fig.querySelectorAll("g[data-id]").forEach(g => {
+        const p = g.querySelector("path.flujo");
+        if (p) { const h = p.cloneNode(); h.setAttribute("class", "hit"); h.removeAttribute("marker-end"); h.removeAttribute("marker-start"); g.insertBefore(h, g.firstChild); }
+        g.setAttribute("tabindex", "0"); g.setAttribute("role", "button");
+        g.onclick = () => elegir(c, g, g.dataset.id);
+        g.onkeydown = ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); elegir(c, g, g.dataset.id); } };
+      });
+    }
+  }
+
+  function elegir(c, nodo, valor) {
+    if (estado.paso !== 1) return;
+    estado.intentos++;
+    const ok = c.culpables.includes(valor);
+    if (ok) {
+      marcarCulpables(c);
+      const p = estado.intentos === 1 ? 2 : 1; estado.pts += p;
+      document.getElementById("retro1").innerHTML = `<p class="aviso-ok">${p === 2 ? "¡Encontrado! +2" : "¡Bien! Lo encontraste con la pista. +1"}</p>`;
+      pasoDos(c); return;
+    }
+    nodo.classList.add("mal"); if (nodo.tagName === "BUTTON") nodo.disabled = true;
+    if (estado.intentos === 1) {
+      document.getElementById("retro1").innerHTML = `<div class="pista"><strong>Piensa en esto</strong>${esc(c.pista)}</div>`;
+      return;
+    }
+    marcarCulpables(c);
+    document.getElementById("retro1").insertAdjacentHTML("beforeend", `<p class="aviso-ok" style="color:var(--tinta-suave)">El defecto quedó marcado en verde. Míralo antes de seguir.</p>`);
+    pasoDos(c);
+  }
+
+  function marcarCulpables(c) {
+    estado.paso = 2;
+    if (c.tipo === "texto") {
+      zona.querySelectorAll(".lineas button").forEach(b => { b.disabled = true; if (c.culpables.includes(Number(b.dataset.i))) b.classList.add("ok"); });
+    } else {
+      const fig = document.getElementById("fig"); fig.classList.add("cerrado");
+      fig.querySelectorAll("g[data-id]").forEach(g => { if (c.culpables.includes(g.dataset.id)) { g.classList.remove("mal"); g.classList.add("ok"); } });
+    }
+  }
+
+  function pasoDos(c) {
+    const ops = mezclar([c.principio, ...c.distractores]);
+    const correcta = ops.indexOf(c.principio);
+    const p2 = document.getElementById("paso2"); p2.hidden = false;
+    p2.innerHTML = `<h3><span class="n">02</span>¿Qué principio no se respetó?</h3>
+      <div class="opciones">${ops.map((k, i) => `<button type="button" class="opcion" data-k="${i}"><span class="letra">${LETRAS[i]}</span><span>${esc(PRINCIPIOS[k].nombre)}</span></button>`).join("")}</div>
+      <div id="retro2"></div>`;
+    let intentos = 0;
+    p2.querySelectorAll(".opcion").forEach(b => b.onclick = () => {
+      if (estado.paso !== 2) return;
+      intentos++;
+      if (Number(b.dataset.k) === correcta) {
+        b.classList.add("ok"); const p = intentos === 1 ? 2 : 1; estado.pts += p;
+        p2.querySelectorAll(".opcion").forEach(x => x.disabled = true);
+        document.getElementById("retro2").innerHTML = `<p class="aviso-ok">${p === 2 ? "¡Correcto! +2" : "¡Bien! +1"}</p>`;
+        cerrar(c); return;
+      }
+      b.classList.add("mal"); b.disabled = true;
+      if (intentos === 1) { document.getElementById("retro2").innerHTML = `<div class="pista"><strong>Piensa en esto</strong>Vuelve a leer «Lo que pasó»: ¿qué consecuencia produjo el defecto que marcaste?</div>`; return; }
+      p2.querySelectorAll(".opcion").forEach(x => { x.disabled = true; if (Number(x.dataset.k) === correcta) x.classList.add("ok"); });
+      fallos.push(c);
+      cerrar(c);
+    });
+  }
+
+  function cerrar(c) {
+    estado.paso = 3;
+    puntos += estado.pts;
+    if (estado.pts < 3 && !fallos.includes(c)) fallos.push(c);
+    document.getElementById("cierre").innerHTML = `<div class="cerrado-caja">
+      <strong>Por qué es un defecto</strong><p>${esc(c.explicacion)}</p>
+      <p style="margin-top:.6rem"><strong>Una corrección posible</strong></p><div class="corr">${esc(c.correccion)}</div>
+      <p style="margin-top:.6rem">Repasa: <a href="../u${c.u}.html#repaso">Unidad ${c.u} · ${esc(UNIDADES[c.u].nombre)}</a></p></div>`;
+    const s = document.getElementById("sig"); s.hidden = false; s.focus();
+  }
+
+  function final() {
+    const pct = puntos / max;
+    const unidades = [...new Set(fallos.map(c => c.u))].sort((a, b) => a - b);
+    zona.innerHTML = `<section class="caso">
+      <p class="etiqueta">Fin de la cacería</p>
+      <h2 class="num">${puntos} de ${max} puntos</h2>
+      <p class="bajada">${pct >= .8 ? "Muy buen ojo de ingeniero." : pct >= .5 ? "Vas bien. Repasa los casos que te costaron." : "Conviene repasar antes de seguir."}</p>
+      ${unidades.length ? `<h3 style="margin-top:1rem">Repasa primero</h3><ul class="resumen">${unidades.map(u => `<li><a href="../u${u}.html#repaso">Unidad ${u} · ${esc(UNIDADES[u].nombre)}</a></li>`).join("")}</ul>` : ""}
+      <div class="fila-botones"><button type="button" class="btn" id="otra">Jugar otra vez</button></div>
+    </section>`;
+    document.getElementById("otra").onclick = configurar;
+  }
+
+  configurar();
+})();
+</script>
+</body>
+</html>

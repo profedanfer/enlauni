@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U6 · Modelado de requerimientos: escenarios</title>
+<link rel="stylesheet" href="../assets/estilos.css">
+<link rel="stylesheet" href="../ingenieria-del-software-1/iso1.css">
+</head>
+<body class="iso1">
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Ingeniería del Software 1</a><span aria-hidden="true">/</span><a href="repaso.html">Repaso</a><span aria-hidden="true">/</span><span>Unidad 6</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Unidad 6 de 11 <span class="bloque-tag">Bloque 3 · Ingeniería de requerimientos</span></p>
+    <h1>Modelado de requerimientos: escenarios</h1>
+    <p class="objetivo">Transformar los requerimientos indagados en un modelo basado en escenarios, desde el caso de uso preliminar hasta el caso de uso formal.</p>
+    <ul class="contenidos" aria-label="Contenidos"><li>Análisis de requerimientos</li><li>Reglas prácticas</li><li>Análisis del dominio</li><li>Enfoques del modelado</li><li>Caso de uso preliminar</li><li>Caso mejorado</li><li>Caso formal</li><li>Actividad y canal (swimlane)</li></ul>
+    <aside class="aviso-ind"><p><strong>¿Ya hiciste la indagación previa?</strong> Hazla antes de leer este repaso: <a href="indagaciones/u06.html">Indagación U6: Modelado de requerimientos: escenarios</a></p></aside>
+  </section>
+  <nav class="indice-pagina" aria-label="En esta página">
+    <a href="#repaso">Repaso</a><a href="#caso">Caso aplicado</a><a href="#practica">Práctica</a><a href="#autoevaluacion">Autoevaluación</a><a href="#juegos">Juegos</a><a href="#bibliografia">Bibliografía</a>
+  </nav>
+  <section class="seccion" id="repaso">
+    <h2><span class="num-sec">01</span>Repaso</h2>
+    <p class="bajada">Texto base de cátedra: Pressman (2010), capítulo 6. Las fuentes de acceso abierto te permiten profundizar.</p>
+    <dl class="conceptos"><div class="concepto"><dt>Análisis de requerimientos</dt><dd><p>Toma lo indagado, todavía disperso y en lenguaje natural, y lo convierte en un <b>modelo</b>: una representación estructurada que sirve de puente entre la descripción del sistema y el diseño <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 6, pp. 126–137</a>)</span>.</p></dd></div><div class="concepto"><dt>Reglas prácticas</dt><dd><p>El modelo se centra en los requerimientos visibles en el dominio del problema, con un nivel de abstracción alto; cada elemento debe aumentar la comprensión; las consideraciones de implementación se posponen; se minimizan las listas exhaustivas en favor de las relaciones <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 6</a>)</span>.</p></dd></div><div class="concepto"><dt>Análisis del dominio</dt><dd><p>Busca clases, objetos y operaciones que se repiten en todos los sistemas de un mismo dominio, para reutilizarlos <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 6</a>)</span>. Ejemplo: cualquier sistema de turnos tiene <i>agenda</i>, <i>turno con estado</i>, <i>paciente o cliente</i> y <i>reglas de cancelación</i>.</p></dd></div><div class="concepto"><dt>Enfoques del modelado</dt><dd><p>El análisis <b>estructurado</b> separa datos y procesos que los transforman; el <b>orientado a objetos</b> define clases que encapsulan datos y comportamiento. Los elementos del modelo de requerimientos son: basados en escenarios, basados en clases, de comportamiento y orientados al flujo <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 6</a>)</span>.</p></dd></div><div class="concepto"><dt>Caso de uso</dt><dd><p>Cockburn lo define como el conjunto de escenarios posibles entre el sistema y sus actores, unidos por el <b>objetivo del actor principal</b>. El escenario principal es aquel en el que todo sale bien; las <b>extensiones</b> recogen recuperaciones y fallas <span class="cita">(<a href="#ref-cockburn">Cockburn, 1997</a>)</span>.</p><p>El actor principal tiene un objetivo que requiere ayuda del sistema; el actor secundario es aquel de quien el sistema necesita ayuda <span class="cita">(<a href="#ref-cockburn">Cockburn, 1997</a>)</span>.</p></dd></div><div class="concepto"><dt>De preliminar a formal</dt><dd><p>El caso <b>preliminar</b> enlista las acciones de un actor en orden. El caso <b>mejorado</b> agrega atributos de datos y detecta excepciones. El caso <b>formal</b> sigue una plantilla: objetivo en contexto, precondiciones, disparador, escenario, excepciones y otros campos <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 6</a>)</span>. Pressman desarrolla un ejemplo completo con el sistema CasaSegura <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 6, p. 136</a>)</span>.</p></dd></div><div class="concepto"><dt>Modelos UML de apoyo</dt><dd><p>El <b>diagrama de actividades</b> muestra la secuencia de acciones y decisiones de un escenario; el <b>diagrama de canal</b> (<i>swimlane</i>) separa esa secuencia en carriles según el actor responsable <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 6</a>)</span>.</p></dd></div></dl>
+    <aside class="ojo"><strong class="tit">No confundas</strong><p><b>Un caso de uso no describe la pantalla.</b> «El paciente hace clic en el botón verde» es diseño de interfaz; «el paciente elige el horario» es requerimiento. Las consideraciones de implementación se posponen <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 6</a>)</span>.</p><p><b>El diagrama de casos de uso no reemplaza el texto.</b> El óvalo nombra el caso; el valor está en el flujo, las excepciones y las condiciones.</p></aside>
+    <aside class="ia"><strong class="tit">Con IA, con criterio</strong><p>Un asistente de IA puede proponer un caso de uso formal en segundos. Revísalo con la definición de Cockburn: ¿hay un actor principal con un objetivo claro?, ¿las extensiones salen de excepciones reales del dominio o son genéricas? <span class="cita">(<a href="#ref-cockburn">Cockburn, 1997</a>)</span> La IA tiende a escribir flujos donde todo sale bien.</p></aside>
+  </section>
+  <section class="seccion" id="caso">
+    <h2><span class="num-sec">02</span>Caso aplicado</h2>
+    <div class="caso-usf"><span class="tit">Caso transversal · Turnos USF</span><p>Una Unidad de Salud Familiar (USF) de barrio atiende clínica general, pediatría y control prenatal. Hoy los turnos se reparten por orden de llegada: la gente hace fila desde la madrugada y muchas veces vuelve a su casa sin ser atendida. La directora de la USF, el equipo de enfermería y la región sanitaria quieren un <b>sistema de turnos</b>: pedir turno por la web o por mensajería, una pantalla en la sala de espera y reportes mensuales de atenciones.</p><p>Este caso acompaña las 11 unidades. En cada una lo miras con los conceptos nuevos.</p></div>
+  <p class="bajada" style="margin-top:1rem">El mismo caso de uso en sus tres niveles de detalle.</p>
+  <div class="tabs"><div class="tabs-botones" role="tablist" aria-label="Niveles del caso de uso" hidden><button type="button" role="tab" id="tab6-0" aria-controls="panel6-0">Preliminar</button><button type="button" role="tab" id="tab6-1" aria-controls="panel6-1">Mejorado</button><button type="button" role="tab" id="tab6-2" aria-controls="panel6-2">Formal</button></div><div class="tab-panel" role="tabpanel" id="panel6-0" aria-labelledby="tab6-0" data-lang="Preliminar"><div class="panel-texto"><ol><li>El paciente pide un turno.</li><li>El sistema muestra los horarios libres.</li><li>El paciente elige un horario.</li><li>El sistema confirma el turno.</li></ol></div></div><div class="tab-panel" role="tabpanel" id="panel6-1" aria-labelledby="tab6-1" data-lang="Mejorado"><div class="panel-texto"><ol><li>El paciente se identifica con su número de cédula.</li><li>El paciente elige la especialidad (clínica, pediatría o prenatal) y el día.</li><li>El sistema muestra los horarios libres de ese día, sin los cupos reservados para urgencias.</li><li>El paciente elige un horario.</li><li>El sistema registra el turno con estado «confirmado» y envía la confirmación con número de turno y hora.</li></ol><p><b>Excepciones detectadas:</b> no hay horarios libres; el paciente ya tiene un turno ese día; la cédula no está registrada.</p></div></div><div class="tab-panel" role="tabpanel" id="panel6-2" aria-labelledby="tab6-2" data-lang="Formal"><div class="panel-texto"><div class="artefacto"><div class="cab">Caso de uso: Pedir turno</div><dl><dt>Actor principal</dt><dd>Paciente (o agente comunitario en su nombre)</dd><dt>Actores secundarios</dt><dd>Servicio de mensajería (envía la confirmación)</dd><dt>Objetivo en contexto</dt><dd>Obtener un turno para una especialidad y un día sin presentarse en la USF de madrugada.</dd><dt>Precondiciones</dt><dd>La agenda del día está cargada por enfermería. El paciente está registrado en el sistema.</dd><dt>Disparador</dt><dd>El paciente decide pedir un turno.</dd><dt>Flujo básico</dt><dd><ol><li>El paciente se identifica con su número de cédula.</li><li>El sistema verifica que no tenga otro turno ese día.</li><li>El paciente elige especialidad y día.</li><li>El sistema muestra los horarios libres, excluidos los cupos de urgencia.</li><li>El paciente elige un horario.</li><li>El sistema registra el turno como «confirmado».</li><li>El sistema envía la confirmación con número y hora.</li></ol></dd><dt>Flujos alternos</dt><dd><ul><li><b>2a.</b> Ya tiene turno ese día: el sistema lo muestra y ofrece cancelarlo o mantenerlo.</li><li><b>4a.</b> No hay horarios libres: el sistema ofrece el próximo día con disponibilidad.</li><li><b>7a.</b> Falla la mensajería: el turno queda registrado y se muestra en pantalla para que el paciente lo anote.</li></ul></dd><dt>Postcondiciones</dt><dd>El turno existe con estado «confirmado», ocupa un horario de la agenda y aparecerá en la lista del día de enfermería.</dd></dl></div></div></div></div>
+  </section>
+  <section class="seccion" id="practica">
+    <h2><span class="num-sec">03</span>Actividades de práctica</h2>
+    <p class="bajada">Cada actividad indica cuándo terminaste. No pases a la siguiente hasta cumplirlo.</p>
+    <article class="actividad">
+      <header><h3>Actividad 1 · Tu caso de uso en tres niveles</h3><span class="meta">En equipo de trabajo · 45 min</span></header>
+      <p>Elijan la función más importante de su TPI.</p>
+      <ol><li>Escriban el caso preliminar (lista de acciones del actor).</li><li>Mejórenlo con los datos que maneja el sistema y las excepciones que detecten.</li><li>Escriban el caso formal con todos los campos de la plantilla, incluidas las postcondiciones.</li><li>Verifiquen que ningún paso describa la interfaz o la tecnología.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tienen los tres niveles, al menos dos flujos alternos con número de paso y ningún paso que mencione botones, pantallas o tecnologías.</p>
+    </article><article class="actividad">
+      <header><h3>Actividad 2 · Carriles de responsabilidad</h3><span class="meta">Individual · 25 min</span></header>
+      <p>Usa el caso «Pedir turno» de esta unidad.</p>
+      <ol><li>Dibuja el diagrama de actividades del flujo básico con sus decisiones.</li><li>Conviértelo en diagrama de canal con tres carriles: paciente, sistema y mensajería.</li><li>Marca dónde se origina cada flujo alterno.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tu diagrama tiene tres carriles, todas las decisiones del flujo y los tres flujos alternos ubicados.</p>
+    </article>
+    <p class="tpi"><strong>Conexión con el TPI.</strong> El caso de uso formal de su TPI será la entrada del DFD de la Unidad 7: cada paso del flujo básico es candidato a un proceso o a un flujo de datos.</p>
+  </section>
+  <section class="seccion" id="autoevaluacion">
+    <h2><span class="num-sec">04</span>Autoevaluación</h2>
+    <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
+    <ol class="autoeval"><li>¿Qué une a todos los escenarios de un caso de uso según Cockburn?</li><li>¿Qué agrega el caso mejorado al preliminar?</li><li>¿Qué es una postcondición y por qué conviene escribirla?</li><li>¿Para qué sirve el diagrama de canal?</li></ol>
+  </section>
+  <section class="seccion" id="juegos">
+    <h2><span class="num-sec">05</span>Juegos</h2>
+    <div class="enlaces-juego"><a class="btn" href="juegos/ruta-de-repaso.html#u6">Estación U6 de la Ruta de Repaso</a><a class="btn sec" href="juegos/caza-el-defecto.html">Caza el defecto</a><a class="btn sec" href="juegos/oca.html">La Oca de ISO1</a></div>
+  </section>
+  <section class="seccion" id="bibliografia">
+    <h2><span class="num-sec">06</span>Bibliografía</h2>
+    <p class="bajada">Fuentes citadas en esta unidad, en formato APA 7. Las de acceso abierto se consultaron el 26 de octubre de 2026; los textos de cátedra están rotulados.</p>
+    <ol class="biblio"><li id="ref-cockburn">Cockburn, A. (1997). Structuring use cases with goals. <i>Journal of Object-Oriented Programming</i>, setiembre-octubre y noviembre-diciembre de 1997. <a href="https://atlas-project-tdaq-awg.web.cern.ch/Documents/StructuringUseCasesWithGoals.pdf">https://atlas-project-tdaq-awg.web.cern.ch/Documents/StructuringUseCasesWithGoals.pdf</a></li><li id="ref-pressman">Pressman, R. S. (2010). <i>Ingeniería del software: un enfoque práctico</i> (7.ª ed.). McGraw-Hill. <span class="rotulo-catedra">Texto de cátedra</span> <span class="nota-ref">Texto base de cátedra. No es de acceso abierto: consúltalo en la biblioteca de la universidad.</span></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Unidades"><a href="u5.html"><small>← Unidad 5</small>Comprensión de los requerimientos</a><a class="sig" href="u7.html"><small>Unidad 7 →</small>Modelado de requerimientos: flujo y comportamiento</a></nav>
+  <footer class="pie"><span>Ingeniería del Software 1</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>

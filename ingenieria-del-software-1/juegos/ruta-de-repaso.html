@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ruta de Repaso</title>
+<link rel="stylesheet" href="../../assets/estilos.css">
+<link rel="stylesheet" href="../iso1.css">
+<style>
+  .portada { padding-block: 1.6rem .6rem; }
+
+  /* Línea de estaciones */
+  .ruta { position: relative; margin-top: 1.6rem; }
+  .ruta::before {
+    content: ""; position: absolute; left: 8%; right: 8%; top: 1.75rem; height: 6px;
+    background: var(--linea); border-radius: 3px;
+  }
+  .estaciones { position: relative; display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem .3rem; }
+  .ruta::before { display: none; }
+  @media (max-width: 640px) { .ruta::before { display: none; } .estaciones { grid-template-columns: repeat(4, 1fr); row-gap: 1rem; } }
+  .estacion {
+    font: inherit; background: none; border: 0; cursor: pointer; color: var(--tinta);
+    display: grid; justify-items: center; gap: .35rem; padding: 0; min-width: 0;
+  }
+  .estacion .disco {
+    width: 3.5rem; height: 3.5rem; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--superficie); border: 4px solid var(--verde-claro);
+    font-family: var(--f-codigo); font-weight: 600; color: var(--verde-medio); font-size: 1rem;
+    transition: transform .15s ease;
+  }
+  .estacion:hover .disco { transform: scale(1.07); }
+  .estacion.hecha .disco { background: var(--verde-medio); border-color: var(--verde-medio); color: var(--sobre-acento); }
+  .estacion .nom { font-size: .78rem; text-align: center; line-height: 1.2; color: var(--tinta-suave); overflow-wrap: anywhere; }
+  .estacion .pts { font-size: .78rem; font-weight: 700; color: var(--verde-medio); min-height: 1.1em; }
+
+  .resumen-ruta { margin-top: 1.4rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .8rem; }
+  .resumen-ruta p { margin: 0; color: var(--tinta-suave); }
+
+  /* Panel de juego */
+  .panel { background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radio); padding: 1.2rem; margin-top: 1.4rem; }
+  .barra { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .progreso { height: 6px; background: var(--linea); border-radius: 3px; margin-top: .6rem; overflow: hidden; }
+  .progreso > i { display: block; height: 100%; background: var(--verde-claro); transition: width .3s ease; }
+  .enunciado { font-size: 1.15rem; margin: 1rem 0 0; font-weight: 600; }
+
+  .vf { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-top: 1rem; }
+  .vf .opcion { justify-content: center; font-weight: 700; }
+
+  .emparejar { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-top: 1rem; }
+  .col { display: grid; gap: .5rem; align-content: start; min-width: 0; }
+  .ficha {
+    font: inherit; font-size: .95rem; cursor: pointer; text-align: left;
+    background: var(--superficie); color: var(--tinta); border: 2px solid var(--linea);
+    border-radius: var(--radio); padding: .6rem .7rem; min-height: 48px; overflow-wrap: anywhere;
+  }
+  .ficha.sel { border-color: var(--verde-medio); box-shadow: 0 0 0 3px var(--acierto-fondo); }
+  .ficha.hecha { border-color: var(--acierto); background: var(--acierto-fondo); cursor: default; }
+  .ficha.sacude { border-color: var(--error); background: var(--error-fondo); animation: sacude .35s; }
+  .ficha .par { display: block; font-family: var(--f-codigo); font-size: .72rem; color: var(--acierto); margin-top: .2rem; }
+  @keyframes sacude { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+
+  /* Resultados */
+  .barras { display: grid; gap: .7rem; margin-top: 1rem; }
+  .fila-barra { display: grid; grid-template-columns: 2.6rem 1fr 3.4rem; gap: .6rem; align-items: center; }
+  .fila-barra b { font-family: var(--f-codigo); color: var(--verde-medio); }
+  .pista-barra { height: 14px; background: var(--linea); border-radius: 7px; overflow: hidden; }
+  .pista-barra > i { display: block; height: 100%; background: var(--verde-claro); }
+  .pista-barra > i.baja { background: var(--pista-borde); }
+  .repasar { margin-top: 1.2rem; }
+  .repasar li { margin-top: .4rem; }
+</style>
+</head>
+<body class="iso1">
+<div class="envoltura">
+  <header class="inst">
+    <span>Aula Danfer</span>
+    <a href="index.html">← Juegos de repaso</a>
+  </header>
+
+  <section class="portada">
+    <p class="etiqueta">Ingeniería del Software 1 · Unidades 1 a 11</p>
+    <h1>Ruta de Repaso</h1>
+    <p class="bajada">Cada estación es una unidad. Acierto al primer intento: 2 puntos. Al segundo, después de la pista: 1 punto.</p>
+  </section>
+
+  <div class="ruta" aria-label="Estaciones">
+    <div class="estaciones" id="estaciones"></div>
+  </div>
+
+  <div class="resumen-ruta" id="resumenRuta">
+    <p id="textoTotal" class="num"></p>
+    <div class="fila-botones" style="margin-top:0">
+      <button class="btn sec" id="btnResultados" type="button">Ver resultados</button>
+      <button class="btn sec" id="btnReiniciar" type="button">Reiniciar</button>
+    </div>
+  </div>
+
+  <main id="zona"></main>
+
+  <footer class="pie">
+    <span>Ingeniería del Software 1</span>
+    <span>PhD. Daniela Ferreira</span>
+  </footer>
+</div>
+
+<script src="banco-preguntas.js"></script>
+<script>
+(function () {
+  const CLAVE = "iso1-ruta-v1";
+  const LETRAS = ["A", "B", "C", "D", "E"];
+  const REPASO = {
+    1: ["¿Puedes explicar por qué un programa sin documentación es software incompleto?",
+        "¿Qué diferencia hay entre programar e ingeniería de software según Winters et al.?"],
+    2: ["¿Puedes elegir un modelo de proceso para un caso y decir cuál sería el peor y por qué?",
+        "¿Qué advirtió Royce sobre la cascada y qué propuso agregar?"],
+    3: ["¿Puedes nombrar las responsabilidades, eventos y artefactos de Scrum con sus compromisos?",
+        "¿Qué significa que lo ágil sea adaptativo y no predictivo?"],
+    4: ["¿Puedes dar un principio de cada actividad estructural con un ejemplo real?",
+        "¿Qué diferencia hay entre un principio y una regla de un marco de trabajo?"],
+    5: ["¿Puedes reescribir «el sistema debe ser rápido» como requerimiento verificable?",
+        "¿Qué distingue a un requerimiento normal, uno esperado y uno emocionante?"],
+    6: ["¿Puedes escribir un caso de uso formal con precondiciones, flujos alternos y postcondiciones?",
+        "¿Por qué un paso que menciona un botón no debería estar en un caso de uso?"],
+    7: ["¿Puedes dibujar los cuatro símbolos del DFD con la notación de clase?",
+        "¿Cómo verificas la continuidad del flujo entre el nivel 0 y el nivel 1?"],
+    8: ["¿Puedes explicar el criterio de Parnas con un ejemplo de tu TPI?",
+        "¿Qué es la independencia funcional y cómo se mide?"],
+    9: ["¿Puedes describir un estilo arquitectónico con sus componentes y conectores?",
+        "¿Por qué Fowler recomienda empezar por un monolito?"],
+    10: ["¿Puedes ordenar los tipos de acoplamiento del más fuerte al más débil?",
+         "¿Cómo aplicarías la inversión de dependencias para cambiar el canal de mensajería?"],
+    11: ["¿Puedes evaluar una pantalla real con tres heurísticas de Nielsen?",
+         "¿Cuáles son las reglas de oro y qué principios las desarrollan?"]
+  };
+
+  function leer() { try { return JSON.parse(localStorage.getItem(CLAVE)) || {}; } catch (e) { return {}; } }
+  function guardar() { try { localStorage.setItem(CLAVE, JSON.stringify(progreso)); } catch (e) {} }
+  function mezclar(arr) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+  function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+  function maxUnidad(u) { return BANCO.filter(p => p.u === u).length * 2; }
+
+  let progreso = leer();   // { "1": puntos, ... }
+  let partida = null;      // { u, preguntas, i, puntos, intentos, resuelta }
+  const zona = document.getElementById("zona");
+
+  /* ---------- Línea de estaciones ---------- */
+  function pintarRuta() {
+    const cont = document.getElementById("estaciones");
+    cont.innerHTML = "";
+    let total = 0, maxTotal = 0;
+    for (let u = 1; u <= 11; u++) {
+      const hecho = progreso[u] !== undefined;
+      const max = maxUnidad(u);
+      maxTotal += max;
+      if (hecho) total += progreso[u];
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "estacion" + (hecho ? " hecha" : "");
+      b.innerHTML = `<span class="disco">U${u}</span><span class="nom">${esc(UNIDADES[u].corto)}</span><span class="pts num">${hecho ? progreso[u] + "/" + max : ""}</span>`;
+      b.setAttribute("aria-label", `Unidad ${u}: ${UNIDADES[u].nombre}${hecho ? ", " + progreso[u] + " de " + max + " puntos" : ""}`);
+      b.addEventListener("click", () => empezar(u));
+      cont.appendChild(b);
+    }
+    const hechas = Object.keys(progreso).length;
+    document.getElementById("textoTotal").textContent =
+      hechas === 0 ? "Elige una estación para empezar. Puedes ir en el orden que quieras."
+                   : `${hechas} de 11 estaciones · ${total} de ${maxTotal} puntos`;
+    document.getElementById("btnResultados").hidden = hechas === 0;
+    document.getElementById("btnReiniciar").hidden = hechas === 0;
+  }
+
+  /* ---------- Partida ---------- */
+  function empezar(u) {
+    const preguntas = mezclar(BANCO.filter(p => p.u === u)).map(p => {
+      if (p.t === "mc" || p.t === "code") {
+        const orden = mezclar(p.o.map((_, i) => i));
+        return Object.assign({}, p, { o: orden.map(i => p.o[i]), a: orden.indexOf(p.a) });
+      }
+      return p;
+    });
+    partida = { u, preguntas, i: 0, puntos: 0 };
+    pintarPregunta();
+    zona.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function pintarPregunta() {
+    const p = partida.preguntas[partida.i];
+    partida.intentos = 0; partida.resuelta = false;
+    const n = partida.preguntas.length;
+    let cuerpo = "";
+    if (p.t === "code") cuerpo += `<div class="codigo-lang">${esc(p.lang)}</div><pre class="codigo">${esc(p.code)}</pre>`;
+    cuerpo += `<p class="enunciado">${esc(p.q)}</p>`;
+    if (p.t === "mc" || p.t === "code") {
+      cuerpo += `<div class="opciones">${p.o.map((t, k) => `<button type="button" class="opcion" data-k="${k}"><span class="letra">${LETRAS[k]}</span><span>${esc(t)}</span></button>`).join("")}</div>`;
+    } else if (p.t === "vf") {
+      cuerpo += `<div class="vf"><button type="button" class="opcion" data-k="v">Verdadero</button><button type="button" class="opcion" data-k="f">Falso</button></div>`;
+    } else if (p.t === "match") {
+      const der = mezclar(p.pares.map((_, i) => i));
+      cuerpo += `<div class="emparejar"><div class="col">${p.pares.map((par, i) => `<button type="button" class="ficha" data-lado="i" data-i="${i}">${esc(par[0])}</button>`).join("")}</div>
+                 <div class="col">${der.map(i => `<button type="button" class="ficha" data-lado="d" data-i="${i}">${esc(p.pares[i][1])}</button>`).join("")}</div></div>`;
+    }
+    zona.innerHTML = `
+      <section class="panel" aria-live="polite">
+        <div class="barra">
+          <span class="etiqueta">U${partida.u} · ${esc(UNIDADES[partida.u].nombre)}</span>
+          <span class="num">Pregunta ${partida.i + 1} de ${n} · ${partida.puntos} pts</span>
+        </div>
+        <div class="progreso"><i style="width:${(partida.i / n) * 100}%"></i></div>
+        ${cuerpo}
+        <div id="retro"></div>
+        <div class="fila-botones">
+          <button type="button" class="btn" id="btnSig" hidden>${partida.i + 1 < n ? "Siguiente" : "Terminar estación"}</button>
+          <button type="button" class="btn sec" id="btnSalir">Volver a la ruta</button>
+        </div>
+      </section>`;
+    document.getElementById("btnSig").addEventListener("click", siguiente);
+    document.getElementById("btnSalir").addEventListener("click", () => { partida = null; zona.innerHTML = ""; window.scrollTo({ top: 0, behavior: "smooth" }); });
+    if (p.t === "match") prepararEmparejar(p);
+    else zona.querySelectorAll(".opcion").forEach(b => b.addEventListener("click", () => responder(b)));
+  }
+
+  function mostrarPista(texto) {
+    document.getElementById("retro").innerHTML = `<div class="pista"><strong>Piensa en esto</strong>${esc(texto)}</div>`;
+  }
+  function cerrar(puntos, mensaje) {
+    partida.resuelta = true;
+    partida.puntos += puntos;
+    document.getElementById("retro").insertAdjacentHTML("beforeend", mensaje ? `<p class="aviso-ok">${mensaje}</p>` : "");
+    document.getElementById("btnSig").hidden = false;
+    document.getElementById("btnSig").focus();
+  }
+
+  function responder(boton) {
+    if (partida.resuelta) return;
+    const p = partida.preguntas[partida.i];
+    const k = boton.dataset.k;
+    const correcta = p.t === "vf" ? (k === "v") === p.a : Number(k) === p.a;
+    partida.intentos++;
+    if (correcta) {
+      boton.classList.add("ok");
+      zona.querySelectorAll(".opcion").forEach(b => b.disabled = true);
+      cerrar(partida.intentos === 1 ? 2 : 1, partida.intentos === 1 ? "¡Correcto! +2" : "¡Bien! Lo encontraste con la pista. +1");
+      return;
+    }
+    boton.classList.add("mal"); boton.disabled = true;
+    if (partida.intentos === 1) { mostrarPista(p.pista); return; }
+    // Segundo error: se marca la correcta y se avanza.
+    zona.querySelectorAll(".opcion").forEach(b => {
+      b.disabled = true;
+      const esLa = p.t === "vf" ? (b.dataset.k === "v") === p.a : Number(b.dataset.k) === p.a;
+      if (esLa) b.classList.add("ok"); else if (!b.classList.contains("mal")) b.classList.add("descartada");
+    });
+    cerrar(0, "");
+    document.getElementById("retro").insertAdjacentHTML("beforeend", `<p class="aviso-ok" style="color:var(--tinta-suave)">La respuesta correcta quedó marcada. Antes de seguir, vuelve a leer la pista: ¿ahora puedes explicar por qué?</p>`);
+  }
+
+  function prepararEmparejar(p) {
+    let sel = null, errores = 0, hechos = 0;
+    const fichas = zona.querySelectorAll(".ficha");
+    fichas.forEach(f => f.addEventListener("click", () => {
+      if (partida.resuelta || f.classList.contains("hecha")) return;
+      if (!sel || sel.dataset.lado === f.dataset.lado) {
+        if (sel) sel.classList.remove("sel");
+        sel = f; f.classList.add("sel"); return;
+      }
+      const a = sel, b = f; sel = null; a.classList.remove("sel");
+      if (a.dataset.i === b.dataset.i) {
+        hechos++;
+        [a, b].forEach(x => { x.classList.add("hecha"); x.insertAdjacentHTML("beforeend", `<span class="par">par ${hechos}</span>`); });
+        if (hechos === p.pares.length) {
+          const pts = errores === 0 ? 2 : errores === 1 ? 1 : 0;
+          cerrar(pts, pts === 2 ? "¡Todos los pares sin errores! +2" : pts === 1 ? "Completado con un error. +1" : "Completado.");
+        }
+      } else {
+        errores++;
+        [a, b].forEach(x => { x.classList.add("sacude"); setTimeout(() => x.classList.remove("sacude"), 450); });
+        if (errores === 1) mostrarPista(p.pista);
+      }
+    }));
+  }
+
+  function siguiente() {
+    partida.i++;
+    if (partida.i < partida.preguntas.length) { pintarPregunta(); return; }
+    const u = partida.u, max = maxUnidad(u);
+    progreso[u] = Math.max(progreso[u] || 0, partida.puntos);
+    guardar();
+    const pct = partida.puntos / max;
+    zona.innerHTML = `
+      <section class="panel">
+        <p class="etiqueta">Estación U${u} completada</p>
+        <h2 class="num">${partida.puntos} de ${max} puntos</h2>
+        <p class="bajada">${pct >= .8 ? "Muy bien. Pasa a la próxima estación." : pct >= .5 ? "Vas bien. Antes de seguir, responde estas preguntas para ti:" : "Esta unidad necesita más repaso. Responde estas preguntas y vuelve a intentarlo:"}</p>
+        ${pct < .8 ? `<ul class="repasar">${REPASO[u].map(t => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
+        <div class="fila-botones">
+          <button type="button" class="btn" id="btnOtra">Volver a la ruta</button>
+          <button type="button" class="btn sec" id="btnRepetir">Repetir U${u}</button>
+        </div>
+      </section>`;
+    partida = null;
+    pintarRuta();
+    document.getElementById("btnOtra").addEventListener("click", () => { zona.innerHTML = ""; window.scrollTo({ top: 0, behavior: "smooth" }); });
+    document.getElementById("btnRepetir").addEventListener("click", () => empezar(u));
+  }
+
+  function resultados() {
+    let filas = "", flojas = [];
+    for (let u = 1; u <= 11; u++) {
+      const max = maxUnidad(u), v = progreso[u];
+      const pct = v === undefined ? 0 : v / max;
+      if (v === undefined || pct < .7) flojas.push(u);
+      filas += `<div class="fila-barra"><b>U${u}</b><div class="pista-barra"><i class="${pct < .7 ? "baja" : ""}" style="width:${pct * 100}%"></i></div><span class="num">${v === undefined ? "—" : Math.round(pct * 100) + "%"}</span></div>`;
+    }
+    zona.innerHTML = `
+      <section class="panel">
+        <p class="etiqueta">Tus resultados</p>
+        <h2>Mapa de repaso</h2>
+        <div class="barras">${filas}</div>
+        ${flojas.length ? `<div class="repasar"><h3>Repasa primero</h3><ul>${flojas.map(u => `<li><strong>U${u} · ${esc(UNIDADES[u].nombre)}:</strong> ${esc(REPASO[u][0])}</li>`).join("")}</ul></div>`
+                        : `<p class="aviso-ok">Todas las unidades están en 70% o más. Repite las estaciones para afianzar.</p>`}
+        <div class="fila-botones"><button type="button" class="btn sec" id="btnCerrar">Cerrar</button></div>
+      </section>`;
+    document.getElementById("btnCerrar").addEventListener("click", () => zona.innerHTML = "");
+  }
+
+  /* Reinicio con confirmación dentro de la página */
+  document.getElementById("btnReiniciar").addEventListener("click", () => {
+    zona.innerHTML = `<section class="panel"><h3>¿Borrar tu progreso?</h3><p class="bajada">Se borran los puntos de todas las estaciones en este dispositivo.</p>
+      <div class="fila-botones"><button type="button" class="btn" id="siBorrar">Sí, borrar</button><button type="button" class="btn sec" id="noBorrar">Cancelar</button></div></section>`;
+    document.getElementById("siBorrar").addEventListener("click", () => { progreso = {}; guardar(); zona.innerHTML = ""; pintarRuta(); });
+    document.getElementById("noBorrar").addEventListener("click", () => zona.innerHTML = "");
+  });
+  document.getElementById("btnResultados").addEventListener("click", resultados);
+
+  pintarRuta();
+  const m = /^#u(1[01]|[1-9])$/.exec(location.hash);
+  if (m) empezar(Number(m[1]));
+})();
+</script>
+</body>
+</html>

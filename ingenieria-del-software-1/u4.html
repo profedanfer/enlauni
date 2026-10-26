@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U4 · Principios que guían la práctica</title>
+<link rel="stylesheet" href="../assets/estilos.css">
+<link rel="stylesheet" href="../ingenieria-del-software-1/iso1.css">
+</head>
+<body class="iso1">
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Ingeniería del Software 1</a><span aria-hidden="true">/</span><a href="repaso.html">Repaso</a><span aria-hidden="true">/</span><span>Unidad 4</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Unidad 4 de 11 <span class="bloque-tag">Bloque 2 · Agilidad y principios</span></p>
+    <h1>Principios que guían la práctica</h1>
+    <p class="objetivo">Reconocer los principios que orientan el proceso y la práctica de la ingeniería de software, y aplicarlos para analizar situaciones reales de proyecto.</p>
+    <ul class="contenidos" aria-label="Contenidos"><li>Conocimiento de la IS</li><li>Principios del proceso</li><li>Principios de la práctica</li><li>Comunicación</li><li>Planeación</li><li>Modelado</li><li>Construcción</li><li>Despliegue</li></ul>
+    <aside class="aviso-ind"><p><strong>¿Ya hiciste la indagación previa?</strong> Hazla antes de leer este repaso: <a href="indagaciones/u04.html">Indagación U4: Principios que guían la práctica</a></p></aside>
+  </section>
+  <nav class="indice-pagina" aria-label="En esta página">
+    <a href="#repaso">Repaso</a><a href="#caso">Caso aplicado</a><a href="#practica">Práctica</a><a href="#autoevaluacion">Autoevaluación</a><a href="#juegos">Juegos</a><a href="#bibliografia">Bibliografía</a>
+  </nav>
+  <section class="seccion" id="repaso">
+    <h2><span class="num-sec">01</span>Repaso</h2>
+    <p class="bajada">Texto base de cátedra: Pressman (2010), capítulo 4. Las fuentes de acceso abierto te permiten profundizar.</p>
+    <dl class="conceptos"><div class="concepto"><dt>Por qué principios</dt><dd><p>Los marcos (Scrum, XP, cascada) dicen qué hacer; los principios ayudan a decidir cuando el marco no alcanza. Pressman distingue principios que guían el <b>proceso</b> y principios que guían la <b>práctica</b>, y luego principios para cada actividad estructural <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 4</a>)</span>.</p></dd></div><div class="concepto"><dt>Principios del proceso</dt><dd><p>Entre otros: ser ágil, centrarse en la calidad en cada paso, estar listo para adaptarse, formar un equipo eficaz, establecer mecanismos de comunicación y coordinación, administrar el cambio, evaluar el riesgo y crear productos de trabajo que agreguen valor <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 4</a>)</span>.</p></dd></div><div class="concepto"><dt>Principios de la práctica</dt><dd><p>Divide y vencerás; usa la abstracción; busca la coherencia; centra la atención en la transferencia de información; construye software con modularidad eficaz; busca patrones; representa el problema y su solución desde varias perspectivas; y recuerda que alguien dará mantenimiento al software <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 4</a>)</span>.</p></dd></div><div class="concepto"><dt>Comunicación</dt><dd><p>Escuchar; prepararse antes de comunicarse; tener un facilitador; preferir la comunicación cara a cara; tomar notas y documentar las decisiones; buscar la colaboración; mantenerse centrado; dibujar si algo no está claro; y aceptar que la negociación no es un concurso <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 4</a>)</span>.</p></dd></div><div class="concepto"><dt>Planeación</dt><dd><p>Entender el alcance; involucrar a los participantes; reconocer que la planeación es iterativa; estimar con lo que se sabe; considerar el riesgo; ser realista; ajustar la granularidad del plan; definir cómo se asegurará la calidad y cómo se adaptará a los cambios; y dar seguimiento frecuente al plan <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 4</a>)</span>.</p></dd></div><div class="concepto"><dt>Modelado</dt><dd><p>El objetivo principal es construir software, no modelos; viajar ligero; producir el modelo más sencillo que describa el problema; construir modelos susceptibles de cambio; tener un propósito explícito para cada modelo; y adaptar los modelos al sistema en cuestión <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 4</a>)</span>.</p></dd></div><div class="concepto"><dt>Construcción</dt><dd><p>Antes de codificar: entender el problema y los principios de diseño, elegir un lenguaje y un entorno adecuados. Al codificar: algoritmos claros, nombres significativos, código autodocumentado. Después: revisar el código y probar. Las pruebas buscan errores: una buena prueba tiene alta probabilidad de encontrar uno que aún no se descubrió <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 4</a>)</span>.</p></dd></div><div class="concepto"><dt>Despliegue</dt><dd><p>Gestionar las expectativas del cliente; ensamblar y probar el paquete completo de entrega; establecer el régimen de apoyo antes de entregar; dar materiales de aprendizaje a los usuarios finales; y no entregar software con errores con la promesa de corregirlos después <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 4</a>)</span>.</p></dd></div></dl>
+    <aside class="ojo"><strong class="tit">No confundas</strong><p><b>Un principio no es una regla del marco.</b> «Daily Scrum de 15 minutos» es una regla de Scrum <span class="cita">(<a href="#ref-scrum">Schwaber y Sutherland, 2020</a>)</span>; «preferir la comunicación cara a cara» es un principio que vale en cualquier proceso <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 4</a>)</span>.</p></aside>
+  <p class="bajada" style="margin-top:1rem">Winters et al. insisten en que las decisiones de ingeniería deben tener una razón explicable: elegir entre alternativas con costos distintos, y poder decir por qué, es parte del oficio <span class="cita">(<a href="#ref-google">Winters et al., 2020, cap. 1</a>)</span>.</p>
+    <aside class="ia"><strong class="tit">Con IA, con criterio</strong><p>«Alguien dará mantenimiento al software» <span class="cita">(<a href="#ref-pressman">Pressman, 2010, cap. 4</a>)</span> vale el doble con IA: el código generado tiene que ser legible para el próximo integrante del equipo. Pide al asistente explicaciones, pero el nombre de las variables, la estructura y las pruebas son decisiones tuyas.</p></aside>
+  </section>
+  <section class="seccion" id="caso">
+    <h2><span class="num-sec">02</span>Caso aplicado</h2>
+    <div class="caso-usf"><span class="tit">Caso transversal · Turnos USF</span><p>Una Unidad de Salud Familiar (USF) de barrio atiende clínica general, pediatría y control prenatal. Hoy los turnos se reparten por orden de llegada: la gente hace fila desde la madrugada y muchas veces vuelve a su casa sin ser atendida. La directora de la USF, el equipo de enfermería y la región sanitaria quieren un <b>sistema de turnos</b>: pedir turno por la web o por mensajería, una pantalla en la sala de espera y reportes mensuales de atenciones.</p><p>Este caso acompaña las 11 unidades. En cada una lo miras con los conceptos nuevos.</p></div>
+  <p class="bajada" style="margin-top:1rem">Tres situaciones reales del proyecto. ¿Qué principio se cumplió o se rompió?</p>
+  <div class="tabs"><div class="tabs-botones" role="tablist" aria-label="Situaciones" hidden><button type="button" role="tab" id="tab4-0" aria-controls="panel4-0">Situación 1</button><button type="button" role="tab" id="tab4-1" aria-controls="panel4-1">Situación 2</button><button type="button" role="tab" id="tab4-2" aria-controls="panel4-2">Situación 3</button></div><div class="tab-panel" role="tabpanel" id="panel4-0" aria-labelledby="tab4-0" data-lang="Situación 1"><div class="panel-texto"><p>El analista llegó a la reunión con la directora sin preguntas preparadas. Habló 40 minutos de tecnologías y salió sin saber cuántos turnos por día atiende la USF.</p><p><b>Principios comprometidos:</b> prepararse antes de comunicarse; escuchar; mantenerse centrado.</p></div></div><div class="tab-panel" role="tabpanel" id="panel4-1" aria-labelledby="tab4-1" data-lang="Situación 2"><div class="panel-texto"><p>El equipo dibujó un diagrama de 60 elementos que nadie pudo leer y que quedó desactualizado en una semana.</p><p><b>Principios comprometidos:</b> viajar ligero; producir el modelo más sencillo; cada modelo con un propósito explícito.</p></div></div><div class="tab-panel" role="tabpanel" id="panel4-2" aria-labelledby="tab4-2" data-lang="Situación 3"><div class="panel-texto"><p>Se instaló el sistema el viernes a la tarde. El lunes a las 5:30 había 80 personas en la fila y enfermería no sabía cómo imprimir la lista del día.</p><p><b>Principios comprometidos:</b> establecer el régimen de apoyo antes de entregar; dar materiales de aprendizaje; gestionar las expectativas.</p></div></div></div>
+  </section>
+  <section class="seccion" id="practica">
+    <h2><span class="num-sec">03</span>Actividades de práctica</h2>
+    <p class="bajada">Cada actividad indica cuándo terminaste. No pases a la siguiente hasta cumplirlo.</p>
+    <article class="actividad">
+      <header><h3>Actividad 1 · Diagnóstico con principios</h3><span class="meta">En equipo de trabajo · 35 min</span></header>
+      <p>Elijan un proyecto real que conozcan (propio, de una pasantía o una noticia de un sistema que falló).</p>
+      <ol><li>Describan en cinco líneas qué pasó.</li><li>Identifiquen al menos tres principios comprometidos, uno por actividad estructural distinta.</li><li>Para cada principio, citen la fuente y expliquen la evidencia del caso.</li><li>Propongan qué habría cambiado si se respetaba cada principio.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tienen tres principios de actividades distintas, cada uno con cita, evidencia del caso y una propuesta de cambio.</p>
+    </article><article class="actividad">
+      <header><h3>Actividad 2 · Checklist de despliegue</h3><span class="meta">Individual · 20 min</span></header>
+      <p>Imagina que mañana tu equipo entrega el TPI a un cliente real.</p>
+      <ol><li>Redacta una lista de verificación de seis puntos basada en los principios de despliegue.</li><li>Marca cuáles cumple hoy tu proyecto.</li><li>Elige el punto faltante más urgente y escribe la primera tarea para resolverlo.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tu lista tiene seis puntos rastreables a principios de despliegue y una tarea concreta para el punto más urgente.</p>
+    </article>
+    <p class="tpi"><strong>Conexión con el TPI.</strong> Revisen sus actas o mensajes del grupo: ¿quedan documentadas las decisiones con el cliente (simulado)? Si no, ese es el primer principio de comunicación por recuperar.</p>
+  </section>
+  <section class="seccion" id="autoevaluacion">
+    <h2><span class="num-sec">04</span>Autoevaluación</h2>
+    <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
+    <ol class="autoeval"><li>¿Qué diferencia hay entre un principio que guía el proceso y uno que guía la práctica?</li><li>Nombra tres principios de modelado.</li><li>Según Pressman, ¿qué caracteriza a una buena prueba?</li><li>¿Por qué no conviene entregar software con errores prometiendo corregirlos después?</li></ol>
+  </section>
+  <section class="seccion" id="juegos">
+    <h2><span class="num-sec">05</span>Juegos</h2>
+    <div class="enlaces-juego"><a class="btn" href="juegos/ruta-de-repaso.html#u4">Estación U4 de la Ruta de Repaso</a><a class="btn sec" href="juegos/oca.html">La Oca de ISO1</a><a class="btn sec" href="juegos/duelo-de-equipos.html">Duelo de equipos</a></div>
+  </section>
+  <section class="seccion" id="bibliografia">
+    <h2><span class="num-sec">06</span>Bibliografía</h2>
+    <p class="bajada">Fuentes citadas en esta unidad, en formato APA 7. Las de acceso abierto se consultaron el 26 de octubre de 2026; los textos de cátedra están rotulados.</p>
+    <ol class="biblio"><li id="ref-pressman">Pressman, R. S. (2010). <i>Ingeniería del software: un enfoque práctico</i> (7.ª ed.). McGraw-Hill. <span class="rotulo-catedra">Texto de cátedra</span> <span class="nota-ref">Texto base de cátedra. No es de acceso abierto: consúltalo en la biblioteca de la universidad.</span></li><li id="ref-scrum">Schwaber, K., y Sutherland, J. (2020). <i>La Guía Scrum: la guía definitiva de Scrum, las reglas del juego</i> (Trad. al español latinoamericano). <a href="https://www.scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-Spanish-Latin-South-American.pdf">https://www.scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-Spanish-Latin-South-American.pdf</a></li><li id="ref-google">Winters, T., Manshreck, T., y Wright, H. (Eds.). (2020). <i>Software engineering at Google: Lessons learned from programming over time</i>. O’Reilly. Edición en línea de acceso abierto (CC BY-NC-ND 4.0). <a href="https://abseil.io/resources/swe-book/html/ch01.html">https://abseil.io/resources/swe-book/html/ch01.html</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Unidades"><a href="u3.html"><small>← Unidad 3</small>Desarrollo ágil</a><a class="sig" href="u5.html"><small>Unidad 5 →</small>Comprensión de los requerimientos</a></nav>
+  <footer class="pie"><span>Ingeniería del Software 1</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>
