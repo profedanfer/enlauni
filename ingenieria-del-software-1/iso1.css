@@ -6,18 +6,19 @@
    compartidos de las otras materias.
    ========================================================= */
 :root {
-  --verde-oscuro: #0B3D37;
-  --verde-medio: #146B5E;
-  --verde-claro: #3E9C8B;
+  --verde-oscuro: #082F2A;
+  --verde-medio: #0F5A4F;
+  --verde-claro: #2F8C7B;
   --fondo: #F2F7F6;
   --tinta: #0F2B27;
   --tinta-suave: #44605A;
   --linea: #CFE1DD;
-  --acierto: #146B5E;
+  --acierto: #0F5A4F;
   --acierto-fondo: #E1F2EE;
   --pista-fondo: #F7F0E4;
   --pista-borde: #B08D57;
-  --codigo-fondo: #0B2B27;
+  --codigo-fondo: #081F1C;
+  --textura: radial-gradient(circle at 1px 1px, rgba(15, 90, 79, .14) 1px, transparent 0) 0 0 / 18px 18px;
   --codigo-tinta: #DDF0EC;
   --dorado: #B08D57;
 }
@@ -25,14 +26,14 @@
   :root:not([data-theme="light"]) {
     --fondo: #0B1816; --superficie: #12241F; --tinta: #E2EFEC; --tinta-suave: #A3BDB7;
     --linea: #24403A; --acierto: #6CC4B2; --acierto-fondo: #17332D; --verde-oscuro: #B5E3D9;
-    --verde-medio: #5FBBA8; --verde-claro: #3E9C8B; --pista-fondo: #2E2A1E; --pista-borde: #C9A66B;
+    --verde-medio: #5FBBA8; --verde-claro: #2F8C7B; --pista-fondo: #2E2A1E; --pista-borde: #C9A66B;
     --codigo-fondo: #071311; --codigo-tinta: #DDF0EC; --sobre-acento: #0B1816; --dorado: #C9A66B;
   }
 }
 :root[data-theme="dark"] {
   --fondo: #0B1816; --superficie: #12241F; --tinta: #E2EFEC; --tinta-suave: #A3BDB7;
   --linea: #24403A; --acierto: #6CC4B2; --acierto-fondo: #17332D; --verde-oscuro: #B5E3D9;
-  --verde-medio: #5FBBA8; --verde-claro: #3E9C8B; --pista-fondo: #2E2A1E; --pista-borde: #C9A66B;
+  --verde-medio: #5FBBA8; --verde-claro: #2F8C7B; --pista-fondo: #2E2A1E; --pista-borde: #C9A66B;
   --codigo-fondo: #071311; --codigo-tinta: #DDF0EC; --sobre-acento: #0B1816; --dorado: #C9A66B;
 }
 
@@ -105,3 +106,9 @@ svg .linea { stroke: var(--tinta-suave); stroke-width: 1.6; fill: none; }
   .rotulo-catedra, .bloque-tag { color: #000; border-color: #000; }
 }
 .aviso-ind a { color: var(--verde-medio); }
+
+/* «Con IA, con criterio»: lo dice Ada, que es una IA */
+.ia { position: relative; padding-left: 4.6rem; min-height: 4.8rem; }
+.ia::before { content: ""; position: absolute; left: .8rem; top: .7rem; width: 3rem; height: 3.6rem;
+  background: url("../assets/personajes/ada.svg") center / contain no-repeat; }
+@media print { .ia::before { display: none; } .ia { padding-left: 1.1rem; min-height: 0; } }

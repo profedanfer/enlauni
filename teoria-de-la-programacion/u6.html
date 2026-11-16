@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>U6 · Procedimientos y ambientes</title>
+<script src="../assets/tema.js"></script>
 <link rel="stylesheet" href="../assets/estilos.css">
 </head>
 <body>
@@ -28,7 +29,7 @@
       <thead><tr><th scope="col">Lenguaje</th><th scope="col">¿Qué se pasa?</th><th scope="col">¿Los cambios se ven afuera?</th></tr></thead>
       <tbody><tr><th scope="row">C, valor común</th><td>Una copia del valor <span class="cita">(<a href="#ref-c-faq"><i>Question 4.11</i>, s.f.</a>)</span></td><td>No</td></tr><tr><th scope="row">C, puntero</th><td>Una copia de la dirección <span class="cita">(<a href="#ref-c-faq"><i>Question 4.11</i>, s.f.</a>)</span></td><td>Sí, si se modifica <code class="in">*p</code></td></tr><tr><th scope="row">Java, primitivos</th><td>Una copia del valor <span class="cita">(<a href="#ref-j-args">Oracle, s.f.-a</a>)</span></td><td>No <span class="cita">(<a href="#ref-j-args">Oracle, s.f.-a</a>)</span></td></tr><tr><th scope="row">Java, objetos</th><td>Una copia de la referencia <span class="cita">(<a href="#ref-j-args">Oracle, s.f.-a</a>)</span></td><td>Los cambios en los campos sí; reasignar el parámetro no <span class="cita">(<a href="#ref-j-args">Oracle, s.f.-a</a>)</span></td></tr><tr><th scope="row">Python</th><td>Una referencia al objeto <span class="cita">(<a href="#ref-py-ctrl">Python Software Foundation, s.f.-b</a>)</span></td><td>Los cambios a un objeto mutable sí <span class="cita">(<a href="#ref-py-ctrl">Python Software Foundation, s.f.-b</a>)</span>; reasignar el parámetro no <span class="cita">(<a href="#ref-py-faq">Python Software Foundation, s.f.-c</a>)</span></td></tr></tbody>
     </table></div>
-    <aside class="ojo"><strong class="tit">No confundas</strong><p><b>Que una lista cambie dentro de una función no prueba que Python pase por referencia.</b> El parámetro y el argumento apuntan al mismo objeto, pero no son alias <span class="cita">(<a href="#ref-py-faq">Python Software Foundation, s.f.-c</a>; <a href="#ref-py-ctrl">Python Software Foundation, s.f.-b</a>)</span>. Si dentro de la función haces <code class="in">lista = []</code>, la de afuera no cambia.</p></aside>
+    <aside class="ojo"><strong class="tit">Bug se confundió</strong><p><b>Que una lista cambie dentro de una función no prueba que Python pase por referencia.</b> El parámetro y el argumento apuntan al mismo objeto, pero no son alias <span class="cita">(<a href="#ref-py-faq">Python Software Foundation, s.f.-c</a>; <a href="#ref-py-ctrl">Python Software Foundation, s.f.-b</a>)</span>. Si dentro de la función haces <code class="in">lista = []</code>, la de afuera no cambia.</p></aside>
   </section>
   <section class="seccion" id="codigo">
     <h2><span class="num-sec">02</span>Código comparado</h2>
@@ -112,6 +113,7 @@ print(suma_cuadrados(3, 4))</pre>
     <h2><span class="num-sec">04</span>Autoevaluación</h2>
     <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
     <ol class="autoeval"><li>¿Qué guarda el marco de una llamada?</li><li>¿Java pasa los objetos por referencia? Explica con precisión qué se copia.</li><li>¿Qué diferencia hay entre parámetro formal y argumento?</li><li>¿Cómo se imita el paso por referencia en C?</li></ol>
+    <div class="marcar-repaso" data-clave="tpr-repaso-v1" data-u="6"><p>¿Repasaste esta unidad y respondiste la autoevaluación? Márcala y sigue tu avance en <a href="progreso.html">Mi progreso</a>.</p><button type="button" class="btn sec" aria-pressed="false" hidden>Marcar como repasada</button></div>
   </section>
   <section class="seccion" id="juegos">
     <h2><span class="num-sec">05</span>Juegos</h2>

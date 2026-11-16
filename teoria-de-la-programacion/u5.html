@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>U5 · Expresiones y enunciados</title>
+<script src="../assets/tema.js"></script>
 <link rel="stylesheet" href="../assets/estilos.css">
 </head>
 <body>
@@ -28,7 +29,7 @@
       <thead><tr><th scope="col">Mecanismo</th><th scope="col">Python</th><th scope="col">Java</th><th scope="col">C</th></tr></thead>
       <tbody><tr><th scope="row">Guarda</th><td><code class="in">if b != 0:</code></td><td><code class="in">if (b != 0) {…}</code></td><td><code class="in">if (b != 0) {…}</code></td></tr><tr><th scope="row">Capturar</th><td><code class="in">try / except</code> <span class="cita">(<a href="#ref-py-err">Python Software Foundation, s.f.-a</a>)</span></td><td><code class="in">try / catch</code> <span class="cita">(<a href="#ref-j-exc">Oracle, s.f.-d</a>)</span></td><td>No tiene <code class="in">try</code> ni <code class="in">catch</code> <span class="cita">(<a href="#ref-c-kw">cppreference.com, s.f.-a</a>)</span></td></tr><tr><th scope="row">Lanzar</th><td><code class="in">raise</code> <span class="cita">(<a href="#ref-py-err">Python Software Foundation, s.f.-a</a>)</span></td><td><code class="in">throw</code></td><td>Valor de retorno y <code class="in">errno</code> <span class="cita">(<a href="#ref-c-errno">cppreference.com, s.f.-b</a>)</span></td></tr><tr><th scope="row">Siempre se ejecuta</th><td><code class="in">finally</code> <span class="cita">(<a href="#ref-py-err">Python Software Foundation, s.f.-a</a>)</span></td><td><code class="in">finally</code> <span class="cita">(<a href="#ref-j-finally">Oracle, s.f.-c</a>)</span></td><td>—</td></tr></tbody>
     </table></div>
-    <aside class="ojo"><strong class="tit">No confundas</strong><p><b>Una guarda actúa antes; una excepción, después.</b> La guarda solo deja ejecutar el código si su condición es verdadera <span class="cita">(<a href="#ref-dijkstra">Dijkstra, 1974</a>)</span>. La excepción aparece cuando el error ya ocurrió durante la ejecución <span class="cita">(<a href="#ref-j-exc">Oracle, s.f.-d</a>)</span>.</p></aside>
+    <aside class="ojo"><strong class="tit">Bug se confundió</strong><p><b>Una guarda actúa antes; una excepción, después.</b> La guarda solo deja ejecutar el código si su condición es verdadera <span class="cita">(<a href="#ref-dijkstra">Dijkstra, 1974</a>)</span>. La excepción aparece cuando el error ya ocurrió durante la ejecución <span class="cita">(<a href="#ref-j-exc">Oracle, s.f.-d</a>)</span>.</p></aside>
   </section>
   <section class="seccion" id="codigo">
     <h2><span class="num-sec">02</span>Código comparado</h2>
@@ -124,6 +125,7 @@ True or False and False</pre>
     <h2><span class="num-sec">04</span>Autoevaluación</h2>
     <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
     <ol class="autoeval"><li>¿Qué diferencia hay entre una expresión y una sentencia en Python?</li><li>¿Por qué <code class="in">x != 0 and 10 / x &gt; 1</code> no falla cuando x vale 0?</li><li>¿Cómo definió Dijkstra un comando con guarda?</li><li>¿Qué hace el sistema de Java cuando se lanza una excepción?</li></ol>
+    <div class="marcar-repaso" data-clave="tpr-repaso-v1" data-u="5"><p>¿Repasaste esta unidad y respondiste la autoevaluación? Márcala y sigue tu avance en <a href="progreso.html">Mi progreso</a>.</p><button type="button" class="btn sec" aria-pressed="false" hidden>Marcar como repasada</button></div>
   </section>
   <section class="seccion" id="juegos">
     <h2><span class="num-sec">05</span>Juegos</h2>

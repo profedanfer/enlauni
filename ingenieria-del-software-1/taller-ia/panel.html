@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Panel de revisión arquitectónica · Ingeniería del Software 1</title>
+<link rel="icon" href="../../assets/personajes/ada.svg" type="image/svg+xml">
+<script src="../../assets/tema.js"></script>
+<link rel="stylesheet" href="../../assets/estilos.css">
+<link rel="stylesheet" href="../iso1.css">
+</head>
+<body class="iso1">
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../../index.html">Inicio</a><span aria-hidden="true">/</span><a href="../index.html">Ingeniería del Software 1</a><span aria-hidden="true">/</span><a href="index.html">IA con criterio</a><span aria-hidden="true">/</span><span>Panel arquitectónico</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Taller IA con criterio · Unidades 8 y 9</p>
+    <h1>Panel de revisión arquitectónica</h1>
+    <p class="objetivo">Defender una arquitectura con argumentos: qué atributo de calidad sostiene cada decisión, qué escenario la pone en riesgo y qué sacrificaste a cambio.</p>
+  </section>
+  <div class="escena der"><img src="../../assets/personajes/bug.svg" alt="" width="68" height="72"><div class="globo"><span class="quien">Bug</span><p>Yo elegí microservicios porque suena moderno. Seguro que al panel le encanta.</p></div></div>
+  <div class="escena"><img src="../../assets/personajes/ada.svg" alt="" width="68" height="80"><div class="globo"><span class="quien">Ada</span><p>Al panel no le importa qué suena moderno, Bug. Te va a preguntar qué pasa cuando se corta internet con la sala llena. Llega con cada decisión justificada y con lo que sacrifica.</p></div></div>
+  <section class="seccion">
+    <h2>Antes de empezar</h2>
+    <ol class="pasos-taller">
+      <li><h3>Repasa</h3><p>Lee la <a href="../u8.html">Unidad 8</a> (atributos de calidad) y la <a href="../u9.html">Unidad 9</a> (estilos, ATAM, monolito y microservicios).</p></li>
+      <li><h3>Escribe tu propuesta</h3><p>En media página: estilo arquitectónico, componentes principales, cómo se comunican y, para cada decisión, el atributo de calidad que la sostiene y la alternativa que descartaste.</p></li>
+      <li><h3>Prepara tres escenarios</h3><p>Anticipa tres situaciones que podrían poner en riesgo tu diseño. Si el panel no las plantea, plantéalas tú.</p></li>
+    </ol>
+  </section>
+  <section class="seccion">
+    <h2>El prompt</h2>
+    <p class="bajada">Cópialo, pega tu propuesta al final, donde dice <i>MI PROPUESTA</i>, y envíalo.</p>
+    <div class="prompt"><pre id="prompt2">Vamos a simular un panel de revisión de arquitectura para practicar cómo fundamentar decisiones de diseño.
+
+CONTEXTO: estoy diseñando la arquitectura de un sistema de turnos para una Unidad de Salud Familiar (USF) de barrio: pedir turno por la web o por mensajería, una pantalla en la sala de espera y reportes mensuales para la región sanitaria. El equipo de desarrollo es pequeño, el presupuesto es bajo y la conexión a internet de la USF es inestable.
+
+TU PAPEL: eres un panel de tres revisores, cada uno con una preocupación:
+- Arquitecta senior: coherencia del estilo arquitectónico y de los componentes.
+- Responsable de infraestructura de la región sanitaria: disponibilidad, seguridad de los datos de pacientes y costo de operación.
+- Desarrollador que va a mantener el sistema: facilidad para cambiarlo, probarlo y desplegarlo.
+
+REGLAS:
+1. Lee mi propuesta (la pego al final). Luego haz UNA pregunta por turno e indica quién la hace.
+2. Cada pregunta debe apuntar a un atributo de calidad o a un escenario concreto que ponga en riesgo una decisión. Por ejemplo: "se cortó internet a las 7 de la mañana con 40 personas esperando, ¿qué pasa?".
+3. No me des la respuesta ni rediseñes mi arquitectura. Si mi respuesta es débil, repregunta.
+4. Si mencionas una tecnología, un patrón o un dato del mundo real, dilo de forma que yo pueda verificarlo, y aclara cuándo es una opinión.
+5. Sé exigente pero respetuoso, como un panel real.
+
+Cuando escriba FIN DEL PANEL, sal del personaje y dame: las decisiones que defendí bien, las que quedaron débiles, los riesgos que no consideré y una pregunta que debería poder responder antes de la entrega.
+
+MI PROPUESTA:
+[Pega aquí: el estilo arquitectónico que elegiste, los componentes principales, cómo se comunican y por qué elegiste eso y no otra alternativa.]</pre><button type="button" class="btn" data-copiar="prompt2" hidden>Copiar el prompt</button></div>
+  </section>
+  <section class="seccion">
+    <h2>Registra tus decisiones</h2>
+    <p class="bajada">Una fila por decisión. Esta tabla es la que vas a defender en la entrega.</p>
+    <div class="tabla-scroll"><table class="comp plantilla" id="tabla2">
+      <thead><tr><th>Decisión</th><th>Alternativas descartadas</th><th>Atributo de calidad que la sostiene</th><th>Escenario de riesgo del panel</th><th>Tu respuesta o el cambio que hiciste</th><th>Fuente que la respalda</th></tr></thead>
+      <tbody><tr><td>Ej.: Monolito modular</td><td>Microservicios</td><td>Mantenibilidad con un equipo pequeño</td><td>Crece la demanda de la región sanitaria</td><td>Módulos con límites claros para separarlos después si hace falta</td><td>Fowler (2015), Unidad 9</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody>
+    </table></div>
+    <div class="fila-botones"><button type="button" class="btn sec" data-csv="tabla2" data-nombre="registro-decisiones-arquitectura.csv" hidden>Descargar plantilla (CSV, abre en Excel u hojas de cálculo)</button></div>
+  </section>
+  <section class="seccion">
+    <h2>Verifica con criterio</h2>
+    <ul class="checklist">
+      <li><input type="checkbox" id="d1"><label for="d1">Cada decisión tiene un atributo de calidad, no un adjetivo («moderno», «robusto»).</label></li>
+      <li><input type="checkbox" id="d2"><label for="d2">Contrasté con la bibliografía de la Unidad 9 lo que el panel afirmó sobre estilos y patrones.</label></li>
+      <li><input type="checkbox" id="d3"><label for="d3">Marqué como opinión lo que el panel no pudo respaldar.</label></li>
+      <li><input type="checkbox" id="d4"><label for="d4">Cambié al menos una decisión, o la mantuve con una justificación nueva, a partir de una pregunta del panel.</label></li>
+      <li><input type="checkbox" id="d5"><label for="d5">Puedo responder sin la IA la pregunta final que me dejó el panel.</label></li>
+    </ul>
+  </section>
+  <aside class="aviso-privacidad"><p><strong>Cuidado con los datos.</strong> No pegues en una IA nombres, documentos, diagnósticos ni datos de personas reales, ni información interna de una institución. Todo lo que escribes ahí puede quedar guardado fuera de tu control. En este taller, la USF y sus personas son ficticias.</p></aside>
+  <section class="seccion">
+    <div class="enlaces-juego"><a class="btn sec" href="index.html">Volver al taller</a><a class="btn sec" href="../juegos/tribunal-de-arquitectura.html">Practica en el Tribunal de Arquitectura</a></div>
+  </section>
+
+  <footer class="pie"><span>Ingeniería del Software 1</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../../assets/taller.js"></script>
+</body>
+</html>

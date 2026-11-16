@@ -91,6 +91,17 @@ const BANCO = [
         "Para dibujar diagramas de flujo de datos", "Para medir el rendimiento de una base de datos"], a: 1,
     pista: "Que exista un proceso, ¿garantiza que se cumpla y que sea bueno?" },
 
+  { u: 2, t: "mc",
+    q: "En el nivel de madurez «Definido» de CMMI…",
+    o: ["Los procesos están descritos en estándares y cada proyecto los adapta",
+        "El éxito depende del esfuerzo heroico de algunas personas",
+        "La organización gestiona sus procesos con estadística",
+        "No hay procesos: cada proyecto improvisa"], a: 0,
+    pista: "Ordena los cinco niveles: Inicial, Gestionado, Definido, Gestionado cuantitativamente, En optimización." },
+  { u: 2, t: "vf",
+    q: "SCAMPI es el método para evaluar a las organizaciones que usan CMMI.",
+    a: true,
+    pista: "Revisa el concepto «CMMI» de la Unidad 2." },
   /* ---------------- UNIDAD 3 ---------------- */
   { u: 3, t: "mc",
     q: "¿Cuál de estos es un valor del Manifiesto Ágil?",

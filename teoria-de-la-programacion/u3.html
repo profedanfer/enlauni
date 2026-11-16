@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>U3 · Semántica básica</title>
+<script src="../assets/tema.js"></script>
 <link rel="stylesheet" href="../assets/estilos.css">
 </head>
 <body>
@@ -28,7 +29,7 @@
       <thead><tr><th scope="col">Duración</th><th scope="col">Comienza</th><th scope="col">Termina</th><th scope="col">Ejemplo</th></tr></thead>
       <tbody><tr><th scope="row">Automática (C)</th><td>Al entrar al bloque <span class="cita">(<a href="#ref-c-storage">cppreference.com, s.f.-b</a>)</span></td><td>Al salir del bloque <span class="cita">(<a href="#ref-c-storage">cppreference.com, s.f.-b</a>)</span></td><td>Variables locales</td></tr><tr><th scope="row">Estática (C)</th><td>Antes de <code class="in">main</code>; se inicializa una vez <span class="cita">(<a href="#ref-c-storage">cppreference.com, s.f.-b</a>)</span></td><td>Al terminar el programa <span class="cita">(<a href="#ref-c-storage">cppreference.com, s.f.-b</a>)</span></td><td>Globales y <code class="in">static</code></td></tr><tr><th scope="row">Asignada (C)</th><td>Cuando se pide memoria dinámica <span class="cita">(<a href="#ref-c-storage">cppreference.com, s.f.-b</a>)</span></td><td>Cuando se libera <span class="cita">(<a href="#ref-c-storage">cppreference.com, s.f.-b</a>)</span></td><td><code class="in">malloc</code> / <code class="in">free</code></td></tr><tr><th scope="row">Objetos de Java</th><td>Con <code class="in">new</code></td><td>Cuando el recolector lo decide, si ya no hay referencias <span class="cita">(<a href="#ref-j-using">Oracle, s.f.-e</a>)</span></td><td>Cualquier objeto</td></tr><tr><th scope="row">Objetos de Python</th><td>Al crearse</td><td>Pueden recolectarse cuando son inalcanzables <span class="cita">(<a href="#ref-py-dm">Python Software Foundation, s.f.-b</a>)</span></td><td>Cualquier objeto</td></tr></tbody>
     </table></div>
-    <aside class="ojo"><strong class="tit">No confundas</strong><p><b>No confundas ligadura con tipado.</b> Ligadura estática o dinámica (U3) responde <i>cuándo se asocia</i> un atributo a una variable. Tipado estático o dinámico (U4) responde <i>cuándo se verifican</i> los tipos: un lenguaje es de tipado estático si comprueba los tipos al compilar, y dinámico si lo hace en ejecución <span class="cita">(<a href="#ref-j-jvmlang">Oracle, s.f.-b</a>)</span>. Usan las mismas palabras, pero son preguntas distintas.</p></aside>
+    <aside class="ojo"><strong class="tit">Bug se confundió</strong><p><b>No confundas ligadura con tipado.</b> Ligadura estática o dinámica (U3) responde <i>cuándo se asocia</i> un atributo a una variable. Tipado estático o dinámico (U4) responde <i>cuándo se verifican</i> los tipos: un lenguaje es de tipado estático si comprueba los tipos al compilar, y dinámico si lo hace en ejecución <span class="cita">(<a href="#ref-j-jvmlang">Oracle, s.f.-b</a>)</span>. Usan las mismas palabras, pero son preguntas distintas.</p></aside>
   </section>
   <section class="seccion" id="codigo">
     <h2><span class="num-sec">02</span>Código comparado</h2>
@@ -112,6 +113,7 @@ print(saludo, asistentes)</pre>
     <h2><span class="num-sec">04</span>Autoevaluación</h2>
     <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
     <ol class="autoeval"><li>¿Qué tres atributos puede tener ligados una variable? ¿Cuándo se liga cada uno en Java?</li><li>¿Por qué <code class="in">contador = contador + 1</code> dentro de una función de Python puede producir <code class="in">UnboundLocalError</code>?</li><li>¿Qué diferencia hay entre alcance y tiempo de vida? Da un ejemplo en C donde no coincidan.</li><li>¿En qué orden busca Python un nombre?</li></ol>
+    <div class="marcar-repaso" data-clave="tpr-repaso-v1" data-u="3"><p>¿Repasaste esta unidad y respondiste la autoevaluación? Márcala y sigue tu avance en <a href="progreso.html">Mi progreso</a>.</p><button type="button" class="btn sec" aria-pressed="false" hidden>Marcar como repasada</button></div>
   </section>
   <section class="seccion" id="juegos">
     <h2><span class="num-sec">05</span>Juegos</h2>

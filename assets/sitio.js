@@ -25,4 +25,23 @@
     var d = new Date(t.getAttribute("datetime") + "T23:59:59");
     if (d < hoy) t.closest(".fecha").classList.add("pasada");
   });
+
+  /* Marcar una unidad como repasada (se guarda solo en este navegador) */
+  document.querySelectorAll(".marcar-repaso").forEach(function (caja) {
+    var clave = caja.getAttribute("data-clave"), u = caja.getAttribute("data-u");
+    var boton = caja.querySelector("button");
+    function leer() { try { return JSON.parse(localStorage.getItem(clave)) || {}; } catch (e) { return {}; } }
+    function pintar(hecho) {
+      boton.setAttribute("aria-pressed", hecho ? "true" : "false");
+      boton.textContent = hecho ? "✓ Repasada" : "Marcar como repasada";
+    }
+    pintar(!!leer()[u]);
+    boton.hidden = false;
+    boton.addEventListener("click", function () {
+      var d = leer();
+      if (d[u]) delete d[u]; else d[u] = Date.now();
+      try { localStorage.setItem(clave, JSON.stringify(d)); } catch (e) {}
+      pintar(!!d[u]);
+    });
+  });
 })();

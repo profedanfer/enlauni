@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" role="img" aria-labelledby="t">
+  <title id="t">Ada, la robot del aula</title>
+  <!-- antena -->
+  <line x1="100" y1="40" x2="100" y2="20" stroke="#123528" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="100" cy="15" r="7" fill="#E0B341" stroke="#123528" stroke-width="3"/>
+  <!-- brazo que saluda -->
+  <path d="M60 156 C44 150 34 136 30 120" fill="none" stroke="#123528" stroke-width="15" stroke-linecap="round"/>
+  <path d="M60 156 C44 150 34 136 30 120" fill="none" stroke="#2E7D5B" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="28" cy="112" r="10" fill="#E9F5EE" stroke="#123528" stroke-width="3"/>
+  <!-- brazo de apoyo -->
+  <path d="M140 156 C154 166 160 176 162 186" fill="none" stroke="#123528" stroke-width="15" stroke-linecap="round"/>
+  <path d="M140 156 C154 166 160 176 162 186" fill="none" stroke="#2E7D5B" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="163" cy="192" r="10" fill="#E9F5EE" stroke="#123528" stroke-width="3"/>
+  <!-- ruedas -->
+  <rect x="68" y="200" width="24" height="22" rx="7" fill="#123528"/>
+  <rect x="108" y="200" width="24" height="22" rx="7" fill="#123528"/>
+  <!-- cuerpo -->
+  <rect x="56" y="132" width="88" height="74" rx="24" fill="#2E7D5B" stroke="#123528" stroke-width="3"/>
+  <rect x="74" y="148" width="52" height="32" rx="9" fill="#E9F5EE" stroke="#123528" stroke-width="2"/>
+  <text x="100" y="170" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="17" font-weight="700" fill="#1F5C46">{ }</text>
+  <circle cx="84" cy="192" r="3.5" fill="#E0B341"/><circle cx="100" cy="192" r="3.5" fill="#8FE3B8"/><circle cx="116" cy="192" r="3.5" fill="#E9F5EE"/>
+  <!-- cuello -->
+  <rect x="88" y="122" width="24" height="14" rx="3" fill="#123528"/>
+  <!-- cabeza -->
+  <circle cx="41" cy="84" r="9" fill="#E0B341" stroke="#123528" stroke-width="3"/>
+  <circle cx="159" cy="84" r="9" fill="#E0B341" stroke="#123528" stroke-width="3"/>
+  <rect x="42" y="38" width="116" height="90" rx="32" fill="#1F5C46" stroke="#123528" stroke-width="3"/>
+  <rect x="56" y="52" width="88" height="62" rx="21" fill="#0E2A20"/>
+  <!-- cara -->
+  <ellipse cx="82" cy="79" rx="8" ry="11" fill="#8FE3B8"/>
+  <ellipse cx="118" cy="79" rx="8" ry="11" fill="#8FE3B8"/>
+  <circle cx="85" cy="74" r="3" fill="#FFFFFF"/><circle cx="121" cy="74" r="3" fill="#FFFFFF"/>
+  <path d="M88 97 Q100 106 112 97" fill="none" stroke="#8FE3B8" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="69" cy="97" r="4.5" fill="#F2A28A" opacity=".75"/><circle cx="131" cy="97" r="4.5" fill="#F2A28A" opacity=".75"/>
+</svg>

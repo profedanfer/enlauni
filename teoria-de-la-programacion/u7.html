@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>U7 · Programación orientada a objetos</title>
+<script src="../assets/tema.js"></script>
 <link rel="stylesheet" href="../assets/estilos.css">
 </head>
 <body>
@@ -28,7 +29,7 @@
       <thead><tr><th scope="col">Elemento</th><th scope="col">Python</th><th scope="col">Java</th></tr></thead>
       <tbody><tr><th scope="row">Inicializar el objeto</th><td><code class="in">__init__</code> <span class="cita">(<a href="#ref-py-class">Python Software Foundation, s.f.-b</a>)</span></td><td>Constructor con el nombre de la clase <span class="cita">(<a href="#ref-j-constr">Oracle, s.f.-d</a>)</span></td></tr><tr><th scope="row">Comparar identidad</th><td><code class="in">is</code> <span class="cita">(<a href="#ref-py-dm">Python Software Foundation, s.f.-c</a>)</span></td><td><code class="in">==</code> entre referencias <span class="cita">(<a href="#ref-al5">Gallardo et al., 2025a, §1.2.3</a>)</span></td></tr><tr><th scope="row">Herencia de clases</th><td>Múltiple <span class="cita">(<a href="#ref-py-class">Python Software Foundation, s.f.-b</a>)</span></td><td>Simple <span class="cita">(<a href="#ref-j-suminh">Oracle, s.f.-e</a>)</span></td></tr><tr><th scope="row">Atributo no público</th><td>Prefijo <code class="in">_</code> por convención <span class="cita">(<a href="#ref-py-class">Python Software Foundation, s.f.-b</a>)</span></td><td>Modificador <code class="in">private</code></td></tr><tr><th scope="row">Método abstracto</th><td><code class="in">@abstractmethod</code> <span class="cita">(<a href="#ref-py-abc">Python Software Foundation, s.f.-a</a>)</span></td><td><code class="in">abstract</code> <span class="cita">(<a href="#ref-j-suminh">Oracle, s.f.-e</a>)</span></td></tr></tbody>
     </table></div>
-    <aside class="ojo"><strong class="tit">No confundas</strong><p><b>Java no admite herencia múltiple de clases, pero sí de tipos.</b> Una clase extiende una sola superclase y puede implementar varias interfaces <span class="cita">(<a href="#ref-j-multi">Oracle, s.f.-b</a>)</span>. Python, en cambio, permite heredar de varias clases <span class="cita">(<a href="#ref-py-class">Python Software Foundation, s.f.-b</a>)</span>.</p></aside>
+    <aside class="ojo"><strong class="tit">Bug se confundió</strong><p><b>Java no admite herencia múltiple de clases, pero sí de tipos.</b> Una clase extiende una sola superclase y puede implementar varias interfaces <span class="cita">(<a href="#ref-j-multi">Oracle, s.f.-b</a>)</span>. Python, en cambio, permite heredar de varias clases <span class="cita">(<a href="#ref-py-class">Python Software Foundation, s.f.-b</a>)</span>.</p></aside>
   </section>
   <section class="seccion" id="codigo">
     <h2><span class="num-sec">02</span>Código comparado</h2>
@@ -137,6 +138,7 @@ int main(void) {
     <h2><span class="num-sec">04</span>Autoevaluación</h2>
     <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
     <ol class="autoeval"><li>¿Qué diferencia hay entre clase, objeto e identidad?</li><li>¿Qué es la invocación de método virtual en Java?</li><li>¿Por qué Java no permite extender dos clases?</li><li>¿Qué beneficios trae organizar el código en objetos, según el tutorial de Java?</li></ol>
+    <div class="marcar-repaso" data-clave="tpr-repaso-v1" data-u="7"><p>¿Repasaste esta unidad y respondiste la autoevaluación? Márcala y sigue tu avance en <a href="progreso.html">Mi progreso</a>.</p><button type="button" class="btn sec" aria-pressed="false" hidden>Marcar como repasada</button></div>
   </section>
   <section class="seccion" id="juegos">
     <h2><span class="num-sec">05</span>Juegos</h2>

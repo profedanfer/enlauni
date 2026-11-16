@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" role="img" aria-labelledby="t">
+  <title id="t">Bug, el gato que se sube al teclado</title>
+  <!-- cola -->
+  <path d="M142 176 C186 174 190 120 164 108 C154 104 148 112 154 118" fill="none" stroke="#1E1F22" stroke-width="16" stroke-linecap="round"/>
+  <path d="M142 176 C186 174 190 120 164 108 C154 104 148 112 154 118" fill="none" stroke="#3A3C41" stroke-width="10" stroke-linecap="round"/>
+  <!-- cuerpo -->
+  <ellipse cx="100" cy="152" rx="54" ry="44" fill="#3A3C41" stroke="#1E1F22" stroke-width="3"/>
+  <ellipse cx="100" cy="156" rx="23" ry="30" fill="#F4F1EA"/>
+  <ellipse cx="82" cy="194" rx="14" ry="8" fill="#F4F1EA" stroke="#1E1F22" stroke-width="2.5"/>
+  <ellipse cx="118" cy="194" rx="14" ry="8" fill="#F4F1EA" stroke="#1E1F22" stroke-width="2.5"/>
+  <!-- orejas -->
+  <path d="M60 74 L62 26 L96 52 Z" fill="#3A3C41" stroke="#1E1F22" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M140 74 L138 26 L104 52 Z" fill="#3A3C41" stroke="#1E1F22" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M68 62 L69 38 L86 52 Z" fill="#E9A3A0"/>
+  <path d="M132 62 L131 38 L114 52 Z" fill="#E9A3A0"/>
+  <!-- cabeza -->
+  <circle cx="100" cy="88" r="45" fill="#3A3C41" stroke="#1E1F22" stroke-width="3"/>
+  <path d="M100 52 L100 64 M90 54 L92 64 M110 54 L108 64" stroke="#55585E" stroke-width="3" stroke-linecap="round"/>
+  <!-- collar con chapita -->
+  <path d="M66 120 Q100 136 134 120" fill="none" stroke="#2E7D5B" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="100" cy="134" r="8" fill="#E0B341" stroke="#1E1F22" stroke-width="2"/>
+  <!-- ojos pícaros -->
+  <ellipse cx="82" cy="86" rx="11" ry="12" fill="#C9E86B"/>
+  <ellipse cx="118" cy="86" rx="11" ry="12" fill="#C9E86B"/>
+  <ellipse cx="86" cy="88" rx="3.5" ry="9" fill="#111111"/>
+  <ellipse cx="122" cy="88" rx="3.5" ry="9" fill="#111111"/>
+  <circle cx="79" cy="82" r="2.5" fill="#FFFFFF"/><circle cx="115" cy="82" r="2.5" fill="#FFFFFF"/>
+  <path d="M70 76 Q82 70 94 78" fill="#3A3C41" stroke="#1E1F22" stroke-width="2"/>
+  <path d="M106 78 Q118 70 130 76" fill="#3A3C41" stroke="#1E1F22" stroke-width="2"/>
+  <!-- hocico -->
+  <path d="M95 101 L105 101 L100 107 Z" fill="#E9A3A0"/>
+  <path d="M100 107 Q95 114 90 110 M100 107 Q106 115 112 108" fill="none" stroke="#D8D8D8" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M60 100 L84 104 M60 110 L84 108 M140 100 L116 104 M140 110 L116 108" stroke="#D8D8D8" stroke-width="1.8" stroke-linecap="round"/>
+</svg>

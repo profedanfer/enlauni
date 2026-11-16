@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>U8 · Programación funcional</title>
+<script src="../assets/tema.js"></script>
 <link rel="stylesheet" href="../assets/estilos.css">
 </head>
 <body>
@@ -28,7 +29,7 @@
       <thead><tr><th scope="col">Operación</th><th scope="col">Python</th><th scope="col">Java (streams)</th></tr></thead>
       <tbody><tr><th scope="row">Transformar</th><td><code class="in">map(f, xs)</code> <span class="cita">(<a href="#ref-py-funcs">Python Software Foundation, s.f.-a</a>)</span></td><td><code class="in">.map(f)</code></td></tr><tr><th scope="row">Filtrar</th><td><code class="in">filter(p, xs)</code> <span class="cita">(<a href="#ref-py-howto">Kuchling, s.f.</a>)</span></td><td><code class="in">.filter(p)</code> <span class="cita">(<a href="#ref-j-agg">Oracle, s.f.-a</a>)</span></td></tr><tr><th scope="row">Reducir</th><td><code class="in">reduce(f, xs, inicial)</code> <span class="cita">(<a href="#ref-py-ft">Python Software Foundation, s.f.-b</a>)</span></td><td><code class="in">.reduce(identidad, f)</code> <span class="cita">(<a href="#ref-j-red">Oracle, s.f.-d</a>)</span></td></tr><tr><th scope="row">Función anónima</th><td><code class="in">lambda x: x * 2</code> <span class="cita">(<a href="#ref-py-howto">Kuchling, s.f.</a>)</span></td><td><code class="in">x -&gt; x * 2</code> <span class="cita">(<a href="#ref-j-lambda">Oracle, s.f.-b</a>)</span></td></tr></tbody>
     </table></div>
-    <aside class="ojo"><strong class="tit">No confundas</strong><p><b>Usar lambda no vuelve funcional a un programa.</b> Si la lambda modifica una lista de afuera, tiene un efecto secundario. El tutorial de Java recomienda no pasar nunca lambdas con efectos secundarios a operaciones como <code class="in">filter</code> y <code class="in">map</code> <span class="cita">(<a href="#ref-j-par">Oracle, s.f.-c</a>)</span>.</p></aside>
+    <aside class="ojo"><strong class="tit">Bug se confundió</strong><p><b>Usar lambda no vuelve funcional a un programa.</b> Si la lambda modifica una lista de afuera, tiene un efecto secundario. El tutorial de Java recomienda no pasar nunca lambdas con efectos secundarios a operaciones como <code class="in">filter</code> y <code class="in">map</code> <span class="cita">(<a href="#ref-j-par">Oracle, s.f.-c</a>)</span>.</p></aside>
   </section>
   <section class="seccion" id="codigo">
     <h2><span class="num-sec">02</span>Código comparado</h2>
@@ -134,6 +135,7 @@ def f(n):
     <h2><span class="num-sec">04</span>Autoevaluación</h2>
     <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
     <ol class="autoeval"><li>¿Qué condiciones cumple una función pura?</li><li>¿Por qué <code class="in">map</code> en Python no calcula nada hasta que lo recorres?</li><li>¿Qué partes tiene un pipeline de Java?</li><li>¿Qué dice Hughes sobre la modularidad en la programación funcional?</li></ol>
+    <div class="marcar-repaso" data-clave="tpr-repaso-v1" data-u="8"><p>¿Repasaste esta unidad y respondiste la autoevaluación? Márcala y sigue tu avance en <a href="progreso.html">Mi progreso</a>.</p><button type="button" class="btn sec" aria-pressed="false" hidden>Marcar como repasada</button></div>
   </section>
   <section class="seccion" id="juegos">
     <h2><span class="num-sec">05</span>Juegos</h2>

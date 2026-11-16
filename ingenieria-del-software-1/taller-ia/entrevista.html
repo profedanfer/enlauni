@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Entrevista con la directora de la USF · Ingeniería del Software 1</title>
+<link rel="icon" href="../../assets/personajes/ada.svg" type="image/svg+xml">
+<script src="../../assets/tema.js"></script>
+<link rel="stylesheet" href="../../assets/estilos.css">
+<link rel="stylesheet" href="../iso1.css">
+</head>
+<body class="iso1">
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../../index.html">Inicio</a><span aria-hidden="true">/</span><a href="../index.html">Ingeniería del Software 1</a><span aria-hidden="true">/</span><a href="index.html">IA con criterio</a><span aria-hidden="true">/</span><span>Entrevista</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Taller IA con criterio · Unidades 5 y 6</p>
+    <h1>Entrevista con la directora de la USF</h1>
+    <p class="objetivo">Relevar requerimientos de un cliente que no habla de tecnología: empezar con preguntas libres de contexto, reconocer puntos de vista en conflicto y convertir lo ambiguo en verificable.</p>
+  </section>
+  <div class="escena"><img src="../../assets/personajes/ada.svg" alt="" width="68" height="80"><div class="globo"><span class="quien">Ada</span><p>La directora no va a decirte todo de entrada, igual que en la vida real. Hay detalles importantes que solo aparecen si preguntas bien. Al final, ella misma te dice cuáles se te escaparon.</p></div></div>
+  <section class="seccion">
+    <h2>Antes de empezar</h2>
+    <ol class="pasos-taller">
+      <li><h3>Repasa</h3><p>Lee la <a href="../u5.html">Unidad 5</a>, sobre todo participantes, puntos de vista y preguntas libres de contexto, y el caso Turnos USF.</p></li>
+      <li><h3>Arma tu guion</h3><p>Escribe al menos 8 preguntas en tres grupos:</p><ul><li><b>Libres de contexto:</b> quién pide el sistema, quién lo va a usar, qué beneficio espera, si es la persona indicada para responder.</li><li><b>Del problema:</b> cómo funciona hoy, qué sale mal, qué pasa en los días difíciles.</li><li><b>De precisión:</b> para cuando algo quede ambiguo («¿qué significa rápido para usted?»).</li></ul></li>
+      <li><h3>Define cuándo terminar</h3><p>Una entrevista de 20 a 30 preguntas es suficiente. Más larga no es mejor: es más desordenada.</p></li>
+    </ol>
+  </section>
+  <section class="seccion">
+    <h2>El prompt</h2>
+    <p class="bajada">Cópialo completo en la herramienta de IA que uses y empieza tu entrevista.</p>
+    <div class="prompt"><pre id="prompt1">Vamos a hacer un juego de rol para practicar el relevamiento de requerimientos.
+
+TU PAPEL: eres Graciela, directora de una Unidad de Salud Familiar (USF) de barrio. La USF atiende clínica general, pediatría y control prenatal. Hoy los turnos se dan por orden de llegada: la gente hace fila desde la madrugada y muchas veces vuelve a su casa sin ser atendida. Quieres un sistema de turnos, pero no sabes nada de informática.
+
+MI PAPEL: soy estudiante de Ingeniería del Software y vengo a entrevistarte para relevar requerimientos.
+
+REGLAS PARA TI:
+1. Responde solo lo que te pregunto, en 2 a 5 oraciones, con lenguaje cotidiano y sin términos técnicos.
+2. No me des una lista de requerimientos ni propongas soluciones técnicas. Si te pido que diseñes el sistema, dime que ese es mi trabajo.
+3. Puedes inventar detalles de tu USF (personas, horarios, problemas del día a día), siempre coherentes entre sí. Guarda varios detalles importantes que solo cuentas si te pregunto bien: limitaciones de los pacientes, conflictos entre lo que quieren distintas personas del equipo, problemas de infraestructura y situaciones excepcionales.
+4. No inventes datos del mundo real. Si te pregunto por leyes, normas, cifras oficiales o presupuesto, di que no lo sabes y que habría que consultarlo con la región sanitaria.
+5. A veces responde algo ambiguo ("que sea rápido", "que sea fácil") y espera a que te pida que lo precises.
+6. Si te hago una pregunta que guía la respuesta ("¿no te parece que...?"), acepta con poco entusiasmo, como haría una persona real.
+7. Si te lo pido, puedes pasar a hacer de enfermera jefa o de una paciente. Anuncia el cambio de personaje.
+
+Cuando escriba FIN DE LA ENTREVISTA, sal del personaje y dame una devolución breve: qué preguntas fueron buenas y por qué, qué temas no exploré, qué respuestas ambiguas no pedí precisar, si hice preguntas que guiaban la respuesta y qué detalles importantes tenías guardados y no te pregunté. No me des la lista de requerimientos.
+
+Empieza presentándote como Graciela en una o dos oraciones y espera mi primera pregunta.</pre><button type="button" class="btn" data-copiar="prompt1" hidden>Copiar el prompt</button></div>
+  </section>
+  <section class="seccion">
+    <h2>Durante la entrevista</h2>
+    <ul class="autoeval">
+      <li>Una pregunta por vez. Escucha la respuesta antes de pasar a la siguiente de tu guion.</li>
+      <li>Si aparece «rápido», «fácil» o «seguro», pide un número o un ejemplo concreto.</li>
+      <li>Pide hablar con la enfermera jefa o con una paciente: los conflictos aparecen cuando comparas puntos de vista.</li>
+      <li>No propongas soluciones durante la entrevista. Estás relevando, no diseñando.</li>
+    </ul>
+  </section>
+  <section class="seccion">
+    <h2>Registra</h2>
+    <p class="bajada">Un requerimiento sin origen no se puede defender. Completa una fila por cada uno.</p>
+    <div class="tabla-scroll"><table class="comp plantilla" id="tabla1">
+      <thead><tr><th>N°</th><th>Requerimiento (verificable)</th><th>Tipo</th><th>Quién lo dijo</th><th>Pregunta que lo originó</th><th>¿Dato del mundo real?</th><th>Cómo lo verificaste</th><th>Estado</th></tr></thead>
+      <tbody><tr><td>R1</td><td>Ej.: La pantalla de la sala muestra el próximo turno con letra legible a 5 m</td><td>No funcional</td><td>Graciela</td><td>¿Qué pasa hoy en la sala de espera?</td><td>No</td><td>—</td><td>Pendiente de validar</td></tr><tr><td>R2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>R3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>R4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody>
+    </table></div>
+    <div class="fila-botones"><button type="button" class="btn sec" data-csv="tabla1" data-nombre="registro-entrevista-usf.csv" hidden>Descargar plantilla (CSV, abre en Excel u hojas de cálculo)</button></div>
+  </section>
+  <section class="seccion">
+    <h2>Verifica con criterio</h2>
+    <ul class="checklist">
+      <li><input type="checkbox" id="c1"><label for="c1">Cada requerimiento tiene su origen: pregunta, respuesta y personaje.</label></li>
+      <li><input type="checkbox" id="c2"><label for="c2">Separé lo que dijo el personaje de lo que supuse yo.</label></li>
+      <li><input type="checkbox" id="c3"><label for="c3">Marqué todo lo que se presenta como dato del mundo real (leyes, cifras, sistemas existentes) y lo contrasté con una fuente.</label></li>
+      <li><input type="checkbox" id="c4"><label for="c4">Registré al menos un conflicto entre puntos de vista y no lo resolví promediando.</label></li>
+      <li><input type="checkbox" id="c5"><label for="c5">Reescribí lo ambiguo como algo que se pueda probar.</label></li>
+      <li><input type="checkbox" id="c6"><label for="c6">Anoté qué le preguntaría a una persona real, porque la IA no lo puede responder.</label></li>
+    </ul>
+  </section>
+  <aside class="aviso-privacidad"><p><strong>Cuidado con los datos.</strong> No pegues en una IA nombres, documentos, diagnósticos ni datos de personas reales, ni información interna de una institución. Todo lo que escribes ahí puede quedar guardado fuera de tu control. En este taller, la USF y sus personas son ficticias.</p></aside>
+  <section class="seccion">
+    <h2>Para tu reflexión</h2>
+    <ul class="autoeval"><li>¿Qué detalle importante no apareció hasta que preguntaste de otra manera?</li><li>¿Qué respuesta de la IA te pareció demasiado perfecta para ser de una persona real?</li><li>¿En qué se diferencia esta entrevista de una con la directora de verdad?</li></ul>
+    <div class="enlaces-juego"><a class="btn sec" href="index.html">Volver al taller</a><a class="btn sec" href="panel.html">Siguiente: panel arquitectónico</a></div>
+  </section>
+
+  <footer class="pie"><span>Ingeniería del Software 1</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../../assets/taller.js"></script>
+</body>
+</html>

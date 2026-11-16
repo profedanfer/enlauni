@@ -31,6 +31,8 @@ Al imprimir, los personajes y texturas se ocultan.
 
 ## Herramientas de estudio
 
+- `ingenieria-del-software-1/casos.html` — Casos para el final: 10 casos nuevos (U1–U11), 51 preguntas cerradas N3–N5 con devolución por opción y 10 de desarrollo con criterios de autocorrección. Datos: `ingenieria-del-software-1/juegos/casos-examen.js`; render: `assets/casos.js`. El simulacro de ISO1 los usa en el modo «Solo casos» (predeterminado). Al escribir preguntas nuevas, cuidar que la correcta no sea siempre la opción más larga.
+
 - `*/juegos/simulacro.html` — Simulacro de examen: elige unidades, cantidad y tiempo; sin pistas hasta entregar; diagnóstico de Ada por unidad. Motor: `assets/simulacro.js` (usa el banco de preguntas de cada materia; excluye las de emparejar).
 - `*/progreso.html` — Mi progreso: unidades marcadas como repasadas (botón al final de la autoevaluación de cada unidad), puntos de la Ruta, simulacros y sellos de Ada. Motor: `assets/progreso.js`. Todo se guarda en `localStorage`, solo en el navegador del estudiante.
 - `ingenieria-del-software-1/taller-ia/` — IA con criterio: entrevista con la directora de la USF (U5–U6) y panel de revisión arquitectónica (U8–U9), con prompt listo, plantilla de registro (descarga CSV) y lista de verificación. Script: `assets/taller.js`.
