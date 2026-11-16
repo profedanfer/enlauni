@@ -20,6 +20,25 @@ ingenieria-del-software-1/                   ISO1: misma estructura (indagacione
                                              juegos/, bibliografia.html) + iso1.css (paleta propia de la materia)
 ```
 
+## Personajes
+
+Ada (robot) y Bug (gato) acompañan el sitio. Están en `assets/personajes/` como SVG.
+- Portada: la historia y la presentación de los dos.
+- Portadas de materia, indagaciones, repaso y juegos: escenas con globos de diálogo (`.escena`, `.escena.der`).
+- Recuadros «No confundas» de cada unidad: los firma Bug («Bug se confundió»), porque cada uno es un error típico.
+- Recuadros «Con IA, con criterio» de ISO1: los firma Ada, que es una IA.
+Al imprimir, los personajes y texturas se ocultan.
+
+## Herramientas de estudio
+
+- `*/juegos/simulacro.html` — Simulacro de examen: elige unidades, cantidad y tiempo; sin pistas hasta entregar; diagnóstico de Ada por unidad. Motor: `assets/simulacro.js` (usa el banco de preguntas de cada materia; excluye las de emparejar).
+- `*/progreso.html` — Mi progreso: unidades marcadas como repasadas (botón al final de la autoevaluación de cada unidad), puntos de la Ruta, simulacros y sellos de Ada. Motor: `assets/progreso.js`. Todo se guarda en `localStorage`, solo en el navegador del estudiante.
+- `ingenieria-del-software-1/taller-ia/` — IA con criterio: entrevista con la directora de la USF (U5–U6) y panel de revisión arquitectónica (U8–U9), con prompt listo, plantilla de registro (descarga CSV) y lista de verificación. Script: `assets/taller.js`.
+
+Botón claro/oscuro: `assets/tema.js`, cargado en el `<head>` de todas las páginas; agrega el botón al encabezado y guarda la elección en `aula-danfer-tema` (sin elección, sigue al sistema).
+
+Claves de `localStorage`: `tpr-repaso-v1`, `tpr-simulacros-v1`, `teoria-programacion-ruta-v1`, `iso1-repaso-v1`, `iso1-simulacros-v1`, `iso1-ruta-v1`.
+
 ## Publicar con GitHub Pages
 
 Settings → Pages → Source: «Deploy from a branch» → rama `main`, carpeta `/ (root)`.
