@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U6 · Colaboración digital y gestión de flujos</title>
+<script src="../assets/tema.js"></script>
+<link rel="icon" href="../assets/personajes/ada.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/estilos.css">
+<link rel="stylesheet" href="tic.css">
+</head>
+<body class="tic">
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Tecnología de la Información y Comunicación</a><span aria-hidden="true">/</span><a href="repaso.html">Repaso</a><span aria-hidden="true">/</span><span>Unidad 6</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Unidad 6 de 9</p>
+    <h1>Colaboración digital y gestión de flujos</h1>
+    <p class="objetivo">Gestionar procesos colaborativos digitales comprendiendo los flujos de trabajo.</p>
+    <ul class="contenidos" aria-label="Contenidos"><li>Google Workspace: Drive, Calendar y Meet</li><li>Teams y Office 365</li><li>Carpetas compartidas y permisos</li><li>Gestión de versiones</li><li>Roles y secuencia de trabajo</li></ul>
+  </section>
+  <nav class="indice-pagina" aria-label="En esta página">
+    <a href="#repaso">Repaso</a><a href="#caso">Caso aplicado</a><a href="#practica">Práctica</a><a href="#autoevaluacion">Autoevaluación</a><a href="#juegos">Juegos</a><a href="#bibliografia">Bibliografía</a>
+  </nav>
+  <section class="seccion" id="repaso">
+    <h2><span class="num-sec">01</span>Repaso</h2>
+    <p class="bajada">Se enfatiza la secuencia, los roles y el control del proceso: la herramienta no organiza al grupo; el grupo organiza la herramienta.</p>
+    <dl class="conceptos">
+<div class="concepto"><dt>Herramientas de colaboración</dt><dd><p>Google Workspace reúne Drive (archivos), Docs, Sheets y Slides (edición simultánea), Calendar (agenda) y Meet (videollamadas). Microsoft ofrece lo mismo con OneDrive, Word, Excel y PowerPoint en línea, y Teams para conversaciones y reuniones. Lo que importa no es la marca, sino el flujo: quién hace qué, cuándo y dónde queda registrado.</p></dd></div>
+<div class="concepto"><dt>Permisos</dt><dd><p>En Google Workspace se controla el acceso a cada archivo con permisos de <b>lector</b>, <b>comentador</b> y <b>editor</b> <span class="cita">(<a href="#ref-workspace-compartir">Google Workspace, s. f.</a>)</span>. El lector solo ve; el comentador ve y deja observaciones; el editor cambia el contenido.</p><p>Regla práctica: cada persona recibe el permiso que necesita para su rol, y nada más. Un enlace restringido solo lo abren las personas con las que se compartió.</p></dd></div>
+<div class="concepto"><dt>Carpetas y nombres</dt><dd><p>Una carpeta de proyecto se entiende sin explicaciones: subcarpetas numeradas por tipo (01_Juego, 02_Bitacora-IA, 03_Ficha-Tecnica, 04_Fuentes) y nombres de archivo sin espacios ni tildes, con guiones y versión: <code>Ficha-Tecnica_v02</code>. Nunca «final», «final2» o «ahora sí».</p></dd></div>
+<div class="concepto"><dt>Historial de versiones</dt><dd><p>Documentos, Hojas de cálculo y Presentaciones de Google guardan un historial de versiones propio, distinto del de los PDF o las imágenes guardados en Drive <span class="cita">(<a href="#ref-drive-versiones">Google, s. f.-b</a>)</span>. En los archivos subidos, una versión puede eliminarse al cabo de 30 días o cuando hay 100 versiones más recientes, salvo que la marques para conservarla <span class="cita">(<a href="#ref-drive-versiones">Google, s. f.-b</a>)</span>.</p><p>En un documento de Google, el historial muestra quién cambió qué y permite restaurar una versión anterior: Archivo → Historial de versiones.</p></dd></div>
+<div class="concepto"><dt>Roles y secuencia</dt><dd><p>Antes de escribir, el grupo acuerda: quién es responsable de cada parte, en qué orden se trabaja, quién revisa y cuándo se integra. Sin esto aparecen secciones repetidas, otras vacías y archivos que se pisan.</p></dd></div>
+    </dl>
+    <div class="tabla-scroll"><table class="comp">
+  <caption>Permisos de un archivo compartido</caption>
+  <thead><tr><th scope="col">Permiso</th><th scope="col">Ver</th><th scope="col">Comentar</th><th scope="col">Editar</th></tr></thead>
+  <tbody><tr><th scope="row">Lector</th><td>Sí</td><td>No</td><td>No</td></tr><tr><th scope="row">Comentador</th><td>Sí</td><td>Sí</td><td>No</td></tr><tr><th scope="row">Editor</th><td>Sí</td><td>Sí</td><td>Sí</td></tr></tbody>
+</table></div>
+    <aside class="ojo"><strong class="tit">Bug se confundió</strong><p><b>«final_final2_ahora_si.docx».</b> Bug tiene cuatro archivos «finales» y no sabe cuál entregar. Con un solo documento compartido y su historial de versiones, ese problema no existe.</p></aside>
+    <aside class="ia"><strong class="tit">Con IA, con criterio</strong><p>Si usan IA en un trabajo grupal, guarden los prompts y lo que cambiaron en una carpeta de la bitácora (por ejemplo, 02_Bitacora-IA). Así cualquier integrante puede explicar qué hizo la IA y qué hicieron ustedes.</p></aside>
+  </section>
+  <section class="seccion" id="caso">
+    <h2><span class="num-sec">02</span>Caso aplicado</h2>
+    <div class="caso-usf"><span class="tit">Caso transversal · Copias Arandú</span><p><b>Copias Arandú</b> es una fotocopiadora y librería de barrio. La atienden doña Liz y su hijo Hugo, que cursa el primer año de Informática. Reciben trabajos para imprimir por WhatsApp y por correo, anotan las ventas en un cuaderno y guardan todo en una computadora vieja con Windows. Hugo quiere ordenar el negocio con lo que aprende en TIC: una planilla de ventas, un catálogo en línea, copias de respaldo, una carpeta compartida con el contador y un aviso automático de «tu impresión está lista». Además, tiene que presentar un informe académico sobre la digitalización del negocio.</p><p>Este caso acompaña las 9 unidades. En cada una lo miras con los conceptos nuevos.</p></div>
+    <p class="bajada" style="margin-top:1rem">Mira el negocio con los conceptos de la unidad.</p>
+    <div class="tabs"><div class="tabs-botones" role="tablist" aria-label="Miradas del caso" hidden>
+<button type="button" role="tab" id="tab6-0" aria-controls="panel6-0">La carpeta con el contador</button><button type="button" role="tab" id="tab6-1" aria-controls="panel6-1">Las versiones</button><button type="button" role="tab" id="tab6-2" aria-controls="panel6-2">La reunión</button></div>
+<div class="tab-panel" role="tabpanel" id="panel6-0" aria-labelledby="tab6-0" data-lang="La carpeta con el contador"><div class="panel-texto"><p>Hugo crea la carpeta «Arandu_Contabilidad» con 01_Ventas, 02_Facturas y 03_Informes. Le da permiso de editor a doña Liz y de comentador al contador, que revisa sin modificar.</p></div></div>
+<div class="tab-panel" role="tabpanel" id="panel6-1" aria-labelledby="tab6-1" data-lang="Las versiones"><div class="panel-texto"><p>Antes había «ventas.xlsx», «ventas_nuevo.xlsx» y «ventas_bien.xlsx». Ahora hay una sola planilla de Google con historial de versiones: si alguien borra una fila, se restaura la versión del día anterior.</p></div></div>
+<div class="tab-panel" role="tabpanel" id="panel6-2" aria-labelledby="tab6-2" data-lang="La reunión"><div class="panel-texto"><p>Para revisar los números del mes, Hugo agenda en Calendar una reunión de 20 minutos con Meet, y adjunta en el evento el enlace a la planilla. El contador llega a la reunión con los comentarios hechos.</p></div></div>
+</div>
+  </section>
+  <section class="seccion" id="practica">
+    <h2><span class="num-sec">03</span>Actividades de práctica</h2>
+    <p class="bajada">Cada actividad indica cuándo terminaste. No pases a la siguiente hasta cumplirlo.</p>
+    <article class="actividad">
+      <header><h3>Actividad 1 · La carpeta del proyecto</h3><span class="meta">En equipo de trabajo · 30 min</span></header>
+      <p>Organicen la carpeta compartida de su trabajo integrador.</p>
+      <ol><li>Creen las subcarpetas numeradas.</li><li>Renombren los archivos con la regla sin espacios ni tildes y con versión.</li><li>Asignen los permisos según el rol de cada persona.</li><li>Escriban en un documento quién es responsable de cada parte.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> cualquier persona ajena al grupo encuentra la ficha técnica en menos de un minuto y nadie tiene más permisos de los que necesita.</p>
+    </article>
+    <article class="actividad">
+      <header><h3>Actividad 2 · Rescate de versiones</h3><span class="meta">En parejas · 15 min</span></header>
+      <p>En un documento de Google compartido:</p>
+      <ol><li>Uno escribe un párrafo y el otro borra una parte.</li><li>Abran el historial de versiones y encuentren quién borró qué.</li><li>Restauren la versión anterior.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> recuperaron el texto borrado y pueden mostrar en el historial quién hizo cada cambio.</p>
+    </article>
+    <p class="tpi"><strong>Conexión con el trabajo integrador.</strong> ¿Quién tiene permiso de editor en los archivos del trabajo integrador? ¿Hay versiones duplicadas? Ordénenlo antes de la entrega.</p>
+  </section>
+  <section class="seccion" id="autoevaluacion">
+    <h2><span class="num-sec">04</span>Autoevaluación</h2>
+    <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
+    <ol class="autoeval"><li>¿Qué diferencia hay entre lector, comentador y editor?</li><li>¿Por qué no conviene nombrar un archivo «final2»?</li><li>¿Cómo recuperas una versión anterior de un documento de Google?</li><li>¿Qué tiene que acordar un grupo antes de empezar a escribir?</li></ol>
+    <div class="marcar-repaso" data-clave="tic-repaso-v1" data-u="6"><p>¿Repasaste esta unidad y respondiste la autoevaluación? Márcala y sigue tu avance en <a href="progreso.html">Mi progreso</a>.</p><button type="button" class="btn sec" aria-pressed="false" hidden>Marcar como repasada</button></div>
+  </section>
+  <section class="seccion" id="juegos">
+    <h2><span class="num-sec">05</span>Juegos</h2>
+    <div class="enlaces-juego"><a class="btn" href="juegos/ruta-de-repaso.html#u6">Estación U6 de la Ruta de Repaso</a><a class="btn sec" href="juegos/oca.html">La Oca de TIC</a><a class="btn sec" href="juegos/duelo-de-equipos.html">Duelo de equipos</a><a class="btn sec" href="casos.html">Casos para el final</a></div>
+  </section>
+  <section class="seccion" id="bibliografia">
+    <h2><span class="num-sec">06</span>Bibliografía</h2>
+    <p class="bajada">Fuentes citadas en esta unidad, en formato APA 7. Todas son de acceso abierto y se consultaron el 16 de noviembre de 2026.</p>
+    <ol class="biblio"><li id="ref-drive-versiones">Google. (s. f.-b). <i>Consultar la actividad y las versiones de los archivos</i>. Ayuda de Google Drive. <a href="https://support.google.com/drive/answer/2409045?hl=es">https://support.google.com/drive/answer/2409045?hl=es</a></li><li id="ref-workspace-compartir">Google Workspace. (s. f.). <i>Compartir archivos</i>. <a href="https://workspace.google.com/intl/es/resources/file-sharing">https://workspace.google.com/intl/es/resources/file-sharing</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Unidades"><a class="ant" href="u5.html"><small>← Unidad 5</small>Gestión segura de información y ciberseguridad</a><a class="sig" href="u7.html"><small>Unidad 7 →</small>Introducción a herramientas multimedia</a></nav>
+  <footer class="pie"><span>Tecnología de la Información y Comunicación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>

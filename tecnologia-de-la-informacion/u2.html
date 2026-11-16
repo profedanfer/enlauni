@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U2 · Virtualización y sistemas operativos</title>
+<script src="../assets/tema.js"></script>
+<link rel="icon" href="../assets/personajes/ada.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/estilos.css">
+<link rel="stylesheet" href="tic.css">
+</head>
+<body class="tic">
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Tecnología de la Información y Comunicación</a><span aria-hidden="true">/</span><a href="repaso.html">Repaso</a><span aria-hidden="true">/</span><span>Unidad 2</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Unidad 2 de 9</p>
+    <h1>Virtualización y sistemas operativos</h1>
+    <p class="objetivo">Analizar entornos tecnológicos diferenciando capas físicas y lógicas en la ejecución de sistemas.</p>
+    <ul class="contenidos" aria-label="Contenidos"><li>Virtualización</li><li>Capa física y capa lógica</li><li>Máquina virtual: anfitrión e invitado</li><li>Hipervisores tipo 1 y tipo 2</li><li>Gestión de recursos</li><li>Windows, Linux y macOS</li><li>Máquinas virtuales y contenedores</li></ul>
+  </section>
+  <nav class="indice-pagina" aria-label="En esta página">
+    <a href="#repaso">Repaso</a><a href="#caso">Caso aplicado</a><a href="#practica">Práctica</a><a href="#autoevaluacion">Autoevaluación</a><a href="#juegos">Juegos</a><a href="#bibliografia">Bibliografía</a>
+  </nav>
+  <section class="seccion" id="repaso">
+    <h2><span class="num-sec">01</span>Repaso</h2>
+    <p class="bajada">El concepto central de la unidad es la abstracción: el software esconde los detalles del hardware real y presenta a cada sistema un hardware que se comporta como uno verdadero.</p>
+    <dl class="conceptos">
+<div class="concepto"><dt>Virtualización</dt><dd><p>Es una tecnología que permite crear varios entornos virtuales simulados a partir de una sola máquina física <span class="cita">(<a href="#ref-redhat-virt">Red Hat, s. f.-a</a>)</span>. Así, un solo equipo puede comportarse como varias computadoras independientes.</p><p>La idea no es nueva: en 1974, Popek y Goldberg ya formalizaron qué condiciones debe cumplir una arquitectura para poder virtualizarse <span class="cita">(<a href="#ref-popek">Popek y Goldberg, 1974</a>)</span>.</p></dd></div>
+<div class="concepto"><dt>Capa física y capa lógica</dt><dd><p>La <b>capa física</b> es lo que se puede tocar: procesador, memoria RAM, disco, placa de red. La <b>capa lógica</b> es lo que existe como software, información o configuración: el sistema operativo, la máquina virtual, el disco virtual, la red virtual, las instantáneas.</p><p>Ojo con el disco virtual: ocupa espacio en el disco físico, pero es un <b>archivo</b> (por ejemplo, .vdi o .vmdk), no un componente.</p></dd></div>
+<div class="concepto"><dt>Máquina virtual</dt><dd><p>Es una computadora simulada por software que corre dentro de una real. El equipo físico que la ejecuta se llama <b>anfitrión</b> (host); el sistema que corre adentro, <b>invitado</b> (guest) <span class="cita">(<a href="#ref-virtualbox">Oracle, s. f.</a>)</span>.</p><p>Una <b>instantánea</b> (snapshot) guarda el estado de la máquina virtual en un momento dado para poder volver atrás si algo falla <span class="cita">(<a href="#ref-virtualbox">Oracle, s. f.</a>)</span>.</p></dd></div>
+<div class="concepto"><dt>Hipervisor</dt><dd><p>Es el software que agrupa los recursos (procesamiento, memoria, almacenamiento) y los asigna entre las máquinas virtuales <span class="cita">(<a href="#ref-redhat-hiper">Red Hat, s. f.-b</a>)</span>.</p><p>El <b>tipo 1</b> (nativo o bare metal) se ejecuta directamente sobre el hardware; el <b>tipo 2</b> (alojado) corre como un programa sobre un sistema operativo ya instalado y es el más adecuado para usar varios sistemas en una computadora personal <span class="cita">(<a href="#ref-redhat-hiper">Red Hat, s. f.-b</a>)</span>. Oracle VirtualBox es un hipervisor tipo 2 <span class="cita">(<a href="#ref-virtualbox">Oracle, s. f.</a>)</span>.</p></dd></div>
+<div class="concepto"><dt>Gestión de recursos</dt><dd><p>Lo que le das a la máquina virtual se le quita al anfitrión. Si una notebook tiene 8 GB de RAM y le asignas 6 GB a la máquina virtual, al sistema anfitrión le quedan apenas 2 GB y todo se vuelve lento. Con 4 GB hay un equilibrio razonable.</p><p>Es un buen ejemplo de E-P-S: la entrada son los recursos físicos y la configuración elegida; el proceso es el reparto que hace el hipervisor; la salida es una máquina virtual funcionando.</p></dd></div>
+<div class="concepto"><dt>Contenedores</dt><dd><p>Una máquina virtual incluye un sistema operativo completo. Un contenedor (por ejemplo, con Docker) comparte el núcleo del sistema anfitrión y solo empaqueta la aplicación con lo que necesita: es más liviano y arranca más rápido, pero aísla menos.</p></dd></div>
+    </dl>
+    <div class="tabla-scroll"><table class="comp">
+  <caption>Tres sistemas operativos comparados</caption>
+  <thead><tr><th scope="col">Aspecto</th><th scope="col">Windows</th><th scope="col">Linux</th><th scope="col">macOS</th></tr></thead>
+  <tbody><tr><th scope="row">Licencia</th><td>Comercial (Microsoft)</td><td>Libre y gratuita en la mayoría de las distribuciones</td><td>Propietaria, incluida con equipos Apple</td></tr><tr><th scope="row">Código</th><td>Cerrado</td><td>Abierto</td><td>Cerrado, con base de código abierto</td></tr><tr><th scope="row">Uso fuerte</th><td>Oficinas, juegos, software comercial</td><td>Servidores, programación, redes y seguridad</td><td>Diseño, edición audiovisual, desarrollo para Apple</td></tr><tr><th scope="row">Como invitado en una máquina virtual</th><td>Posible, con licencia</td><td>Muy común y sencillo</td><td>Su licencia solo permite virtualizarlo en hardware Apple</td></tr></tbody>
+</table></div>
+    <aside class="ojo"><strong class="tit">Bug se confundió</strong><p><b>El disco virtual no es hardware.</b> Bug clasificó «Ubuntu.vdi» como capa física porque «ocupa lugar en el disco». Ocupa lugar, sí, pero es un archivo: pertenece a la capa lógica.</p></aside>
+    <aside class="ia"><strong class="tit">Con IA, con criterio</strong><p>Sube el material de la unidad a un cuaderno de NotebookLM y genera un mapa mental o preguntas de práctica. Después, verifica cada respuesta contra el material: aunque responda a partir de tus fuentes, puede interpretar mal una tabla o mezclar tipo 1 con tipo 2.</p></aside>
+  </section>
+  <section class="seccion" id="caso">
+    <h2><span class="num-sec">02</span>Caso aplicado</h2>
+    <div class="caso-usf"><span class="tit">Caso transversal · Copias Arandú</span><p><b>Copias Arandú</b> es una fotocopiadora y librería de barrio. La atienden doña Liz y su hijo Hugo, que cursa el primer año de Informática. Reciben trabajos para imprimir por WhatsApp y por correo, anotan las ventas en un cuaderno y guardan todo en una computadora vieja con Windows. Hugo quiere ordenar el negocio con lo que aprende en TIC: una planilla de ventas, un catálogo en línea, copias de respaldo, una carpeta compartida con el contador y un aviso automático de «tu impresión está lista». Además, tiene que presentar un informe académico sobre la digitalización del negocio.</p><p>Este caso acompaña las 9 unidades. En cada una lo miras con los conceptos nuevos.</p></div>
+    <p class="bajada" style="margin-top:1rem">Mira el negocio con los conceptos de la unidad.</p>
+    <div class="tabs"><div class="tabs-botones" role="tablist" aria-label="Miradas del caso" hidden>
+<button type="button" role="tab" id="tab2-0" aria-controls="panel2-0">Probar Linux</button><button type="button" role="tab" id="tab2-1" aria-controls="panel2-1">Capas</button><button type="button" role="tab" id="tab2-2" aria-controls="panel2-2">Recursos</button><button type="button" role="tab" id="tab2-3" aria-controls="panel2-3">El archivo sospechoso</button></div>
+<div class="tab-panel" role="tabpanel" id="panel2-0" aria-labelledby="tab2-0" data-lang="Probar Linux"><div class="panel-texto"><p>Hugo quiere aprender Linux, pero la computadora del negocio tiene Windows y no puede quedarse sin él. Con VirtualBox crea una máquina virtual con Linux como invitado. Windows sigue siendo el anfitrión, y el negocio no se detiene.</p></div></div>
+<div class="tab-panel" role="tabpanel" id="panel2-1" aria-labelledby="tab2-1" data-lang="Capas"><div class="panel-texto"><p>Capa física: la computadora, sus 8 GB de RAM, el disco, la impresora. Capa lógica: Windows, la máquina virtual, el archivo del disco virtual, la instantánea «antes de instalar programas».</p></div></div>
+<div class="tab-panel" role="tabpanel" id="panel2-2" aria-labelledby="tab2-2" data-lang="Recursos"><div class="panel-texto"><p>Hugo le asigna 4 GB de RAM y 2 núcleos a la máquina virtual. Si le diera 7 GB, la computadora se pondría lenta para atender a los clientes, porque Windows se quedaría casi sin memoria.</p></div></div>
+<div class="tab-panel" role="tabpanel" id="panel2-3" aria-labelledby="tab2-3" data-lang="El archivo sospechoso"><div class="panel-texto"><p>Un cliente manda un archivo «para imprimir» que en realidad es un ejecutable. Hugo lo abre primero en la máquina virtual con una instantánea tomada antes: si es malicioso, vuelve atrás y la computadora del negocio queda a salvo.</p></div></div>
+</div>
+  </section>
+  <section class="seccion" id="practica">
+    <h2><span class="num-sec">03</span>Actividades de práctica</h2>
+    <p class="bajada">Cada actividad indica cuándo terminaste. No pases a la siguiente hasta cumplirlo.</p>
+    <article class="actividad">
+      <header><h3>Actividad 1 · Clasifica las capas</h3><span class="meta">Individual · 15 min</span></header>
+      <p>Clasifica en capa física o capa lógica: memoria RAM de 16 GB, archivo Ubuntu.vdi, placa de red, instantánea «antes de actualizar», núcleos del procesador, red virtual, monitor, sistema operativo invitado.</p>
+      <ol><li>Arma una tabla de dos columnas.</li><li>Ubica los ocho elementos.</li><li>Justifica en una línea los dos que te parecieron más difíciles.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tienes los ocho elementos clasificados y dos justificaciones que mencionan «se puede tocar» o «es un archivo o configuración».</p>
+    </article>
+    <article class="actividad">
+      <header><h3>Actividad 2 · Tu primera máquina virtual</h3><span class="meta">Individual · 45 min</span></header>
+      <p>Crea una máquina virtual en VirtualBox con una distribución de Linux.</p>
+      <ol><li>Anota cuánta RAM tiene tu computadora y decide cuánta asignar.</li><li>Crea la máquina virtual y el disco virtual dinámico.</li><li>Instala el sistema invitado.</li><li>Toma una instantánea con un nombre que diga qué estado guarda.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> la máquina virtual arranca, tienes una instantánea con nombre descriptivo y puedes explicar por qué elegiste esa cantidad de memoria.</p>
+    </article>
+    <p class="tpi"><strong>Conexión con el trabajo integrador.</strong> Si el sistema que analizas en el trabajo integrador corre en servidores o en la nube, ¿usa virtualización? ¿Qué parte pertenece a la capa física y qué parte a la lógica?</p>
+  </section>
+  <section class="seccion" id="autoevaluacion">
+    <h2><span class="num-sec">04</span>Autoevaluación</h2>
+    <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
+    <ol class="autoeval"><li>¿Por qué un disco virtual pertenece a la capa lógica?</li><li>¿Qué diferencia hay entre un hipervisor tipo 1 y uno tipo 2?</li><li>¿Qué pasa con el anfitrión si le asignas casi toda la RAM a la máquina virtual?</li><li>¿Para qué sirve una instantánea?</li></ol>
+    <div class="marcar-repaso" data-clave="tic-repaso-v1" data-u="2"><p>¿Repasaste esta unidad y respondiste la autoevaluación? Márcala y sigue tu avance en <a href="progreso.html">Mi progreso</a>.</p><button type="button" class="btn sec" aria-pressed="false" hidden>Marcar como repasada</button></div>
+  </section>
+  <section class="seccion" id="juegos">
+    <h2><span class="num-sec">05</span>Juegos</h2>
+    <div class="enlaces-juego"><a class="btn" href="juegos/ruta-de-repaso.html#u2">Estación U2 de la Ruta de Repaso</a><a class="btn sec" href="juegos/oca.html">La Oca de TIC</a><a class="btn sec" href="juegos/duelo-de-equipos.html">Duelo de equipos</a><a class="btn sec" href="casos.html">Casos para el final</a></div>
+  </section>
+  <section class="seccion" id="bibliografia">
+    <h2><span class="num-sec">06</span>Bibliografía</h2>
+    <p class="bajada">Fuentes citadas en esta unidad, en formato APA 7. Todas son de acceso abierto y se consultaron el 16 de noviembre de 2026.</p>
+    <ol class="biblio"><li id="ref-virtualbox">Oracle. (s. f.). <i>Oracle VirtualBox user guide</i>. <a href="https://www.virtualbox.org/manual/">https://www.virtualbox.org/manual/</a></li><li id="ref-popek">Popek, G. J., y Goldberg, R. P. (1974). Formal requirements for virtualizable third generation architectures. <i>Communications of the ACM, 17</i>(7), 412–421. <a href="https://doi.org/10.1145/361011.361073">https://doi.org/10.1145/361011.361073</a></li><li id="ref-redhat-virt">Red Hat. (s. f.-a). <i>¿Qué es la virtualización?</i> <a href="https://www.redhat.com/es/topics/virtualization/what-is-virtualization">https://www.redhat.com/es/topics/virtualization/what-is-virtualization</a></li><li id="ref-redhat-hiper">Red Hat. (s. f.-b). <i>¿Qué es un hipervisor?</i> <a href="https://www.redhat.com/es/topics/virtualization/what-is-a-hypervisor">https://www.redhat.com/es/topics/virtualization/what-is-a-hypervisor</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Unidades"><a class="ant" href="u1.html"><small>← Unidad 1</small>Fundamentos tecnológicos y modelo sistémico</a><a class="sig" href="u3.html"><small>Unidad 3 →</small>Navegación, búsqueda y accesibilidad digital</a></nav>
+  <footer class="pie"><span>Tecnología de la Información y Comunicación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>

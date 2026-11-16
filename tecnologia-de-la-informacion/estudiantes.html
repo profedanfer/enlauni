@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hecho por estudiantes · Tecnología de la Información y Comunicación</title>
+<script src="../assets/tema.js"></script>
+<link rel="icon" href="../assets/personajes/ada.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/estilos.css">
+<link rel="stylesheet" href="tic.css">
+</head>
+<body class="tic">
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Tecnología de la Información y Comunicación</a><span aria-hidden="true">/</span><span>Hecho por estudiantes</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Tecnología de la Información y Comunicación · para jugar y aprender</p>
+    <h1>Hecho por estudiantes</h1>
+    <p class="objetivo">Juegos creados por estudiantes en el Desafío de desarrollo de videojuegos de la cátedra, con ayuda de la inteligencia artificial. Son sitios externos: Ada recomienda jugarlos y verificar lo que dicen.</p>
+  </section>
+  <div class="escena"><img src="../assets/personajes/ada.svg" alt="" width="68" height="80"><div class="globo"><span class="quien">Ada</span><p>Cada grupo tuvo que detectar los errores de su IA y documentarlos. Cuando juegues, haz lo mismo: si una respuesta te parece dudosa, búscala en el repaso de la unidad.</p></div></div>
+  <div class="escena der"><img src="../assets/personajes/bug.svg" alt="" width="68" height="72"><div class="globo"><span class="quien">Bug</span><p>Yo quería hacer un juego de gatos que derriban vasos. Me dijeron que tenía que tener 16 retos de la materia. Sigo pensando.</p></div></div>
+  <aside class="ia"><strong class="tit">Con IA, con criterio: lo que aprendieron los grupos</strong>
+    <ul>
+      <li>La IA se equivoca con seguridad: un grupo encontró respuestas incorrectas y las corrigió una por una contra el material.</li>
+      <li>Otro grupo detectó seis errores de la IA, incluidas fuentes mal citadas, y armó 135 pruebas automáticas para asegurarse de que el juego funcionara.</li>
+      <li>Cuando el código generado se cortó a la mitad, la solución fue dividir el trabajo en partes controladas, no pedir «todo de nuevo».</li>
+    </ul>
+  </aside>
+  <section class="seccion" id="juegos">
+    <h2>Los juegos</h2>
+    <article class="actividad juego-estudiantes">
+      <header><h3>Depurador TIC</h3><span class="meta">Grupo 1 · Juego de rol (RPG) en pixel art</span></header>
+      <p><b>Objetivo.</b> Reparar las 16 terminales con fallas de un edificio dividido en seis sectores. Cada terminal plantea un reto de la materia con su explicación y su fuente.</p>
+      <p><b>Cómo se juega.</b> Recorres el edificio con teclado, mouse o pantalla táctil, te acercas a una terminal con luz roja y eliges uno de cuatro comandos. Si aciertas, la terminal se estabiliza y sumas recursos; si te equivocas, pierdes energía y recibes un reporte de incidente que explica el error y cita la fuente.</p>
+      <dl class="ficha-juego"><dt>Unidades</dt><dd>U1, U2, U3, U4, U6, U7 y U9 · 16 retos, 4 de ellos de Entrada → Proceso → Salida</dd><dt>IA y prompts</dt><dd>Claude · unos 21 prompts · 6 errores de la IA detectados y corregidos</dd></dl>
+      <p><b>Mayor dificultad.</b> Que el juego fuera confiable. Al pasar de una trivia a un RPG aparecieron errores que la IA no había previsto, como respuestas incorrectas que se volvían a habilitar al salir y entrar de una terminal. Lo resolvieron con pruebas automáticas que juegan partidas completas (135 pruebas aprobadas) y revisando cada fuente contra el material de clase.</p>
+      <p class="terminaste"><strong>Lo que aprendieron</strong> Que la IA acelera mucho el trabajo, pero se equivoca con seguridad: cada respuesta, fuente y línea de código hay que verificarla. También aprendieron a citar en APA, a aplicar el modelo E-P-S al diseño del juego y pautas de accesibilidad (contraste, uso con teclado, reducir movimiento).</p>
+      <div class="enlaces-juego"><a class="btn" href="https://lukaa0202.github.io/UDesafio-TIC-Columbia/" target="_blank" rel="noopener">Jugar · sitio externo<span class="sr-only"> (se abre en una pestaña nueva)</span></a></div>
+    </article>
+    <article class="actividad juego-estudiantes">
+      <header><h3>Preguntas y Respuestas</h3><span class="meta">Grupo 2 · Escenarios con decisiones</span></header>
+      <p><b>Objetivo.</b> Evaluar la comprensión práctica de los contenidos de TIC con decisiones sobre escenarios reales.</p>
+      <p><b>Cómo se juega.</b> Lees una situación problemática paso a paso y eliges una de tres opciones.</p>
+      <dl class="ficha-juego"><dt>Unidades</dt><dd>U1, U2, U3, U4, U6, U7 y U9 · incluye el eje Entrada → Proceso → Salida</dd><dt>IA y prompts</dt><dd>Gemini · 10 prompts registrados en la bitácora</dd></dl>
+      <p><b>Mayor dificultad.</b> El código de JavaScript se cortó a la mitad por el límite de texto del chat y el botón de inicio dejó de funcionar. Lo resolvieron dividiendo el código en dos bloques controlados y cerrando a mano las etiquetas.</p>
+      <p class="terminaste"><strong>Lo que aprendieron</strong> Conceptos de virtualización, accesibilidad (WCAG) y lógica booleana en la práctica, y que quien desarrolla es responsable de verificar la veracidad y el funcionamiento del producto final.</p>
+      <div class="enlaces-juego"><a class="btn" href="https://juananibalromero8-crypto.github.io/tic/" target="_blank" rel="noopener">Jugar · sitio externo<span class="sr-only"> (se abre en una pestaña nueva)</span></a></div>
+    </article>
+    <article class="actividad juego-estudiantes">
+      <header><h3>Reto Web</h3><span class="meta">Grupo 3 · Preguntas con pista</span></header>
+      <p><b>Objetivo.</b> Poner en práctica lo aprendido respondiendo preguntas al azar.</p>
+      <p><b>Cómo se juega.</b> Respondes preguntas de opción múltiple con ayuda de una pequeña pista.</p>
+      <dl class="ficha-juego"><dt>Unidades</dt><dd>Unidades 1 a 9</dd><dt>IA y prompts</dt><dd>Claude y ChatGPT · 10 prompts</dd></dl>
+      <p><b>Mayor dificultad.</b> Las preguntas eran muy largas. Lo resolvieron con un prompt que pedía versiones más cortas.</p>
+      <p class="terminaste"><strong>Lo que aprendieron</strong> Repasaron y entendieron mejor las clases, y armaron un recurso de apoyo para prepararse.</p>
+      <div class="enlaces-juego"><a class="btn" href="https://lucent-gaufre-207dad.netlify.app/" target="_blank" rel="noopener">Jugar · sitio externo<span class="sr-only"> (se abre en una pestaña nueva)</span></a></div>
+    </article>
+    <article class="actividad juego-estudiantes">
+      <header><h3>Noche en Pizza Pixel</h3><span class="meta">Grupo 4 · Varios modos: roguelike, terror y supervivencia, aventura</span></header>
+      <p><b>Objetivo.</b> Completar distintos modos de juego y responder preguntas de la materia.</p>
+      <p><b>Cómo se juega.</b> Cada modo tiene su propia jugabilidad; para avanzar respondes preguntas.</p>
+      <dl class="ficha-juego"><dt>Unidades</dt><dd>Unidades 1 a 9</dd><dt>IA y prompts</dt><dd>Claude y ChatGPT · 12 prompts (4 importantes)</dd></dl>
+      <p><b>Mayor dificultad.</b> Problemas gráficos y de movimiento, resueltos con prompts específicos para cada error.</p>
+      <p class="terminaste"><strong>Lo que aprendieron</strong> Cómo escribir prompts precisos y lo difícil que es el trabajo en equipo.</p>
+      <div class="enlaces-juego"><a class="btn" href="https://sites.google.com/view/izzapixel/inicio" target="_blank" rel="noopener">Jugar · sitio externo<span class="sr-only"> (se abre en una pestaña nueva)</span></a></div>
+    </article>
+    <article class="actividad juego-estudiantes">
+      <header><h3>Salto de la Ranita</h3><span class="meta">Grupo 5 · Preguntas con avance</span></header>
+      <p><b>Objetivo.</b> Aprender los contenidos de forma interactiva.</p>
+      <p><b>Cómo se juega.</b> La ranita salta de nenúfar en nenúfar cada vez que respondes bien.</p>
+      <dl class="ficha-juego"><dt>Unidades</dt><dd>Todas las unidades</dd><dt>IA y prompts</dt><dd>Gemini · 7 prompts</dd></dl>
+      <p><b>Mayor dificultad.</b> La IA daba respuestas incorrectas o confusas. Lo resolvieron verificando a mano cada respuesta.</p>
+      <p class="terminaste"><strong>Lo que aprendieron</strong> A usar mejor la IA.</p>
+      <div class="enlaces-juego"><a class="btn" href="https://vermillion-kheer-b2d0a1.netlify.app/" target="_blank" rel="noopener">Jugar · sitio externo<span class="sr-only"> (se abre en una pestaña nueva)</span></a></div>
+    </article>
+    <p class="bajada">Los juegos están publicados por sus grupos en sus propios sitios. Si un enlace deja de funcionar, avisa a la docente.</p>
+  </section>
+  <footer class="pie"><span>Tecnología de la Información y Comunicación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+</body>
+</html>

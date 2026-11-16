@@ -16,6 +16,9 @@ teoria-de-la-programacion/juegos/            03 · Juegos: Ruta de Repaso, Está
                                              Caza el bug, Tribunal de Diseño, Duelo de equipos
 teoria-de-la-programacion/juegos/laboratorio/  Ejecución real de Python (Pyodide) con vigilante de tiempo
 teoria-de-la-programacion/bibliografia.html  Bibliografía completa
+tecnologia-de-la-informacion/                TIC: repaso.html, u1–u9.html, casos.html, juegos/ (Ruta, Oca, Duelo,
+                                             Simulacro), progreso.html, estudiantes.html (juegos de estudiantes),
+                                             bibliografia.html + tic.css (verde oliva y cobre). Sin indagaciones.
 ingenieria-del-software-1/                   ISO1: misma estructura (indagaciones/, repaso.html, u1–u11.html,
                                              juegos/, bibliografia.html) + iso1.css (paleta propia de la materia)
 ```
@@ -39,7 +42,7 @@ Al imprimir, los personajes y texturas se ocultan.
 
 Botón claro/oscuro: `assets/tema.js`, cargado en el `<head>` de todas las páginas; agrega el botón al encabezado y guarda la elección en `aula-danfer-tema` (sin elección, sigue al sistema).
 
-Claves de `localStorage`: `tpr-repaso-v1`, `tpr-simulacros-v1`, `teoria-programacion-ruta-v1`, `iso1-repaso-v1`, `iso1-simulacros-v1`, `iso1-ruta-v1`.
+Claves de `localStorage`: `tpr-repaso-v1`, `tpr-simulacros-v1`, `teoria-programacion-ruta-v1`, `iso1-repaso-v1`, `iso1-simulacros-v1`, `iso1-ruta-v1`, `tic-repaso-v1`, `tic-simulacros-v1`, `tic-ruta-v1`.
 
 ## Publicar con GitHub Pages
 
@@ -53,3 +56,10 @@ Los ejemplos de código se ejecutaron y su salida se copió tal cual.
 ### Ingeniería del Software 1
 
 Texto base: Pressman (2010), rotulado como texto de cátedra (no es de acceso abierto). Se cita el capítulo y la página solo donde fue verificada (caps. 5, 6 y 7). Las fuentes abiertas se verificaron el 26 de octubre de 2026. Caso transversal: sistema de turnos de una USF. Los juegos de ISO1 no usan el laboratorio de Python.
+
+### Tecnología de la Información y Comunicación (TIC)
+
+Unidades según la guía didáctica (U1 a U9), con el modelo Entrada → Proceso → Salida como eje. Caso transversal: Copias Arandú (fotocopiadora de barrio).
+Reutiliza material del sitio del BATIN (Oca de la Ofimática, errores en la planilla, guías de IA, Word y presentaciones), adaptado a tuteo y registro universitario.
+Fuentes abiertas verificadas el 16 de noviembre de 2026. Las fórmulas usan punto y coma (;).
+«Hecho por estudiantes»: cinco juegos del Desafío de la cátedra, sin nombres de integrantes, como enlaces externos.

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U4 · Herramientas ofimáticas con enfoque estructural</title>
+<script src="../assets/tema.js"></script>
+<link rel="icon" href="../assets/personajes/ada.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/estilos.css">
+<link rel="stylesheet" href="tic.css">
+</head>
+<body class="tic">
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Tecnología de la Información y Comunicación</a><span aria-hidden="true">/</span><a href="repaso.html">Repaso</a><span aria-hidden="true">/</span><span>Unidad 4</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Unidad 4 de 9</p>
+    <h1>Herramientas ofimáticas con enfoque estructural</h1>
+    <p class="objetivo">Organizar y presentar información académica aplicando estructura y formato técnico adecuado.</p>
+    <ul class="contenidos" aria-label="Contenidos"><li>Documentos con estilos e índice</li><li>Saltos de página y de sección</li><li>Presentaciones estructuradas</li><li>Fórmulas y referencias</li><li>Funciones SUMA, PROMEDIO, CONTAR.SI, SUMAR.SI y SI</li><li>Filtros y gráficos</li></ul>
+  </section>
+  <nav class="indice-pagina" aria-label="En esta página">
+    <a href="#repaso">Repaso</a><a href="#caso">Caso aplicado</a><a href="#practica">Práctica</a><a href="#autoevaluacion">Autoevaluación</a><a href="#juegos">Juegos</a><a href="#bibliografia">Bibliografía</a>
+  </nav>
+  <section class="seccion" id="repaso">
+    <h2><span class="num-sec">01</span>Repaso</h2>
+    <p class="bajada">La unidad prioriza la estructura antes que el diseño visual: un documento bien estructurado se puede reformatear en minutos; uno armado «a mano» hay que rehacerlo.</p>
+    <dl class="conceptos">
+<div class="concepto"><dt>Estilos y tabla de contenido</dt><dd><p>La tabla de contenido de Word se basa en los títulos del documento, es decir, en el texto que tiene aplicado un estilo de título <span class="cita">(<a href="#ref-ms-toc">Microsoft, s. f.-b</a>)</span>. Un texto en negrita y tamaño 16 <i>parece</i> título, pero para Word sigue siendo texto normal.</p><p>Usa Título 1 para capítulos y Título 2 para subtemas, sin saltear niveles. Al terminar, actualiza la tabla con un clic.</p></dd></div>
+<div class="concepto"><dt>Saltos de página y de sección</dt><dd><p>El <b>salto de página</b> hace que lo que sigue empiece en una página nueva. El <b>salto de sección</b> además permite que cada parte tenga su propio encabezado, pie, numeración u orientación.</p><p>Portada sin número y cuerpo numerado desde 1: salto de sección (página siguiente) después de la portada, desvincular el pie de la sección anterior y configurar el número de página para que empiece en 1.</p></dd></div>
+<div class="concepto"><dt>Presentaciones</dt><dd><p>Una diapositiva apoya lo que dices; no lo reemplaza. Un mensaje principal por diapositiva, jerarquía visual clara (lo más grande se percibe como lo más importante) y la estructura <b>problema → solución → beneficio</b>.</p></dd></div>
+<div class="concepto"><dt>Fórmulas y referencias</dt><dd><p>Toda fórmula empieza con <code>=</code>. Una referencia <b>relativa</b> (A1) cambia al copiar la fórmula; una <b>absoluta</b> ($A$1) queda fija. Las fórmulas de esta materia usan punto y coma (;) para separar argumentos, como en la configuración regional de clase.</p></dd></div>
+<div class="concepto"><dt>Funciones que más vas a usar</dt><dd><p><code>=SUMA(B2:B31)</code> suma; <code>=PROMEDIO(B2:B31)</code> promedia; <code>=CONTAR.SI(C2:C31;"No")</code> cuenta las celdas que cumplen un criterio; <code>=SUMAR.SI(A2:A31;"Color";B2:B31)</code> suma solo las filas que cumplen el criterio.</p><p>La función SI hace una comparación lógica entre un valor y lo que esperas, y devuelve un resultado si es verdadera y otro si es falsa <span class="cita">(<a href="#ref-ms-si">Microsoft, s. f.-c</a>)</span>: <code>=SI(C2="No";"Moroso";"Al día")</code>.</p></dd></div>
+<div class="concepto"><dt>Filtros y gráficos</dt><dd><p>Para filtrar, los datos van organizados como tabla: una fila por registro y una columna por dato, con encabezados. El gráfico se elige según el mensaje: barras para comparar, líneas para mostrar una tendencia en el tiempo, circular para partes de un total con pocas categorías. Todo gráfico lleva título, ejes con nombre y fuente.</p></dd></div>
+    </dl>
+    <div class="tabla-scroll"><table class="comp">
+  <caption>Referencias relativas y absolutas al copiar una fórmula hacia abajo</caption>
+  <thead><tr><th scope="col">Escribes en C2</th><th scope="col">Al copiar a C3 queda</th><th scope="col">Por qué</th></tr></thead>
+  <tbody><tr><th scope="row">=B2*F1</th><td>=B3*F2</td><td>Las dos referencias son relativas: se mueven</td></tr><tr><th scope="row">=B2*$F$1</th><td>=B3*$F$1</td><td>F1 está fija con $: no se mueve</td></tr><tr><th scope="row">=B2*F$1</th><td>=B3*F$1</td><td>Solo la fila está fija (referencia mixta)</td></tr></tbody>
+</table></div>
+    <aside class="ojo"><strong class="tit">Bug se confundió</strong><p><b>Enter no es un salto de página.</b> Bug apretó Enter veinte veces para que el capítulo 3 empiece arriba. Agregó un párrafo en el capítulo 2 y el capítulo 3 quedó en la mitad de una página. La herramienta correcta es el salto de página o de sección.</p></aside>
+    <aside class="ia"><strong class="tit">Con IA, con criterio</strong><p>Pedirle a una IA una fórmula funciona bien si le das la estructura de tu planilla: qué hay en cada columna, desde qué fila empiezan los datos y qué separador usas. Después, prueba la fórmula con un dato que conozcas: si la IA invirtió los argumentos de CONTAR.SI, lo vas a ver enseguida.</p></aside>
+  </section>
+  <section class="seccion" id="caso">
+    <h2><span class="num-sec">02</span>Caso aplicado</h2>
+    <div class="caso-usf"><span class="tit">Caso transversal · Copias Arandú</span><p><b>Copias Arandú</b> es una fotocopiadora y librería de barrio. La atienden doña Liz y su hijo Hugo, que cursa el primer año de Informática. Reciben trabajos para imprimir por WhatsApp y por correo, anotan las ventas en un cuaderno y guardan todo en una computadora vieja con Windows. Hugo quiere ordenar el negocio con lo que aprende en TIC: una planilla de ventas, un catálogo en línea, copias de respaldo, una carpeta compartida con el contador y un aviso automático de «tu impresión está lista». Además, tiene que presentar un informe académico sobre la digitalización del negocio.</p><p>Este caso acompaña las 9 unidades. En cada una lo miras con los conceptos nuevos.</p></div>
+    <p class="bajada" style="margin-top:1rem">Mira el negocio con los conceptos de la unidad.</p>
+    <div class="tabs"><div class="tabs-botones" role="tablist" aria-label="Miradas del caso" hidden>
+<button type="button" role="tab" id="tab4-0" aria-controls="panel4-0">La planilla de ventas</button><button type="button" role="tab" id="tab4-1" aria-controls="panel4-1">Contar y sumar</button><button type="button" role="tab" id="tab4-2" aria-controls="panel4-2">El informe</button><button type="button" role="tab" id="tab4-3" aria-controls="panel4-3">La presentación</button></div>
+<div class="tab-panel" role="tabpanel" id="panel4-0" aria-labelledby="tab4-0" data-lang="La planilla de ventas"><div class="panel-texto"><p>Hugo pasa el cuaderno a una planilla: columna A fecha, B producto, C cantidad, D precio unitario, E total (<code>=C2*D2</code>). Para el IVA fijo en la celda H1 usa <code>=E2*$H$1</code>, así la fórmula se puede copiar hacia abajo.</p></div></div>
+<div class="tab-panel" role="tabpanel" id="panel4-1" aria-labelledby="tab4-1" data-lang="Contar y sumar"><div class="panel-texto"><p>Para saber cuántas ventas fueron de impresiones a color: <code>=CONTAR.SI(B2:B200;"Color")</code>. Para cuánto se facturó en color: <code>=SUMAR.SI(B2:B200;"Color";E2:E200)</code>.</p></div></div>
+<div class="tab-panel" role="tabpanel" id="panel4-2" aria-labelledby="tab4-2" data-lang="El informe"><div class="panel-texto"><p>El informe académico de Hugo tiene portada, índice automático, introducción, metodología, resultados y conclusión. Usa Título 1 en cada apartado y un salto de sección después de la portada para que la numeración empiece en la Introducción.</p></div></div>
+<div class="tab-panel" role="tabpanel" id="panel4-3" aria-labelledby="tab4-3" data-lang="La presentación"><div class="panel-texto"><p>Para explicarle a doña Liz los resultados, Hugo arma cinco diapositivas: el problema (ventas sin registro), la solución (planilla), dos resultados con un gráfico cada uno y una recomendación. Sin párrafos: el detalle lo dice él.</p></div></div>
+</div>
+  </section>
+  <section class="seccion" id="practica">
+    <h2><span class="num-sec">03</span>Actividades de práctica</h2>
+    <p class="bajada">Cada actividad indica cuándo terminaste. No pases a la siguiente hasta cumplirlo.</p>
+    <article class="actividad">
+      <header><h3>Actividad 1 · Del documento amateur al profesional</h3><span class="meta">Individual · 40 min</span></header>
+      <p>Toma un documento con varias fuentes, espaciados distintos y títulos hechos «a mano».</p>
+      <ol><li>Unifica la fuente y el interlineado.</li><li>Aplica Título 1 y Título 2 a los apartados.</li><li>Inserta la tabla de contenido y agrega un apartado nuevo en el medio.</li><li>Pon un salto de sección después de la portada y numera desde 1.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> la tabla de contenido se actualiza con el apartado nuevo y la portada no tiene número.</p>
+    </article>
+    <article class="actividad">
+      <header><h3>Actividad 2 · Los errores de Bug en la planilla</h3><span class="meta">Individual · 25 min</span></header>
+      <p>Corrige estas fórmulas: <code>=PROMEDIO A2:A6</code>, <code>=CONTAR.SI("Azul";E2:E30)</code>, <code>=B2*F1</code> (copiada hacia abajo, da 0) y <code>=SI(B2>=60;Aprobado;Reprobado)</code>.</p>
+      <ol><li>Escribe qué intentó hacer Bug en cada caso.</li><li>Escribe la fórmula corregida.</li><li>Pruébala en una planilla con datos de ejemplo.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> las cuatro fórmulas funcionan y puedes explicar el error de cada una en una línea.</p>
+    </article>
+    <p class="tpi"><strong>Conexión con el trabajo integrador.</strong> El informe del trabajo integrador, ¿tiene estilos de título, índice automático y figuras con título y fuente? Si no, este es el momento de corregirlo, antes de seguir escribiendo.</p>
+  </section>
+  <section class="seccion" id="autoevaluacion">
+    <h2><span class="num-sec">04</span>Autoevaluación</h2>
+    <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
+    <ol class="autoeval"><li>¿Por qué un título en negrita no aparece en la tabla de contenido?</li><li>¿Qué permite un salto de sección que no permite un salto de página?</li><li>¿Qué cambia al copiar =B2*F1 y qué cambia al copiar =B2*$F$1?</li><li>¿Qué hacen CONTAR.SI y SUMAR.SI, y en qué se diferencian?</li></ol>
+    <div class="marcar-repaso" data-clave="tic-repaso-v1" data-u="4"><p>¿Repasaste esta unidad y respondiste la autoevaluación? Márcala y sigue tu avance en <a href="progreso.html">Mi progreso</a>.</p><button type="button" class="btn sec" aria-pressed="false" hidden>Marcar como repasada</button></div>
+  </section>
+  <section class="seccion" id="juegos">
+    <h2><span class="num-sec">05</span>Juegos</h2>
+    <div class="enlaces-juego"><a class="btn" href="juegos/ruta-de-repaso.html#u4">Estación U4 de la Ruta de Repaso</a><a class="btn sec" href="juegos/oca.html">La Oca de TIC</a><a class="btn sec" href="juegos/duelo-de-equipos.html">Duelo de equipos</a><a class="btn sec" href="casos.html">Casos para el final</a></div>
+  </section>
+  <section class="seccion" id="bibliografia">
+    <h2><span class="num-sec">06</span>Bibliografía</h2>
+    <p class="bajada">Fuentes citadas en esta unidad, en formato APA 7. Todas son de acceso abierto y se consultaron el 16 de noviembre de 2026.</p>
+    <ol class="biblio"><li id="ref-ms-toc">Microsoft. (s. f.-b). <i>Insertar una tabla de contenido</i>. Soporte técnico de Microsoft. <a href="https://support.microsoft.com/es-es/office/882e8564-0edb-435e-84b5-1d8552ccf0c0">https://support.microsoft.com/es-es/office/882e8564-0edb-435e-84b5-1d8552ccf0c0</a></li><li id="ref-ms-si">Microsoft. (s. f.-c). <i>SI (función SI)</i>. Soporte técnico de Microsoft. <a href="https://support.microsoft.com/es-es/Excel/functions/if-function">https://support.microsoft.com/es-es/Excel/functions/if-function</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Unidades"><a class="ant" href="u3.html"><small>← Unidad 3</small>Navegación, búsqueda y accesibilidad digital</a><a class="sig" href="u5.html"><small>Unidad 5 →</small>Gestión segura de información y ciberseguridad</a></nav>
+  <footer class="pie"><span>Tecnología de la Información y Comunicación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>

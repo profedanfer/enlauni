@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U3 · Navegación, búsqueda y accesibilidad digital</title>
+<script src="../assets/tema.js"></script>
+<link rel="icon" href="../assets/personajes/ada.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/estilos.css">
+<link rel="stylesheet" href="tic.css">
+</head>
+<body class="tic">
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Tecnología de la Información y Comunicación</a><span aria-hidden="true">/</span><a href="repaso.html">Repaso</a><span aria-hidden="true">/</span><span>Unidad 3</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Unidad 3 de 9</p>
+    <h1>Navegación, búsqueda y accesibilidad digital</h1>
+    <p class="objetivo">Aplicar criterios de búsqueda avanzada y de análisis de la información digital, y reconocer pautas básicas de accesibilidad.</p>
+    <ul class="contenidos" aria-label="Contenidos"><li>Navegadores y extensiones</li><li>Operadores de búsqueda</li><li>Filtros de búsqueda</li><li>Evaluación de fuentes (CRAAP)</li><li>Accesibilidad: pautas WCAG</li></ul>
+  </section>
+  <nav class="indice-pagina" aria-label="En esta página">
+    <a href="#repaso">Repaso</a><a href="#caso">Caso aplicado</a><a href="#practica">Práctica</a><a href="#autoevaluacion">Autoevaluación</a><a href="#juegos">Juegos</a><a href="#bibliografia">Bibliografía</a>
+  </nav>
+  <section class="seccion" id="repaso">
+    <h2><span class="num-sec">01</span>Repaso</h2>
+    <p class="bajada">Se trabaja el proceso consulta → filtrado → análisis → validación: buscar bien, elegir bien y publicar para que todos puedan leer.</p>
+    <dl class="conceptos">
+<div class="concepto"><dt>Navegadores y extensiones</dt><dd><p>El navegador es la puerta a la web. Las <b>extensiones</b> le agregan funciones (bloquear anuncios, gestionar referencias, revisar contraste), pero también piden permisos: antes de instalar una, revisa quién la publica y qué datos puede leer.</p></dd></div>
+<div class="concepto"><dt>Operadores de búsqueda</dt><dd><p>Las comillas buscan una coincidencia exacta de una palabra o frase <span class="cita">(<a href="#ref-google-busq">Google, s. f.-a</a>)</span>. El signo menos excluye una palabra; <code>site:</code> limita los resultados a un sitio o dominio; <code>OR</code>, en mayúsculas, busca una palabra u otra <span class="cita">(<a href="#ref-google-busq">Google, s. f.-a</a>)</span>.</p><p>Ejemplo: <code>"inteligencia artificial" educación -universidad</code> busca la frase exacta, suma «educación» y deja afuera los resultados con «universidad».</p></dd></div>
+<div class="concepto"><dt>Filtros</dt><dd><p>Después de buscar, las herramientas del buscador permiten filtrar por fecha, idioma o tipo de resultado. En temas tecnológicos, que cambian rápido, el filtro de fecha suele ser el primero que conviene aplicar.</p></dd></div>
+<div class="concepto"><dt>Evaluación de fuentes</dt><dd><p>La prueba CRAAP, de la Meriam Library de la California State University (Chico), propone cinco criterios: <b>actualidad</b> (¿cuándo se publicó?), <b>relevancia</b> (¿responde a tu pregunta?), <b>autoridad</b> (¿quién lo escribe y con qué credenciales?), <b>exactitud</b> (¿de dónde sale la información, se puede verificar?) y <b>propósito</b> (¿informa, vende, persuade?) <span class="cita">(<a href="#ref-craap">Meriam Library, 2010</a>)</span>.</p></dd></div>
+<div class="concepto"><dt>Accesibilidad y contraste</dt><dd><p>Según WCAG 2.2, nivel AA, el texto normal necesita una relación de contraste de al menos <b>4,5:1</b> con su fondo; el texto grande, al menos <b>3:1</b> <span class="cita">(<a href="#ref-wcag">W3C, 2023</a>)</span>. Se considera grande el texto de 18 puntos o más, o de 14 puntos en negrita <span class="cita">(<a href="#ref-webaim">WebAIM, s. f.</a>)</span>.</p><p>Otras pautas básicas: toda imagen que transmite información lleva un <b>texto alternativo</b>, la información no depende solo del color y todo se puede usar con el teclado.</p></dd></div>
+    </dl>
+    <div class="tabla-scroll"><table class="comp">
+  <caption>Operadores que más vas a usar</caption>
+  <thead><tr><th scope="col">Operador</th><th scope="col">Qué hace</th><th scope="col">Ejemplo</th></tr></thead>
+  <tbody><tr><th scope="row">" "</th><td>Frase exacta</td><td>"máquina virtual"</td></tr><tr><th scope="row">-</th><td>Excluye una palabra</td><td>educación -universidad</td></tr><tr><th scope="row">OR</th><td>Una palabra u otra</td><td>gamificación OR ludificación</td></tr><tr><th scope="row">site:</th><td>Solo ese sitio o dominio</td><td>datos personales site:gov.py</td></tr></tbody>
+</table></div>
+    <aside class="ojo"><strong class="tit">Bug se confundió</strong><p><b>Muchas visitas no es lo mismo que confiable.</b> Bug eligió el primer resultado de Google «porque es el más visto». La posición en el buscador no dice nada sobre la autoridad ni la exactitud de una fuente.</p></aside>
+    <aside class="ia"><strong class="tit">Con IA, con criterio</strong><p>Las IA generan texto con forma de cita aunque la fuente no exista. Si una IA te da una referencia, búscala con operadores (comillas para el título exacto) y en Google Académico antes de usarla. Si no aparece, no se usa.</p></aside>
+  </section>
+  <section class="seccion" id="caso">
+    <h2><span class="num-sec">02</span>Caso aplicado</h2>
+    <div class="caso-usf"><span class="tit">Caso transversal · Copias Arandú</span><p><b>Copias Arandú</b> es una fotocopiadora y librería de barrio. La atienden doña Liz y su hijo Hugo, que cursa el primer año de Informática. Reciben trabajos para imprimir por WhatsApp y por correo, anotan las ventas en un cuaderno y guardan todo en una computadora vieja con Windows. Hugo quiere ordenar el negocio con lo que aprende en TIC: una planilla de ventas, un catálogo en línea, copias de respaldo, una carpeta compartida con el contador y un aviso automático de «tu impresión está lista». Además, tiene que presentar un informe académico sobre la digitalización del negocio.</p><p>Este caso acompaña las 9 unidades. En cada una lo miras con los conceptos nuevos.</p></div>
+    <p class="bajada" style="margin-top:1rem">Mira el negocio con los conceptos de la unidad.</p>
+    <div class="tabs"><div class="tabs-botones" role="tablist" aria-label="Miradas del caso" hidden>
+<button type="button" role="tab" id="tab3-0" aria-controls="panel3-0">La búsqueda</button><button type="button" role="tab" id="tab3-1" aria-controls="panel3-1">Las fuentes</button><button type="button" role="tab" id="tab3-2" aria-controls="panel3-2">El catálogo accesible</button></div>
+<div class="tab-panel" role="tabpanel" id="panel3-0" aria-labelledby="tab3-0" data-lang="La búsqueda"><div class="panel-texto"><p>Hugo necesita datos sobre digitalización de pequeños comercios en Paraguay. Empieza con <code>digitalización comercios</code> (millones de resultados) y llega a <code>"pequeños comercios" digitalización site:gov.py</code>, con filtro desde 2022.</p></div></div>
+<div class="tab-panel" role="tabpanel" id="panel3-1" aria-labelledby="tab3-1" data-lang="Las fuentes"><div class="panel-texto"><p>Encuentra un informe de un ministerio, un blog de una empresa que vende un sistema de ventas y un video sin autor. Con CRAAP, el informe gana en autoridad y propósito; el blog sirve para ideas, pero vende un producto.</p></div></div>
+<div class="tab-panel" role="tabpanel" id="panel3-2" aria-labelledby="tab3-2" data-lang="El catálogo accesible"><div class="panel-texto"><p>El catálogo en línea de Arandú tenía texto gris claro sobre blanco y fotos de los productos sin descripción. Hugo oscurece el texto hasta superar 4,5:1 y agrega texto alternativo con nombre y precio de cada producto.</p></div></div>
+</div>
+  </section>
+  <section class="seccion" id="practica">
+    <h2><span class="num-sec">03</span>Actividades de práctica</h2>
+    <p class="bajada">Cada actividad indica cuándo terminaste. No pases a la siguiente hasta cumplirlo.</p>
+    <article class="actividad">
+      <header><h3>Actividad 1 · De millones a diez</h3><span class="meta">Individual · 25 min</span></header>
+      <p>Elige un tema de tu trabajo integrador.</p>
+      <ol><li>Haz una búsqueda simple y anota cuántos resultados aparecen.</li><li>Agrega comillas, un signo menos y site:, de a uno, y anota el cambio.</li><li>Aplica el filtro de fecha.</li><li>Elige las tres mejores fuentes.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tienes la búsqueda final escrita, el registro de cómo bajaron los resultados y tres fuentes elegidas.</p>
+    </article>
+    <article class="actividad">
+      <header><h3>Actividad 2 · CRAAP y contraste</h3><span class="meta">En equipo de trabajo · 30 min</span></header>
+      <p>Con las tres fuentes de la actividad anterior y una página de su juego o trabajo:</p>
+      <ol><li>Ordenen las fuentes de la más a la menos confiable con los cinco criterios CRAAP.</li><li>Escriban en una línea por qué eligieron la primera.</li><li>Revisen los colores de su página con el verificador de contraste de WebAIM.</li><li>Anoten una falla de accesibilidad y cómo la corregirían.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tienen el orden justificado y una falla de accesibilidad con su corrección.</p>
+    </article>
+    <p class="tpi"><strong>Conexión con el trabajo integrador.</strong> Las fuentes del informe del trabajo integrador, ¿pasarían la prueba CRAAP? Revisa la de menor autoridad y reemplázala si hace falta.</p>
+  </section>
+  <section class="seccion" id="autoevaluacion">
+    <h2><span class="num-sec">04</span>Autoevaluación</h2>
+    <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
+    <ol class="autoeval"><li>¿Qué hacen las comillas, el signo menos y site: en una búsqueda?</li><li>¿Qué pregunta cada letra de CRAAP?</li><li>¿Qué contraste mínimo pide WCAG 2.2 (AA) para texto normal y para texto grande?</li><li>¿Por qué no alcanza con avisar un error solo con el color rojo?</li></ol>
+    <div class="marcar-repaso" data-clave="tic-repaso-v1" data-u="3"><p>¿Repasaste esta unidad y respondiste la autoevaluación? Márcala y sigue tu avance en <a href="progreso.html">Mi progreso</a>.</p><button type="button" class="btn sec" aria-pressed="false" hidden>Marcar como repasada</button></div>
+  </section>
+  <section class="seccion" id="juegos">
+    <h2><span class="num-sec">05</span>Juegos</h2>
+    <div class="enlaces-juego"><a class="btn" href="juegos/ruta-de-repaso.html#u3">Estación U3 de la Ruta de Repaso</a><a class="btn sec" href="juegos/oca.html">La Oca de TIC</a><a class="btn sec" href="juegos/duelo-de-equipos.html">Duelo de equipos</a><a class="btn sec" href="casos.html">Casos para el final</a></div>
+  </section>
+  <section class="seccion" id="bibliografia">
+    <h2><span class="num-sec">06</span>Bibliografía</h2>
+    <p class="bajada">Fuentes citadas en esta unidad, en formato APA 7. Todas son de acceso abierto y se consultaron el 16 de noviembre de 2026.</p>
+    <ol class="biblio"><li id="ref-google-busq">Google. (s. f.-a). <i>Acotar las búsquedas de Google</i>. Ayuda de la Búsqueda de Google. <a href="https://support.google.com/websearch/answer/2466433?hl=es">https://support.google.com/websearch/answer/2466433?hl=es</a></li><li id="ref-craap">Meriam Library. (2010). <i>Evaluating information: Applying the CRAAP test</i>. California State University, Chico. <a href="https://library.csuchico.edu/sites/default/files/craap-test.pdf">https://library.csuchico.edu/sites/default/files/craap-test.pdf</a></li><li id="ref-wcag">W3C. (2023). <i>Understanding success criterion 1.4.3: Contrast (minimum)</i>. Web Content Accessibility Guidelines 2.2. <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html">https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html</a></li><li id="ref-webaim">WebAIM. (s. f.). <i>Contrast and color accessibility</i>. <a href="https://webaim.org/articles/contrast/">https://webaim.org/articles/contrast/</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Unidades"><a class="ant" href="u2.html"><small>← Unidad 2</small>Virtualización y sistemas operativos</a><a class="sig" href="u4.html"><small>Unidad 4 →</small>Herramientas ofimáticas con enfoque estructural</a></nav>
+  <footer class="pie"><span>Tecnología de la Información y Comunicación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U8 · Automatización básica y condición lógica</title>
+<script src="../assets/tema.js"></script>
+<link rel="icon" href="../assets/personajes/ada.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/estilos.css">
+<link rel="stylesheet" href="tic.css">
+</head>
+<body class="tic">
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Tecnología de la Información y Comunicación</a><span aria-hidden="true">/</span><a href="repaso.html">Repaso</a><span aria-hidden="true">/</span><span>Unidad 8</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Unidad 8 de 9</p>
+    <h1>Automatización básica y condición lógica</h1>
+    <p class="objetivo">Identificar eventos, condiciones y acciones en procesos automatizados simples.</p>
+    <ul class="contenidos" aria-label="Contenidos"><li>Qué es automatizar</li><li>Evento → condición → acción</li><li>Herramientas: Zapier y Make</li><li>Condiciones en planillas: SI, Y, O</li><li>Cuándo conviene automatizar</li></ul>
+  </section>
+  <nav class="indice-pagina" aria-label="En esta página">
+    <a href="#repaso">Repaso</a><a href="#caso">Caso aplicado</a><a href="#practica">Práctica</a><a href="#autoevaluacion">Autoevaluación</a><a href="#juegos">Juegos</a><a href="#bibliografia">Bibliografía</a>
+  </nav>
+  <section class="seccion" id="repaso">
+    <h2><span class="num-sec">01</span>Repaso</h2>
+    <p class="bajada">Se instala el pensamiento condicional que después vas a formalizar en Algorítmica: «cuando pase esto, si se cumple aquello, haz tal cosa».</p>
+    <dl class="conceptos">
+<div class="concepto"><dt>Evento → condición → acción</dt><dd><p>Toda automatización simple tiene tres partes: el <b>evento</b> que la dispara («llega una respuesta al formulario»), la <b>condición</b> que decide si sigue («si marcó que necesita certificado») y la <b>acción</b> que se ejecuta («enviar un correo con los requisitos»).</p><p>Es el modelo E-P-S con una decisión en el medio: el evento trae la entrada, la condición es parte del proceso y la acción produce la salida.</p></dd></div>
+<div class="concepto"><dt>Zapier y Make</dt><dd><p>En Zapier, una automatización se llama <b>Zap</b>. El disparador (trigger) es el evento que la inicia y la acción es lo que hace; un Zap simple tiene un disparador y una acción <span class="cita">(<a href="#ref-zapier">Zapier, s. f.</a>)</span>. Las rutas (paths) usan lógica condicional «si pasa A, haz esto; si pasa B, haz aquello» <span class="cita">(<a href="#ref-zapier">Zapier, s. f.</a>)</span>.</p><p>Make funciona con la misma lógica, con escenarios armados en bloques. Las dos tienen planes gratuitos con límites.</p></dd></div>
+<div class="concepto"><dt>Condiciones en una planilla</dt><dd><p>La función SI compara un valor con lo que esperas y devuelve un resultado si es verdadera y otro si es falsa <span class="cita">(<a href="#ref-ms-si">Microsoft, s. f.-c</a>)</span>. Combinada con Y u O permite evaluar varias condiciones <span class="cita">(<a href="#ref-ms-cond">Microsoft, s. f.-a</a>)</span>.</p><p>Con <b>Y</b>, deben cumplirse todas: <code>=SI(Y(B2>=12;C2<=10);"Nivel superado";"Reintentar")</code>. Con <b>O</b>, alcanza con una.</p></dd></div>
+<div class="concepto"><dt>Cuándo conviene automatizar</dt><dd><p>Conviene automatizar tareas que se repiten seguido y siempre siguen los mismos pasos. Antes, el proceso tiene que estar ordenado: automatizar un proceso desordenado repite el desorden más rápido.</p></dd></div>
+    </dl>
+    <div class="tabla-scroll"><table class="comp">
+  <caption>Y frente a O, con 14 aciertos y 12 minutos</caption>
+  <thead><tr><th scope="col">Fórmula</th><th scope="col">¿Se cumple?</th><th scope="col">Resultado</th></tr></thead>
+  <tbody><tr><th scope="row">=SI(Y(B2>=12;C2<=10);"Nivel superado";"Reintentar")</th><td>Aciertos sí, tiempo no: Y pide las dos</td><td>Reintentar</td></tr><tr><th scope="row">=SI(O(B2>=12;C2<=10);"Nivel superado";"Reintentar")</th><td>Aciertos sí: O pide una</td><td>Nivel superado</td></tr></tbody>
+</table></div>
+    <aside class="ojo"><strong class="tit">Bug se confundió</strong><p><b>Sin condición, la acción va para todos.</b> Bug armó una automatización que manda el certificado «cuando termina el taller». Lo recibieron los 25 inscriptos, incluso los que nunca fueron. Faltaba la condición «asistencia de 75% o más».</p></aside>
+    <aside class="ia"><strong class="tit">Con IA, con criterio</strong><p>Hay herramientas que arman una automatización a partir de una descripción en lenguaje natural. Úsalas, pero revisa cada parte: ¿el evento es el correcto? ¿La condición filtra a quien debe? Prueba la automatización con datos de ejemplo antes de activarla con datos reales.</p></aside>
+  </section>
+  <section class="seccion" id="caso">
+    <h2><span class="num-sec">02</span>Caso aplicado</h2>
+    <div class="caso-usf"><span class="tit">Caso transversal · Copias Arandú</span><p><b>Copias Arandú</b> es una fotocopiadora y librería de barrio. La atienden doña Liz y su hijo Hugo, que cursa el primer año de Informática. Reciben trabajos para imprimir por WhatsApp y por correo, anotan las ventas en un cuaderno y guardan todo en una computadora vieja con Windows. Hugo quiere ordenar el negocio con lo que aprende en TIC: una planilla de ventas, un catálogo en línea, copias de respaldo, una carpeta compartida con el contador y un aviso automático de «tu impresión está lista». Además, tiene que presentar un informe académico sobre la digitalización del negocio.</p><p>Este caso acompaña las 9 unidades. En cada una lo miras con los conceptos nuevos.</p></div>
+    <p class="bajada" style="margin-top:1rem">Mira el negocio con los conceptos de la unidad.</p>
+    <div class="tabs"><div class="tabs-botones" role="tablist" aria-label="Miradas del caso" hidden>
+<button type="button" role="tab" id="tab8-0" aria-controls="panel8-0">El aviso automático</button><button type="button" role="tab" id="tab8-1" aria-controls="panel8-1">La condición en la planilla</button><button type="button" role="tab" id="tab8-2" aria-controls="panel8-2">Lo que no se automatiza</button></div>
+<div class="tab-panel" role="tabpanel" id="panel8-0" aria-labelledby="tab8-0" data-lang="El aviso automático"><div class="panel-texto"><p>Hugo quiere avisar «tu impresión está lista». Evento: el pedido se marca como «Listo» en la planilla. Condición: el cliente dejó su número de WhatsApp. Acción: enviar un mensaje con el total a pagar.</p></div></div>
+<div class="tab-panel" role="tabpanel" id="panel8-1" aria-labelledby="tab8-1" data-lang="La condición en la planilla"><div class="panel-texto"><p>Para destacar los pedidos atrasados: <code>=SI(Y(F2="Pendiente";HOY()-A2>2);"Atrasado";"")</code>. Deben cumplirse las dos: estar pendiente y tener más de dos días.</p></div></div>
+<div class="tab-panel" role="tabpanel" id="panel8-2" aria-labelledby="tab8-2" data-lang="Lo que no se automatiza"><div class="panel-texto"><p>Doña Liz anota algunos pedidos en el cuaderno y otros en la planilla. Antes de automatizar, Hugo unifica: todos los pedidos van a la planilla con las mismas columnas.</p></div></div>
+</div>
+  </section>
+  <section class="seccion" id="practica">
+    <h2><span class="num-sec">03</span>Actividades de práctica</h2>
+    <p class="bajada">Cada actividad indica cuándo terminaste. No pases a la siguiente hasta cumplirlo.</p>
+    <article class="actividad">
+      <header><h3>Actividad 1 · Encuentra el evento, la condición y la acción</h3><span class="meta">Individual · 15 min</span></header>
+      <p>Para cada frase, marca las tres partes: «Cuando llega un correo con factura, si el remitente es un proveedor, guardar el PDF en Facturas»; «Cuando alguien completa el formulario, si eligió el turno noche, avisar a la coordinadora».</p>
+      <ol><li>Subraya el evento.</li><li>Encierra la condición.</li><li>Marca la acción.</li><li>Inventa una tercera automatización útil para tu grupo.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tienes las tres partes identificadas en cada frase y una automatización propia bien formulada.</p>
+    </article>
+    <article class="actividad">
+      <header><h3>Actividad 2 · Y u O</h3><span class="meta">Individual · 20 min</span></header>
+      <p>Arma una planilla con aciertos y tiempo de diez jugadores ficticios.</p>
+      <ol><li>Escribe la fórmula con Y.</li><li>Cópiala y cámbiala por O.</li><li>Compara cuántos «Nivel superado» da cada una.</li><li>Explica en dos líneas por qué cambian.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> las dos fórmulas funcionan y tu explicación usa «todas las condiciones» y «al menos una».</p>
+    </article>
+    <p class="tpi"><strong>Conexión con el trabajo integrador.</strong> En el sistema que analiza tu trabajo integrador, ¿hay alguna tarea repetitiva que se podría automatizar? Descríbela con evento, condición y acción en la propuesta de mejora.</p>
+  </section>
+  <section class="seccion" id="autoevaluacion">
+    <h2><span class="num-sec">04</span>Autoevaluación</h2>
+    <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
+    <ol class="autoeval"><li>¿Qué son el evento, la condición y la acción en una automatización?</li><li>¿Cómo se llaman el evento y la acción en Zapier?</li><li>¿Qué diferencia hay entre Y y O en una fórmula SI?</li><li>¿Por qué no conviene automatizar un proceso desordenado?</li></ol>
+    <div class="marcar-repaso" data-clave="tic-repaso-v1" data-u="8"><p>¿Repasaste esta unidad y respondiste la autoevaluación? Márcala y sigue tu avance en <a href="progreso.html">Mi progreso</a>.</p><button type="button" class="btn sec" aria-pressed="false" hidden>Marcar como repasada</button></div>
+  </section>
+  <section class="seccion" id="juegos">
+    <h2><span class="num-sec">05</span>Juegos</h2>
+    <div class="enlaces-juego"><a class="btn" href="juegos/ruta-de-repaso.html#u8">Estación U8 de la Ruta de Repaso</a><a class="btn sec" href="juegos/oca.html">La Oca de TIC</a><a class="btn sec" href="juegos/duelo-de-equipos.html">Duelo de equipos</a><a class="btn sec" href="casos.html">Casos para el final</a></div>
+  </section>
+  <section class="seccion" id="bibliografia">
+    <h2><span class="num-sec">06</span>Bibliografía</h2>
+    <p class="bajada">Fuentes citadas en esta unidad, en formato APA 7. Todas son de acceso abierto y se consultaron el 16 de noviembre de 2026.</p>
+    <ol class="biblio"><li id="ref-ms-cond">Microsoft. (s. f.-a). <i>Crear fórmulas condicionales</i>. Soporte técnico de Microsoft. <a href="https://support.microsoft.com/es-ES/Excel/create-conditional-formulas">https://support.microsoft.com/es-ES/Excel/create-conditional-formulas</a></li><li id="ref-ms-si">Microsoft. (s. f.-c). <i>SI (función SI)</i>. Soporte técnico de Microsoft. <a href="https://support.microsoft.com/es-es/Excel/functions/if-function">https://support.microsoft.com/es-es/Excel/functions/if-function</a></li><li id="ref-zapier">Zapier. (s. f.). <i>Learn key concepts in Zap workflows</i>. Zapier Help Center. <a href="https://help.zapier.com/hc/en-us/articles/8496181725453">https://help.zapier.com/hc/en-us/articles/8496181725453</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Unidades"><a class="ant" href="u7.html"><small>← Unidad 7</small>Introducción a herramientas multimedia</a><a class="sig" href="u9.html"><small>Unidad 9 →</small>Investigación académica digital</a></nav>
+  <footer class="pie"><span>Tecnología de la Información y Comunicación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>

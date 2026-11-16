@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U5 · Gestión segura de información y ciberseguridad</title>
+<script src="../assets/tema.js"></script>
+<link rel="icon" href="../assets/personajes/ada.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/estilos.css">
+<link rel="stylesheet" href="tic.css">
+</head>
+<body class="tic">
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Tecnología de la Información y Comunicación</a><span aria-hidden="true">/</span><a href="repaso.html">Repaso</a><span aria-hidden="true">/</span><span>Unidad 5</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Unidad 5 de 9</p>
+    <h1>Gestión segura de información y ciberseguridad</h1>
+    <p class="objetivo">Aplicar prácticas seguras en la gestión, el almacenamiento y el respaldo de la información digital.</p>
+    <ul class="contenidos" aria-label="Contenidos"><li>Almacenamiento en la nube</li><li>Respaldo y recuperación: regla 3-2-1</li><li>Phishing e ingeniería social</li><li>Contraseñas</li><li>Protección de datos personales</li></ul>
+  </section>
+  <nav class="indice-pagina" aria-label="En esta página">
+    <a href="#repaso">Repaso</a><a href="#caso">Caso aplicado</a><a href="#practica">Práctica</a><a href="#autoevaluacion">Autoevaluación</a><a href="#juegos">Juegos</a><a href="#bibliografia">Bibliografía</a>
+  </nav>
+  <section class="seccion" id="repaso">
+    <h2><span class="num-sec">01</span>Repaso</h2>
+    <p class="bajada">Se analiza la secuencia riesgo → prevención → acción correctiva: qué puede pasar, qué haces antes y qué haces si pasa.</p>
+    <dl class="conceptos">
+<div class="concepto"><dt>Nube no es lo mismo que respaldo</dt><dd><p>Sincronizar una carpeta con la nube es cómodo, pero si borras un archivo o un virus lo cifra, la sincronización copia ese cambio. Para que la nube funcione como respaldo, necesitas versiones anteriores o una copia separada.</p></dd></div>
+<div class="concepto"><dt>Regla 3-2-1</dt><dd><p>INCIBE recomienda la estrategia 3-2-1 para las copias de seguridad, cuya base es diversificar las copias para que siempre haya una disponible <span class="cita">(<a href="#ref-incibe-copias">INCIBE, 2018</a>)</span>: <b>3</b> copias de la información, en <b>2</b> soportes distintos, y <b>1</b> fuera del lugar habitual.</p><p>Una copia que nunca probaste restaurar no es una copia confiable. Cada tanto, intenta recuperar un archivo.</p></dd></div>
+<div class="concepto"><dt>Phishing</dt><dd><p>El phishing suplanta la identidad de una entidad para engañar a la persona; para eso adjunta archivos infectados o enlaces a páginas fraudulentas <span class="cita">(<a href="#ref-incibe-phishing">INCIBE, 2021</a>)</span>. Cuando llega por SMS se llama <i>smishing</i>; por llamada, <i>vishing</i>.</p><p>Señales típicas: urgencia («tu cuenta será bloqueada hoy»), un remitente o dominio parecido al real, un adjunto inesperado y el pedido de datos o de un pago. Antes de hacer clic, pasa el cursor sobre el enlace y lee la dirección real.</p></dd></div>
+<div class="concepto"><dt>Contraseñas</dt><dd><p>Una contraseña larga, distinta para cada servicio y guardada en un gestor de contraseñas es más segura que una corta y repetida. Nunca la guardes en un archivo de texto en el escritorio. Si el servicio ofrece verificación en dos pasos, actívala.</p></dd></div>
+<div class="concepto"><dt>Datos personales</dt><dd><p>En Paraguay, la Ley Nº 7593/2025 de Protección de Datos Personales tiene por objeto la protección integral de los datos personales de las personas físicas <span class="cita">(<a href="#ref-ley7593">Ley Nº 7593/2025</a>)</span>. Fue promulgada en noviembre de 2025, crea una Agencia Nacional de Protección de Datos Personales y prevé un período de adecuación de dos años.</p><p>En la práctica de esta materia: no publiques cédulas, direcciones, notas ni fotos de otras personas sin su autorización, y usa datos ficticios en tus ejemplos.</p></dd></div>
+    </dl>
+    <div class="tabla-scroll"><table class="comp">
+  <caption>Riesgo → prevención → acción correctiva</caption>
+  <thead><tr><th scope="col">Riesgo</th><th scope="col">Prevención</th><th scope="col">Acción correctiva</th></tr></thead>
+  <tbody><tr><th scope="row">Se pierde el pendrive con el trabajo</th><td>Regla 3-2-1</td><td>Restaurar desde la nube o la notebook</td></tr><tr><th scope="row">Un correo de phishing con adjunto</th><td>Revisar remitente y enlace, no abrir adjuntos inesperados</td><td>Desconectar el equipo, avisar, cambiar contraseñas</td></tr><tr><th scope="row">Ransomware cifra los archivos</th><td>Una copia desconectada o con versiones</td><td>Restaurar la copia limpia; no pagar el rescate</td></tr></tbody>
+</table></div>
+    <aside class="ojo"><strong class="tit">Bug se confundió</strong><p><b>Sincronizar no es respaldar.</b> Bug borró por error su carpeta del trabajo práctico. «No pasa nada, está en la nube», dijo. La nube borró la carpeta también, porque eso es sincronizar.</p></aside>
+    <aside class="ia"><strong class="tit">Con IA, con criterio</strong><p>No pegues en una IA pública planillas con datos de clientes, compañeros o pacientes «para que te ayude a ordenarlas». Si necesitas ayuda con la estructura, reemplaza los datos reales por datos inventados y pide la fórmula o el formato.</p></aside>
+  </section>
+  <section class="seccion" id="caso">
+    <h2><span class="num-sec">02</span>Caso aplicado</h2>
+    <div class="caso-usf"><span class="tit">Caso transversal · Copias Arandú</span><p><b>Copias Arandú</b> es una fotocopiadora y librería de barrio. La atienden doña Liz y su hijo Hugo, que cursa el primer año de Informática. Reciben trabajos para imprimir por WhatsApp y por correo, anotan las ventas en un cuaderno y guardan todo en una computadora vieja con Windows. Hugo quiere ordenar el negocio con lo que aprende en TIC: una planilla de ventas, un catálogo en línea, copias de respaldo, una carpeta compartida con el contador y un aviso automático de «tu impresión está lista». Además, tiene que presentar un informe académico sobre la digitalización del negocio.</p><p>Este caso acompaña las 9 unidades. En cada una lo miras con los conceptos nuevos.</p></div>
+    <p class="bajada" style="margin-top:1rem">Mira el negocio con los conceptos de la unidad.</p>
+    <div class="tabs"><div class="tabs-botones" role="tablist" aria-label="Miradas del caso" hidden>
+<button type="button" role="tab" id="tab5-0" aria-controls="panel5-0">Respaldo</button><button type="button" role="tab" id="tab5-1" aria-controls="panel5-1">El correo falso</button><button type="button" role="tab" id="tab5-2" aria-controls="panel5-2">Los datos de los clientes</button></div>
+<div class="tab-panel" role="tabpanel" id="panel5-0" aria-labelledby="tab5-0" data-lang="Respaldo"><div class="panel-texto"><p>Todo Arandú estaba en una sola computadora. Hugo aplica 3-2-1: el original en la computadora, una copia semanal en un disco externo que desconecta después de usar, y otra en la nube con historial de versiones.</p></div></div>
+<div class="tab-panel" role="tabpanel" id="panel5-1" aria-labelledby="tab5-1" data-lang="El correo falso"><div class="panel-texto"><p>Llega un correo «del banco» con un enlace para «actualizar los datos de la cuenta del negocio». Hugo pasa el cursor sobre el enlace: el dominio no es el del banco. No hace clic y lo reporta.</p></div></div>
+<div class="tab-panel" role="tabpanel" id="panel5-2" aria-labelledby="tab5-2" data-lang="Los datos de los clientes"><div class="panel-texto"><p>La planilla tiene nombres y teléfonos de clientes que piden encargos. Hugo la guarda en una carpeta con acceso restringido y no la comparte con el chatbot ni en grupos de WhatsApp.</p></div></div>
+</div>
+  </section>
+  <section class="seccion" id="practica">
+    <h2><span class="num-sec">03</span>Actividades de práctica</h2>
+    <p class="bajada">Cada actividad indica cuándo terminaste. No pases a la siguiente hasta cumplirlo.</p>
+    <article class="actividad">
+      <header><h3>Actividad 1 · Mi plan 3-2-1</h3><span class="meta">Individual · 20 min</span></header>
+      <p>Describe cómo guardas hoy tus archivos de estudio.</p>
+      <ol><li>Escribe dónde está cada copia.</li><li>Marca qué parte de la regla 3-2-1 no cumples.</li><li>Propón un cambio concreto.</li><li>Restaura un archivo de prueba desde tu copia.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> tienes un plan que cumple los tres números de la regla y probaste restaurar un archivo.</p>
+    </article>
+    <article class="actividad">
+      <header><h3>Actividad 2 · ¿Phishing o no?</h3><span class="meta">En equipo de trabajo · 25 min</span></header>
+      <p>Reúnan tres mensajes sospechosos reales (correos, SMS o WhatsApp), tapando cualquier dato personal.</p>
+      <ol><li>Marquen las señales de phishing de cada uno.</li><li>Escriban qué harían frente a cada mensaje.</li><li>Armen la secuencia riesgo → prevención → acción correctiva de uno de ellos.</li></ol>
+      <p class="terminaste"><strong>Terminaste cuando</strong> cada mensaje tiene al menos dos señales identificadas y una acción concreta.</p>
+    </article>
+    <p class="tpi"><strong>Conexión con el trabajo integrador.</strong> El sistema que analizas en el trabajo integrador, ¿maneja datos personales? ¿Qué medida de protección propondrías?</p>
+  </section>
+  <section class="seccion" id="autoevaluacion">
+    <h2><span class="num-sec">04</span>Autoevaluación</h2>
+    <p class="bajada">Respóndelas sin mirar el material. Si alguna te cuesta, vuelve al repaso.</p>
+    <ol class="autoeval"><li>¿Por qué sincronizar con la nube no es lo mismo que respaldar?</li><li>¿Qué significa cada número de la regla 3-2-1?</li><li>Nombra tres señales de un mensaje de phishing.</li><li>¿Qué ley protege los datos personales en Paraguay y qué crea?</li></ol>
+    <div class="marcar-repaso" data-clave="tic-repaso-v1" data-u="5"><p>¿Repasaste esta unidad y respondiste la autoevaluación? Márcala y sigue tu avance en <a href="progreso.html">Mi progreso</a>.</p><button type="button" class="btn sec" aria-pressed="false" hidden>Marcar como repasada</button></div>
+  </section>
+  <section class="seccion" id="juegos">
+    <h2><span class="num-sec">05</span>Juegos</h2>
+    <div class="enlaces-juego"><a class="btn" href="juegos/ruta-de-repaso.html#u5">Estación U5 de la Ruta de Repaso</a><a class="btn sec" href="juegos/oca.html">La Oca de TIC</a><a class="btn sec" href="juegos/duelo-de-equipos.html">Duelo de equipos</a><a class="btn sec" href="casos.html">Casos para el final</a></div>
+  </section>
+  <section class="seccion" id="bibliografia">
+    <h2><span class="num-sec">06</span>Bibliografía</h2>
+    <p class="bajada">Fuentes citadas en esta unidad, en formato APA 7. Todas son de acceso abierto y se consultaron el 16 de noviembre de 2026.</p>
+    <ol class="biblio"><li id="ref-incibe-copias">Instituto Nacional de Ciberseguridad [INCIBE]. (2018). <i>Copias de seguridad: una guía de aproximación para el empresario</i>. <a href="https://www.incibe.es/empresas/blog/copias-seguridad-guia-aproximacion-el-empresario">https://www.incibe.es/empresas/blog/copias-seguridad-guia-aproximacion-el-empresario</a></li><li id="ref-incibe-phishing">Instituto Nacional de Ciberseguridad [INCIBE]. (2021, 17 de noviembre). <i>¿Qué es el phishing?</i> <a href="https://www.incibe.es/ciudadania/blog/que-es-el-phishing">https://www.incibe.es/ciudadania/blog/que-es-el-phishing</a></li><li id="ref-ley7593">Ley Nº 7593/2025 de Protección de Datos Personales en la República del Paraguay. (2025). Biblioteca y Archivo Central del Congreso Nacional. <a href="https://www.bacn.gov.py/leyes-paraguayas/12924/ley-n-75932025--de-proteccin-de-datos-personales-en-la-repblica-del-paraguay">https://www.bacn.gov.py/leyes-paraguayas/12924/ley-n-75932025--de-proteccin-de-datos-personales-en-la-repblica-del-paraguay</a></li></ol>
+  </section>
+  <nav class="paginacion" aria-label="Unidades"><a class="ant" href="u4.html"><small>← Unidad 4</small>Herramientas ofimáticas con enfoque estructural</a><a class="sig" href="u6.html"><small>Unidad 6 →</small>Colaboración digital y gestión de flujos</a></nav>
+  <footer class="pie"><span>Tecnología de la Información y Comunicación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>
