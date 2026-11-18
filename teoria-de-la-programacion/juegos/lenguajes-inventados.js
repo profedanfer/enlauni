@@ -218,7 +218,7 @@ imprimir(c)`,
       '`n = n + 1` (sin `var`) cambia el valor de una variable que ya existe. No crea una variable nueva. A qué variable se refiere se decide con R1.',
       '`func nombre(parámetros)` define una función. Su cuerpo son las líneas con sangría que están debajo. Definir una función no la ejecuta: se ejecuta cuando alguien la llama.',
       '`imprimir(e)` escribe el valor de `e` en una línea nueva.',
-      'Varias sumas seguidas se resuelven de izquierda a derecha: `"4" + "1" + 2` se calcula como `("4" + "1") + 2`.',
+      'Varias sumas seguidas se resuelven de izquierda a derecha: `"4" + "1" + 2` se calcula como `("4" + "1") + 2` y vale 43.',
       'Ejecución: primero se crean las variables globales (las declaradas con `var` fuera de toda función); después se ejecuta el programa principal, de arriba hacia abajo. Si una línea provoca un error, el programa se detiene ahí; lo que ya se imprimió queda impreso.'
     ],
     reglas: [
