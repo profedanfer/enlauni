@@ -212,11 +212,19 @@ imprimir(c)`,
     nombre: 'Jasy', lema: '«luna» en guaraní', unidades: 'U3 · U4 · U6',
     foco: 'Las mismas R1 y R2 que Kuarahy, pero R3 convierte en el otro sentido: de texto a número.',
     aviso: 'Jasy es un lenguaje inventado. No funciona como Python, Java ni C: aplica **solo** estas reglas, aunque contradigan lo que conoces.',
-    base: BASE_COMUN,
+    base: [
+      'Los números a la izquierda del programa solo sirven para nombrar las líneas. Lo que va después de `//` es un comentario y no se ejecuta.',
+      '`var n = 2` declara una variable nueva, aunque ya exista otra con el mismo nombre en otro lugar. Si está fuera de toda función es global; si está dentro de una función, es local de esa función.',
+      '`n = n + 1` (sin `var`) cambia el valor de una variable que ya existe. No crea una variable nueva. A qué variable se refiere se decide con R1.',
+      '`func nombre(parámetros)` define una función. Su cuerpo son las líneas con sangría que están debajo. Definir una función no la ejecuta: se ejecuta cuando alguien la llama.',
+      '`imprimir(e)` escribe el valor de `e` en una línea nueva.',
+      'Varias sumas seguidas se resuelven de izquierda a derecha: `"4" + "1" + 2` se calcula como `("4" + "1") + 2`.',
+      'Ejecución: primero se crean las variables globales (las declaradas con `var` fuera de toda función); después se ejecuta el programa principal, de arriba hacia abajo. Si una línea provoca un error, el programa se detiene ahí; lo que ya se imprimió queda impreso.'
+    ],
     reglas: [
-      { id: 'R1', nombre: 'Alcance dinámico', texto: 'Cuando una función usa un nombre que no declaró con `var` y que no es uno de sus parámetros, lo busca en la función que la llamó (sus variables y sus parámetros); si no está ahí, en la que llamó a esa, y así hasta las variables globales.' },
-      { id: 'R2', nombre: 'Paso por referencia', texto: 'El parámetro es otro nombre para la misma variable que se pasó al llamar. Si se cambia el parámetro, cambia la variable original.' },
-      { id: 'R3', nombre: 'Texto + número', texto: 'Si se suman un texto y un número, el texto se convierte a número y se hace una suma aritmética: `"4" + 1` vale 5. Si el texto no representa un número, es un error. Dos textos se unen: `"4" + "1"` vale `"41"`.' }
+      { id: 'R1', nombre: 'Alcance dinámico', texto: 'Cuando una función usa un nombre, para leerlo o para cambiarlo, y ese nombre no lo declaró con `var` ni es uno de sus parámetros, lo busca por su nombre en la función que la llamó (sus variables y sus parámetros). Si no está ahí, lo busca en la que llamó a esa, y así hasta las variables globales. El programa principal usa las variables globales. Si el nombre no aparece en ningún lugar, es un error.' },
+      { id: 'R2', nombre: 'Paso por referencia', texto: 'Al llamar a una función se le pasa una variable, no un valor suelto. El parámetro es otro nombre para esa misma variable: si se cambia el parámetro, cambia la variable original.' },
+      { id: 'R3', nombre: 'Texto + número', texto: 'Si se suman un texto y un número, en cualquier orden, el texto se convierte a número y se hace una suma aritmética: `"4" + 1` vale 5. Si el texto no está formado solo por dígitos, es un error. Dos textos se unen: `"4" + "1"` vale `"41"`.' }
     ],
     puntuales: [
       { t: 'razonada', u: [4, 5], titulo: 'Conversión paso a paso', tema: 'Jasy · R3 por operación', lang: 'Jasy',
@@ -226,7 +234,7 @@ imprimir(c)`,
           { t: '`6`', ok: true, por: '`"4" + 1` = 5 (R3) y `5 + "1"` = 6 (R3 otra vez).' },
           { t: '`411`', por: 'Eso haría Kuarahy, que convierte el número a texto. Jasy convierte el texto a número.' },
           { t: '`51`', por: 'Después del primer paso hay un número (5) y un texto ("1"): R3 vuelve a convertir y suma.' },
-          { t: 'Error', por: '"4" y "1" representan números: R3 los convierte sin error.' }
+          { t: 'Error', por: '"4" y "1" están formados solo por dígitos: R3 los convierte sin error.' }
         ],
         concepto: { o: ['R3 · conversión implícita de texto a número', 'R1 · alcance dinámico', 'R2 · paso por referencia', 'Tipado fuerte'], a: 0 },
         porque: [
@@ -242,18 +250,18 @@ imprimir("dos" + 2)
 imprimir(2 + 2)`,
         q: '¿Qué se ve al ejecutar?',
         o: [
-          { t: '`4` y un error que detiene el programa', ok: true, por: '"2" se convierte; "dos" no representa un número: error y fin.' },
+          { t: '`4` y un error que detiene el programa', ok: true, por: '"2" se convierte; "dos" no está formado solo por dígitos: error y fin.' },
           { t: '`4`, un aviso de error en la 2ª línea y después `4`', por: 'Jasy se detiene en la línea del error: la 3ª nunca se ejecuta.' },
           { t: '`22`, `dos2` y `4`', por: 'Eso sería convertir el número a texto (Kuarahy).' },
           { t: '`4`, `2` y `4`', por: 'Un texto que no es número no vale 0 ni se ignora: R3 dice que es un error.' }
         ],
-        concepto: { o: ['R3 · texto que no representa un número = error', 'R1 · alcance dinámico', 'Tipado estático', 'Guarda'], a: 0 },
+        concepto: { o: ['R3 · texto que no es solo dígitos = error', 'R1 · alcance dinámico', 'Tipado estático', 'Guarda'], a: 0 },
         porque: [
-          { k: 'completa', t: 'En la 1ª línea "2" representa un número, así que R3 lo convierte y suma: 4. En la 2ª, "dos" no representa un número: R3 dice que es error y el programa se detiene ahí, por eso la 3ª línea no se ejecuta.', fb: 'Explica las dos primeras líneas y por qué no llega a la tercera.' },
+          { k: 'completa', t: 'En la 1ª línea "2" está formado solo por dígitos, así que R3 lo convierte y suma: 4. En la 2ª, "dos" no está formado solo por dígitos: R3 dice que es error y el programa se detiene ahí, por eso la 3ª línea no se ejecuta.', fb: 'Explica las dos primeras líneas y por qué no llega a la tercera.' },
           { k: 'incompleta', t: 'Porque "dos" no es un número.', fb: 'Explica el error, pero no qué pasa con la 1ª y la 3ª línea.' },
           { k: 'error', t: 'Porque Jasy revisa todo el programa antes de ejecutarlo, encuentra el error de la 2ª línea y solo ejecuta las líneas correctas.', fb: 'Jasy detecta el problema al llegar a esa línea, no antes; y al detectarlo se detiene. No salta líneas.' }
         ],
-        modelo: 'R3: "2" + 2 → 4. "dos" + 2: el texto no representa un número, es error. La regla base dice que el programa se detiene en la línea del error: se ve 4 y el error; `2 + 2` nunca se ejecuta.' },
+        modelo: 'R3: "2" + 2 → 4. "dos" + 2: el texto no está formado solo por dígitos, es error. La regla base dice que el programa se detiene en la línea del error: se ve 4 y el error; `2 + 2` nunca se ejecuta.' },
 
       { t: 'razonada', u: [4], titulo: 'Sol y luna', tema: 'Kuarahy vs Jasy · tipado débil', lang: 'Kuarahy y Jasy',
         code: `imprimir("10" + 5)`,
@@ -326,8 +334,8 @@ mostrar()`,
 18  imprimir(p + "x")`,
         filas: [
           { nombre: 'Original (R1, R2 y R3)', v: ['10', '10', '5', 'error'],
-            exp: 'ronda declara p = 6; subir recibe un alias (R2) y `q + "4"` convierte "4" a número (R3): 10. anotar busca p (R1) en subir (no está: su parámetro es q) y en ronda: 10, dos veces. Desde el programa principal, subir(p) liga q a la p global: 1 + 4 = 5, y anotar llega a la global: 5. "x" no representa un número: error.' },
-          { nombre: 'Variante 1 · R1 cambia a alcance estático', desc: 'El nombre se busca en el bloque donde la función fue escrita y, si no está, en los que la rodean, hasta las globales.', v: ['1', '1', '5', 'error'],
+            exp: 'ronda declara p = 6; subir recibe un alias (R2) y `q + "4"` convierte "4" a número (R3): 10. anotar busca p (R1) en subir (no está: su parámetro es q) y en ronda: 10, dos veces. Desde el programa principal, subir(p) liga q a la p global: 1 + 4 = 5, y anotar llega a la global: 5. "x" no está formado solo por dígitos: error.' },
+          { nombre: 'Variante 1 · R1 cambia a alcance estático:', desc: 'la función busca el nombre primero entre sus variables y sus parámetros; si no está, en el bloque donde fue escrita y en los bloques que lo rodean en el texto del programa, hasta las globales.', v: ['1', '1', '5', 'error'],
             exp: 'anotar fue escrita fuera de toda función: ve siempre la p global. En la ronda imprime 1 dos veces (la p de ronda cambió a 10, pero anotar no la ve). Después subir(p) cambia la global a 5. La última línea sigue siendo error.' },
           { nombre: 'Variante 2 · R2 cambia a paso por valor', desc: 'El parámetro recibe una copia; cambiarlo no cambia la variable original.', v: ['6', '6', '1', 'error'],
             exp: 'q es una copia: la p de ronda queda en 6 y la global en 1. anotar encuentra (R1) la p de ronda: 6 y 6; desde el programa principal, la global: 1.' },
