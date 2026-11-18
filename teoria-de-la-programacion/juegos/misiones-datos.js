@@ -168,7 +168,7 @@ print(2 + 3 * 4 ** 2 // 5)`,
         { t: '`evalúa 0` · `0` · `evalúa 0` · `evalúa 2` · `2` · `11`', ok: true, por: 'and corta con el 0; or necesita el segundo; la cuenta da 11.' },
         { t: '`evalúa 0` · `evalúa 1` · `0` · `evalúa 0` · `evalúa 2` · `2` · `11`', por: 'and no evalúa avisa(1): con 0 (falso) el resultado ya está decidido.' },
         { t: '`evalúa 0` · `False` · `evalúa 0` · `evalúa 2` · `True` · `11`', por: 'and y or devuelven uno de los operandos, no True o False.' },
-        { t: '`evalúa 0` · `0` · `evalúa 0` · `evalúa 2` · `2` · `80`', por: '80 es resolver de izquierda a derecha sin precedencia (como en Ñe’ẽ). En Python ** va primero, después * y //, y al final +.' }
+        { t: '`evalúa 0` · `0` · `evalúa 0` · `evalúa 2` · `2` · `80`', por: '80 es resolver de izquierda a derecha sin precedencia (como en Ñe’ẽ v2.0). En Python ** va primero, después * y //, y al final +.' }
       ],
       concepto: { o: ['Cortocircuito y precedencia', 'Evaluación perezosa de generadores', 'Tipado dinámico', 'Paso por referencia'], a: 0 },
       porque: [

@@ -1,6 +1,6 @@
 /* =========================================================
    Ítems razonados · Teoría de la Programación
-   Cada ítem se responde como en el examen final:
+   Cada ítem se responde en tres pasos:
    eliges la opción, nombras el concepto y justificas por qué.
 
    Razonada.crear(item, opciones) → { el, corregir(), respondido() }
@@ -15,7 +15,7 @@
      completa → huecos de código + preguntas cortas    (1 pt cada uno)
 
    Justificaciones (porque): k = "completa" | "incompleta" | "error"
-   Regla de corrección del final:
+   Regla de corrección:
      opción correcta + justificación completa  = 2
      opción correcta + justificación incompleta = 1
      sin justificación, razonamiento equivocado u opción incorrecta = 0
@@ -47,7 +47,7 @@
   function htmlPorque(id, pq, escribir, leyenda) {
     return `<div class="rz-paso" data-bloque-pq="${id}">
       <div class="rz-leyenda">${leyenda}</div>
-      ${escribir ? `<p class="rz-ayuda">En el examen la escribes tú. Escríbela primero con tus palabras; después compárala con las opciones y elige la que mejor la expresa.</p>
+      ${escribir ? `<p class="rz-ayuda">Escríbela primero con tus palabras; después compárala con las opciones y elige la que mejor la expresa.</p>
       <textarea class="rz-escribe" data-escribe="${id}" aria-label="Tu justificación" placeholder="El concepto que lo decide es… porque en este código…"></textarea>
       <div class="rz-cuenta" data-cuenta="${id}">0 palabras</div>
       <button type="button" class="btn sec peq rz-ver" data-ver="${id}">Ver opciones de justificación</button>` : ""}
@@ -83,7 +83,7 @@
   }
   function fbPorque(pq, pi, escrito, modelo) {
     let h = "";
-    if (pi === null) h += `<p><b>Justificación:</b> no elegiste ninguna. En el examen, sin justificación el ítem vale 0 aunque la opción sea correcta.</p>`;
+    if (pi === null) h += `<p><b>Justificación:</b> no elegiste ninguna. Sin justificación el ítem vale 0, aunque la opción sea correcta.</p>`;
     else {
       const x = pq[pi];
       h += `<p><b>La justificación que elegiste es ${x.k === "completa" ? "completa" : x.k === "incompleta" ? "incompleta" : "un razonamiento equivocado"}.</b> ${x.fb ? md(x.fb) : ""}</p>`;
@@ -96,9 +96,9 @@
   }
   const mensaje = {
     2: "Opción correcta y justificación completa.",
-    1: "Opción correcta, justificación incompleta: en el examen pierdes 1 pt.",
+    1: "Opción correcta, justificación incompleta: pierdes 1 pt.",
     opcion: "Opción incorrecta.",
-    sinjust: "Opción correcta, pero sin justificación: en el examen vale 0.",
+    sinjust: "Opción correcta, pero sin justificación: vale 0.",
     razonamiento: "Opción correcta con un razonamiento equivocado: no suma."
   };
   function bloquear(el) {
@@ -202,7 +202,7 @@
           if (v === item.a) lab.classList.add("ok"); else if (oi !== null && (oi === 1) === v) lab.classList.add("mal");
         });
         marcarPorque(el, id, pq, pi);
-        let h = `<h4>${pts}/2 · ${pts === 2 ? "Bien decidida y bien justificada." : pts === 1 ? "Bien decidida, justificación incompleta: en el examen pierdes 1 pt." : estado === "opcion" ? `Es ${item.a ? "verdadera" : "falsa"}.` : mensaje[estado]}</h4>`;
+        let h = `<h4>${pts}/2 · ${pts === 2 ? "Bien decidida y bien justificada." : pts === 1 ? "Bien decidida, justificación incompleta: pierdes 1 pt." : estado === "opcion" ? `Es ${item.a ? "verdadera" : "falsa"}.` : mensaje[estado]}</h4>`;
         h += fbPorque(pq, pi, textoEscrito(el, id), item.modelo);
         el.insertAdjacentHTML("beforeend", `<div class="rz-fb p${pts}">${h}</div>`);
         return { pts, max: 2, estado, u: item.u || [], tema: item.tema || item.titulo };

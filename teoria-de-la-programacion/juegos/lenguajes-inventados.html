@@ -9,8 +9,17 @@
 <link rel="stylesheet" href="../../assets/estilos.css">
 <link rel="stylesheet" href="razonada.css">
 <style>
-  .lenguas { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; margin-top: 1.2rem; }
-  @media (max-width: 760px) { .lenguas { grid-template-columns: 1fr; } }
+  .lenguas { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8rem; margin-top: 1.2rem; }
+  @media (max-width: 900px) { .lenguas { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .lenguas { grid-template-columns: 1fr; } }
+  .notas-v { margin-top: 1rem; border: 2px dashed var(--verde-claro); border-radius: var(--radio); padding: .9rem 1rem; background: var(--superficie); }
+  .notas-v h3 { margin: 0 0 .3rem; font-size: 1.15rem; }
+  .notas-v table { width: 100%; border-collapse: collapse; margin-top: .6rem; font-size: .92rem; }
+  .notas-v th, .notas-v td { border: 1px solid var(--linea); padding: .4rem .55rem; text-align: left; vertical-align: top; }
+  .notas-v th { background: var(--fondo); }
+  .etq-c { display: inline-block; font-size: .78rem; font-weight: 700; padding: .05rem .5rem; border-radius: 999px; background: var(--acierto-fondo); color: var(--verde-oscuro); white-space: nowrap; }
+  .recorrido { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin-top: .8rem; font-size: .9rem; color: var(--tinta-suave); }
+  .recorrido b { color: var(--verde-oscuro); }
   .lengua { font: inherit; text-align: left; cursor: pointer; background: var(--superficie); color: var(--tinta); border: 2px solid var(--linea); border-radius: var(--radio); padding: 1rem; display: grid; gap: .3rem; }
   .lengua b { font-family: var(--f-titulo); font-size: 1.4rem; color: var(--verde-oscuro); }
   .lengua .lema { font-size: .85rem; color: var(--tinta-suave); }
@@ -31,11 +40,12 @@
   <section class="hero">
     <p class="etiqueta">Semántica a prueba · U2 a U6</p>
     <h1>Lenguajes inventados</h1>
-    <p class="bajada">Kuarahy, Jasy y Ñe’ẽ no existen. Justamente por eso sirven: no puedes responder «por costumbre de Python». Lees las reglas, las aplicas y justificas qué regla decidió cada resultado.</p>
+    <p class="bajada">Ñe’ẽ, Kuarahy y Jasy no existen. Justamente por eso sirven: no puedes responder «por costumbre de Python». Lees las reglas, las aplicas y justificas qué regla decidió cada resultado. Ñe’ẽ ya tiene dos versiones: la del parcial y la nueva.</p>
   </section>
   <div class="escena"><img src="../../assets/personajes/ada.svg" alt="" width="68" height="80"><div class="globo"><span class="quien">Ada</span><p>En tu carrera vas a aprender muchos lenguajes leyendo su documentación, no en una clase. Este es el mismo ejercicio: reglas nuevas, código nuevo, y tú decides qué pasa.</p></div></div>
   <div class="escena der"><img src="../../assets/personajes/bug.svg" alt="" width="68" height="72"><div class="globo"><span class="quien">Bug</span><p>Yo respondí «como en Python» y me equivoqué en todas. Las reglas del recuadro mandan, aunque te parezcan raras.</p></div></div>
 
+  <p class="recorrido"><span>Recorrido sugerido:</span> <b>Ñe’ẽ v1.0</b> → <b>Ñe’ẽ v2.0</b> → <b>Kuarahy</b> → <b>Jasy</b></p>
   <div class="lenguas" role="group" aria-label="Elige un lenguaje" id="lenguas"></div>
 
   <div class="marcador-l" aria-live="polite"><span>Puntos en este lenguaje: <strong id="pts">0</strong> de <span id="max">0</span></span><span id="consejo" class="nota" style="margin:0"></span></div>
@@ -44,16 +54,21 @@
 
   <section class="seccion">
     <h2>¿Qué regla de la materia es cada regla inventada?</h2>
-    <p class="bajada">Si en el examen te cambian una regla, piensa a qué unidad pertenece: así sabes qué concepto nombrar en la justificación.</p>
+    <p class="bajada">Si te cambian una regla, piensa a qué unidad pertenece: así sabes qué concepto nombrar en la justificación.</p>
     <div class="tabla-scroll"><table class="mapa-reglas">
       <thead><tr><th>Regla</th><th>Concepto</th><th>Unidad</th><th>Su contraria</th></tr></thead>
       <tbody>
         <tr><td>Alcance dinámico (Kuarahy y Jasy, R1)</td><td>Ligadura de nombres, alcance, entorno</td><td>U3</td><td>Alcance estático (Python, Java, C)</td></tr>
         <tr><td>Paso por referencia (Kuarahy y Jasy, R2)</td><td>Mecanismos de paso, alias</td><td>U6</td><td>Paso por valor; compartición de objetos en Python</td></tr>
         <tr><td>Texto + número (Kuarahy y Jasy, R3)</td><td>Conversión implícita, tipado débil</td><td>U4</td><td>Tipado fuerte: error de tipos</td></tr>
-        <tr><td>Sin precedencia (Ñe’ẽ, R1)</td><td>Precedencia y asociatividad</td><td>U5</td><td>Precedencia habitual (* antes que +)</td></tr>
-        <tr><td>Evaluación completa (Ñe’ẽ, R2)</td><td>Evaluación en cortocircuito, guardas</td><td>U5</td><td>Cortocircuito (Python, Java, C)</td></tr>
-        <tr><td>Valor-resultado (Ñe’ẽ, R3)</td><td>Mecanismos de paso</td><td>U6</td><td>Paso por referencia; paso por valor</td></tr>
+        <tr><td>Precedencia y asociatividad (Ñe’ẽ, R1)</td><td>Precedencia y asociatividad</td><td>U5</td><td>Precedencia habitual (* antes que +)</td></tr>
+        <tr><td>Orden de evaluación y sin cortocircuito (Ñe’ẽ, R2)</td><td>Orden de evaluación, cortocircuito, efectos secundarios</td><td>U5</td><td>Izquierda a derecha con cortocircuito (Python, Java, C)</td></tr>
+        <tr><td>Alcance dinámico (v1.0) o estático (v2.0) (Ñe’ẽ, R3)</td><td>Ligadura de nombres, alcance</td><td>U3</td><td>La otra versión</td></tr>
+        <tr><td>Tipado fuerte con entero → real (Ñe’ẽ, R4)</td><td>Tipado estático y fuerte, conversión implícita</td><td>U4</td><td>Tipado débil (Kuarahy, Jasy)</td></tr>
+        <tr><td>Constantes con fijo (Ñe’ẽ, R5)</td><td>Momento de ligadura del valor</td><td>U3</td><td>Variables, que se ligan al ejecutar</td></tr>
+        <tr><td>Guardas cuando … fincuando (Ñe’ẽ, R6)</td><td>Comandos guardados, guarda vs. excepción</td><td>U5</td><td>if / elif de Python</td></tr>
+        <tr><td>Valor-resultado (Ñe’ẽ v2.0, R7)</td><td>Mecanismos de paso</td><td>U6</td><td>Paso por referencia; paso por valor</td></tr>
+        <tr><td>De v1.0 a v2.0</td><td>Evolución de un lenguaje, cambios incompatibles</td><td>U1 · U2</td><td>Una versión menor (1.1), que no rompe programas viejos</td></tr>
         <tr><td>«¿La mantendrías?» (D3 en todos)</td><td>Criterios de diseño: legibilidad, escribibilidad, confiabilidad, regularidad</td><td>U2</td><td>—</td></tr>
       </tbody>
     </table></div>
@@ -68,7 +83,7 @@
 (function () {
   const zona = document.getElementById("zona");
   const botonera = document.getElementById("lenguas");
-  const orden = ["kuarahy", "jasy", "nee"];
+  const orden = ["nee1", "nee", "kuarahy", "jasy"];
   let puntos = {}, maximo = 0;
 
   botonera.innerHTML = orden.map(k => {
@@ -91,12 +106,17 @@
     botonera.querySelectorAll(".lengua").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.k === k)));
     history.replaceState(null, "", "#" + k);
     puntos = {}; maximo = 0;
-    zona.innerHTML = `<h2 class="sub-l">${L.nombre}: sus reglas</h2>${Razonada.htmlReglas(L)}
+    const N = L.notas;
+    const notas = N ? `<section class="notas-v"><h3>${N.titulo}</h3><p style="margin:0">${Razonada.md(N.intro)}</p><div class="rz-scroll"><table>
+      <thead><tr>${(N.cabecera || ["Regla", "v1.0", "v2.0", "¿Qué pasó?", "Por qué (criterio de la U2)"]).map(h => `<th>${h}</th>`).join("")}</tr></thead>
+      <tbody>${N.filas.map(f => `<tr>${f.map((c, i) => `<td>${i === 3 && !N.cabecera ? `<span class="etq-c">${Razonada.esc(c)}</span>` : Razonada.md(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></section>` : "";
+    zona.innerHTML = `<h2 class="sub-l">${L.nombre}: sus reglas</h2>${Razonada.htmlReglas(L)}${notas}
       <h2 class="sub-l">Ejercicios puntuales</h2><p class="bajada">Cada uno pone a prueba una regla. Elige el resultado, la regla que lo decide y la justificación.</p>
       <div id="puntuales"></div>
-      <h2 class="sub-l">Traza completa, como en el examen</h2><p class="bajada">El mismo programa con las reglas originales y con tres variantes. Cambia una sola regla por fila.</p>
-      <div id="trazas"></div>`;
+      ${L.trazas.length ? `<h2 class="sub-l">Traza completa</h2><p class="bajada">El mismo programa con las reglas originales y con tres variantes. Cambia una sola regla por fila.</p>
+      <div id="trazas"></div>` : ""}`;
     const cont = { puntuales: document.getElementById("puntuales"), trazas: document.getElementById("trazas") };
+    const siguiente = orden[orden.indexOf(k) + 1];
     [["puntuales", L.puntuales], ["trazas", L.trazas]].forEach(([dest, lista]) => {
       lista.forEach((item, i) => {
         const clave = dest + i;
@@ -111,11 +131,13 @@
         cont[dest].appendChild(c.el);
       });
     });
+    if (siguiente) zona.insertAdjacentHTML("beforeend", `<div class="fila-botones" style="margin-top:1.2rem"><button type="button" class="btn" data-sigl="${siguiente}">Seguir con ${LENGUAJES[siguiente].nombre}</button></div>`);
+    const bs = zona.querySelector("[data-sigl]"); if (bs) bs.addEventListener("click", () => mostrar(bs.dataset.sigl, true));
     actualizar();
     if (desplazar) zona.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const inicial = orden.includes(location.hash.slice(1)) ? location.hash.slice(1) : "kuarahy";
+  const inicial = orden.includes(location.hash.slice(1)) ? location.hash.slice(1) : "nee1";
   mostrar(inicial, false);
 })();
 </script>

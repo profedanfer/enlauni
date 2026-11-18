@@ -1,7 +1,6 @@
 /* =========================================================
    Banco del Simulacro del final razonado · Teoría de la Programación
-   Mismo formato que el examen final (partes A a E, 50 pts),
-   con ítems propios: ninguno repite un ítem del examen.
+   Partes A a E, 50 pts, con ítems propios.
    La Parte D usa las trazas de lenguajes-inventados.js.
    Cada salida de código se verificó ejecutándola (Python, Java, C).
    ========================================================= */

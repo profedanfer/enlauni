@@ -60,23 +60,23 @@
   <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
   <nav class="migas" aria-label="Ubicación"><a href="../../index.html">Inicio</a><span aria-hidden="true">/</span><a href="../index.html">Teoría de la Programación</a><span aria-hidden="true">/</span><a href="index.html">Juegos</a><span aria-hidden="true">/</span><span>Simulacro del final</span></nav>
   <section class="hero">
-    <p class="etiqueta">Teoría de la Programación · antes del final</p>
+    <p class="etiqueta">Teoría de la Programación · justificar es parte de la respuesta</p>
     <h1>Simulacro del final razonado</h1>
-    <p class="bajada">Con el mismo formato del examen final: cinco partes, 50 puntos, y en cada ítem eliges, nombras el concepto y justificas. Las preguntas cambian cada vez que lo haces.</p>
+    <p class="bajada">Cinco partes, 50 puntos, y en cada ítem eliges, nombras el concepto y justificas. Las preguntas cambian cada vez que lo haces.</p>
   </section>
-  <div class="escena"><img src="../../assets/personajes/ada.svg" alt="" width="68" height="80"><div class="globo"><span class="quien">Ada</span><p>En el final, acertar la opción no alcanza: la justificación es la mitad del puntaje. Aquí practicas las dos cosas juntas, hasta que justificar te salga solo.</p></div></div>
+  <div class="escena"><img src="../../assets/personajes/ada.svg" alt="" width="68" height="80"><div class="globo"><span class="quien">Ada</span><p>Acertar la opción no alcanza: la justificación es la mitad del puntaje. Aquí practicas las dos cosas juntas, hasta que justificar te salga solo.</p></div></div>
   <div class="escena der"><img src="../../assets/personajes/bug.svg" alt="" width="68" height="72"><div class="globo"><span class="quien">Bug</span><p>Yo elegí bien y escribí «porque sí». Me dieron 0. Ahora escribo el concepto y la línea del código que lo muestra.</p></div></div>
 
   <section id="config" class="panel-f" aria-label="Preparar el simulacro">
     <fieldset>
       <legend>¿Qué partes quieres hacer?</legend>
       <div class="chips-f" id="partes"></div>
-      <p class="nota-f">Las cinco juntas son el final completo: 50 pts, alrededor de 2 horas.</p>
+      <p class="nota-f">Las cinco juntas: 50 pts, alrededor de 2 horas.</p>
     </fieldset>
     <fieldset>
       <legend>¿Cuándo ves la corrección?</legend>
       <div class="chips-f">
-        <label class="chip-f"><input type="radio" name="corr" value="final" checked><span>Al entregar, como en el examen</span></label>
+        <label class="chip-f"><input type="radio" name="corr" value="final" checked><span>Al entregar</span></label>
         <label class="chip-f"><input type="radio" name="corr" value="item"><span>Ítem por ítem, para estudiar</span></label>
       </div>
     </fieldset>
@@ -93,7 +93,7 @@
       <div class="chips-f">
         <label class="chip-f"><input type="checkbox" id="escribir" checked><span>Escribirla antes de ver las opciones <small>(recomendado)</small></span></label>
       </div>
-      <p class="nota-f">En el examen la justificación la escribes tú. Si la escribes primero y después la comparas con las opciones, practicas lo que te van a pedir.</p>
+      <p class="nota-f">Si la escribes primero y después la comparas con las opciones, practicas justificar con tus propias palabras.</p>
     </fieldset>
     <details class="ejemplo">
       <summary>¿Cómo se corrige una justificación? Un ejemplo</summary>
@@ -132,7 +132,7 @@
   }
   function actualizarTiempo() {
     const ids = partesElegidas();
-    $("#tiempo-sug").textContent = ids.length ? `Tiempo sugerido: ${minutos(ids)} min${ids.length === PARTES_FINAL.length ? " (incluye 15 min de revisión final, como en el examen)" : ""}.` : "Elige al menos una parte.";
+    $("#tiempo-sug").textContent = ids.length ? `Tiempo sugerido: ${minutos(ids)} min${ids.length === PARTES_FINAL.length ? " (incluye 15 min de revisión final)" : ""}.` : "Elige al menos una parte.";
   }
   $("#partes").addEventListener("change", actualizarTiempo);
   actualizarTiempo();
@@ -151,7 +151,7 @@
     if (id === "A") return BANCO_FINAL.A.map(azar);
     if (id === "B") return BANCO_FINAL.B.map(azar);
     if (id === "C") return [azar(BANCO_FINAL.C)];
-    if (id === "D") return [azar(Object.values(LENGUAJES).map(L => azar(L.trazas)))];
+    if (id === "D") return [azar(Object.values(LENGUAJES).filter(L => L.trazas.length).map(L => azar(L.trazas)))];
     if (id === "E") return [azar(BANCO_FINAL.E1), azar(BANCO_FINAL.E2)];
   }
 
@@ -234,7 +234,7 @@
   function entregar(ids, cfg) {
     if (entregado) return;
     const sin = ctrls.filter(c => !c.res && !c.respondido()).length;
-    if (sin && !confirm(`Te quedan ${sin} ítems sin responder. En el examen valen 0. ¿Entregar igual?`)) return;
+    if (sin && !confirm(`Te quedan ${sin} ítems sin responder. Valen 0. ¿Entregar igual?`)) return;
     entregado = true;
     clearInterval(reloj);
     const res = ctrls.map(c => c.res || c.corregir());
@@ -256,7 +256,7 @@
     if (porc >= 85) ada = "Muy buen simulacro. Revisa los ítems donde perdiste puntos y hazlo otra vez: las preguntas cambian.";
     else if (inc + raz >= 3) ada = `Tu problema no es elegir: en ${inc + raz} ítems elegiste bien y perdiste puntos en la justificación. Antes de elegir, escribe: concepto + la línea del código + por qué pasa.`;
     else if (op >= 3) ada = "Varias opciones salieron mal. Vuelve a las unidades de abajo y prueba la Ruta de repaso antes del próximo simulacro.";
-    else ada = "Vas bien encaminado. Mira las unidades de abajo y practica los lenguajes inventados, que tienen mucho peso en el examen.";
+    else ada = "Vas bien encaminado. Mira las unidades de abajo y practica los lenguajes inventados, que integran varias unidades a la vez.";
 
     const barras = porParte.map(p => { const q = p.max ? p.pts / p.max : 0; return `<div class="fila-f"><b>${p.id}</b><div class="pista-f" title="${p.pts} de ${p.max}"><i class="${q < .6 ? "baja" : ""}" style="width:${Math.round(q * 100)}%"></i></div><span>${p.pts}/${p.max}</span></div>`; }).join("");
     $("#resultado").innerHTML = `<section class="result" aria-live="polite">
