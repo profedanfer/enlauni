@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>¿Para qué te sirve TPR? · Teoría de la Programación</title>
+<link rel="icon" href="../assets/personajes/ada.svg" type="image/svg+xml">
+<script src="../assets/tema.js"></script>
+<link rel="stylesheet" href="../assets/estilos.css">
+<style>
+  .unidades-c { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: .9rem; margin-top: 1rem; }
+  .uc { background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radio); padding: 1rem 1.1rem; display: grid; gap: .45rem; align-content: start; }
+  .uc .u { font-family: var(--f-codigo); font-size: .8rem; font-weight: 700; color: var(--verde-medio); }
+  .uc h3 { margin: 0; font-size: 1.12rem; }
+  .uc .lbl { font-size: .75rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--tinta-suave); margin-top: .2rem; }
+  .uc p { margin: 0; }
+  .uc code { font-family: var(--f-codigo); font-size: .9em; }
+  .formula { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; margin-top: 1rem; }
+  @media (max-width: 680px) { .formula { grid-template-columns: 1fr; } }
+  .formula div { border-radius: var(--radio); padding: .9rem 1rem; background: var(--acierto-fondo); border: 2px solid var(--verde-claro); }
+  .formula b { display: block; font-family: var(--f-titulo); font-size: 1.15rem; color: var(--verde-oscuro); margin-bottom: .2rem; }
+  .ejemplo-j { margin-top: 1rem; border-left: 6px solid var(--verde-medio); background: var(--superficie); border-radius: 0 var(--radio) var(--radio) 0; padding: .8rem 1rem; }
+  .ejemplo-j p { margin: .3rem 0 0; }
+  .situaciones { display: grid; gap: .6rem; margin-top: 1rem; }
+  .sit { display: grid; grid-template-columns: 2.6rem 1fr; gap: .8rem; align-items: start; background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radio); padding: .8rem 1rem; }
+  .sit .n { font-family: var(--f-titulo); font-size: 1.6rem; color: var(--verde-medio); line-height: 1; }
+  .sit p { margin: .2rem 0 0; }
+</style>
+</head>
+<body>
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html">Teoría de la Programación</a><span aria-hidden="true">/</span><span>¿Para qué te sirve?</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Teoría de la Programación · el sentido de la materia</p>
+    <h1>¿Para qué te sirve TPR?</h1>
+    <p class="bajada">En tu vida profesional vas a programar en lenguajes que hoy todavía no conoces, y en algunos que todavía no existen. Lo que no cambia de un lenguaje a otro son los conceptos de esta materia.</p>
+  </section>
+  <div class="escena"><img src="../assets/personajes/ada.svg" alt="" width="68" height="80"><div class="globo"><span class="quien">Ada</span><p>Python, Java y C son los ejemplos. El objeto de estudio es otra cosa: cómo piensa cualquier lenguaje. Si entiendes eso, aprender el próximo te lleva días, no meses.</p></div></div>
+  <div class="escena der"><img src="../assets/personajes/bug.svg" alt="" width="68" height="72"><div class="globo"><span class="quien">Bug</span><p>Yo me aprendí de memoria qué imprime cada ejemplo de Python. Después me cambiaron de lenguaje y no entendí nada. Aprende el porqué.</p></div></div>
+
+  <section class="seccion">
+    <h2>Lo que cambia cuando entiendes los conceptos</h2>
+    <div class="situaciones">
+      <div class="sit"><span class="n">1</span><div><b>Aprendes un lenguaje nuevo leyendo su documentación.</b><p>En vez de preguntarte «¿cómo se hace esto en Kotlin?», te preguntas: ¿qué alcance tiene?, ¿cómo pasa los parámetros?, ¿es estático o dinámico, fuerte o débil? Con esas cinco o seis respuestas ya sabes cómo se va a comportar. Es exactamente lo que practicas con Kuarahy, Jasy y Ñe’ẽ.</p></div></div>
+      <div class="sit"><span class="n">2</span><div><b>Encuentras errores que otros no ven.</b><p>«Modifiqué la lista adentro de la función y cambió afuera», «la variable vale otra cosa dentro del callback», «la suma da "11" en vez de 2». No son errores misteriosos: son paso de parámetros, alcance y tipado débil.</p></div></div>
+      <div class="sit"><span class="n">3</span><div><b>Defiendes tus decisiones técnicas.</b><p>En una revisión de código, en una reunión de equipo o en una entrevista de trabajo no alcanza con decir «funciona». Te preguntan por qué elegiste herencia o composición, una guarda o una excepción, un bucle o un pipeline. TPR te da el vocabulario y los criterios para responder.</p></div></div>
+      <div class="sit"><span class="n">4</span><div><b>Eliges la herramienta adecuada.</b><p>Un mismo sistema puede tener una parte que conviene modelar con objetos, otra con funciones puras y otra con reglas. Saber qué ofrece cada paradigma evita forzar todo con lo único que conoces.</p></div></div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>Cada unidad, más adelante</h2>
+    <p class="bajada">Dónde vuelve a aparecer lo que estudias, en otras materias de la carrera y en el trabajo.</p>
+    <div class="unidades-c">
+      <article class="uc"><span class="u">U1</span><h3>Lenguajes y paradigmas</h3>
+        <span class="lbl">En la carrera</span><p>Bases de datos: SQL es declarativo (dices qué datos quieres, no cómo buscarlos). Inteligencia artificial: la programación lógica nació para razonar con reglas.</p>
+        <span class="lbl">En el trabajo</span><p>Entender por qué Java necesita su máquina virtual o por qué un programa en Python no detecta ciertos errores hasta ejecutarse.</p></article>
+      <article class="uc"><span class="u">U2</span><h3>Principios de diseño</h3>
+        <span class="lbl">En la carrera</span><p>Ingeniería de software: legibilidad, confiabilidad y extensibilidad son criterios de calidad que vas a evaluar en cada proyecto.</p>
+        <span class="lbl">En el trabajo</span><p>Revisar código de otros y explicar por qué una solución se va a mantener mejor que otra, con criterios y no con gustos.</p></article>
+      <article class="uc"><span class="u">U3</span><h3>Ligadura, alcance y tiempo de vida</h3>
+        <span class="lbl">En la carrera</span><p>Compiladores y sistemas operativos: tablas de símbolos, memoria estática, pila y montículo.</p>
+        <span class="lbl">En el trabajo</span><p>En JavaScript, <code>var</code> tiene alcance de función y <code>let</code> de bloque: confundirlos produce errores clásicos en bucles y callbacks. Las clausuras están en todos los frameworks web.</p></article>
+      <article class="uc"><span class="u">U4</span><h3>Tipos de datos</h3>
+        <span class="lbl">En la carrera</span><p>Estructuras de datos: elegir lista, conjunto, mapa o registro según la operación principal.</p>
+        <span class="lbl">En el trabajo</span><p>En JavaScript <code>"1" + 1</code> da <code>"11"</code> (tipado débil). TypeScript existe justamente para agregarle tipado estático a JavaScript. Saber por qué es la diferencia entre usar una herramienta y entenderla.</p></article>
+      <article class="uc"><span class="u">U5</span><h3>Expresiones y enunciados</h3>
+        <span class="lbl">En la carrera</span><p>Programación de sistemas y redes: manejar fallas que no controlas (un archivo que desaparece, un servidor que no responde).</p>
+        <span class="lbl">En el trabajo</span><p><code>if usuario and usuario.activo</code> es una guarda con cortocircuito. Decidir entre validar antes o capturar la excepción es una decisión diaria al consumir servicios externos.</p></article>
+      <article class="uc"><span class="u">U6</span><h3>Procedimientos y ambientes</h3>
+        <span class="lbl">En la carrera</span><p>Algoritmos: la recursión y la pila de llamadas. Sistemas operativos: cómo se reserva memoria en cada llamada.</p>
+        <span class="lbl">En el trabajo</span><p>Leer una traza de error (stack trace) es leer la pila de llamadas. Y una función que modifica la lista que recibió es uno de los errores más difíciles de rastrear.</p></article>
+      <article class="uc"><span class="u">U7</span><h3>Programación orientada a objetos</h3>
+        <span class="lbl">En la carrera</span><p>Análisis y diseño de sistemas, patrones de diseño, desarrollo de aplicaciones.</p>
+        <span class="lbl">En el trabajo</span><p>Frameworks como Django o Spring se basan en clases y herencia. El polimorfismo es lo que te deja agregar un caso nuevo sin romper lo que ya funciona.</p></article>
+      <article class="uc"><span class="u">U8</span><h3>Programación funcional</h3>
+        <span class="lbl">En la carrera</span><p>Ciencia de datos e inteligencia artificial: transformar grandes volúmenes de datos sin modificarlos.</p>
+        <span class="lbl">En el trabajo</span><p><code>map</code>, <code>filter</code> y <code>reduce</code> están en JavaScript, en los streams de Java y en las bibliotecas de datos de Python. Las funciones puras se prueban y se paralelizan más fácil.</p></article>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>¿Por qué te pedimos justificar todo?</h2>
+    <p class="bajada">Porque en tu trabajo nadie te va a preguntar solo «¿qué imprime?». Te van a preguntar «¿por qué falla?», «¿por qué lo hiciste así?», «¿qué pasa si cambiamos esto?». Una justificación completa tiene tres partes:</p>
+    <div class="formula">
+      <div><b>1 · El concepto</b>El nombre exacto de la materia: ligadura dinámica, alias, cortocircuito, clausura…</div>
+      <div><b>2 · La evidencia</b>La línea o el valor del código donde se ve ese concepto.</div>
+      <div><b>3 · El mecanismo</b>Por qué ocurre: qué hace el lenguaje, en qué momento y con qué consecuencia.</div>
+    </div>
+    <div class="ejemplo-j">
+      <b>Ejemplo.</b> Después de este código, <code>datos</code> queda <code>[1, 2]</code>:
+      <pre class="codigo" style="margin:.5rem 0 0">def f(l):
+    l.append(2)
+
+datos = [1]
+f(datos)</pre>
+      <p><b>Incompleta:</b> «Porque append agrega el 2». Cuenta lo que pasa, pero no por qué se ve afuera.</p>
+      <p><b>Completa:</b> «Paso por compartición de objetos (concepto): <code>l</code> y <code>datos</code> apuntan a la misma lista (evidencia: <code>f(datos)</code>), y <code>append</code> modifica ese objeto en lugar de crear otro, por eso el cambio se ve desde afuera (mecanismo)».</p>
+    </div>
+    <p style="margin-top:1rem">Eso mismo es lo que escribe un buen programador cuando describe un cambio en el repositorio o explica un error a su equipo.</p>
+  </section>
+
+  <section class="seccion">
+    <h2>Practica así</h2>
+    <div class="enlaces-juego">
+      <a class="btn" href="juegos/simulacro-final.html">Simulacro del final razonado</a>
+      <a class="btn sec" href="juegos/misiones-repaso.html">Misiones del repaso</a>
+      <a class="btn sec" href="juegos/lenguajes-inventados.html">Lenguajes inventados</a>
+    </div>
+  </section>
+
+  <footer class="pie"><span>Teoría de la Programación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="../assets/sitio.js"></script>
+</body>
+</html>

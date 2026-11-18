@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Simulacro del final razonado · Teoría de la Programación</title>
+<link rel="icon" href="../../assets/personajes/ada.svg" type="image/svg+xml">
+<script src="../../assets/tema.js"></script>
+<link rel="stylesheet" href="../../assets/estilos.css">
+<link rel="stylesheet" href="razonada.css">
+<style>
+  .panel-f { background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radio); padding: 1.2rem; margin-top: 1.2rem; display: grid; gap: 1.1rem; }
+  .panel-f fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+  .panel-f legend { font-family: var(--f-titulo); font-size: 1.1rem; color: var(--verde-oscuro); margin-bottom: .5rem; }
+  .chips-f { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .chip-f { position: relative; }
+  .chip-f input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+  .chip-f span { display: inline-block; padding: .45rem .9rem; border-radius: 999px; border: 2px solid var(--linea); background: var(--fondo); font-weight: 700; color: var(--tinta-suave); min-height: 42px; line-height: 1.45; }
+  .chip-f small { font-weight: 600; opacity: .85; }
+  .chip-f input:checked + span { background: var(--verde-medio); border-color: var(--verde-medio); color: var(--sobre-acento); }
+  .chip-f input:focus-visible + span { outline: 3px solid var(--verde-claro); outline-offset: 2px; }
+  .nota-f { font-size: .9rem; color: var(--tinta-suave); margin: .4rem 0 0; }
+  .ejemplo { border: 1px dashed var(--verde-claro); border-radius: var(--radio); padding: .8rem 1rem; }
+  .ejemplo summary { cursor: pointer; font-weight: 700; color: var(--verde-medio); }
+  .ejemplo .fila-e { display: grid; grid-template-columns: 5.5rem 1fr; gap: .6rem; padding: .5rem 0; border-top: 1px solid var(--linea); }
+  .ejemplo .fila-e:first-of-type { border-top: 0; }
+  .ejemplo .p { font-family: var(--f-titulo); font-size: 1.3rem; }
+  .historial { list-style: none; padding: 0; margin: .3rem 0 0; display: grid; gap: .3rem; }
+  .historial li { display: flex; justify-content: space-between; gap: .6rem; padding: .35rem .6rem; border-radius: 8px; background: var(--fondo); font-size: .92rem; }
+
+  .barra-ex { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: .6rem 1rem; align-items: center; justify-content: space-between; margin-top: 1.2rem; padding: .6rem 1rem; border-radius: var(--radio); background: var(--superficie); border: 2px solid var(--verde-claro); box-shadow: 0 6px 16px rgba(0,0,0,.08); }
+  .reloj-f { font-family: var(--f-codigo); font-size: 1.5rem; font-weight: 600; color: var(--verde-oscuro); font-variant-numeric: tabular-nums; }
+  .reloj-f.pasado { color: var(--error); }
+  .parte-h { margin-top: 2rem; padding: 1rem 1.2rem; border-radius: var(--radio); background: var(--acierto-fondo); }
+  .parte-h h2 { margin: 0; font-size: 1.35rem; }
+  .parte-h .meta-p { font-size: .88rem; font-weight: 700; color: var(--verde-medio); margin-top: .2rem; }
+  .parte-h p { margin: .45rem 0 0; }
+  .indic { margin-top: 1rem; padding: 1rem 1.2rem; border: 1px solid var(--linea); border-radius: var(--radio); background: var(--superficie); }
+  .indic ol { margin: .4rem 0 0; padding-left: 1.3rem; }
+  .indic li + li { margin-top: .3rem; }
+
+  .result { margin-top: 1.2rem; background: var(--superficie); border: 2px solid var(--verde-medio); border-radius: var(--radio); padding: 1.2rem; }
+  .total-f { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1rem; }
+  .total-f .num-t { font-family: var(--f-titulo); font-size: clamp(2.4rem, 7vw, 3.4rem); color: var(--verde-oscuro); line-height: 1; }
+  .barras-f { display: grid; gap: .55rem; margin-top: 1rem; }
+  .fila-f { display: grid; grid-template-columns: 1.8rem 1fr 4.2rem; gap: .6rem; align-items: center; }
+  .fila-f b { font-family: var(--f-codigo); color: var(--verde-medio); }
+  .pista-f { height: 14px; background: var(--linea); border-radius: 7px; overflow: hidden; }
+  .pista-f > i { display: block; height: 100%; background: var(--verde-claro); }
+  .pista-f > i.baja { background: var(--pista-borde, #c9a227); }
+  .just { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: .6rem; margin-top: 1rem; }
+  .just div { border-radius: var(--radio); padding: .6rem .8rem; background: var(--fondo); border: 1px solid var(--linea); }
+  .just b { display: block; font-family: var(--f-titulo); font-size: 1.6rem; }
+  .repasar { margin: .5rem 0 0; padding-left: 1.2rem; }
+  .repasar li + li { margin-top: .3rem; }
+</style>
+</head>
+<body>
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../../index.html">Inicio</a><span aria-hidden="true">/</span><a href="../index.html">Teoría de la Programación</a><span aria-hidden="true">/</span><a href="index.html">Juegos</a><span aria-hidden="true">/</span><span>Simulacro del final</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Teoría de la Programación · antes del final</p>
+    <h1>Simulacro del final razonado</h1>
+    <p class="bajada">Con el mismo formato del examen final: cinco partes, 50 puntos, y en cada ítem eliges, nombras el concepto y justificas. Las preguntas cambian cada vez que lo haces.</p>
+  </section>
+  <div class="escena"><img src="../../assets/personajes/ada.svg" alt="" width="68" height="80"><div class="globo"><span class="quien">Ada</span><p>En el final, acertar la opción no alcanza: la justificación es la mitad del puntaje. Aquí practicas las dos cosas juntas, hasta que justificar te salga solo.</p></div></div>
+  <div class="escena der"><img src="../../assets/personajes/bug.svg" alt="" width="68" height="72"><div class="globo"><span class="quien">Bug</span><p>Yo elegí bien y escribí «porque sí». Me dieron 0. Ahora escribo el concepto y la línea del código que lo muestra.</p></div></div>
+
+  <section id="config" class="panel-f" aria-label="Preparar el simulacro">
+    <fieldset>
+      <legend>¿Qué partes quieres hacer?</legend>
+      <div class="chips-f" id="partes"></div>
+      <p class="nota-f">Las cinco juntas son el final completo: 50 pts, alrededor de 2 horas.</p>
+    </fieldset>
+    <fieldset>
+      <legend>¿Cuándo ves la corrección?</legend>
+      <div class="chips-f">
+        <label class="chip-f"><input type="radio" name="corr" value="final" checked><span>Al entregar, como en el examen</span></label>
+        <label class="chip-f"><input type="radio" name="corr" value="item"><span>Ítem por ítem, para estudiar</span></label>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Reloj</legend>
+      <div class="chips-f">
+        <label class="chip-f"><input type="radio" name="reloj" value="si" checked><span>Con el tiempo sugerido</span></label>
+        <label class="chip-f"><input type="radio" name="reloj" value="no"><span>Sin reloj</span></label>
+      </div>
+      <p class="nota-f" id="tiempo-sug"></p>
+    </fieldset>
+    <fieldset>
+      <legend>Justificaciones</legend>
+      <div class="chips-f">
+        <label class="chip-f"><input type="checkbox" id="escribir" checked><span>Escribirla antes de ver las opciones <small>(recomendado)</small></span></label>
+      </div>
+      <p class="nota-f">En el examen la justificación la escribes tú. Si la escribes primero y después la comparas con las opciones, practicas lo que te van a pedir.</p>
+    </fieldset>
+    <details class="ejemplo">
+      <summary>¿Cómo se corrige una justificación? Un ejemplo</summary>
+      <p style="margin:.6rem 0 0">Ítem: <code>print(True + 2)</code> en Python. Opción elegida: <code>3</code> (correcta). Lo que cambia el puntaje es «Lo decide»:</p>
+      <div class="fila-e" style="margin-top:.5rem"><span class="p">2 pts</span><span><b>Completa:</b> «Conversión implícita: en Python bool es un subtipo de int y True vale 1, por eso <code>True + 2</code> da 3 sin error, mientras que <code>"3" + 2</code> sí da TypeError». Nombra el concepto, señala el código y explica el mecanismo.</span></div>
+      <div class="fila-e"><span class="p">1 pt</span><span><b>Incompleta:</b> «Porque True es 1». Es cierto, pero no nombra el concepto ni explica por qué Python lo permite.</span></div>
+      <div class="fila-e"><span class="p">0 pts</span><span><b>Razonamiento equivocado:</b> «Porque Python tiene tipado débil y convierte cualquier cosa a número». Acierta la opción con una idea falsa: Python es fuerte.</span></div>
+      <div class="fila-e"><span class="p">0 pts</span><span><b>Sin justificación</b>, aunque la opción sea correcta.</span></div>
+    </details>
+    <div class="fila-botones"><button type="button" class="btn" id="empezar">Empezar el simulacro</button><a class="btn sec" href="lenguajes-inventados.html">Practicar antes los lenguajes inventados</a></div>
+    <div id="hist"></div>
+  </section>
+
+  <div id="resultado"></div>
+  <main id="examen" hidden></main>
+
+  <footer class="pie"><span>Teoría de la Programación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="razonada.js"></script>
+<script src="lenguajes-inventados.js"></script>
+<script src="simulacro-final-banco.js"></script>
+<script>
+(function () {
+  const CLAVE = "tpr-simulacro-final-v1";
+  const NOMBRES_U = { 1: "U1 Lenguajes de programación", 2: "U2 Principios de diseño", 3: "U3 Semántica básica", 4: "U4 Tipos de datos", 5: "U5 Expresiones y enunciados", 6: "U6 Procedimientos y ambientes", 7: "U7 Programación orientada a objetos", 8: "U8 Programación funcional" };
+  const R = Razonada;
+  const $ = s => document.querySelector(s);
+  let ctrls = [], reloj = null, entregado = false;
+
+  /* ---------- configuración ---------- */
+  $("#partes").innerHTML = PARTES_FINAL.map(p => `<label class="chip-f"><input type="checkbox" value="${p.id}" checked><span>${p.id} · ${p.nombre} <small>${p.pts} pts</small></span></label>`).join("");
+  function partesElegidas() { return [...document.querySelectorAll("#partes input:checked")].map(x => x.value); }
+  function minutos(ids) {
+    const m = PARTES_FINAL.filter(p => ids.includes(p.id)).reduce((a, p) => a + p.min, 0);
+    return ids.length === PARTES_FINAL.length ? m + 15 : m;
+  }
+  function actualizarTiempo() {
+    const ids = partesElegidas();
+    $("#tiempo-sug").textContent = ids.length ? `Tiempo sugerido: ${minutos(ids)} min${ids.length === PARTES_FINAL.length ? " (incluye 15 min de revisión final, como en el examen)" : ""}.` : "Elige al menos una parte.";
+  }
+  $("#partes").addEventListener("change", actualizarTiempo);
+  actualizarTiempo();
+
+  function leerHist() { try { return JSON.parse(localStorage.getItem(CLAVE)) || []; } catch (e) { return []; } }
+  function guardarHist(r) { try { const h = leerHist(); h.push(r); localStorage.setItem(CLAVE, JSON.stringify(h.slice(-20))); } catch (e) { } }
+  function mostrarHist() {
+    const h = leerHist().slice(-5).reverse();
+    $("#hist").innerHTML = h.length ? `<p style="margin:0;font-weight:700">Tus últimos simulacros</p><ul class="historial">${h.map(x => `<li><span>${new Date(x.f).toLocaleDateString("es-PY", { day: "numeric", month: "short" })} · partes ${x.partes}</span><span><b>${x.pts}/${x.max}</b> · ${x.comp} justificaciones completas de ${x.nj}</span></li>`).join("")}</ul>` : "";
+  }
+  mostrarHist();
+
+  /* ---------- armado ---------- */
+  const azar = a => a[Math.floor(Math.random() * a.length)];
+  function itemsDe(id) {
+    if (id === "A") return BANCO_FINAL.A.map(azar);
+    if (id === "B") return BANCO_FINAL.B.map(azar);
+    if (id === "C") return [azar(BANCO_FINAL.C)];
+    if (id === "D") return [azar(Object.values(LENGUAJES).map(L => azar(L.trazas)))];
+    if (id === "E") return [azar(BANCO_FINAL.E1), azar(BANCO_FINAL.E2)];
+  }
+
+  $("#empezar").addEventListener("click", () => {
+    const ids = partesElegidas();
+    if (!ids.length) { $("#tiempo-sug").textContent = "Elige al menos una parte para empezar."; return; }
+    const inmediato = document.querySelector('input[name="corr"]:checked').value === "item";
+    const escribir = $("#escribir").checked;
+    const conReloj = document.querySelector('input[name="reloj"]:checked').value === "si";
+    armar(ids, { inmediato, escribir, conReloj });
+  });
+
+  function armar(ids, cfg) {
+    ctrls = []; entregado = false;
+    $("#config").hidden = true;
+    $("#resultado").innerHTML = "";
+    const ex = $("#examen");
+    ex.hidden = false;
+    ex.innerHTML = `<div class="barra-ex" id="barra"><span class="reloj-f" id="reloj" aria-live="off">${cfg.conReloj ? "" : "Sin reloj"}</span><span id="avance">0 respondidos</span>
+      ${cfg.inmediato ? `<button type="button" class="btn sec" id="terminar">Terminar y ver el resumen</button>` : `<button type="button" class="btn" id="entregar">Entregar</button>`}</div>
+      <section class="indic"><b>Indicaciones</b><ol>
+        <li>Lee cada consigna completa antes de responder. Todas las reglas que necesitas están en la pantalla.</li>
+        <li>En selección múltiple y en verdadero o falso, la justificación es parte de la respuesta: opción correcta y justificación completa = 2 pts; justificación incompleta = 1 pt; sin justificación, razonamiento equivocado u opción incorrecta = 0.</li>
+        <li>Los ítems son independientes: si te trabas en uno, pasa al siguiente y vuelve después.</li>
+        <li>Sin apuntes ni IA: el simulacro sirve si responde lo que tú sabes hoy.</li>
+      </ol></section>`;
+    ids.forEach(id => {
+      const P = PARTES_FINAL.find(p => p.id === id);
+      const items = itemsDe(id);
+      const extra = id === "D" ? ` Hoy te toca <b>${items[0].leng.nombre}</b>.` : "";
+      ex.insertAdjacentHTML("beforeend", `<section class="parte-h" id="parte-${id}"><h2>Parte ${id} · ${P.nombre}</h2><div class="meta-p">${P.unidades} · ${P.pts} pts · ${P.min} min sugeridos</div><p>${R.md(P.consigna)}${extra}</p></section>`);
+      items.forEach((item, k) => {
+        const num = id === "E" ? (k === 0 ? "E1" : "E2") : id === "C" || id === "D" ? id : id + (k + 1);
+        const idx = ctrls.length;
+        const c = R.crear(item, { num, escribir: cfg.escribir, inmediato: cfg.inmediato,
+          alPuntuar: r => { ctrls[idx].res = r; avance(); },
+          alReiniciar: nuevo => { nuevo.parte = id; ctrls[idx] = nuevo; avance(); } });
+        c.parte = id;
+        ctrls.push(c);
+        ex.appendChild(c.el);
+      });
+    });
+    ex.insertAdjacentHTML("beforeend", `<div class="fila-botones" style="margin-top:1.4rem">${cfg.inmediato ? `<button type="button" class="btn" id="terminar2">Terminar y ver el resumen</button>` : `<button type="button" class="btn" id="entregar2">Entregar el simulacro</button>`}<button type="button" class="btn sec" id="abandonar">Volver sin entregar</button></div>`);
+    ex.addEventListener("input", avance);
+    ex.addEventListener("change", avance);
+    ["#entregar", "#entregar2", "#terminar", "#terminar2"].forEach(s => { const b = $(s); if (b) b.addEventListener("click", () => entregar(ids, cfg)); });
+    $("#abandonar").addEventListener("click", () => { if (confirm("¿Salir sin entregar? Se pierden las respuestas.")) volver(); });
+    if (cfg.conReloj) iniciarReloj(minutos(ids) * 60);
+    avance();
+    $("#barra").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function avance() {
+    const n = ctrls.filter(c => c.res || c.respondido()).length;
+    const a = $("#avance"); if (a) a.textContent = `${n} de ${ctrls.length} ítems con respuesta`;
+  }
+  function iniciarReloj(seg) {
+    clearInterval(reloj);
+    const fin = Date.now() + seg * 1000;
+    const pinta = () => {
+      const el = $("#reloj"); if (!el) return clearInterval(reloj);
+      const r = Math.round((fin - Date.now()) / 1000);
+      const s = Math.abs(r);
+      el.textContent = (r < 0 ? "+" : "") + Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
+      el.classList.toggle("pasado", r < 0);
+      el.title = r < 0 ? "Se cumplió el tiempo sugerido" : "Tiempo que queda";
+    };
+    pinta(); reloj = setInterval(pinta, 1000);
+  }
+  function volver() {
+    clearInterval(reloj);
+    $("#examen").hidden = true; $("#examen").innerHTML = "";
+    $("#resultado").innerHTML = "";
+    $("#config").hidden = false;
+    mostrarHist();
+    $("#config").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  /* ---------- entrega y diagnóstico ---------- */
+  function entregar(ids, cfg) {
+    if (entregado) return;
+    const sin = ctrls.filter(c => !c.res && !c.respondido()).length;
+    if (sin && !confirm(`Te quedan ${sin} ítems sin responder. En el examen valen 0. ¿Entregar igual?`)) return;
+    entregado = true;
+    clearInterval(reloj);
+    const res = ctrls.map(c => c.res || c.corregir());
+    ctrls.forEach(c => { const acc = c.el.querySelector(".rz-acciones"); if (acc) acc.remove(); });
+    document.querySelectorAll("#barra button, #entregar2, #terminar2").forEach(b => b.remove());
+
+    const pts = res.reduce((a, r) => a + r.pts, 0), max = res.reduce((a, r) => a + r.max, 0);
+    const porParte = ids.map(id => { const rs = res.filter((r, i) => ctrls[i].parte === id); return { id, pts: rs.reduce((a, r) => a + r.pts, 0), max: rs.reduce((a, r) => a + r.max, 0) }; });
+    const just = res.filter((r, i) => ["A", "B"].includes(ctrls[i].parte));
+    const cuenta = e => just.filter(r => r.estado === e).length;
+    const comp = cuenta("completa"), inc = cuenta("incompleta"), raz = cuenta("razonamiento"), sinj = cuenta("sinjust"), op = cuenta("opcion");
+    const porc = max ? Math.round(pts / max * 100) : 0;
+
+    const flojos = {};
+    res.forEach(r => { if (r.pts < r.max) (r.u.length ? r.u : [0]).forEach(u => { (flojos[u] = flojos[u] || []).push(r.tema); }); });
+    const uOrden = Object.keys(flojos).filter(u => u !== "0").sort((a, b) => flojos[b].length - flojos[a].length);
+
+    let ada;
+    if (porc >= 85) ada = "Muy buen simulacro. Revisa los ítems donde perdiste puntos y hazlo otra vez: las preguntas cambian.";
+    else if (inc + raz >= 3) ada = `Tu problema no es elegir: en ${inc + raz} ítems elegiste bien y perdiste puntos en la justificación. Antes de elegir, escribe: concepto + la línea del código + por qué pasa.`;
+    else if (op >= 3) ada = "Varias opciones salieron mal. Vuelve a las unidades de abajo y prueba la Ruta de repaso antes del próximo simulacro.";
+    else ada = "Vas bien encaminado. Mira las unidades de abajo y practica los lenguajes inventados, que tienen mucho peso en el examen.";
+
+    const barras = porParte.map(p => { const q = p.max ? p.pts / p.max : 0; return `<div class="fila-f"><b>${p.id}</b><div class="pista-f" title="${p.pts} de ${p.max}"><i class="${q < .6 ? "baja" : ""}" style="width:${Math.round(q * 100)}%"></i></div><span>${p.pts}/${p.max}</span></div>`; }).join("");
+    $("#resultado").innerHTML = `<section class="result" aria-live="polite">
+      <div class="total-f"><span class="num-t">${pts}/${max}</span><span>puntos · ${porc} %</span></div>
+      <div class="barras-f">${barras}</div>
+      ${just.length ? `<h3 style="margin-top:1.2rem">Tus justificaciones (partes A y B)</h3>
+      <div class="just">
+        <div><b>${comp}</b>completas (2 pts)</div>
+        <div><b>${inc}</b>incompletas (1 pt)</div>
+        <div><b>${raz + sinj}</b>sin justificar o con un razonamiento equivocado (0)</div>
+        <div><b>${op}</b>con la opción incorrecta (0)</div>
+      </div>` : ""}
+      <div class="escena" style="margin-top:1rem"><img src="../../assets/personajes/ada.svg" alt="" width="60" height="70"><div class="globo"><span class="quien">Ada</span><p>${ada}</p></div></div>
+      ${uOrden.length ? `<h3>Qué repasar</h3><ul class="repasar">${uOrden.map(u => `<li><a href="../u${u}.html">${NOMBRES_U[u]}</a>: ${[...new Set(flojos[u])].map(R.esc).join(" · ")}</li>`).join("")}</ul>` : ""}
+      <div class="fila-botones" style="margin-top:1rem"><button type="button" class="btn" id="otro">Hacer otro simulacro</button><a class="btn sec" href="#parte-${ids[0]}">Ver mis respuestas corregidas</a><a class="btn sec" href="lenguajes-inventados.html">Lenguajes inventados</a></div>
+    </section>`;
+    $("#otro").addEventListener("click", volver);
+    guardarHist({ f: new Date().toISOString(), pts, max, partes: ids.join(""), comp, nj: just.length });
+    $("#resultado").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+})();
+</script>
+</body>
+</html>

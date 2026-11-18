@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lenguajes inventados · Teoría de la Programación</title>
+<link rel="icon" href="../../assets/personajes/ada.svg" type="image/svg+xml">
+<script src="../../assets/tema.js"></script>
+<link rel="stylesheet" href="../../assets/estilos.css">
+<link rel="stylesheet" href="razonada.css">
+<style>
+  .lenguas { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; margin-top: 1.2rem; }
+  @media (max-width: 760px) { .lenguas { grid-template-columns: 1fr; } }
+  .lengua { font: inherit; text-align: left; cursor: pointer; background: var(--superficie); color: var(--tinta); border: 2px solid var(--linea); border-radius: var(--radio); padding: 1rem; display: grid; gap: .3rem; }
+  .lengua b { font-family: var(--f-titulo); font-size: 1.4rem; color: var(--verde-oscuro); }
+  .lengua .lema { font-size: .85rem; color: var(--tinta-suave); }
+  .lengua .u { font-family: var(--f-codigo); font-size: .8rem; color: var(--verde-medio); font-weight: 700; }
+  .lengua[aria-pressed="true"] { border-color: var(--verde-medio); box-shadow: 0 0 0 4px var(--acierto-fondo); }
+  .marcador-l { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; align-items: center; justify-content: space-between; margin-top: 1rem; padding: .7rem 1rem; border-radius: var(--radio); background: var(--acierto-fondo); }
+  .marcador-l strong { font-family: var(--f-titulo); font-size: 1.4rem; color: var(--verde-oscuro); }
+  .mapa-reglas { width: 100%; border-collapse: collapse; margin-top: .6rem; }
+  .mapa-reglas th, .mapa-reglas td { border: 1px solid var(--linea); padding: .45rem .6rem; text-align: left; vertical-align: top; }
+  .mapa-reglas th { background: var(--fondo); }
+  h2.sub-l { margin-top: 1.6rem; }
+</style>
+</head>
+<body>
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../../index.html">Inicio</a><span aria-hidden="true">/</span><a href="../index.html">Teoría de la Programación</a><span aria-hidden="true">/</span><a href="index.html">Juegos</a><span aria-hidden="true">/</span><span>Lenguajes inventados</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Semántica a prueba · U2 a U6</p>
+    <h1>Lenguajes inventados</h1>
+    <p class="bajada">Kuarahy, Jasy y Ñe’ẽ no existen. Justamente por eso sirven: no puedes responder «por costumbre de Python». Lees las reglas, las aplicas y justificas qué regla decidió cada resultado.</p>
+  </section>
+  <div class="escena"><img src="../../assets/personajes/ada.svg" alt="" width="68" height="80"><div class="globo"><span class="quien">Ada</span><p>En tu carrera vas a aprender muchos lenguajes leyendo su documentación, no en una clase. Este es el mismo ejercicio: reglas nuevas, código nuevo, y tú decides qué pasa.</p></div></div>
+  <div class="escena der"><img src="../../assets/personajes/bug.svg" alt="" width="68" height="72"><div class="globo"><span class="quien">Bug</span><p>Yo respondí «como en Python» y me equivoqué en todas. Las reglas del recuadro mandan, aunque te parezcan raras.</p></div></div>
+
+  <div class="lenguas" role="group" aria-label="Elige un lenguaje" id="lenguas"></div>
+
+  <div class="marcador-l" aria-live="polite"><span>Puntos en este lenguaje: <strong id="pts">0</strong> de <span id="max">0</span></span><span id="consejo" class="nota" style="margin:0"></span></div>
+
+  <main id="zona"></main>
+
+  <section class="seccion">
+    <h2>¿Qué regla de la materia es cada regla inventada?</h2>
+    <p class="bajada">Si en el examen te cambian una regla, piensa a qué unidad pertenece: así sabes qué concepto nombrar en la justificación.</p>
+    <div class="tabla-scroll"><table class="mapa-reglas">
+      <thead><tr><th>Regla</th><th>Concepto</th><th>Unidad</th><th>Su contraria</th></tr></thead>
+      <tbody>
+        <tr><td>Alcance dinámico (Kuarahy y Jasy, R1)</td><td>Ligadura de nombres, alcance, entorno</td><td>U3</td><td>Alcance estático (Python, Java, C)</td></tr>
+        <tr><td>Paso por referencia (Kuarahy y Jasy, R2)</td><td>Mecanismos de paso, alias</td><td>U6</td><td>Paso por valor; compartición de objetos en Python</td></tr>
+        <tr><td>Texto + número (Kuarahy y Jasy, R3)</td><td>Conversión implícita, tipado débil</td><td>U4</td><td>Tipado fuerte: error de tipos</td></tr>
+        <tr><td>Sin precedencia (Ñe’ẽ, R1)</td><td>Precedencia y asociatividad</td><td>U5</td><td>Precedencia habitual (* antes que +)</td></tr>
+        <tr><td>Evaluación completa (Ñe’ẽ, R2)</td><td>Evaluación en cortocircuito, guardas</td><td>U5</td><td>Cortocircuito (Python, Java, C)</td></tr>
+        <tr><td>Valor-resultado (Ñe’ẽ, R3)</td><td>Mecanismos de paso</td><td>U6</td><td>Paso por referencia; paso por valor</td></tr>
+        <tr><td>«¿La mantendrías?» (D3 en todos)</td><td>Criterios de diseño: legibilidad, escribibilidad, confiabilidad, regularidad</td><td>U2</td><td>—</td></tr>
+      </tbody>
+    </table></div>
+    <div class="enlaces-juego" style="margin-top:1rem"><a class="btn" href="simulacro-final.html">Ir al simulacro del final</a><a class="btn sec" href="index.html">Volver a los juegos</a></div>
+  </section>
+
+  <footer class="pie"><span>Teoría de la Programación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="razonada.js"></script>
+<script src="lenguajes-inventados.js"></script>
+<script>
+(function () {
+  const zona = document.getElementById("zona");
+  const botonera = document.getElementById("lenguas");
+  const orden = ["kuarahy", "jasy", "nee"];
+  let puntos = {}, maximo = 0;
+
+  botonera.innerHTML = orden.map(k => {
+    const L = LENGUAJES[k];
+    return `<button type="button" class="lengua" data-k="${k}" aria-pressed="false"><b>${L.nombre}</b><span class="lema">${L.lema}</span><span>${Razonada.md(L.foco)}</span><span class="u">${L.unidades}</span></button>`;
+  }).join("");
+  botonera.addEventListener("click", ev => { const b = ev.target.closest(".lengua"); if (b) mostrar(b.dataset.k, true); });
+
+  function actualizar() {
+    const total = Object.values(puntos).reduce((a, b) => a + b, 0);
+    document.getElementById("pts").textContent = total;
+    document.getElementById("max").textContent = maximo;
+    const hechos = Object.keys(puntos).length;
+    document.getElementById("consejo").textContent = hechos === 0 ? "Revisa cada ejercicio para sumar." :
+      total === maximo ? "¡Lenguaje dominado! Prueba otro." : "Si una justificación salió incompleta, usa «Intentar de nuevo».";
+  }
+
+  function mostrar(k, desplazar) {
+    const L = LENGUAJES[k];
+    botonera.querySelectorAll(".lengua").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.k === k)));
+    history.replaceState(null, "", "#" + k);
+    puntos = {}; maximo = 0;
+    zona.innerHTML = `<h2 class="sub-l">${L.nombre}: sus reglas</h2>${Razonada.htmlReglas(L)}
+      <h2 class="sub-l">Ejercicios puntuales</h2><p class="bajada">Cada uno pone a prueba una regla. Elige el resultado, la regla que lo decide y la justificación.</p>
+      <div id="puntuales"></div>
+      <h2 class="sub-l">Traza completa, como en el examen</h2><p class="bajada">El mismo programa con las reglas originales y con tres variantes. Cambia una sola regla por fila.</p>
+      <div id="trazas"></div>`;
+    const cont = { puntuales: document.getElementById("puntuales"), trazas: document.getElementById("trazas") };
+    [["puntuales", L.puntuales], ["trazas", L.trazas]].forEach(([dest, lista]) => {
+      lista.forEach((item, i) => {
+        const clave = dest + i;
+        const num = (dest === "puntuales" ? "P" : "T") + (i + 1);
+        const opciones = {
+          num, inmediato: true, escribir: true,
+          alPuntuar(r) { puntos[clave] = r.pts; actualizar(); },
+          alReiniciar() { delete puntos[clave]; actualizar(); }
+        };
+        const c = Razonada.crear(item, opciones);
+        maximo += c.max;
+        cont[dest].appendChild(c.el);
+      });
+    });
+    actualizar();
+    if (desplazar) zona.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  const inicial = orden.includes(location.hash.slice(1)) ? location.hash.slice(1) : "kuarahy";
+  mostrar(inicial, false);
+})();
+</script>
+</body>
+</html>

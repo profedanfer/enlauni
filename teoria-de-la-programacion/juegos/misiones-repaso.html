@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Misiones del repaso · Teoría de la Programación</title>
+<link rel="icon" href="../../assets/personajes/ada.svg" type="image/svg+xml">
+<script src="../../assets/tema.js"></script>
+<link rel="stylesheet" href="../../assets/estilos.css">
+<link rel="stylesheet" href="razonada.css">
+<style>
+  .tablero { display: flex; flex-wrap: wrap; gap: .8rem 1.4rem; align-items: center; justify-content: space-between; margin-top: 1.2rem; padding: .9rem 1.1rem; border-radius: var(--radio); background: var(--acierto-fondo); }
+  .tablero .grande { font-family: var(--f-titulo); font-size: 1.8rem; color: var(--verde-oscuro); }
+  .sellos { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .sello { font-size: .8rem; font-weight: 700; padding: .25rem .65rem; border-radius: 999px; border: 2px dashed var(--linea); color: var(--tinta-suave); background: var(--superficie); }
+  .sello.ganado { border-style: solid; border-color: var(--verde-medio); color: var(--sobre-acento); background: var(--verde-medio); }
+  .mundo { margin-top: 1.4rem; }
+  .mundo h2 { font-size: 1.25rem; margin: 0; }
+  .mundo .sub { font-size: .88rem; color: var(--tinta-suave); margin: .15rem 0 .6rem; }
+  .camino { display: grid; grid-template-columns: repeat(auto-fill, minmax(8.6rem, 1fr)); gap: .55rem; }
+  .mis { font: inherit; text-align: left; cursor: pointer; background: var(--superficie); color: var(--tinta); border: 2px solid var(--linea); border-radius: var(--radio); padding: .6rem .7rem; display: grid; gap: .2rem; min-height: 5.2rem; }
+  .mis .nro { font-family: var(--f-codigo); font-size: .78rem; font-weight: 700; color: var(--verde-medio); }
+  .mis .tit { font-weight: 700; font-size: .92rem; line-height: 1.25; }
+  .mis .est { letter-spacing: .1em; color: var(--verde-medio); font-size: .95rem; }
+  .mis .est .off { color: var(--linea); }
+  .mis[aria-current="true"] { border-color: var(--verde-medio); box-shadow: 0 0 0 4px var(--acierto-fondo); }
+  .mis.hecha { background: var(--acierto-fondo); }
+  .zona-m { margin-top: 1.6rem; scroll-margin-top: 1rem; }
+  .pista-m { margin-top: .8rem; border: 1px dashed var(--verde-claro); border-radius: var(--radio); padding: .6rem .9rem; }
+  .pista-m summary { cursor: pointer; font-weight: 700; color: var(--verde-medio); }
+  .ejec { margin-top: 1rem; border: 2px solid var(--verde-claro); border-radius: var(--radio); padding: .9rem 1rem; background: var(--superficie); }
+  .ejec h4 { margin: 0 0 .4rem; }
+  .consola { margin: .6rem 0 0; font-family: var(--f-codigo); font-size: .9rem; white-space: pre-wrap; overflow-wrap: anywhere; background: var(--codigo-fondo); color: var(--codigo-tinta); border-radius: 8px; padding: .7rem .9rem; min-height: 2.5rem; }
+  .consola .info { opacity: .75; font-style: italic; }
+  .consola .err { color: #ff8a80; }
+  .premio { margin-top: .8rem; font-weight: 700; color: var(--verde-oscuro); }
+</style>
+</head>
+<body>
+<div class="envoltura sitio">
+  <header class="inst"><span>Aula Danfer</span><span>PhD. Daniela Ferreira</span></header>
+  <nav class="migas" aria-label="Ubicación"><a href="../../index.html">Inicio</a><span aria-hidden="true">/</span><a href="../index.html">Teoría de la Programación</a><span aria-hidden="true">/</span><a href="index.html">Juegos</a><span aria-hidden="true">/</span><span>Misiones del repaso</span></nav>
+  <section class="hero">
+    <p class="etiqueta">Las guías de repaso, en modo juego</p>
+    <h1>Misiones del repaso</h1>
+    <p class="bajada">Los ejercicios de las guías de repaso (Parte 1 y Parte 2) y del Repaso 1, convertidos en 22 misiones. En cada una: predices, nombras el concepto, justificas y después ejecutas el código para comprobarlo.</p>
+  </section>
+  <div class="escena"><img src="../../assets/personajes/ada.svg" alt="" width="68" height="80"><div class="globo"><span class="quien">Ada</span><p>Regla de oro de las guías: primero predices, después ejecutas. Si ejecutas antes, no estás practicando para el examen, estás mirando.</p></div></div>
+  <div class="escena der"><img src="../../assets/personajes/bug.svg" alt="" width="68" height="72"><div class="globo"><span class="quien">Bug</span><p>Tres estrellas: opción, concepto y justificación completos. Dos: justificación incompleta. Yo colecciono estrellas sueltas.</p></div></div>
+
+  <div class="tablero" aria-live="polite"><div><span class="grande" id="estrellas">0</span> <span>de <span id="maxEst">0</span> estrellas</span></div><div class="sellos" id="sellos"></div></div>
+
+  <div id="mapa"></div>
+  <section class="zona-m" id="zona"></section>
+
+  <section class="seccion">
+    <h2>Cómo se cuentan las estrellas</h2>
+    <ul class="autoeval">
+      <li>★★★ opción correcta, concepto correcto y justificación completa (en el examen, 2 pts).</li>
+      <li>★★ opción correcta con justificación incompleta (en el examen, 1 pt).</li>
+      <li>★ lo intentaste, pero la opción o el razonamiento fallaron (en el examen, 0). Usa «Intentar de nuevo»: se guarda tu mejor resultado.</li>
+      <li>Un sello por mundo cuando todas sus misiones tienen al menos ★★. Se guarda solo en este navegador.</li>
+    </ul>
+    <div class="enlaces-juego"><a class="btn" href="simulacro-final.html">Simulacro del final</a><a class="btn sec" href="lenguajes-inventados.html">Lenguajes inventados</a></div>
+  </section>
+
+  <footer class="pie"><span>Teoría de la Programación</span><span>PhD. Daniela Ferreira</span></footer>
+</div>
+<script src="razonada.js"></script>
+<script src="laboratorio/ejecutor.js"></script>
+<script src="misiones-datos.js"></script>
+<script>
+(function () {
+  const CLAVE = "tpr-misiones-v1";
+  const R = Razonada;
+  const $ = s => document.querySelector(s);
+  let mejor = {};
+  try { mejor = JSON.parse(localStorage.getItem(CLAVE)) || {}; } catch (e) { mejor = {}; }
+  const guardar = () => { try { localStorage.setItem(CLAVE, JSON.stringify(mejor)); } catch (e) { } };
+  const est = n => "★".repeat(n) + `<span class="off">${"★".repeat(3 - n)}</span>`;
+  const deMision = pts => pts === 2 ? 3 : pts === 1 ? 2 : 1;
+  let actual = null;
+
+  function pintarMapa() {
+    $("#mapa").innerHTML = MUNDOS.map(M => {
+      const ms = MISIONES.filter(m => m.mundo === M.n);
+      return `<section class="mundo"><h2>Mundo ${M.n} · ${M.nombre}</h2><p class="sub">${M.unidades} · ${ms.length} misiones</p>
+        <div class="camino">${ms.map(m => { const i = MISIONES.indexOf(m); const e = mejor[m.id] || 0;
+          return `<button type="button" class="mis ${e >= 2 ? "hecha" : ""}" data-id="${m.id}" ${actual === m.id ? 'aria-current="true"' : ""}><span class="nro">M${i + 1}</span><span class="tit">${R.esc(m.item.titulo)}</span><span class="est" aria-label="${e} de 3 estrellas">${est(e)}</span></button>`; }).join("")}</div></section>`;
+    }).join("");
+    const total = MISIONES.reduce((a, m) => a + (mejor[m.id] || 0), 0);
+    $("#estrellas").textContent = total;
+    $("#maxEst").textContent = MISIONES.length * 3;
+    $("#sellos").innerHTML = MUNDOS.map(M => {
+      const ok = MISIONES.filter(m => m.mundo === M.n).every(m => (mejor[m.id] || 0) >= 2);
+      return `<span class="sello ${ok ? "ganado" : ""}" title="${ok ? "Ganado" : "Todas las misiones del mundo con ★★ o más"}">${ok ? "✓ " : ""}${M.sello}</span>`;
+    }).join("");
+  }
+  $("#mapa").addEventListener("click", ev => { const b = ev.target.closest(".mis"); if (b) abrir(b.dataset.id, true); });
+
+  function cajaEjecutar(m) {
+    const e = m.ejec;
+    const div = document.createElement("div");
+    div.className = "ejec";
+    const ejecutable = e.lang === "Python";
+    div.innerHTML = `<h4>Ahora sí: ejecuta y comprueba</h4>
+      ${e.nota ? `<p class="nota" style="margin:.2rem 0 0">${R.md(e.nota)}</p>` : ""}
+      ${e.code ? R.bloqueCodigo(e.code, e.lang) : ""}
+      <div class="fila-botones" style="margin-top:.6rem">${ejecutable ? `<button type="button" class="btn" data-run>Ejecutar en Python</button>` : ""}<button type="button" class="btn sec" data-reg>${ejecutable ? "Ver la salida registrada" : `Ver la salida (${R.esc(e.lang)})`}</button></div>
+      <pre class="consola" data-cons aria-live="polite"><span class="info">${ejecutable ? "Python se carga en tu navegador la primera vez (puede tardar unos segundos)." : "Toca el botón para ver la salida."}</span></pre>
+      <p class="nota" style="margin:.5rem 0 0">¿Tu predicción coincide? Si no, escribe qué concepto te faltaba: ese es el que tienes que repasar.</p>`;
+    const cons = div.querySelector("[data-cons]");
+    const registrada = () => { cons.innerHTML = `<span class="info">Salida registrada al ejecutar ${R.esc(e.lang === "Kuarahy" || e.lang === "Pseudocódigo" ? "aplicando las reglas" : "con " + e.lang)}:</span>\n` + R.esc(e.salida); };
+    div.querySelector("[data-reg]").addEventListener("click", registrada);
+    const run = div.querySelector("[data-run]");
+    if (run) run.addEventListener("click", async () => {
+      run.disabled = true;
+      cons.innerHTML = `<span class="info">Ejecutando…</span>`;
+      let r;
+      try { r = await Laboratorio.python(e.code || m.item.code, { limite: 8000 }); } catch (err) { r = { fin: "sin-python" }; }
+      run.disabled = false;
+      if (r.fin === "sin-python") { cons.innerHTML = `<span class="info">No se pudo cargar Python aquí (¿sin conexión?).</span>\n`; registrada(); return; }
+      if (r.fin === "detenido") { cons.innerHTML = `<span class="err">El programa no terminó a tiempo.</span>`; return; }
+      const out = (r.primeras || []).concat(r.ultimas && r.ultimas.length ? ["…"].concat(r.ultimas) : []);
+      cons.innerHTML = R.esc(out.join("\n")) + (r.error ? `${out.length ? "\n" : ""}<span class="err">${R.esc(r.error.traza || r.error.ultima)}</span>` : "");
+    });
+    return div;
+  }
+
+  function abrir(id, desplazar) {
+    const m = MISIONES.find(x => x.id === id);
+    const i = MISIONES.indexOf(m);
+    actual = id;
+    history.replaceState(null, "", "#" + id);
+    pintarMapa();
+    const zona = $("#zona");
+    zona.innerHTML = `<div class="escena"><img src="../../assets/personajes/ada.svg" alt="" width="60" height="70"><div class="globo"><span class="quien">Ada · Misión ${i + 1}</span><p>${R.md(m.ada)}</p></div></div>
+      <details class="pista-m"><summary>Pedir una pista</summary><p style="margin:.4rem 0 0">${R.md(m.pista)}</p></details>`;
+    const opciones = {
+      num: "M" + (i + 1), inmediato: true, escribir: true,
+      alPuntuar(r, ctrl) {
+        const e = deMision(r.pts);
+        const antes = mejor[id] || 0;
+        if (e > antes) { mejor[id] = e; guardar(); }
+        const fb = ctrl.el.querySelector(".rz-fb");
+        fb.insertAdjacentHTML("beforeend", `<p class="premio">${est(e).replace(/class="off"/, 'class="off" style="opacity:.35"')} ${e === 3 ? "¡Misión cumplida!" : e === 2 ? "Bien, pero la justificación puede mejorar." : "Vuelve a intentarlo después de leer la devolución."}${e > antes && antes ? " Nuevo récord." : ""}</p>`);
+        ctrl.el.appendChild(cajaEjecutar(m));
+        const sig = MISIONES[i + 1];
+        const nav = document.createElement("div");
+        nav.className = "fila-botones";
+        nav.style.marginTop = ".8rem";
+        nav.innerHTML = sig ? `<button type="button" class="btn" data-sig>Siguiente misión: ${R.esc(sig.item.titulo)}</button>` : `<a class="btn" href="simulacro-final.html">¡Terminaste! Ir al simulacro del final</a>`;
+        ctrl.el.appendChild(nav);
+        const bs = nav.querySelector("[data-sig]"); if (bs) bs.addEventListener("click", () => abrir(sig.id, true));
+        pintarMapa();
+      }
+    };
+    zona.appendChild(R.crear(m.item, opciones).el);
+    if (desplazar) zona.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  const inicial = MISIONES.find(m => m.id === location.hash.slice(1)) || MISIONES.find(m => !mejor[m.id]) || MISIONES[0];
+  pintarMapa();
+  abrir(inicial.id, false);
+  window.addEventListener("hashchange", () => { const m = MISIONES.find(x => x.id === location.hash.slice(1)); if (m && m.id !== actual) abrir(m.id, true); });
+})();
+</script>
+</body>
+</html>
