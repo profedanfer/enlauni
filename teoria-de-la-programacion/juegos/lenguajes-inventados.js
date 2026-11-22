@@ -6,24 +6,23 @@
    que aplica estas mismas reglas.
    ========================================================= */
 
-const BASE_COMUN = [
-  '`var n = 2` declara una variable nueva. Si está fuera de toda función es global; si está dentro de una función, es local de esa función.',
-  '`n = n + 1` (sin `var`) cambia el valor de una variable que ya existe. No crea una variable nueva.',
-  '`func nombre(parámetros)` define una función. Su cuerpo son las líneas con sangría que están debajo.',
-  '`imprimir(e)` escribe el valor de `e` en una línea nueva.',
-  'Las expresiones se evalúan de izquierda a derecha.',
-  'El programa se ejecuta desde el «programa principal», de arriba hacia abajo. Si una línea provoca un error, el programa se detiene ahí; lo que ya se imprimió queda impreso.'
-];
-
 const LENGUAJES = {
   kuarahy: {
     nombre: 'Kuarahy', lema: '«sol» en guaraní', unidades: 'U3 · U4 · U6',
     foco: 'Alcance dinámico, paso por referencia y conversión de número a texto.',
     aviso: 'Kuarahy es un lenguaje inventado. No funciona como Python, Java ni C: aplica **solo** estas reglas, aunque contradigan lo que conoces.',
-    base: BASE_COMUN,
+    base: [
+      'Los números a la izquierda del programa solo sirven para nombrar las líneas. Lo que va después de `//` es un comentario y no se ejecuta.',
+      '`var n = 2` declara una variable nueva, aunque ya exista otra con el mismo nombre en otro lugar. Si está fuera de toda función es global; si está dentro de una función, es local de esa función.',
+      '`n = n + 1` (sin `var`) cambia el valor de una variable que ya existe. No crea una variable nueva. A qué variable se refiere se decide con R1.',
+      '`func nombre(parámetros)` define una función. Su cuerpo son las líneas con sangría que están debajo. Definir una función no la ejecuta: se ejecuta cuando alguien la llama.',
+      '`imprimir(e)` escribe el valor de `e` en una línea nueva.',
+      'Varias sumas seguidas se resuelven de izquierda a derecha: `"4" + 1 + 2` se calcula como `("4" + 1) + 2` y vale "412".',
+      'Ejecución: primero se crean las variables globales (las declaradas con `var` fuera de toda función); después se ejecuta el programa principal, de arriba hacia abajo. Si una línea provoca un error, el programa se detiene ahí; lo que ya se imprimió queda impreso.'
+    ],
     reglas: [
-      { id: 'R1', nombre: 'Alcance dinámico', texto: 'Cuando una función usa un nombre que no declaró con `var` y que no es uno de sus parámetros, lo busca en la función que la llamó (sus variables y sus parámetros); si no está ahí, en la que llamó a esa, y así hasta las variables globales.' },
-      { id: 'R2', nombre: 'Paso por referencia', texto: 'El parámetro es otro nombre para la misma variable que se pasó al llamar. Si se cambia el parámetro, cambia la variable original.' },
+      { id: 'R1', nombre: 'Alcance dinámico', texto: 'Cuando una función usa un nombre, para leerlo o para cambiarlo, y ese nombre no lo declaró con `var` ni es uno de sus parámetros, lo busca por su nombre en la función que la llamó (sus variables y sus parámetros). Si no está ahí, lo busca en la que llamó a esa, y así hasta las variables globales. El programa principal usa las variables globales. Si el nombre no aparece en ningún lugar, es un error.' },
+      { id: 'R2', nombre: 'Paso por referencia', texto: 'Al llamar a una función se le pasa una variable, no un valor suelto. El parámetro es otro nombre para esa misma variable: si se cambia el parámetro, cambia la variable original.' },
       { id: 'R3', nombre: 'Texto + número', texto: 'Si se suman un texto y un número, el número se convierte a texto y se unen: `"Gs " + 5` vale `"Gs 5"`. Dos textos se unen; dos números se suman.' }
     ],
     puntuales: [
